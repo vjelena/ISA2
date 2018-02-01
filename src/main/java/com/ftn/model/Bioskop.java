@@ -18,19 +18,20 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 public class Bioskop implements Serializable{
 	
 	@Column
-	private String nazivBioskopa;
-	private String opisBioskopa;
-	private String adresaBioskopa;
-	//lista sala
+	private String naziv;
+	private String opis;
+	private Adresa adresa;
+	private Set<Sala> listaSala;
 	
 	@JsonIgnore //da se izbegne rekurzija pri slanju objekta, stavlja se sa jedne strane vezee, tipa gde je set
 	@JsonManagedReference  //sa jedne strane managed a sa druge back
-	private Set<Karta> karteNaPopustu;
+	private Set<Karta> listaKarata;
+	
+	private Set<BrzaKarta> brzeKarte;
 	private Repertoar repertoar;
+	private Set<Segment> listaSegmenta;
 	
-	//konfiguracija segmenata i mesta
-	
-	
+	private IzvestajOPoslovanju izvestaj;
 	
 	//treba id
 	@Id

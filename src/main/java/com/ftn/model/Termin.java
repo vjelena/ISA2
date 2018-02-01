@@ -1,10 +1,10 @@
 package com.ftn.model;
 
+import java.util.Set;
+
 public class Termin {
 
 	private float cena;
-	//satnica
+	private Set<String> satnica;
 	
-	
-	//bean: datumtermin
 }

@@ -1,19 +1,19 @@
 package com.ftn.model;
 
-import java.util.ArrayList;
+import java.util.Set;
 
 public class Projekcija {
 
-	private String nazivProjekcije;
+	private String naziv;
 	private String zanr;
 	private String reditelj;
-	private String opisProjekcije;
-	private ArrayList<String> glumci;
-	//poster
-	private float trajanje;
-	private ArrayList<Sala> sale;
-	private float cena;
+	private String opis;
+	private Set<String> glumci;
+	private String slika;
+	private int trajanje;
 	private float ocena;
-	private ArrayList<Termin> termini;
+	private Set<Sala> sale;
+	private float cena;
+	private Set<Termin> termini;
 	
 }

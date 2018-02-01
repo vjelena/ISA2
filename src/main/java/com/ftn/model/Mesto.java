@@ -2,5 +2,6 @@ package com.ftn.model;
 
 public class Mesto {
 
-	private int brojMesta;
+	private int rbr;
+	private boolean rezervisano;
 }

@@ -1,6 +1,6 @@
 package com.ftn.model;
 
-import java.util.ArrayList;
+import java.util.Set;
 
 public class Korisnik {
 
@@ -9,14 +9,15 @@ public class Korisnik {
 	private String email;
 	private String lozinka;
 	private String brojTelefona;
-	//nova klasa
-	private String adresa;
+	private Adresa adresa;
+	private Grad grad;
 	private String uloga;
-	private ArrayList<Korisnik> listaPrijatelja;
-	private ArrayList<Rezervacija> listaRezervacija;
+	private float ocenaAmbijenta;
+	private float ocenaProjekcije;
+	private Set<ZahtevZaPrijateljstvo> listaZahtevaZaPrijateljstvo;
+	private Set<Rezervacija> listaRezervacija;
+	private Set<Rekvizit> listaRekvizita;
+	private Set<Oglas> listaOglasa;
+	private Clan clan;
 }
-//friendrequest
-//lista zahteva
-//ko
-//koga
-//potvrdio
+

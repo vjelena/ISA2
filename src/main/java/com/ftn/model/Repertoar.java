@@ -1,8 +1,9 @@
 package com.ftn.model;
 
-import java.util.ArrayList;
+import java.util.Set;
 
 public class Repertoar {
 
-	private ArrayList<Projekcija> projekcije;
+	private Bioskop bioskop;
+	private Set<Projekcija> projekcije;
 }
