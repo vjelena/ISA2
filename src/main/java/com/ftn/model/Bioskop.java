@@ -30,6 +30,8 @@ public class Bioskop implements Serializable{
 	
 	//konfiguracija segmenata i mesta
 	
+	
+	
 	//treba id
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
