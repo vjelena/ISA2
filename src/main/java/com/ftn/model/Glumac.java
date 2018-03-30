@@ -1,6 +1,7 @@
 package com.ftn.model;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,7 +27,7 @@ public class Glumac implements Serializable{
 	
 	@ManyToMany
 	@JsonBackReference
-	private Projekcija projekcija;
+	private Set<Projekcija> projekcije;
 	
 	public Glumac() {
 		
@@ -56,12 +57,13 @@ public class Glumac implements Serializable{
 		this.prezime = prezime;
 	}
 
-	public Projekcija getProjekcija() {
-		return projekcija;
+	public Set<Projekcija> getProjekcije() {
+		return projekcije;
 	}
 
-	public void setProjekcija(Projekcija projekcija) {
-		this.projekcija = projekcija;
+	public void setProjekcije(Set<Projekcija> projekcije) {
+		this.projekcije = projekcije;
 	}
+
 	
 }
