@@ -8,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Termin implements Serializable{
@@ -19,8 +22,9 @@ public class Termin implements Serializable{
 	@Column(nullable = false)
 	private float cena;
 	
-	@Column(nullable = false) //?
-	private Set<String> satnica;
+	@ManyToMany
+	@JsonBackReference
+	private Set<Vreme> vreme;
 	
 	public Termin() {
 		
@@ -42,12 +46,12 @@ public class Termin implements Serializable{
 		this.cena = cena;
 	}
 
-	public Set<String> getSatnica() {
-		return satnica;
+	public Set<Vreme> getVreme() {
+		return vreme;
 	}
 
-	public void setSatnica(Set<String> satnica) {
-		this.satnica = satnica;
+	public void setVreme(Set<Vreme> vreme) {
+		this.vreme = vreme;
 	}
-	
+
 }

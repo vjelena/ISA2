@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class IzvestajOPoslovanju implements Serializable{
 
@@ -17,10 +19,10 @@ public class IzvestajOPoslovanju implements Serializable{
 	private int id;
 	
 	@Column(nullable = false)
-	private float ocenaAmbijenta;
+	private float prosecnaOcenaAmbijenta;
 	
 	@Column(nullable = false)
-	private float ocenaProjekcije;
+	private float prosecnaOcenaProjekcije;
 	
 	//graficki prikaz posecenosti
 	
@@ -28,6 +30,7 @@ public class IzvestajOPoslovanju implements Serializable{
 	private float prihod;
 	
 	@OneToOne(optional = false)
+	@JsonBackReference
 	private Bioskop bioskop;
 	
 	public IzvestajOPoslovanju() {
@@ -40,22 +43,6 @@ public class IzvestajOPoslovanju implements Serializable{
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public float getOcenaAmbijenta() {
-		return ocenaAmbijenta;
-	}
-
-	public void setOcenaAmbijenta(float ocenaAmbijenta) {
-		this.ocenaAmbijenta = ocenaAmbijenta;
-	}
-
-	public float getOcenaProjekcije() {
-		return ocenaProjekcije;
-	}
-
-	public void setOcenaProjekcije(float ocenaProjekcije) {
-		this.ocenaProjekcije = ocenaProjekcije;
 	}
 
 	public float getPrihod() {
@@ -73,5 +60,23 @@ public class IzvestajOPoslovanju implements Serializable{
 	public void setBioskop(Bioskop bioskop) {
 		this.bioskop = bioskop;
 	}
+
+	public float getProsecnaOcenaAmbijenta() {
+		return prosecnaOcenaAmbijenta;
+	}
+
+	public void setProsecnaOcenaAmbijenta(float prosecnaOcenaAmbijenta) {
+		this.prosecnaOcenaAmbijenta = prosecnaOcenaAmbijenta;
+	}
+
+	public float getProsecnaOcenaProjekcije() {
+		return prosecnaOcenaProjekcije;
+	}
+
+	public void setProsecnaOcenaProjekcije(float prosecnaOcenaProjekcije) {
+		this.prosecnaOcenaProjekcije = prosecnaOcenaProjekcije;
+	}
+	
+	
 	
 }

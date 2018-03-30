@@ -7,9 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
-public class Mesto implements Serializable{
+public class Sediste implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,10 +22,15 @@ public class Mesto implements Serializable{
 	@Column(nullable = false)
 	private int rbr;
 	
-	@Column(nullable = false)
-	private boolean rezervisano;
+	@OneToOne
+	@JsonBackReference
+	private Karta karta;
 	
-	public Mesto() {
+	@ManyToOne(optional = false)
+	@JsonBackReference
+	private Segment segment;
+	
+	public Sediste() {
 		
 	}
 
@@ -41,12 +50,20 @@ public class Mesto implements Serializable{
 		this.rbr = rbr;
 	}
 
-	public boolean isRezervisano() {
-		return rezervisano;
+	public Karta getKarta() {
+		return karta;
 	}
 
-	public void setRezervisano(boolean rezervisano) {
-		this.rezervisano = rezervisano;
+	public void setKarta(Karta karta) {
+		this.karta = karta;
 	}
-	
+
+	public Segment getSegment() {
+		return segment;
+	}
+
+	public void setSegment(Segment segment) {
+		this.segment = segment;
+	}
+
 }

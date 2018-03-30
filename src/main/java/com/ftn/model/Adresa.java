@@ -12,6 +12,10 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Adresa implements Serializable{
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	
 	@Column(nullable = false)
 	private String ulica;
 	
@@ -20,10 +24,6 @@ public class Adresa implements Serializable{
 	
 	@ManyToOne(optional = false)
 	private Grad grad;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
 
 	public Adresa() {
 		

@@ -19,26 +19,27 @@ public class BrzaKarta implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@JsonBackReference
-	private Bioskop bioskop;
-	
-	@ManyToOne(optional = false)
-	private Projekcija projekcija;
-	
-	@Column(nullable = false)
-	private Date datum;
-	
-	@ManyToOne(optional = false)
-	private Termin termin;
-	
-	@ManyToOne(optional = false)
-	private Sala sala;
-	
 	@Column(nullable = false)
 	private float cenaSaPopustom;
 	
 	@Column(nullable = false)
 	private boolean prodata;
+	
+	@Column(nullable = false)
+	private Date datum;
+	
+	@JsonBackReference
+	@ManyToOne(optional = false)
+	private Bioskop bioskop;
+	
+	@ManyToOne(optional = false)
+	private Projekcija projekcija;	
+	
+	@ManyToOne(optional = false)
+	private Termin termin;
+	
+	@ManyToOne(optional = false)
+	private Sala sala;	
 	
 	public BrzaKarta() {
 

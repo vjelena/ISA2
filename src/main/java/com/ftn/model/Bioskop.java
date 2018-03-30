@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -32,25 +33,40 @@ public class Bioskop implements Serializable{
 	@OneToOne(optional = false)
 	private Adresa adresa;
 	
-	@OneToMany
+	@JsonIgnore
+	@JsonManagedReference
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bioskop")
 	private Set<Sala> listaSala;
 		
 	@JsonIgnore //da se izbegne rekurzija pri slanju objekta, stavlja se sa jedne strane veze, tipa gde je set
 	@JsonManagedReference  //sa jedne strane managed a sa druge back
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bioskop")
 	private Set<Karta> listaKarata;
 	
 	@JsonIgnore
 	@JsonManagedReference
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bioskop")
 	private Set<BrzaKarta> brzeKarte;
 	
+	@JsonIgnore
+	@JsonManagedReference
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "bioskop")//bidirekciona veza 1:1, vlasnik veze je bioskop(naziv kolone u tabeli repertoar)
 	private Repertoar repertoar;
-	
-	@OneToMany
-	private Set<Segment> listaSegmenta;
-	
+
+	@JsonIgnore
+	@JsonManagedReference
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "bioskop")
 	private IzvestajOPoslovanju izvestaj;
+	
+	@JsonIgnore
+	@JsonManagedReference
+	@ManyToMany
+	private Set<Korisnik> listaPosetilaca;
+	
+	@JsonIgnore
+	@JsonManagedReference
+	@OneToOne
+	private FanZona fanZona;
 
 	public Bioskop() {
 		
@@ -110,14 +126,6 @@ public class Bioskop implements Serializable{
 
 	public void setRepertoar(Repertoar repertoar) {
 		this.repertoar = repertoar;
-	}
-
-	public Set<Segment> getListaSegmenta() {
-		return listaSegmenta;
-	}
-
-	public void setListaSegmenta(Set<Segment> listaSegmenta) {
-		this.listaSegmenta = listaSegmenta;
 	}
 
 	public IzvestajOPoslovanju getIzvestaj() {

@@ -9,9 +9,14 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Korisnik implements Serializable{
@@ -35,10 +40,6 @@ public class Korisnik implements Serializable{
 	@Column(nullable = false)
 	private String brojTelefona;
 	
-	@ManyToOne(optional = false)
-	private Adresa adresa;
-	private Grad grad;	// da li mu je potreban grad ako u adresi imamo grad
-	
 	@Column(nullable = false)
 	private String uloga;
 	
@@ -48,20 +49,35 @@ public class Korisnik implements Serializable{
 	@Column(nullable = false)
 	private float ocenaProjekcije;
 	
+	@OneToOne(optional = false)
+	private Adresa adresa;
 	
-	private Set<ZahtevZaPrijateljstvo> listaZahtevaZaPrijateljstvo;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "posiljalac")
+	@JsonIgnore
+	@JsonManagedReference
+	private Set<PoslatZahtev> listaPoslatihZahteva;
+	//pitati za brisanje prijatelja sta se onda desava, kako obavestiti obrisanog
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "primalac")
+	@JsonIgnore
+	@JsonManagedReference
+	private Set<PrihvacenZahtev> listaPrihvacenihZahteva;
 	
+	@JsonIgnore
+	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "korisnik")
 	private Set<Rezervacija> listaRezervacija;
 	
-	@OneToOne(optional = false)
-	private Set<Rekvizit> listaRekvizita;
-	
+	@JsonIgnore
+	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "korisnik")
 	private Set<Oglas> listaOglasa;
 	
-	@ManyToOne(optional = false)
+	@OneToOne(optional = false)
 	private Clan clan;
+	
+	@ManyToMany
+	@JsonBackReference
+	private Set<Bioskop> listaPosecenihBioskopa;
 	
 	public Korisnik() {
 		
@@ -123,14 +139,6 @@ public class Korisnik implements Serializable{
 		this.adresa = adresa;
 	}
 
-	public Grad getGrad() {
-		return grad;
-	}
-
-	public void setGrad(Grad grad) {
-		this.grad = grad;
-	}
-
 	public String getUloga() {
 		return uloga;
 	}
@@ -155,28 +163,12 @@ public class Korisnik implements Serializable{
 		this.ocenaProjekcije = ocenaProjekcije;
 	}
 
-	public Set<ZahtevZaPrijateljstvo> getListaZahtevaZaPrijateljstvo() {
-		return listaZahtevaZaPrijateljstvo;
-	}
-
-	public void setListaZahtevaZaPrijateljstvo(Set<ZahtevZaPrijateljstvo> listaZahtevaZaPrijateljstvo) {
-		this.listaZahtevaZaPrijateljstvo = listaZahtevaZaPrijateljstvo;
-	}
-
 	public Set<Rezervacija> getListaRezervacija() {
 		return listaRezervacija;
 	}
 
 	public void setListaRezervacija(Set<Rezervacija> listaRezervacija) {
 		this.listaRezervacija = listaRezervacija;
-	}
-
-	public Set<Rekvizit> getListaRekvizita() {
-		return listaRekvizita;
-	}
-
-	public void setListaRekvizita(Set<Rekvizit> listaRekvizita) {
-		this.listaRekvizita = listaRekvizita;
 	}
 
 	public Set<Oglas> getListaOglasa() {
@@ -193,6 +185,30 @@ public class Korisnik implements Serializable{
 
 	public void setClan(Clan clan) {
 		this.clan = clan;
+	}
+
+	public Set<PoslatZahtev> getListaPoslatihZahteva() {
+		return listaPoslatihZahteva;
+	}
+
+	public void setListaPoslatihZahteva(Set<PoslatZahtev> listaPoslatihZahteva) {
+		this.listaPoslatihZahteva = listaPoslatihZahteva;
+	}
+
+	public Set<PrihvacenZahtev> getListaPrihvacenihZahteva() {
+		return listaPrihvacenihZahteva;
+	}
+
+	public void setListaPrihvacenihZahteva(Set<PrihvacenZahtev> listaPrihvacenihZahteva) {
+		this.listaPrihvacenihZahteva = listaPrihvacenihZahteva;
+	}
+
+	public Set<Bioskop> getListaPosecenihBioskopa() {
+		return listaPosecenihBioskopa;
+	}
+
+	public void setListaPosecenihBioskopa(Set<Bioskop> listaPosecenihBioskopa) {
+		this.listaPosecenihBioskopa = listaPosecenihBioskopa;
 	}
 	
 }

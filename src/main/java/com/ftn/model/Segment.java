@@ -5,10 +5,16 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Segment implements Serializable{
@@ -20,11 +26,17 @@ public class Segment implements Serializable{
 	@Column(nullable = false)
 	private String tipSegmenta; //balkon, vip sedista..
 	
-	@OneToMany
-	private Set<Mesto> listaMesta;
-	
 	@Column(nullable = false)
 	private boolean zatvoreno;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "segment")
+	@JsonIgnore
+	@JsonManagedReference
+	private Set<Sediste> listaSedista;
+	
+	@JsonBackReference
+	@ManyToOne(optional = false)
+	private Sala sala;
 	
 	public Segment() {
 		
@@ -46,20 +58,28 @@ public class Segment implements Serializable{
 		this.tipSegmenta = tipSegmenta;
 	}
 
-	public Set<Mesto> getListaMesta() {
-		return listaMesta;
-	}
-
-	public void setListaMesta(Set<Mesto> listaMesta) {
-		this.listaMesta = listaMesta;
-	}
-
 	public boolean isZatvoreno() {
 		return zatvoreno;
 	}
 
 	public void setZatvoreno(boolean zatvoreno) {
 		this.zatvoreno = zatvoreno;
+	}
+
+	public Set<Sediste> getListaSedista() {
+		return listaSedista;
+	}
+
+	public void setListaSedista(Set<Sediste> listaSedista) {
+		this.listaSedista = listaSedista;
+	}
+
+	public Sala getSala() {
+		return sala;
+	}
+
+	public void setSala(Sala sala) {
+		this.sala = sala;
 	}
 	
 }

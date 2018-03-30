@@ -4,11 +4,14 @@ import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Rezervacija implements Serializable{
@@ -17,23 +20,19 @@ public class Rezervacija implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	@JsonBackReference
 	@ManyToOne(optional = false)
 	private Korisnik korisnik;
 	
 	@ManyToOne(optional = false)
 	private Bioskop bioskop;
 	
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = false)//da li je ovo suvisno?
 	private Projekcija projekcija;
 	
-	@OneToMany
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "rezervacija")
 	private Set<Karta> listaKarta;
-	
-	@OneToMany
-	private Set<Mesto> listaMesta;	//jquerry za graficki prikaz
-	
-	@OneToMany
-	private Set<ZahtevZaPrijateljstvo> pozvaniPrijatelji;
+	//jquerry za graficki prikaz liste rezervisanih sedista	
 	
 	public Rezervacija() {
 		
@@ -79,20 +78,4 @@ public class Rezervacija implements Serializable{
 		this.listaKarta = listaKarta;
 	}
 
-	public Set<Mesto> getListaMesta() {
-		return listaMesta;
-	}
-
-	public void setListaMesta(Set<Mesto> listaMesta) {
-		this.listaMesta = listaMesta;
-	}
-
-	public Set<ZahtevZaPrijateljstvo> getPozvaniPrijatelji() {
-		return pozvaniPrijatelji;
-	}
-
-	public void setPozvaniPrijatelji(Set<ZahtevZaPrijateljstvo> pozvaniPrijatelji) {
-		this.pozvaniPrijatelji = pozvaniPrijatelji;
-	}
-	
 }

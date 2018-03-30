@@ -4,11 +4,16 @@ import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Repertoar implements Serializable{
@@ -18,9 +23,12 @@ public class Repertoar implements Serializable{
 	private int id;
 	
 	@OneToOne(optional = false)
+	@JsonBackReference
 	private Bioskop bioskop;
 	
-	@OneToMany
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "repertoar")
+	@JsonIgnore
+	@JsonManagedReference
 	private Set<Projekcija> projekcije;
 	
 	public Repertoar() {

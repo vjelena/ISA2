@@ -9,6 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Oglas implements Serializable{
@@ -16,9 +19,6 @@ public class Oglas implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
-	@ManyToOne(optional = false)
-	private Korisnik korisnik;
 	
 	@Column(nullable = false)
 	private String naziv;
@@ -33,7 +33,23 @@ public class Oglas implements Serializable{
 	private String slika;
 	
 	@Column(nullable = false)
+	private int cena;
+	//licitacija???
+	
+	@Column(nullable = false)
 	private boolean odobren;
+	
+	@OneToOne
+	@JsonBackReference
+	private Rekvizit rekvizit;	//oglasen rekvizit
+	
+	@ManyToOne(optional = false)
+	@JsonBackReference
+	private FanZona fanZona;
+	
+	@JsonBackReference
+	@ManyToOne(optional = false)
+	private Korisnik korisnik;
 	
 	public Oglas() {
 		

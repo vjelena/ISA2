@@ -1,12 +1,20 @@
 package com.ftn.model;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Sala implements Serializable{
@@ -21,7 +29,15 @@ public class Sala implements Serializable{
 	@Column(nullable = false)
 	private int brojMesta;
 	
-	//lista mesta?
+	@ManyToOne(optional = false)
+	@JsonBackReference
+	private Bioskop bioskop;
+		
+	@JsonIgnore
+	@JsonManagedReference
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "sala")
+	private Set<Segment> listaSegmenata;
+	
 	
 	public Sala() {
 		
@@ -49,6 +65,22 @@ public class Sala implements Serializable{
 
 	public void setBrojMesta(int brojMesta) {
 		this.brojMesta = brojMesta;
+	}
+
+	public Bioskop getBioskop() {
+		return bioskop;
+	}
+
+	public void setBioskop(Bioskop bioskop) {
+		this.bioskop = bioskop;
+	}
+
+	public Set<Segment> getListaSegmenata() {
+		return listaSegmenata;
+	}
+
+	public void setListaSegmenata(Set<Segment> listaSegmenata) {
+		this.listaSegmenata = listaSegmenata;
 	}
 	
 }

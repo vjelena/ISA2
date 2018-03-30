@@ -8,7 +8,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Projekcija implements Serializable{
@@ -29,9 +35,6 @@ public class Projekcija implements Serializable{
 	@Column(nullable = false)
 	private String opis;
 	
-	@Column(nullable = false) //?
-	private Set<String> glumci;
-	
 	@Column(nullable = false)
 	private String slika;
 	
@@ -41,14 +44,20 @@ public class Projekcija implements Serializable{
 	@Column(nullable = false)
 	private float ocena;
 	
-	@OneToMany
-	private Set<Sala> sale;
+	//@OneToMany ?
+	//private Set<Sala> sale;
+	//????
+	//@OneToMany ?
+	//private Set<Termin> termini;
 	
-	@Column(nullable = false)
-	private float cena;
+	@ManyToMany
+	@JsonIgnore
+	@JsonManagedReference
+	private Set<Glumac> glumci;
 	
-	@OneToMany
-	private Set<Termin> termini;
+	@ManyToOne(optional = false)
+	@JsonBackReference
+	private Repertoar repertoar;
 	
 	public Projekcija() {
 		
@@ -94,11 +103,11 @@ public class Projekcija implements Serializable{
 		this.opis = opis;
 	}
 
-	public Set<String> getGlumci() {
+	public Set<Glumac> getGlumci() {
 		return glumci;
 	}
 
-	public void setGlumci(Set<String> glumci) {
+	public void setGlumci(Set<Glumac> glumci) {
 		this.glumci = glumci;
 	}
 
@@ -126,20 +135,12 @@ public class Projekcija implements Serializable{
 		this.ocena = ocena;
 	}
 
-	public Set<Sala> getSale() {
+	/*public Set<Sala> getSale() {
 		return sale;
 	}
 
 	public void setSale(Set<Sala> sale) {
 		this.sale = sale;
-	}
-
-	public float getCena() {
-		return cena;
-	}
-
-	public void setCena(float cena) {
-		this.cena = cena;
 	}
 
 	public Set<Termin> getTermini() {
@@ -148,6 +149,6 @@ public class Projekcija implements Serializable{
 
 	public void setTermini(Set<Termin> termini) {
 		this.termini = termini;
-	}
+	}*/
 	
 }

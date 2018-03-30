@@ -18,16 +18,13 @@ public class Clan implements Serializable{
 	private int id;
 	
 	@Column(nullable = false)
-	private String tip; //srebrni zlatni bronzani
+	private String tip; //srebrni zlatni bronzani nista
 	
 	@Column(nullable = false)
 	private float popust;
 	
 	@Column(nullable = false)
 	private int brojPoseta; //broji koliko puta se ulogovao
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "clan")
-	private Korisnik posetilac;
 	
 	public Clan() {
 		
@@ -65,13 +62,5 @@ public class Clan implements Serializable{
 		this.brojPoseta = brojPoseta;
 	}
 
-	public Korisnik getPosetilac() {
-		return posetilac;
-	}
-
-	public void setPosetilac(Korisnik posetilac) {
-		this.posetilac = posetilac;
-	}
-	
 	
 }

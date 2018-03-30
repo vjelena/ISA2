@@ -9,8 +9,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Karta implements Serializable{
@@ -19,14 +22,15 @@ public class Karta implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	@Column(nullable = false)
+	private Date datum;
+	
 	@JsonBackReference //da se izbegne rekurzija prilikom snimanja u bazu
+	@ManyToOne(optional = false)
 	private Bioskop bioskop;
 	
 	@ManyToOne(optional = false)
 	private Projekcija projekcija;
-	
-	@Column(nullable = false)
-	private Date datum;
 	
 	@ManyToOne(optional = false)
 	private Sala sala;
@@ -34,9 +38,30 @@ public class Karta implements Serializable{
 	@ManyToOne(optional = false)
 	private Termin termin;
 	
-	@Column(nullable = false)
-	private boolean prodata;
+	@ManyToOne(optional = false)
+	private Rezervacija rezervacija;
 	
+	@OneToOne
+	@JsonIgnore
+	@JsonManagedReference
+	private Sediste sediste;
+	
+	public Rezervacija getRezervacija() {
+		return rezervacija;
+	}
+
+	public void setRezervacija(Rezervacija rezervacija) {
+		this.rezervacija = rezervacija;
+	}
+
+	public Sediste getSediste() {
+		return sediste;
+	}
+
+	public void setSediste(Sediste sediste) {
+		this.sediste = sediste;
+	}
+
 	public Karta() {
 		
 	}
@@ -89,12 +114,4 @@ public class Karta implements Serializable{
 		this.termin = termin;
 	}
 
-	public boolean isProdata() {
-		return prodata;
-	}
-
-	public void setProdata(boolean prodata) {
-		this.prodata = prodata;
-	}
-	
 }
