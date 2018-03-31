@@ -25,29 +25,29 @@ public class Korisnik implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(nullable = false)
-	private String ime;
-	
-	@Column(nullable = false)
-	private String prezime;
-	
-	@Column(nullable = false)
+	@Column(nullable = false, columnDefinition="VARCHAR(40)")
 	private String email;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, columnDefinition="VARCHAR(40)")
 	private String lozinka;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, columnDefinition="VARCHAR(40)")
+	private String ime;
+	
+	@Column(nullable = false, columnDefinition="VARCHAR(40)")
+	private String prezime;
+	
+	@Column(nullable = false, columnDefinition="NUMBER(12)")
 	private String brojTelefona;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, columnDefinition="VARCHAR(40)")
 	private String uloga;
 	
-	@Column(nullable = false)
-	private float ocenaAmbijenta;
-	
-	@Column(nullable = false)
+	@Column(nullable = false, columnDefinition="NUMBER(2)")
 	private float ocenaProjekcije;
+	
+	@Column(nullable = false, columnDefinition="NUMBER(2)")
+	private float ocenaAmbijenta;
 	
 	@OneToOne(optional = false)
 	private Adresa adresa;
@@ -57,6 +57,7 @@ public class Korisnik implements Serializable{
 	@JsonManagedReference
 	private Set<PoslatZahtev> listaPoslatihZahteva;
 	//pitati za brisanje prijatelja sta se onda desava, kako obavestiti obrisanog
+	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "primalac")
 	@JsonIgnore
 	@JsonManagedReference
@@ -81,6 +82,16 @@ public class Korisnik implements Serializable{
 	
 	public Korisnik() {
 		
+	}
+
+	public Korisnik(String ime, String prezime, String email, String lozinka, String brojTelefona, Adresa adresa) {
+		super();
+		this.ime = ime;
+		this.prezime = prezime;
+		this.email = email;
+		this.lozinka = lozinka;
+		this.brojTelefona = brojTelefona;
+		this.adresa = adresa;
 	}
 
 	public int getId() {
