@@ -8,15 +8,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ftn.model.Korisnik;
 import com.ftn.repository.KorisnikRepository;
-import com.ftn.service.KorisnikServis;
+import com.ftn.service.KorisnikService;
 
 @Transactional
 @Service
-public class JpaKorisnikServis implements KorisnikServis {
+public class JpaKorisnikService implements KorisnikService {
 	
 	@Autowired
 	private KorisnikRepository korisnikRepository;
 
+	
 	@Override
 	public Korisnik findOne(Long id) {
 		return korisnikRepository.findOne(id);
@@ -62,6 +63,11 @@ public class JpaKorisnikServis implements KorisnikServis {
 	@Override
 	public List<Korisnik> search(String ime, String prezime) {
 		return korisnikRepository.findByImeIgnoreCaseContainingAndPrezimeIgnoreCaseContaining(ime, prezime);
-	}	
+	}
+
+	/*@Override
+	public Integer setActivated(Boolean aktiviranNalog, String email) {
+		return korisnikRepository.setActivated(aktiviranNalog, email);
+	}*/
 
 }

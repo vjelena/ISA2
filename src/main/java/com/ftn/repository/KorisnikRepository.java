@@ -12,5 +12,5 @@ public interface KorisnikRepository extends JpaRepository<Korisnik, Long> {
 
 	Korisnik findByEmailIgnoreCaseContaining(String email);
 	List<Korisnik> findByImeIgnoreCaseContainingAndPrezimeIgnoreCaseContaining(String ime, String prezime);
-	
+	//public Integer setActivated(Boolean aktiviranNalog, String email);
 }

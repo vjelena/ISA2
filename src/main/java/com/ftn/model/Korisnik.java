@@ -25,28 +25,31 @@ public class Korisnik implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(nullable = false, columnDefinition="VARCHAR(40)")
+	@Column(nullable = false)
 	private String email;
 	
-	@Column(nullable = false, columnDefinition="VARCHAR(40)")
+	@Column(nullable = false)
 	private String lozinka;
 	
-	@Column(nullable = false, columnDefinition="VARCHAR(40)")
+	@Column(nullable = false)
 	private String ime;
 	
-	@Column(nullable = false, columnDefinition="VARCHAR(40)")
+	@Column(nullable = false)
 	private String prezime;
 	
-	@Column(nullable = false, columnDefinition="NUMBER(12)")
+	@Column(nullable = false)
 	private String brojTelefona;
 	
-	@Column(nullable = false, columnDefinition="VARCHAR(40)")
+	@Column(nullable = false)
 	private String uloga;
 	
-	@Column(nullable = false, columnDefinition="NUMBER(2)")
+	@Column(nullable = false)
+	private Boolean aktiviranNalog; //slanje mejla za aktivaciju korisnickog naloga
+
+	@Column(nullable = false)
 	private float ocenaProjekcije;
 	
-	@Column(nullable = false, columnDefinition="NUMBER(2)")
+	@Column(nullable = false)
 	private float ocenaAmbijenta;
 	
 	@OneToOne(optional = false)
@@ -84,7 +87,7 @@ public class Korisnik implements Serializable{
 		
 	}
 
-	public Korisnik(String ime, String prezime, String email, String lozinka, String brojTelefona, Adresa adresa) {
+	public Korisnik(String ime, String prezime, String email, String lozinka, String brojTelefona, Adresa adresa, Boolean aktiviranNalog) {
 		super();
 		this.ime = ime;
 		this.prezime = prezime;
@@ -92,6 +95,7 @@ public class Korisnik implements Serializable{
 		this.lozinka = lozinka;
 		this.brojTelefona = brojTelefona;
 		this.adresa = adresa;
+		this.aktiviranNalog = aktiviranNalog;
 	}
 
 	public int getId() {
@@ -220,6 +224,14 @@ public class Korisnik implements Serializable{
 
 	public void setListaPosecenihBioskopa(Set<Bioskop> listaPosecenihBioskopa) {
 		this.listaPosecenihBioskopa = listaPosecenihBioskopa;
+	}
+	
+	public Boolean getAktiviranNalog() {
+		return aktiviranNalog;
+	}
+
+	public void setAktiviranNalog(Boolean aktiviranNalog) {
+		this.aktiviranNalog = aktiviranNalog;
 	}
 	
 }

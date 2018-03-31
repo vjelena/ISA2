@@ -3,7 +3,7 @@ package com.ftn.service;
 import java.util.List;
 import com.ftn.model.Korisnik;
 
-public interface KorisnikServis {
+public interface KorisnikService {
 	
 	Korisnik findOne(Long id);
 	Korisnik findByEmail(String email);
@@ -16,5 +16,6 @@ public interface KorisnikServis {
 	void delete(List<Long> ids);
 	
 	List<Korisnik> search(String ime, String prezime);
-	
+
+	//public Integer setActivated(Boolean aktiviranNalog, String email);
 }

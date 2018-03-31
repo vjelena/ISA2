@@ -1,24 +1,29 @@
 package com.ftn.controller;
 
 import java.util.List;
-
+import javax.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.MailException;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.ftn.model.Korisnik;
-import com.ftn.service.KorisnikServis;
+import com.ftn.service.EmailService;
+import com.ftn.service.KorisnikService;
 
 @RestController
+//@CrossOrigin(origins = "http://localhost:8080")
 @RequestMapping(value = "/korisnici")
-public class KorisnikKontroler {
+public class KorisnikController {
 	
 	@Autowired
-	private KorisnikServis korisnikServis;
+	private KorisnikService korisnikServis;
 	
 	
 	@RequestMapping(value="getKorisnici", method = RequestMethod.GET)
@@ -81,6 +86,31 @@ public class KorisnikKontroler {
 		return new ResponseEntity<>(noviKorisnik, HttpStatus.OK);
 	}
 	
+	/* NE RADIIIIIII :(
+	//registracija korisnika
+	@RequestMapping(value = "/registrujSe.html", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Korisnik> registracija(@RequestBody Korisnik request) throws MailException, InterruptedException, MessagingException {
+        Korisnik korisnik = request;
+        korisnikServis.save(korisnik);
+        EmailServis.sendMail("nijemidosadno@gmail.com", "Aktivacija naloga", "http://localhost:8080/aktivirajKorisnickiNalog/\"+korisnik.getEmail()");
+        return new ResponseEntity<Korisnik>(korisnik, HttpStatus.OK);
+    }
 	
 	
+	//slanje mejla za aktivaciju korisnickog naloga
+	@RequestMapping(value = "/aktivirajKorisnickiNalog/{email:.+}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> aktivirajKorisnickiNalog(@PathVariable String email) {
+        Integer aktiviran = korisnikServis.setActivated(true, email);
+        String nalog = "Korisnicki nalog je uspesno aktiviran.";
+        return new ResponseEntity<String>(nalog, HttpStatus.OK);
+    }
+	
+	
+	//prijava korisnika
+	@RequestMapping(value = "/prijaviSe.html/{email:.+}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Korisnik> prijava(@PathVariable String email){
+        Korisnik korisnik = korisnikServis.findByEmail(email);
+        return new ResponseEntity<Korisnik>(korisnik,HttpStatus.OK);
+    }
+    */
 }
