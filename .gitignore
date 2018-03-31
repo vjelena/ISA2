@@ -21,3 +21,6 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+
+### Application properties file ###
+src/main/resources/application.properties
