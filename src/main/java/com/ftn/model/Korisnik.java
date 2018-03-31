@@ -26,16 +26,16 @@ public class Korisnik implements Serializable{
 	private int id;
 	
 	@Column(nullable = false)
-	private String ime;
-	
-	@Column(nullable = false)
-	private String prezime;
-	
-	@Column(nullable = false)
 	private String email;
 	
 	@Column(nullable = false)
 	private String lozinka;
+	
+	@Column(nullable = false)
+	private String ime;
+	
+	@Column(nullable = false)
+	private String prezime;
 	
 	@Column(nullable = false)
 	private String brojTelefona;
@@ -44,10 +44,13 @@ public class Korisnik implements Serializable{
 	private String uloga;
 	
 	@Column(nullable = false)
-	private float ocenaAmbijenta;
-	
+	private Boolean aktiviranNalog; //slanje mejla za aktivaciju korisnickog naloga
+
 	@Column(nullable = false)
 	private float ocenaProjekcije;
+	
+	@Column(nullable = false)
+	private float ocenaAmbijenta;
 	
 	@OneToOne(optional = false)
 	private Adresa adresa;
@@ -57,6 +60,7 @@ public class Korisnik implements Serializable{
 	@JsonManagedReference
 	private Set<PoslatZahtev> listaPoslatihZahteva;
 	//pitati za brisanje prijatelja sta se onda desava, kako obavestiti obrisanog
+	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "primalac")
 	@JsonIgnore
 	@JsonManagedReference
@@ -81,6 +85,17 @@ public class Korisnik implements Serializable{
 	
 	public Korisnik() {
 		
+	}
+
+	public Korisnik(String ime, String prezime, String email, String lozinka, String brojTelefona, Adresa adresa, Boolean aktiviranNalog) {
+		super();
+		this.ime = ime;
+		this.prezime = prezime;
+		this.email = email;
+		this.lozinka = lozinka;
+		this.brojTelefona = brojTelefona;
+		this.adresa = adresa;
+		this.aktiviranNalog = aktiviranNalog;
 	}
 
 	public int getId() {
@@ -209,6 +224,14 @@ public class Korisnik implements Serializable{
 
 	public void setListaPosecenihBioskopa(Set<Bioskop> listaPosecenihBioskopa) {
 		this.listaPosecenihBioskopa = listaPosecenihBioskopa;
+	}
+	
+	public Boolean getAktiviranNalog() {
+		return aktiviranNalog;
+	}
+
+	public void setAktiviranNalog(Boolean aktiviranNalog) {
+		this.aktiviranNalog = aktiviranNalog;
 	}
 	
 }
