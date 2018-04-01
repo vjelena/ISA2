@@ -22,122 +22,163 @@
   			</div>
 		</div>
 		
-		<div class="container">
-   			<div style="margin-top:20px;" class="mainbox col-lg-6 col-lg-offset-3"> 
-        		<div class="panel panel-info" >
-            		<div class="panel-heading">
-                		<div class="panel-title text-center">Rezervacija mesta u bioskopu</div>
-            		</div>
-            		  
-            		<div class="panel-body" style="padding-top:30px">
-                		<form id="formaRezervacijaMesta" action="/rezervisi" class="form-horizontal" enctype="multipart/form-data" method="POST">
-                    		
-							<div class="form-group col-lg-11">
-								<label>Naziv bioskopa:</label> 
-								<select class="form-control" id="selectBioskop">
-									<option>ArenaCineplex</option>
-									<option>CineStar</option>
-								</select>
-							</div>
-                    		
-                    		<div class="form-group col-lg-11">
-								<label>Projekcija:</label> 
-								<select class="form-control" id="selectProjekcija">
-									<option>Blade Runner 2049</option>
-									<option>Eat, pray, love</option>
-									<option>Back in the game</option>
-								</select>
-							</div>
-                    		
-                    		<div class="form-group col-lg-11">
-								<label>Datum:</label>
-	<!-- NE RADI -->				<div class='input-group date' id='datepicker'>
-									<input type='text' class="form-control"/>
-									<span class="input-group-addon">
-										<span class="glyphicon glyphicon-calendar"></span>
-									</span>
+		<div class="tabcontent" style="padding-top:20px">
+			<div class="form-group col-lg-6" id="tabRezervisanaMesta">
+				<table id="tabelaRezervisanaMesta" class="table table-hover table-bordered">
+	  				<thead class="thead-dark">
+	    				<tr>
+	      					<th scope="col" class="text-center">Naziv bioskopa</th>
+	      					<th scope="col" class="text-center">Projekcija</th>
+	      					<th scope="col" class="text-center">Datum</th>
+	      					<th scope="col" class="text-center">Termin</th>
+	      					<th scope="col" class="text-center">Sala</th>
+	      					<th scope="col" class="text-center"></th>
+	    				</tr>
+	  				</thead>
+	  				<tbody>
+	  					<tr>
+	    					<td>ArenaCineplex</td>
+	    					<td>Blade Runner 2049</td>
+	    					<td>25.04.2018.</td>
+	    					<td>20:20</td>
+	    					<td>7</td>
+	    					<td>
+	    						<img src="slike/obrisi.jpg" height="20" width="20"/>
+	    						<input class="btn btn-link" type="submit" value="Ponisti">
+	    					</td>
+	  					</tr>
+	  					<tr>
+	    					<td>CineStar</td>
+	    					<td>Back in the game</td>
+	    					<td>15.05.2018.</td>
+	    					<td>22:00</td>
+	    					<td>3</td>
+	    					<td>
+	    						<img src="slike/obrisi.jpg" height="20" width="20"/>
+	    						<input class="btn btn-link" type="submit" value="Ponisti">
+	    					</td>
+	  					</tr>
+	  				</tbody>
+				</table>
+			</div>
+		
+			<div class="form-group col-lg-5" id="tabNovaRezervacija">
+	   			<div class="mainbox col-lg-10 col-lg-offset-2"> 
+	        		<div class="panel panel-info" >
+	            		<div class="panel-heading">
+	                		<div class="panel-title text-center">Rezervacija mesta u bioskopu</div>
+	            		</div>
+	            		  
+	            		<div class="panel-body" style="padding-top:30px">
+	                		<form id="formaRezervacijaMesta" action="/rezervisi" class="form-horizontal" enctype="multipart/form-data" method="POST">
+	                    		
+								<div class="form-group col-lg-11">
+									<label>Naziv bioskopa:</label> 
+									<select class="form-control" id="selectBioskop">
+										<option>ArenaCineplex</option>
+										<option>CineStar</option>
+									</select>
 								</div>
-							</div>
-							
-							<div class="form-group col-lg-11">
-								<label>Termin:</label> 
-								<select class="form-control" id="selectTermin">
-									<option>11:00</option>
-									<option>11:20</option>
-									<option>11:40</option>
-									<option>12:00</option>
-									<option>12:20</option>
-									<option>12:40</option>
-									<option>13:00</option>
-									<option>13:20</option>
-									<option>13:40</option>
-									<option>14:00</option>
-									<option>14:20</option>
-									<option>14:40</option>
-									<option>15:00</option>
-									<option>15:20</option>
-									<option>15:40</option>
-									<option>16:00</option>
-									<option>16:20</option>
-									<option>16:40</option>
-									<option>17:00</option>
-									<option>17:20</option>
-									<option>17:40</option>
-									<option>18:00</option>
-									<option>18:20</option>
-									<option>18:40</option>
-									<option>19:00</option>
-									<option>19:20</option>
-									<option>19:40</option>
-									<option>20:00</option>
-									<option>20:20</option>
-									<option>20:40</option>
-									<option>21:00</option>
-									<option>21:20</option>
-									<option>21:40</option>
-									<option>22:00</option>
-									<option>22:20</option>
-									<option>22:40</option>
-									<option>23:00</option>									
-									<option>23:20</option>
-									<option>23:40</option>
-									<option>00:00</option>
-								</select>
-							</div>
-							
-							<div class="form-group col-lg-11">
-								<label>Sala:</label> 
-								<select class="form-control" id="selectSala">
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-									<option>5</option>
-									<option>6</option>
-									<option>7</option>
-								</select>
-							</div>
-							
-							<div class="form-group col-lg-11">
-								<input class="btn btn-link" type="submit" value="Izaberi sediste">
-							</div>
-							
-							<div class="form-group col-lg-11">
-								<select class="form-control" id="selectPrijatelji">
-									<option>Jovan Jovanovic</option>
-									<option>Milica Milic</option>
-									<option>Zoran Zoric</option>
-								</select>
-								<input class="btn btn-link" type="submit" style="float:right" value="Pozovi">
-							</div>
-							
-							<div class="form-group col-lg-11">
-								<input class="btn btn-danger" type="submit" style="float:right" value="Zavrsi rezervaciju">
-							</div>
-                		</form>
-            		</div>                     
-        		</div>  
-    		</div>
+	                    		
+	                    		<div class="form-group col-lg-11">
+									<label>Projekcija:</label> 
+									<select class="form-control" id="selectProjekcija">
+										<option>Blade Runner 2049</option>
+										<option>Eat, pray, love</option>
+										<option>Back in the game</option>
+									</select>
+								</div>
+	                    		
+	                    		<div class="form-group col-lg-11">
+									<label>Datum:</label>
+		<!-- NE RADI -->				<div class='input-group date' id='datepicker'>
+										<input type='text' class="form-control"/>
+										<span class="input-group-addon">
+											<span class="glyphicon glyphicon-calendar"></span>
+										</span>
+									</div>
+								</div>
+								
+								<div class="form-group col-lg-11">
+									<label>Termin:</label> 
+									<select class="form-control" id="selectTermin">
+										<option>11:00</option>
+										<option>11:20</option>
+										<option>11:40</option>
+										<option>12:00</option>
+										<option>12:20</option>
+										<option>12:40</option>
+										<option>13:00</option>
+										<option>13:20</option>
+										<option>13:40</option>
+										<option>14:00</option>
+										<option>14:20</option>
+										<option>14:40</option>
+										<option>15:00</option>
+										<option>15:20</option>
+										<option>15:40</option>
+										<option>16:00</option>
+										<option>16:20</option>
+										<option>16:40</option>
+										<option>17:00</option>
+										<option>17:20</option>
+										<option>17:40</option>
+										<option>18:00</option>
+										<option>18:20</option>
+										<option>18:40</option>
+										<option>19:00</option>
+										<option>19:20</option>
+										<option>19:40</option>
+										<option>20:00</option>
+										<option>20:20</option>
+										<option>20:40</option>
+										<option>21:00</option>
+										<option>21:20</option>
+										<option>21:40</option>
+										<option>22:00</option>
+										<option>22:20</option>
+										<option>22:40</option>
+										<option>23:00</option>									
+										<option>23:20</option>
+										<option>23:40</option>
+										<option>00:00</option>
+									</select>
+								</div>
+								
+								<div class="form-group col-lg-11">
+									<label>Sala:</label> 
+									<select class="form-control" id="selectSala">
+										<option>1</option>
+										<option>2</option>
+										<option>3</option>
+										<option>4</option>
+										<option>5</option>
+										<option>6</option>
+										<option>7</option>
+									</select>
+								</div>
+								
+								<div class="form-group col-lg-11">
+									<input class="btn btn-link" type="submit" value="Izaberi sediste">
+								</div>
+								
+								<div class="form-group col-lg-11">
+									<select class="form-control" id="selectPrijatelji">
+										<option>Jovan Jovanovic</option>
+										<option>Milica Milic</option>
+										<option>Zoran Zoric</option>
+									</select>
+									<input class="btn btn-link" type="submit" style="float:right" value="Pozovi">
+								</div>
+								
+								<div class="form-group col-lg-11">
+									<input class="btn btn-danger" type="submit" style="float:right" value="Zavrsi rezervaciju">
+								</div>
+	                		</form>
+	            		</div>                     
+	        		</div>  
+	    		</div>
+			</div>
 		</div>
 	</body>
 </html>
