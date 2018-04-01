@@ -77,6 +77,8 @@
 		    		$('#divValidacija').append('<label class="col-lg-8 control-label">Broj moze sadrzati samo cifre.</label>');
 		    		return false;
 		    	}
+		    	
+		    	return true;
 			}
 		</script>
 	</head>
@@ -101,7 +103,7 @@
 		</div>
 	
 		<div class="container">  
-   			<div id="loginbox" style="margin-top:20px;" class="mainbox col-lg-6 col-lg-offset-3 col-lg-8 col-lg-offset-7"> 
+   			<div style="margin-top:20px;" class="mainbox col-lg-6 col-lg-offset-3 col-lg-8 col-lg-offset-7"> 
         		<div class="panel panel-info" >
             		<div class="panel-heading">
                 		<div class="panel-title text-center">Registracija</div>
@@ -113,44 +115,37 @@
                     		
                     		<div class="input-group" style="margin-bottom: 25px">
                         		<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                        		<input type="email" class="form-control" name="email" value="" placeholder="E-mail adresa">                                        
-                    			<div id="divEmail" style="float:right"></div>
+                        		<input type="email" class="form-control" name="email" value="" placeholder="E-mail adresa">
                     		</div>
                     		
                     		<div class="input-group" style="margin-bottom: 25px">
                         		<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                         		<input type="password" class="form-control" name="lozinka1" placeholder=Lozinka>
-                        		<div id="divLozinka1" style="float:right"></div>
                     		</div> 
                     		
                     		<div class="input-group" style="margin-bottom: 25px">
                         		<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                         		<input type="password" class="form-control" name="lozinka2" placeholder="Ponovo unesite lozinku">
-                        		<div id="divLozinka2" style="float:right"></div>
                     		</div>
                     		
                     		<div class="input-group" style="margin-bottom: 25px">
                         		<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                         		<input type="text" class="form-control" name="ime" placeholder="Ime">
-                        		<div id="divIme" style="float:right"></div>
                     		</div>
                     		
                     		<div class="input-group" style="margin-bottom: 25px">
                         		<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                         		<input type="text" class="form-control" name="prezime" placeholder="Prezime">
-                        		<div id="divPrezime" style="float:right"></div>
                     		</div>
                     		
                     		<div class="input-group" style="margin-bottom: 25px">
                         		<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
                         		<input type="text" class="form-control" name="grad" placeholder="Grad">
-                        		<div id="divGrad" style="float:right"></div>
                     		</div>
                     		
                     		<div class="input-group" style="margin-bottom: 25px">
                         		<span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
                         		<input type="text" class="form-control" name="brojTelefona" placeholder="Broj telefona">
-                        		<div id="divBrojTelefona" style="float:right"></div>
                     		</div>
                     		              
                     		<div id="divValidacija"></div>  

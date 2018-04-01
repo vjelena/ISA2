@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	<meta charset="UTF-8">
+		<meta charset="UTF-8">
 		<title>Bioskopi</title>
 		<link href="bootstrapB/css/bootstrap.css" rel="stylesheet" type="text/css"/>
 		<script src="bootstrapB/js/bootstrap.js" type="text/javascript"></script>
@@ -9,31 +9,62 @@
 	</head>
 	
 	<body>
-	<table style="width:100%" border="1">
-  <tr>
-    <th>Naziv</th>
-    <th>Adresa</th> 
-    <th>Promotivni opis</th>
-    <th>Prosečna ocena</th>
-  </tr>
-  <tr>
-    <td><a href="arenaCineplex">Arena Cineplex </a></td>
-     <td>Kralja Petra 2</td>
-    <td><a href="promotivniOpis">promotivni opis..</a></td> 
-    <td>2.5</td>
-  </tr>
-  <tr>
-    <td><a href="cineStar">CineStar</a></td>
-    <td>Majke Jugovica 38b</td> 
-     <td><a href="promotivniOpis">promotivni opis..</a></td> 
-    <td>4.0</td>
-  </tr>
-  <tr>
-     <td><a href="cineStar">CineStar</a></td>
-    <td>Majke Jugovica 38b</td> 
-     <td><p>Ovo je opis bioskopa.Ovo je opis bioskopa.Ovo je opis bioskopa.Ovo je opis bioskopa.Ovo je opis bioskopa.Ovo je opis bioskopa.Ovo je opis bioskopa.</p></td> 
-    <td>4.0</td>
-  </tr>
-</table>
+		<div class="row">
+			<div class="col-lg-12 col-lg-8"></div>
+  			<div class="col-lg-6 col-lg-3">
+			    <div class="form-group">
+			    	<form action="homePage.html" class="form-horizontal">
+				        <div class="col-lg-4">
+				            <input class="btn btn-link" type="submit" value="Nazad">
+				        </div>
+				  	</form>
+			        <form action="prijaviSe.html" class="form-horizontal">
+				        <div class="col-lg-4">
+				            <input class="btn btn-link" type="submit" value="Prijavi se">
+				        </div>
+			        </form>
+			        <form action="registrujSe.html" class="form-horizontal">
+				        <div class="col-lg-4">
+				            <input class="btn btn-link" type="submit" value="Registruj se">
+				        </div>
+				  	</form>
+			    </div>
+  			</div>
+		</div>
+	
+		<div class="container">  
+   			<div style="margin-top:20px;"> 
+				<table id="tabelaBioskopi" class="table table-hover table-bordered">
+  					<thead class="thead-dark">
+    					<tr>
+      						<th scope="col" class="text-center">Naziv</th>
+      						<th scope="col" class="text-center">Adresa</th>
+      						<th scope="col" class="text-center">Promotivni opis</th>
+      						<th scope="col" class="text-center">Prosečna ocena</th>
+    					</tr>
+  					</thead>
+  					<tbody>
+  						<tr>
+    						<td><a href="arenaCineplex">Arena Cineplex</a></td>
+     						<td>Kralja Petra 2</td>
+    						<td><a href="promotivniOpis">promotivni opis..</a></td> 
+    						<td>2.5</td>
+  						</tr>
+  						<tr>
+    						<td><a href="cineStar">CineStar</a></td>
+    						<td>Majke Jugovica 38b</td> 
+    						<td><a href="promotivniOpis">promotivni opis..</a></td> 
+    						<td>4.0</td>
+  						</tr>
+  						<tr>
+     						<td><a href="cineStar">CineStar</a></td>
+    						<td>Majke Jugovica 38b</td> 
+     						<td><p>Ovo je opis bioskopa. Ovo je opis bioskopa. Ovo je opis bioskopa.</p></td> 
+    						<td>4.0</td>
+  						</tr>
+  					</tbody>
+				</table>
+			</div>
+		</div>
 	</body>
 </html>
