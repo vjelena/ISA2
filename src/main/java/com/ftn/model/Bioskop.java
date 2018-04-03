@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -32,41 +35,41 @@ public class Bioskop implements Serializable{
 	@Column(nullable = false)
 	private String opis;
 	
-	@OneToOne(optional = false)
+	@OneToOne(optional = false, cascade = CascadeType.ALL)
 	private Adresa adresa;
 	
-	@JsonIgnore
-	@JsonManagedReference
+	@JsonIgnore //u modelu nam ne trebaju anotacije JsonIgnore(to ide u DTO) i JsonManageReference
+//	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bioskop")
 	private Set<Sala> listaSala;
 		
 	@JsonIgnore //da se izbegne rekurzija pri slanju objekta, stavlja se sa jedne strane veze, tipa gde je set
-	@JsonManagedReference  //sa jedne strane managed a sa druge back
+//	@JsonManagedReference  //sa jedne strane managed a sa druge back
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bioskop")
 	private Set<Karta> listaKarata;
 	
 	@JsonIgnore
-	@JsonManagedReference
+//	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bioskop")
 	private Set<BrzaKarta> brzeKarte;
 	
 	@JsonIgnore
-	@JsonManagedReference
+//	@JsonManagedReference
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "bioskop")//bidirekciona veza 1:1, vlasnik veze je bioskop(naziv kolone u tabeli repertoar)
 	private Repertoar repertoar;
 
 	@JsonIgnore
-	@JsonManagedReference
+//	@JsonManagedReference
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "bioskop")
 	private IzvestajOPoslovanju izvestaj;
 	
 	@JsonIgnore
-	@JsonManagedReference
+//	@JsonManagedReference
 	@ManyToMany
 	private Set<Korisnik> listaPosetilaca;
 	
 	@JsonIgnore
-	@JsonManagedReference
+//	@JsonManagedReference
 	@OneToOne
 	private FanZona fanZona;
 

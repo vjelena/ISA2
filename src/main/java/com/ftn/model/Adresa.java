@@ -2,6 +2,7 @@ package com.ftn.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,7 +23,7 @@ public class Adresa implements Serializable{
 	@Column(nullable = false)
 	private String broj;
 	
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = false, cascade = CascadeType.ALL)
 	private Grad grad;
 
 	public Adresa() {

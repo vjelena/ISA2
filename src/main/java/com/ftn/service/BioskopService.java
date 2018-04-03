@@ -13,9 +13,9 @@ import com.ftn.repository.BioskopRepository;
 
 @Service
 public interface BioskopService {
-	 @JsonBackReference(value="candidate-profiles")
+	
 	public List<Bioskop> nadjiSveBioskope();
-	 @JsonBackReference(value="candidate-231321")
-	public String kreirajBioskop(Bioskop bioskop);
+	
+	public Bioskop kreirajBioskop(Bioskop bioskop);
 
 }
