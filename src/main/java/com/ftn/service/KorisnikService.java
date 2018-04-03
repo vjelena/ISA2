@@ -5,6 +5,8 @@ import com.ftn.model.Korisnik;
 
 public interface KorisnikService {
 	
+	
+	
 	Korisnik findOne(Long id);
 	Korisnik findByEmail(String email);
 	List<Korisnik> findAll();
