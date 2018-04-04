@@ -30,11 +30,11 @@ public class Sala implements Serializable{
 	private int brojMesta;
 	
 	@ManyToOne(optional = false)
-	@JsonBackReference
+	//@JsonBackReference
 	private Bioskop bioskop;
 		
 	@JsonIgnore
-	@JsonManagedReference
+	//@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "sala")
 	private Set<Segment> listaSegmenata;
 	

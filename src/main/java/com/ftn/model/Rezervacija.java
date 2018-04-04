@@ -20,7 +20,7 @@ public class Rezervacija implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@JsonBackReference
+	//@JsonBackReference
 	@ManyToOne(optional = false)
 	private Korisnik korisnik;
 	

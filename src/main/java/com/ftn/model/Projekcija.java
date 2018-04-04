@@ -52,11 +52,11 @@ public class Projekcija implements Serializable{
 	
 	@ManyToMany
 	@JsonIgnore
-	@JsonManagedReference
+	//@JsonManagedReference
 	private Set<Glumac> glumci;
 	
 	@ManyToOne(optional = false)
-	@JsonBackReference
+	//@JsonBackReference
 	private Repertoar repertoar;
 	
 	public Projekcija() {

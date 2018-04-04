@@ -23,7 +23,7 @@ public class Termin implements Serializable{
 	private float cena;
 	
 	@ManyToMany
-	@JsonBackReference
+	//@JsonBackReference
 	private Set<Vreme> vreme;
 	
 	public Termin() {

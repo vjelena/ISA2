@@ -17,7 +17,7 @@ public class PoslatZahtev implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@JsonBackReference
+	//@JsonBackReference
 	@ManyToOne(optional = false)
 	private Korisnik posiljalac;
 	

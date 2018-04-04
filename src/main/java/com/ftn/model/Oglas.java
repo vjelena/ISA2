@@ -18,7 +18,7 @@ public class Oglas implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 	
 	@Column(nullable = false)
 	private String naziv;
@@ -29,47 +29,47 @@ public class Oglas implements Serializable{
 	@Column(nullable = false)
 	private Date datum; //do kada je aktivno prikupljanje ponuda
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private String slika;
 	
 	@Column(nullable = false)
 	private int cena;
 	//licitacija???
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private boolean odobren;
 	
-	@OneToOne
-	@JsonBackReference
+	/*@OneToOne
+	//@JsonBackReference
 	private Rekvizit rekvizit;	//oglasen rekvizit
 	
+	//@JsonBackReference
 	@ManyToOne(optional = false)
-	@JsonBackReference
-	private FanZona fanZona;
+	private Korisnik korisnik;*/
 	
-	@JsonBackReference
 	@ManyToOne(optional = false)
-	private Korisnik korisnik;
+	//@JsonBackReference
+	private FanZona fanZona;
 	
 	public Oglas() {
 		
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public Korisnik getKorisnik() {
+	/*public Korisnik getKorisnik() {
 		return korisnik;
 	}
 
 	public void setKorisnik(Korisnik korisnik) {
 		this.korisnik = korisnik;
-	}
+	}*/
 
 	public String getNaziv() {
 		return naziv;
@@ -110,5 +110,31 @@ public class Oglas implements Serializable{
 	public void setOdobren(boolean odobren) {
 		this.odobren = odobren;
 	}
+
+	public int getCena() {
+		return cena;
+	}
+
+	public void setCena(int cena) {
+		this.cena = cena;
+	}
+
+	/*public Rekvizit getRekvizit() {
+		return rekvizit;
+	}
+
+	public void setRekvizit(Rekvizit rekvizit) {
+		this.rekvizit = rekvizit;
+	}*/
+
+	public FanZona getFanZona() {
+		return fanZona;
+	}
+
+	public void setFanZona(FanZona fanZona) {
+		this.fanZona = fanZona;
+	}
+	
+	
 	
 }

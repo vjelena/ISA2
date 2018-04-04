@@ -3,17 +3,15 @@ package com.ftn.model;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class FanZona implements Serializable{
@@ -22,14 +20,13 @@ public class FanZona implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	@Column(nullable = false)
+	private String naziv;
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "fanZona")
 	@JsonIgnore
-	@JsonManagedReference
+	//@JsonManagedReference
 	private Set<Oglas> listaOglasa;
-	
-	@OneToOne
-	@JsonBackReference
-	private Bioskop bioskop;
 	
 	public FanZona() {
 		
@@ -43,20 +40,20 @@ public class FanZona implements Serializable{
 		this.id = id;
 	}
 
+	public String getNaziv() {
+		return naziv;
+	}
+
+	public void setNaziv(String naziv) {
+		this.naziv = naziv;
+	}
+	
 	public Set<Oglas> getListaOglasa() {
 		return listaOglasa;
 	}
 
 	public void setListaOglasa(Set<Oglas> listaOglasa) {
 		this.listaOglasa = listaOglasa;
-	}
-
-	public Bioskop getBioskop() {
-		return bioskop;
-	}
-
-	public void setBioskop(Bioskop bioskop) {
-		this.bioskop = bioskop;
 	}
 	
 }

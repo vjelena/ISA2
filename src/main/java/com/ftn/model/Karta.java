@@ -25,7 +25,7 @@ public class Karta implements Serializable{
 	@Column(nullable = false)
 	private Date datum;
 	
-	@JsonBackReference //da se izbegne rekurzija prilikom snimanja u bazu
+	//@JsonBackReference //da se izbegne rekurzija prilikom snimanja u bazu
 	@ManyToOne(optional = false)
 	private Bioskop bioskop;
 	
@@ -43,7 +43,7 @@ public class Karta implements Serializable{
 	
 	@OneToOne
 	@JsonIgnore
-	@JsonManagedReference
+	//@JsonManagedReference
 	private Sediste sediste;
 	
 	public Rezervacija getRezervacija() {
