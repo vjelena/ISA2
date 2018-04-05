@@ -1,5 +1,7 @@
 package com.ftn.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,18 +32,14 @@ public class OglasKontroler {
 	@RequestMapping(method=RequestMethod.POST, consumes="application/json")
 	public ResponseEntity<OglasDTO> addOglas(@RequestBody OglasDTO oglasDTO){
 		Oglas noviOglas = oglasServis.save(toOglas.convert(oglasDTO));
-		System.out.println("**************************"+oglasDTO.getNaziv());
+		//System.out.println("**************************"+oglasDTO.getNaziv());
 		
 		return new ResponseEntity<>(toOglasDTO.convert(noviOglas), HttpStatus.OK);
+	}	
+	
+	@RequestMapping(value="getOglasi", method = RequestMethod.GET)
+	public ResponseEntity<List<OglasDTO>> getOglasi() {
+		List<Oglas> oglasi = oglasServis.findAll();
+		return new ResponseEntity<>(toOglasDTO.convert(oglasi), HttpStatus.OK);
 	}
-	
-	
-	
-	/*@RequestMapping(method=RequestMethod.POST, consumes="application/json")
-	public ResponseEntity<Oglas> addOglas(@RequestBody Oglas oglas){
-		Oglas noviOglas = oglasServis.save(oglas);
-		
-
-		return new ResponseEntity<>(noviOglas, HttpStatus.OK);
-	}*/
 }

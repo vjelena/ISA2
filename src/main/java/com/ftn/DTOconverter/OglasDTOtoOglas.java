@@ -35,11 +35,13 @@ public class OglasDTOtoOglas implements Converter<OglasDTO, Oglas>{
 		oglas.setOdobren(source.isOdobren());
 		oglas.setOpis(source.getOpis());
 		oglas.setSlika(source.getSlika());
+		oglas.setCena(source.getCena());
 		
 		if(source.getFanZonaId() != null) {
 			FanZona fanZona = fanZonaServis.findOne(source.getFanZonaId());
 			oglas.setFanZona(fanZona);
-		}
+		}else
+			oglas.setFanZona(fanZonaServis.findOne((long) 1));
 		
 		return oglas;
 	}

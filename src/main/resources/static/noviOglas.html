@@ -16,7 +16,7 @@
             		</div>
             		  
             		<div class="panel-body" style="padding-top:30px">
-                		<form id="formaNoviOglas" class="form-horizontal" accept-charset="utf-8">
+                		<form id="formaNoviOglas" class="form-horizontal" accept-charset="utf-8" action="fanZona.html">
                     		
                     		<div class="input-group" style="margin-bottom: 25px">
                         		<span class="input-group-addon"><i class="glyphicon glyphicon-text-background"></i></span>
@@ -81,7 +81,7 @@ $("#potvrdi").click(function(){
 		contentType: "application/json",
 		datatype: 'json',
 	});
-	//alert($("#formaNoviOglas [name='naziv']").val());
+	location.href = "http://localhost:8080/fanZona.html"
 });
 
 </script>

@@ -33,7 +33,7 @@ public class Oglas implements Serializable{
 	private String slika;
 	
 	@Column(nullable = false)
-	private int cena;
+	private String cena;
 	//licitacija???
 	
 	@Column(nullable = true)
@@ -111,11 +111,11 @@ public class Oglas implements Serializable{
 		this.odobren = odobren;
 	}
 
-	public int getCena() {
+	public String getCena() {
 		return cena;
 	}
 
-	public void setCena(int cena) {
+	public void setCena(String cena) {
 		this.cena = cena;
 	}
 
