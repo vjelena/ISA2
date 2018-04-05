@@ -30,7 +30,7 @@ public class IzvestajOPoslovanju implements Serializable{
 	private float prihod;
 	
 	@OneToOne(optional = false)
-	@JsonBackReference
+	//@JsonBackReference
 	private Bioskop bioskop;
 	
 	public IzvestajOPoslovanju() {

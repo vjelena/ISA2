@@ -28,7 +28,7 @@ public class BrzaKarta implements Serializable{
 	@Column(nullable = false)
 	private Date datum;
 	
-	@JsonBackReference
+	//@JsonBackReference
 	@ManyToOne(optional = false)
 	private Bioskop bioskop;
 	

@@ -31,10 +31,10 @@ public class Segment implements Serializable{
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "segment")
 	@JsonIgnore
-	@JsonManagedReference
+	//@JsonManagedReference
 	private Set<Sediste> listaSedista;
 	
-	@JsonBackReference
+	//@JsonBackReference
 	@ManyToOne(optional = false)
 	private Sala sala;
 	

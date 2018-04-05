@@ -23,11 +23,11 @@ public class Sediste implements Serializable{
 	private int rbr;
 	
 	@OneToOne
-	@JsonBackReference
+	//@JsonBackReference
 	private Karta karta;
 	
 	@ManyToOne(optional = false)
-	@JsonBackReference
+	//@JsonBackReference
 	private Segment segment;
 	
 	public Sediste() {

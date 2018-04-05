@@ -22,10 +22,10 @@ public class Rekvizit implements Serializable{
 	@Column(nullable = false)
 	private String naziv;
 	
-	@OneToOne
+	/*@OneToOne
 	@JsonIgnore
-	@JsonManagedReference
-	private Oglas oglas;
+	//@JsonManagedReference
+	private Oglas oglas;*/
 	
 	public Rekvizit() {
 		
@@ -47,12 +47,12 @@ public class Rekvizit implements Serializable{
 		this.naziv = naziv;
 	}
 
-	public Oglas getOglas() {
+	/*public Oglas getOglas() {
 		return oglas;
 	}
 
 	public void setOglas(Oglas oglas) {
 		this.oglas = oglas;
-	}
+	}*/
 	
 }

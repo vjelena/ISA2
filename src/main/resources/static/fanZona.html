@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<meta charset="UTF-8">
+		<title>Registrovani korisnici</title>
+		<link href="bootstrapB/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+		<script src="bootstrapB/js/bootstrap.js" type="text/javascript"></script>
+		<script src="scripts/jquery-3.2.1.min.js"></script>		
+		
+		<script>
+		$(document).ready(function() {
+			$.ajax({
+				url: "http://localhost:8080/oglas/getOglasi"
+			}).then(function(data) {
+				for(i=0; i<data.length; i++) {
+					newRow = "<tr>"
+						+ "<td class=\"naziv\">" + data[i].naziv + "</td>"
+						+ "<td class=\"opis\">" + data[i].opis + "</td>"
+						+ "<td class=\"datum\">" + data[i].datum + "</td>"
+						+ "<td class=\"slika\">" + data[i].slika + "</td>"
+						+ "<td class=\"cena\">" + data[i].cena + "</td>"
+						+ "</tr>"
+					$("#tabelaOglasa").append(newRow)
+				}
+			});
+		});
+		</script>
+		
+</head>
+<body>
+
+	<div class="row">
+			<div class="col-lg-12 col-lg-9"></div>
+  			<div class="col-lg-6 col-lg-3">
+			    <div class="form-group">
+			    	<form action="index.html" class="form-horizontal">
+				        <div class="col-lg-4">
+				            <input class="btn btn-link" type="submit" value="Pocetna">
+				        </div>
+			        </form>
+			        <form action="noviOglas.html" class="form-horizontal">
+				        <div class="col-lg-4">
+				            <input class="btn btn-link" type="submit" value="Dodaj oglas">
+				        </div>
+			        </form>
+			    </div>
+  			</div>
+		</div>
+	
+	
+		<div class="container">  
+   			<div style="margin-top:20px;"> 
+				<table id="tabelaOglasa" class="table table-hover table-bordered">
+   					<tr class="thead-dark">
+    					<th>Naziv</th>
+    					<th>Opis</th>
+    					<th>Datum</th>
+    					<th>Slika</th>
+    					<th>Cena</th>
+    				</tr>
+				</table>
+			</div>
+		</div>
+		
+</body>
+</html>

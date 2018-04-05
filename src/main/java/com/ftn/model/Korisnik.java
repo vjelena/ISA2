@@ -57,30 +57,30 @@ public class Korisnik implements Serializable{
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "posiljalac")
 	@JsonIgnore
-	@JsonManagedReference
+	//@JsonManagedReference
 	private Set<PoslatZahtev> listaPoslatihZahteva;
 	//pitati za brisanje prijatelja sta se onda desava, kako obavestiti obrisanog
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "primalac")
 	@JsonIgnore
-	@JsonManagedReference
+	//@JsonManagedReference
 	private Set<PrihvacenZahtev> listaPrihvacenihZahteva;
 	
 	@JsonIgnore
-	@JsonManagedReference
+	//@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "korisnik")
 	private Set<Rezervacija> listaRezervacija;
 	
-	@JsonIgnore
-	@JsonManagedReference
+	/*@JsonIgnore
+	//@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "korisnik")
-	private Set<Oglas> listaOglasa;
+	private Set<Oglas> listaOglasa;*/
 	
 	@OneToOne(optional = false)
 	private Clan clan;
 	
 	@ManyToMany
-	@JsonBackReference
+	//@JsonBackReference
 	private Set<Bioskop> listaPosecenihBioskopa;
 	
 	public Korisnik() {
@@ -186,13 +186,13 @@ public class Korisnik implements Serializable{
 		this.listaRezervacija = listaRezervacija;
 	}
 
-	public Set<Oglas> getListaOglasa() {
+	/*public Set<Oglas> getListaOglasa() {
 		return listaOglasa;
 	}
 
 	public void setListaOglasa(Set<Oglas> listaOglasa) {
 		this.listaOglasa = listaOglasa;
-	}
+	}*/
 
 	public Clan getClan() {
 		return clan;
