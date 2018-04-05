@@ -26,10 +26,17 @@ public class JpaBioskopService implements BioskopService{
 	@Override
 	public Bioskop kreirajBioskop(Bioskop bioskop) {
 		
-		
-		
 		return bioskopRepository.save(bioskop);
 	}
+
+	
+	@Override
+	public Bioskop nadjiJedanBioskop(String naziv) {
+		return bioskopRepository.findOne(naziv);
+	
+	}
+
+	
 
 	
 

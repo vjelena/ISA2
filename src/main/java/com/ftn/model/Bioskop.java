@@ -72,6 +72,9 @@ public class Bioskop implements Serializable{
 //	@JsonManagedReference
 	@OneToOne
 	private FanZona fanZona;
+	
+	@Column(nullable = false)
+	private float prosecnaOcena;
 
 	
 	public Bioskop() {
@@ -156,6 +159,15 @@ public class Bioskop implements Serializable{
 	public void setId(int id) {
 		this.id = id;
 	}
+
+	public float getProsecnaOcena() {
+		return prosecnaOcena;
+	}
+
+	public void setProsecnaOcena(float prosecnaOcena) {
+		this.prosecnaOcena = prosecnaOcena;
+	}
+
 	
 	
 }

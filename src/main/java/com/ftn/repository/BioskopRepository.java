@@ -8,5 +8,9 @@ import com.ftn.model.Bioskop;
 
 @Repository
 public interface BioskopRepository extends JpaRepository<Bioskop, String> {
+
+	
+
+	
 	
 }

@@ -18,4 +18,6 @@ public interface BioskopService {
 	
 	public Bioskop kreirajBioskop(Bioskop bioskop);
 
+	public Bioskop nadjiJedanBioskop(String id);
+
 }
