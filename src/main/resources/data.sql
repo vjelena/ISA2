@@ -11,5 +11,7 @@ INSERT INTO bioskop values (2, 'Cinestar ', 'Brend CineStar razvio se iz bioskop
 insert into fan_zona values (1,1);
 insert into fan_zona values (2,2);
 
---insert into fan_zona(naziv) values ('jaslkjfa')
---insert into oglas(cena, datum, naziv, slika, opis, fan_zona_id, odobren) values('3', '11.11.2011.', 'naaziiv', 'slika','opis', 1, false)
+insert into fan_zona values (3,'jaslkjfa');
+insert into oglas(cena, datum, naziv, slika, opis, fan_zona_id, odobren) values('3', '11.11.2011.', 'naaziiv', 'slika','opis', 1, false)
+
+--test drugog fajla

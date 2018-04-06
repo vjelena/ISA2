@@ -24,3 +24,5 @@ nbdist/
 
 ### Application properties file ###
 /src/main/resources/application.properties
+
+//test-git-a
