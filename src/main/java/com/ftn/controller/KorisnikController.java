@@ -17,6 +17,7 @@ import com.ftn.model.Korisnik;
 import com.ftn.service.EmailService;
 import com.ftn.service.KorisnikService;
 
+//test git-a
 @RestController
 //@CrossOrigin(origins = "http://localhost:8080")
 @RequestMapping(value = "/korisnici")
