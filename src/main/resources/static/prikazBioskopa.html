@@ -10,20 +10,15 @@
 	$(document).ready(
 			function() {
 				$.ajax({
-					url : "http://localhost:1245/bioskopi/prikaziBioskope"
+					url : "http://localhost:8080/bioskopi/prikaziBioskope"
 				}).then(
 						function(data) {
 							console.log("Prikaz podataka za bioskop...");
 							for (i = 0; i < data.length; i++) {
-								newRow = "<tr><td class=\"naziv\">"
-										+ data[i].naziv + "</td>"
-										+ "<td class=\"adresa\">"
-										+ data[i].adresa.ulica + " "
-										+ data[i].adresa.broj + "</td>"
-										+ "<td class=\"opis\">" + data[i].opis
-										+ "</td>"
-										+ "<td class=\"prosecnaOcena\">"
-										+ data[i].prosecnaOcena + "</td>"
+								newRow = "<tr><td class=\"naziv\">"+ data[i].naziv + "</td>"
+										+ "<td class=\"adresa\">"+ data[i].adresa.ulica + " "+ data[i].adresa.broj + "</td>"
+										+ "<td class=\"opis\">" + data[i].opis+ "</td>"
+										+ "<td class=\"prosecnaOcena\">"+ data[i].prosecnaOcena + "</td>"
 								$("#dataTable").append(newRow)
 							}
 						});
@@ -55,20 +50,6 @@
 		</div>
 	</div>
 
-	<div class="container">
-		<div style="margin-top: 20px;">
-			<table id="dataTable" class="table table-hover table-bordered">
-				<thead class="thead-dark">
-					<tr>
-						<th scope="col" class="text-center">Naziv</th>
-						<th scope="col" class="text-center">Adresa</th>
-						<th scope="col" class="text-center">Promotivni opis</th>
-						<th scope="col" class="text-center">Prosecna ocena</th>
-					</tr>
-				</thead>
-			</table>
-		</div>
-	</div>
 	
 	 <form action="profilBioskopa.html" class="form-horizontal">
 					<div class="text-center">

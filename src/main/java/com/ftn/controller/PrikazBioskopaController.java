@@ -23,7 +23,7 @@ public class PrikazBioskopaController {
 	@Autowired
 	private JpaBioskopService jpaBioskopService;
 
-	@RequestMapping(value = "prikaziBioskope", method = RequestMethod.GET)
+	@RequestMapping(value = "/prikaziBioskope", method = RequestMethod.GET)
 	public ResponseEntity<List<Bioskop>> prikaziBioskope() {
 		List<Bioskop> bioskopi = jpaBioskopService.nadjiSveBioskope();
 		return new ResponseEntity<>(bioskopi, HttpStatus.OK);
