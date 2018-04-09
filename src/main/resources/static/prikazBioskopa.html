@@ -15,7 +15,9 @@
 						function(data) {
 							console.log("Prikaz podataka za bioskop...");
 							for (i = 0; i < data.length; i++) {
-								newRow = "<tr><td><a class=\"bioskopi\"href=\"\" naziv=\""+data[i].naziv+"\">"+ data[i].naziv + "</a></td>"
+								//console.log('Id bioskopa: ' + data[i].id + " Naziv: " + data[i].naziv);
+								//console.log('<a class=\"bioskopi\" href=\"\" id=\"" + data[i].id + "\" naziv=\""+data[i].naziv+"\">"+ data[i].naziv + "</a>');
+								newRow = "<tr><td><a class=\"bioskopi\" href=\"\" id=\"" + data[i].id + "\" naziv=\""+data[i].naziv+"\">"+ data[i].naziv + "</a></td>"
 										+ "<td class=\"adresa\">"+ data[i].adresa.ulica + " "+ data[i].adresa.broj + "</td>"
 										+ "<td class=\"opis\">" + data[i].opis+ "</td>"
 										+ "<td class=\"prosecnaOcena\">"+ data[i].prosecnaOcena + "</td>"
@@ -26,7 +28,7 @@
 	
 	$(document).on("click", ".bioskopi", function(event) {
 		event.preventDefault();
-		naziv=$(this).closest("a").attr("naziv");	
+		id=$(this).closest("a").attr("id");
 		var redirect = function(url, method) {
 			var div = document.createElement('div');
 			var form = document.createElement('form');
@@ -34,8 +36,8 @@
 			div.appendChild(form);
 			document.body.appendChild(div);
 			var input = document.createElement('input');
-			input.name='naziv';
-			input.value=naziv;
+			input.name='id';
+			input.value=id;
 			form.appendChild(input);
 			form.method = method;
 			form.action = url;

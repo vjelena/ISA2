@@ -29,19 +29,16 @@ public class PrikazBioskopaController {
 		return new ResponseEntity<>(bioskopi, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/{naziv}", method = RequestMethod.GET)
-	public ResponseEntity<Bioskop> nadjiBioskop(@PathVariable String naziv) {
-		Bioskop bioskop = jpaBioskopService.nadjiJedanBioskop(naziv);
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public ResponseEntity<Bioskop> nadjiBioskop(@PathVariable String id) {
+		System.out.println("=================>>>>> Prije nadjiJedanBioskop:" + id);
+		Bioskop bioskop = jpaBioskopService.nadjiJedanBioskop(id);
 		if (bioskop == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
+		System.out.println("Bice prikazan: " + bioskop.getNaziv());
 		return new ResponseEntity<>(bioskop, HttpStatus.OK);
 	}
-
-	// @RequestMapping("/bioskopi/{naziv}")
-	// public Bioskop jedanBioskop(@PathVariable String naziv) {
-	// return bioskopService.jedanBioskop(naziv);
-	// }
 
 	@RequestMapping(method = RequestMethod.POST, value = "/bioskopi", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Bioskop>> dodajBioskop(@RequestBody Bioskop bioskop) {

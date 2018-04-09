@@ -27,7 +27,7 @@ public class Repertoar implements Serializable{
 	private Bioskop bioskop;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "repertoar")
-	@JsonIgnore
+	//@JsonIgnore
 	//@JsonManagedReference
 	private Set<Projekcija> projekcije;
 	

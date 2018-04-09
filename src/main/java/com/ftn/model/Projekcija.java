@@ -51,7 +51,7 @@ public class Projekcija implements Serializable{
 	//private Set<Termin> termini;
 	
 	@ManyToMany
-	@JsonIgnore
+	//@JsonIgnore
 	//@JsonManagedReference
 	private Set<Glumac> glumci;
 	
