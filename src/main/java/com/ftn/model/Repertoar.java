@@ -23,7 +23,7 @@ public class Repertoar implements Serializable{
 	private int id;
 	
 	@OneToOne(optional = false)
-	//@JsonBackReference
+	@JsonBackReference
 	private Bioskop bioskop;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "repertoar")
