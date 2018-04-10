@@ -39,8 +39,8 @@ public class Bioskop implements Serializable{
 	private Adresa adresa;
 	
 	//@JsonIgnore //u modelu nam ne trebaju anotacije JsonIgnore(to ide u DTO) i JsonManageReference
-//	@JsonManagedReference
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bioskop")
+   // @JsonManagedReference
+	@OneToMany
 	private Set<Sala> listaSala;
 		
 	//@JsonIgnore //da se izbegne rekurzija pri slanju objekta, stavlja se sa jedne strane veze, tipa gde je set

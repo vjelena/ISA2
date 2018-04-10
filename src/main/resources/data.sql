@@ -19,6 +19,13 @@ INSERT INTO glumac values (3, 'Olivia','Cooke');
 INSERT INTO projekcija values (1,'Ready player one', 4.5 , 'opis', 'Steven Spielberg', 'slika', 120, 'drama',1);
 INSERT INTO projekcija values (2,'Tomb raider 3D', 4.5 , 'Lara Kroft je strastvena, samostalna devojka i cerka ekscentricnog pustolova koji je nestao dok je ona jos bila tinejdzerka.', 'Roar Uthaug', 'slika', 120, 'drama',2);
 
+INSERT INTO sala values(1 ,150 ,1 ,1 ,1 );
+INSERT INTO sala values(2 ,100 ,2 ,2 ,2 );
+
+INSERT INTO projekcija_sale values (1, 1);
+
+INSERT INTO bioskop_lista_sala values (1 , 1);
+INSERT INTO bioskop_lista_sala values (2 , 2);
 
 INSERT INTO glumac_projekcije values (1,1);
 INSERT INTO glumac_projekcije values (2,2);
