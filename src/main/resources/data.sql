@@ -10,6 +10,7 @@ INSERT INTO adresa values (2, 123,'Bulevar Osobodjenja', 2);
 
 INSERT INTO bioskop values (1, 'Arena Cineplex', 'Pored redovnog filmskog repertoara, u Areni Cineplex se organizuju svecane premijere domacih filmova, kao i festivali FEST, Cinema City, Cinemania i Kids Fest.', 3.5, 1 ,1);
 INSERT INTO bioskop values (2, 'Cinestar ', 'Brend CineStar razvio se iz bioskopa kompanije Kieft Kieft Filmtheater GmbH, koja je, posle vise od cetiri decenije rada kao operater klasicnog bioskopa, još 1993. otvorila svoj prvi multipleks.', 4.0, 2,2);
+<<<<<<< HEAD
 
 INSERT INTO repertoar values (1,1);
 INSERT INTO repertoar values (2,2);
@@ -39,5 +40,3 @@ INSERT INTO projekcija_glumci values (2,2);
 INSERT INTO projekcija_glumci values (3,2);
 
 insert into fan_zona(naziv) values ('jaslkjfa');*/
-
---test drugog fajla

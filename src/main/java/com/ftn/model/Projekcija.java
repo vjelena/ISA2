@@ -44,14 +44,14 @@ public class Projekcija implements Serializable{
 	@Column(nullable = false)
 	private float ocena;
 	
-	//@OneToMany ?
-	//private Set<Sala> sale;
+	@OneToMany 
+	private Set<Sala> sale;
 	//????
 	//@OneToMany ?
 	//private Set<Termin> termini;
 	
 	@ManyToMany
-	@JsonIgnore
+	//@JsonIgnore
 	//@JsonManagedReference
 	private Set<Glumac> glumci;
 	

@@ -30,8 +30,12 @@ public class Sala implements Serializable{
 	private int brojMesta;
 	
 	@ManyToOne(optional = false)
-	//@JsonBackReference
+	@JsonBackReference
 	private Bioskop bioskop;
+	
+	@ManyToOne(optional = false)
+	@JsonBackReference
+	private Projekcija projekcija;
 		
 	@JsonIgnore
 	//@JsonManagedReference

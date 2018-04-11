@@ -10,24 +10,41 @@
 	$(document).ready(
 			function() {
 				$.ajax({
-					url : "http://localhost:1245/bioskopi/prikaziBioskope"
+					url : "http://localhost:8080/bioskopi/prikaziBioskope"
 				}).then(
 						function(data) {
 							console.log("Prikaz podataka za bioskop...");
 							for (i = 0; i < data.length; i++) {
-								newRow = "<tr><td class=\"naziv\">"
-										+ data[i].naziv + "</td>"
-										+ "<td class=\"adresa\">"
-										+ data[i].adresa.ulica + " "
-										+ data[i].adresa.broj + "</td>"
-										+ "<td class=\"opis\">" + data[i].opis
-										+ "</td>"
-										+ "<td class=\"prosecnaOcena\">"
-										+ data[i].prosecnaOcena + "</td>"
+								//console.log('Id bioskopa: ' + data[i].id + " Naziv: " + data[i].naziv);
+								//console.log('<a class=\"bioskopi\" href=\"\" id=\"" + data[i].id + "\" naziv=\""+data[i].naziv+"\">"+ data[i].naziv + "</a>');
+								newRow = "<tr><td><a class=\"bioskopi\" href=\"\" id=\"" + data[i].id + "\" naziv=\""+data[i].naziv+"\">"+ data[i].naziv + "</a></td>"
+										+ "<td class=\"adresa\">"+ data[i].adresa.ulica + " "+ data[i].adresa.broj + "</td>"
+										+ "<td class=\"opis\">" + data[i].opis+ "</td>"
+										+ "<td class=\"prosecnaOcena\">"+ data[i].prosecnaOcena + "</td>"
 								$("#dataTable").append(newRow)
 							}
 						});
 			});
+	
+	$(document).on("click", ".bioskopi", function(event) {
+		event.preventDefault();
+		id=$(this).closest("a").attr("id");
+		var redirect = function(url, method) {
+			var div = document.createElement('div');
+			var form = document.createElement('form');
+			div.setAttribute("class","invisible");
+			div.appendChild(form);
+			document.body.appendChild(div);
+			var input = document.createElement('input');
+			input.name='id';
+			input.value=id;
+			form.appendChild(input);
+			form.method = method;
+			form.action = url;
+			form.submit();
+		};
+		redirect('profilBioskopa.html','GET');
+	});	
 		</script>
 	</head>
 
@@ -55,7 +72,7 @@
 		</div>
 	</div>
 
-	<div class="container">
+<div class="container">
 		<div style="margin-top: 20px;">
 			<table id="dataTable" class="table table-hover table-bordered">
 				<thead class="thead-dark">
@@ -70,10 +87,5 @@
 		</div>
 	</div>
 	
-	 <form action="profilBioskopa.html" class="form-horizontal">
-					<div class="text-center">
-				    	<input class="btn btn-link" type="submit" value="Profil bioskopa">
-				    </div>
-				</form>  
 </body>
 </html>

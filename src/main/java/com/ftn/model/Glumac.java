@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Glumac implements Serializable{
 
@@ -24,7 +26,7 @@ public class Glumac implements Serializable{
 	private String prezime;
 	
 	@ManyToMany
-	//@JsonBackReference
+	@JsonBackReference
 	private Set<Projekcija> projekcije;
 	
 	public Glumac() {
