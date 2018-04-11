@@ -21,7 +21,7 @@ public class Segment implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 	
 	@Column(nullable = false)
 	private String tipSegmenta; //balkon, vip sedista..
@@ -42,11 +42,11 @@ public class Segment implements Serializable{
 		
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

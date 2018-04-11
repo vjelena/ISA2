@@ -1,43 +1,36 @@
 package com.ftn.service;
 
-import java.util.Properties;
-import javax.mail.Message;
 import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
+import org.springframework.mail.MailException;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 @Service
 public class EmailService {
 	
-	public static void sendMail(String emailAdresa, String naslov, String poruka) throws MessagingException {
-        JavaMailSenderImpl posiljalac = new JavaMailSenderImpl();
-        posiljalac.setDefaultEncoding("UTF-8");
-
-        Properties properties = new Properties();
-        properties.put("mail.smtp.host", "smtp.gmail.com");
-        properties.put("mail.smtp.auth", "true");
-        properties.put("mail.smtp.starttls.enable", "true");
-        properties.put("mail.smtp.port", 587);
-        properties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
-        posiljalac.setJavaMailProperties(properties);
-
-        Session mailSession = Session.getDefaultInstance(properties, null);
-        MimeMessage mailMessage = new MimeMessage(mailSession);
-
-        final InternetAddress recipient = new InternetAddress(emailAdresa);
-
-        mailMessage.addRecipient(Message.RecipientType.TO, recipient);
-        mailMessage.setSubject(naslov);
-        mailMessage.setContent(poruka, "text/html");
-
-        Transport transport = mailSession.getTransport("smtp");
-        transport.connect("smtp.gmail.com", "nijemidosadno@gmail.com", "Nalog je uspesno aktiviran :)");
-        transport.sendMessage(mailMessage, mailMessage.getAllRecipients());
-        transport.close();
+	@Autowired
+	private JavaMailSender javaMailSender;
+	
+	@Autowired
+	private Environment env;
+	
+	/*
+	 * Anotacija za oznacavanje asinhronog zadatka
+	 * Vise informacija na: https://docs.spring.io/spring/docs/current/spring-framework-reference/integration.html#scheduling
+	 */
+	@Async
+	public void sendMail(String emailAdresa, String naslov, String poruka) throws MailException, InterruptedException  {		
+		SimpleMailMessage mail = new SimpleMailMessage();
+		mail.setTo(emailAdresa);
+		mail.setFrom(env.getProperty("spring.mail.username"));
+		mail.setSubject("Aktivacija korisnickog naloga");
+		mail.setText("Vas korisnicki nalog ce biti aktiviran." + poruka);
+		javaMailSender.send(mail);
     }
 	
 }

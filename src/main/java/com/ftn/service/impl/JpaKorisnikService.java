@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ftn.model.Korisnik;
+import com.ftn.repository.AdresaRepository;
 import com.ftn.repository.KorisnikRepository;
 import com.ftn.service.KorisnikService;
 
@@ -17,6 +18,8 @@ public class JpaKorisnikService implements KorisnikService {
 	@Autowired
 	private KorisnikRepository korisnikRepository;
 
+	@Autowired
+	private AdresaRepository adresaRepository;
 	
 	@Override
 	public Korisnik findOne(Long id) {
@@ -35,6 +38,7 @@ public class JpaKorisnikService implements KorisnikService {
 
 	@Override
 	public Korisnik save(Korisnik korisnik) {
+		adresaRepository.save(korisnik.getAdresa());
 		return korisnikRepository.save(korisnik);
 	}
 
@@ -66,8 +70,8 @@ public class JpaKorisnikService implements KorisnikService {
 	}
 
 	/*@Override
-	public Integer setActivated(Boolean aktiviranNalog, String email) {
-		return korisnikRepository.setActivated(aktiviranNalog, email);
+	public void setActivated(Boolean aktiviranNalog, String email) {
+		korisnikRepository.setActivated(aktiviranNalog, email);
 	}*/
 
 }

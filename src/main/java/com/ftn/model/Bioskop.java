@@ -27,7 +27,7 @@ public class Bioskop implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 		
 	@Column(nullable = false)
 	private String naziv;
@@ -63,10 +63,10 @@ public class Bioskop implements Serializable{
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "bioskop")
 	private IzvestajOPoslovanju izvestaj;
 	
-	@JsonIgnore
+	/*@JsonIgnore
 //	@JsonManagedReference
 	@ManyToMany
-	private Set<Korisnik> listaPosetilaca;
+	private Set<Korisnik> listaPosetilaca;*/
 	
 	@JsonIgnore
 //	@JsonManagedReference
@@ -152,11 +152,11 @@ public class Bioskop implements Serializable{
 		this.izvestaj = izvestaj;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

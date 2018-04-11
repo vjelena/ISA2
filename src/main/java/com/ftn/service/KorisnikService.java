@@ -4,9 +4,7 @@ import java.util.List;
 import com.ftn.model.Korisnik;
 
 public interface KorisnikService {
-	
-	
-	
+		
 	Korisnik findOne(Long id);
 	Korisnik findByEmail(String email);
 	List<Korisnik> findAll();
@@ -19,5 +17,5 @@ public interface KorisnikService {
 	
 	List<Korisnik> search(String ime, String prezime);
 
-	//public Integer setActivated(Boolean aktiviranNalog, String email);
+	//void setActivated(Boolean aktiviranNalog, String email);
 }

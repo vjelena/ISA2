@@ -15,7 +15,7 @@ public class Glumac implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 	
 	@Column(nullable = false)
 	private String ime;
@@ -31,11 +31,11 @@ public class Glumac implements Serializable{
 		
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

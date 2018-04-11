@@ -15,7 +15,7 @@ public class Adresa implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 	
 	@Column(nullable = false)
 	private String ulica;
@@ -23,12 +23,23 @@ public class Adresa implements Serializable{
 	@Column(nullable = false)
 	private String broj;
 	
-	@ManyToOne(optional = false, cascade = CascadeType.ALL)
-	private Grad grad;
+	@Column(nullable = false)
+	private String grad;
 
 	public Adresa() {
 		
 	}
+	
+	
+
+	public Adresa(String ulica, String broj, String grad) {
+		super();
+		this.ulica = ulica;
+		this.broj = broj;
+		this.grad = grad;
+	}
+
+
 
 	public String getUlica() {
 		return ulica;
@@ -46,19 +57,19 @@ public class Adresa implements Serializable{
 		this.broj = broj;
 	}
 
-	public Grad getGrad() {
+	public String getGrad() {
 		return grad;
 	}
 
-	public void setGrad(Grad grad) {
+	public void setGrad(String grad) {
 		this.grad = grad;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	
