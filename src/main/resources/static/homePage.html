@@ -16,7 +16,7 @@
 			    <div class="form-group">
 			    	<form action="index.html" class="form-horizontal">
 				        <div class="col-lg-4">
-				            <input class="btn btn-primary" type="submit" value="Odjavi se">
+				            <input id="dugmeOdjaviSe" class="btn btn-primary" type="button" value="Odjavi se">
 				        </div>
 			        </form>
 			    </div>
@@ -132,5 +132,19 @@
 				</table>
 			</div>			
 		</div>
+		<script type="text/javascript">
+			$("#dugmeOdjaviSe").click(function(){
+				$.ajax({
+					url: "http://localhost:8080/korisnik/odjava",
+					type: "GET",
+					data: null,
+					contentType: "application/json",
+					datatype: 'json',
+					success: function(data){
+						alert("Odjavili ste se sa sistema.");
+					}
+				});
+			});		
+		</script>
 	</body>
 </html>

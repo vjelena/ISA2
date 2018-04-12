@@ -1,16 +1,17 @@
-INSERT INTO adresa values (21,'Broj', 'grad', 'ulica');
-INSERT INTO clan values (3, 10, 5, 'zlatni');
-insert into korisnik values(2, '3', 'e@gmail.com' , 'ime', '434', 'prezime', 'uloga', 21);
+insert into adresa values (11, '67', 'Novi Sad', 'Dositejeva');
+insert into korisnik values(1, 1, '123456', 'petar@gmail.com' , 'Petar', '123', 'Petrovic', 0, 'obican', 11);
 
-/*INSERT INTO grad values (1, 'Novi Sad');
-INSERT INTO grad values (2, 'Beograd');
+insert into adresa values (12, '35', 'Beograd', 'Puskinova');
+insert into korisnik values(2, 1, '095346', 'marko@gmail.com' , 'Marko', '777', 'Markovic', 0, 'admin', 12);
 
-INSERT INTO adresa values (1, 68,'Kralja Petra', 1);
+
+
+
+/*INSERT INTO adresa values (1, 68,'Kralja Petra', 1);
 INSERT INTO adresa values (2, 123,'Bulevar Osobodjenja', 2);
 
 INSERT INTO bioskop values (1, 'Arena Cineplex', 'Pored redovnog filmskog repertoara, u Areni Cineplex se organizuju svecane premijere domacih filmova, kao i festivali FEST, Cinema City, Cinemania i Kids Fest.', 3.5, 1 ,1);
 INSERT INTO bioskop values (2, 'Cinestar ', 'Brend CineStar razvio se iz bioskopa kompanije Kieft Kieft Filmtheater GmbH, koja je, posle vise od cetiri decenije rada kao operater klasicnog bioskopa, još 1993. otvorila svoj prvi multipleks.', 4.0, 2,2);
-<<<<<<< HEAD
 
 INSERT INTO repertoar values (1,1);
 INSERT INTO repertoar values (2,2);
