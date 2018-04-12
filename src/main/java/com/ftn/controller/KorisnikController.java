@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ftn.model.Korisnik;
+import com.ftn.repository.KorisnikRepository;
 import com.ftn.service.EmailService;
 import com.ftn.service.KorisnikService;
 
@@ -38,7 +39,7 @@ public class KorisnikController {
 		return new ResponseEntity<>(korisnici, HttpStatus.OK);
 	}
 	
-	//treba dodati proveru da email mora biti jedinstven (u modelu Korisnik stoji unique kod emaila)
+	//treba dodati proveru da email mora biti jedinstven (u modelu Korisnik stoji unique kod email-a)
 	//registracija korisnika
 	@RequestMapping(value = "/registracija", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Korisnik> registracija(@RequestBody Korisnik request) throws MailException, InterruptedException, MessagingException {		
@@ -66,11 +67,10 @@ public class KorisnikController {
 	    return new ResponseEntity<Korisnik>(k, HttpStatus.OK);
 	 }
 		
-	//JOS UVEK NE RADI: ako korisnik nije u bazi program puca (treba dodati provere za to)
-	//uvek kod ajaxa ide u deo error
+	//ako korisnik nije u bazi program puca (treba dodati provere za to)
 	//prijava korisnika
 	@RequestMapping(value = "/prijava", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public String prijava(@RequestBody Korisnik requestKorisnik, HttpServletRequest request){
+	public ResponseEntity<Korisnik> prijava(@RequestBody Korisnik requestKorisnik, HttpServletRequest request){
 		Korisnik k = korisnikServis.findByEmail(requestKorisnik.getEmail());
 		System.out.println("\n\t\tmejl za prijavu: \n" + k.getEmail());
 		
@@ -80,27 +80,54 @@ public class KorisnikController {
 					k.setPrviPutSeUlogovao(true);
 				}
 				request.getSession().setAttribute("aktivanKorisnik", k);
-				return "uspesnoLogovanje";
+				return new ResponseEntity<Korisnik>(k, HttpStatus.OK);
 			}
 		}
 			
-		return "neuspesnoLogovanje";
+		return new ResponseEntity<Korisnik>(k, HttpStatus.BAD_REQUEST);
 	}
 	
-	//vidi homePage.html
-	//odjava korisnika (jos uvek nije provereno da li radi)
+	//odjava korisnika
 	@RequestMapping(value = "/odjava", method = RequestMethod.GET)
 	public String odjava(HttpServletRequest request) {
 		request.getSession().invalidate();
 		return "odjavljen";
 	}
 	
-	//jos uvek nema ajax dela :D
+	
+	
+	
+	//NIJE GOTOVO: jos uvek nema ajax dela :D
 	//preuzimanje aktivnog korisnika (jos uvek nije provereno da li radi)
 	@RequestMapping(value = "/getTrenutnoAktivan", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public Korisnik getUser(HttpServletRequest request){
 		System.out.println("\n\t\ttrenutno aktivan korisnik: " + (Korisnik)request.getSession().getAttribute("aktivanKorisnik"));
 		return (Korisnik)request.getSession().getAttribute("aktivanKorisnik");	
+	}
+	
+	
+	
+	
+	//azuriranje korisnika
+	@RequestMapping(value="/azurirajKorisnika", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public boolean azurirajKorisnika(@RequestBody Korisnik requestKorisnik/*, HttpServletRequest request*/) {
+		//Korisnik k = (Korisnik)request.getSession().getAttribute("aktivanKorisnik"); //ovo ostaje
+		
+		Korisnik k = requestKorisnik; //ovo obrisi i ostavi ono sa sesijom
+		k.setId(new Long(1)); //ovo obrisi i ostavi ono sa sesijom
+		
+		k.setEmail(requestKorisnik.getEmail());
+		k.setLozinka(requestKorisnik.getLozinka());
+		k.setIme(requestKorisnik.getIme());
+		k.setPrezime(requestKorisnik.getPrezime());
+		k.setAdresa(requestKorisnik.getAdresa());
+		k.setBrojTelefona(requestKorisnik.getBrojTelefona());
+		k.setUloga("obican");
+		k.setAktiviranNalogPrekoMejla(true);
+		k.setPrviPutSeUlogovao(false);
+		
+		korisnikServis.save(k);
+		return true;
 	}
 	
 	
