@@ -94,14 +94,13 @@
 						datatype: 'json',
 						success: function(data){
 							if(data){
-								alert("Logovanje uspesno.");
 								location.href = "http://localhost:8080/homePage.html"				
 							}else
 								alert("Logovanje NIJE uspelo.");
 						},
 						error: function(data){
 							alert('GRESKA PRILIKOM LOGOVANJA!!!')
-							alert(data)
+							alert('1. Ne postoji korisnik sa tom kombinacijom email adrese i lozinke.\n2. Niste aktivirali Vas korisnicki nalog.')
 						}
 					});
 				}

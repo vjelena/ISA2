@@ -195,11 +195,13 @@
 						datatype: 'json',
 						success: function(data){
 							if(data){
-								alert("Registracija uspesna.");
 								location.href = "http://localhost:8080/index.html"				
 							}else
 								alert("Registracija NIJE uspela.");
-						}	
+						},
+						error: function(data){
+							alert('GRESKA PRILIKOM REGISTRACIJE!!!')
+						}
 					});
 				}
 			});

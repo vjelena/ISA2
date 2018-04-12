@@ -1,6 +1,5 @@
 package com.ftn.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.mail.MessagingException;
@@ -36,6 +35,11 @@ public class KorisnikController {
 	@RequestMapping(value="getKorisnici", method = RequestMethod.GET)
 	public ResponseEntity<List<Korisnik>> getKorisnici() {
 		List<Korisnik> korisnici = korisnikServis.findAll();
+		
+		if(korisnici.equals(null)) {
+			return new ResponseEntity<>(korisnici, HttpStatus.NOT_FOUND);
+		}
+		
 		return new ResponseEntity<>(korisnici, HttpStatus.OK);
 	}
 	
@@ -86,7 +90,7 @@ public class KorisnikController {
 			System.out.println("\n\t\tNe postoji korisnik sa unetim emailom i lozinkom u bazi!\n");
 		}
 			
-		return new ResponseEntity<Korisnik>(k, HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<Korisnik>(k, HttpStatus.NOT_FOUND);
 	}
 	
 	//odjava korisnika
@@ -118,12 +122,13 @@ public class KorisnikController {
 	
 	
 	
-	//NIJE GOTOVO: jos uvek nema ajax dela :D
-	//preuzimanje aktivnog korisnika (jos uvek nije provereno da li radi)
+	//NIJE GOTOVO!!!
+	//preuzimanje aktivnog korisnika
 	@RequestMapping(value = "/getTrenutnoAktivan", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Korisnik getUser(HttpServletRequest request){
-		System.out.println("\n\t\ttrenutno aktivan korisnik: " + (Korisnik)request.getSession().getAttribute("aktivanKorisnik"));
-		return (Korisnik)request.getSession().getAttribute("aktivanKorisnik");	
+	public Korisnik getTrenutnoAktivan(HttpServletRequest request){
+		Korisnik k = (Korisnik)request.getSession().getAttribute("aktivanKorisnik");		
+		System.out.println("\n\t\ttrenutno aktivan korisnik: " + k.getEmail() + "\n");
+		return k;
 	}
 	
 	
@@ -131,7 +136,7 @@ public class KorisnikController {
 	
 	
 	/*
-	//odabir korisnika na osnovu e-mail adrese (za logovanje i prijateljstvo)
+	//odabir korisnika na osnovu e-mail adrese (za prijateljstvo)
 	@RequestMapping(value="/{email}", method = RequestMethod.GET)
 	public ResponseEntity<Korisnik> getKorisnikByEmail(@PathVariable String email) {
 		Korisnik korisnik = korisnikServis.findByEmail(email);
