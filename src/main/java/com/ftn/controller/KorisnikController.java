@@ -3,9 +3,8 @@ package com.ftn.controller;
 import java.util.List;
 
 import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -24,7 +23,6 @@ import com.ftn.service.KorisnikService;
 @RestController
 @RequestMapping(value = "/korisnik")
 public class KorisnikController {
-	private Logger logger = LoggerFactory.getLogger(KorisnikController.class) ; 
 	
 	@Autowired
 	private KorisnikService korisnikServis;
@@ -33,11 +31,87 @@ public class KorisnikController {
 	private EmailService emailService;
 	
 	
+	//preuzimanje svih korisnika
 	@RequestMapping(value="getKorisnici", method = RequestMethod.GET)
 	public ResponseEntity<List<Korisnik>> getKorisnici() {
 		List<Korisnik> korisnici = korisnikServis.findAll();
 		return new ResponseEntity<>(korisnici, HttpStatus.OK);
 	}
+	
+	//treba dodati proveru da email mora biti jedinstven (u modelu Korisnik stoji unique kod emaila)
+	//registracija korisnika
+	@RequestMapping(value = "/registracija", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Korisnik> registracija(@RequestBody Korisnik request) throws MailException, InterruptedException, MessagingException {		
+		Korisnik k = new Korisnik(request.getEmail(), request.getLozinka(), request.getIme(), request.getPrezime(), request.getAdresa(), request.getBrojTelefona(), request.getUloga(), request.isAktiviranNalogPrekoMejla(), request.isPrviPutSeUlogovao());
+		k.setUloga("obican");
+		k.setAktiviranNalogPrekoMejla(false);
+		k.setPrviPutSeUlogovao(false);
+			
+		if (!k.getEmail().isEmpty() && !k.getLozinka().isEmpty() && !k.getIme().isEmpty() && !k.getPrezime().isEmpty() && !k.getAdresa().getUlica().toString().isEmpty() && !k.getAdresa().getBroj().toString().isEmpty() && !k.getAdresa().getGrad().toString().isEmpty() && !k.getBrojTelefona().isEmpty()) {		
+			emailService.sendMail(k);
+			korisnikServis.save(k);
+			return new ResponseEntity<Korisnik>(k, HttpStatus.OK);
+		}
+			
+		return new ResponseEntity<Korisnik>(k, HttpStatus.BAD_REQUEST);
+	}
+	
+	//aktivacija korisnickog naloga posetom linka iz mejla
+	@RequestMapping(value = "/aktivirajKorisnickiNalog/{email}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Korisnik> aktivirajKorisnickiNalog(@PathVariable String email) {
+		Korisnik k = korisnikServis.findByEmail(email);
+		k.setAktiviranNalogPrekoMejla(true);
+		korisnikServis.save(k);
+		System.out.println("\n\t\taktivacija: " + k.isAktiviranNalogPrekoMejla() + "\n");
+	    return new ResponseEntity<Korisnik>(k, HttpStatus.OK);
+	 }
+		
+	//JOS UVEK NE RADI: ako korisnik nije u bazi program puca (treba dodati provere za to)
+	//uvek kod ajaxa ide u deo error
+	//prijava korisnika
+	@RequestMapping(value = "/prijava", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public String prijava(@RequestBody Korisnik requestKorisnik, HttpServletRequest request){
+		Korisnik k = korisnikServis.findByEmail(requestKorisnik.getEmail());
+		System.out.println("\n\t\tmejl za prijavu: \n" + k.getEmail());
+		
+		if(k != null) {
+			if(k.getLozinka().equals(requestKorisnik.getLozinka()) && k.isAktiviranNalogPrekoMejla() == true) {
+				if(k.isPrviPutSeUlogovao() == false) {
+					k.setPrviPutSeUlogovao(true);
+				}
+				request.getSession().setAttribute("aktivanKorisnik", k);
+				return "uspesnoLogovanje";
+			}
+		}
+			
+		return "neuspesnoLogovanje";
+	}
+	
+	//vidi homePage.html
+	//odjava korisnika (jos uvek nije provereno da li radi)
+	@RequestMapping(value = "/odjava", method = RequestMethod.GET)
+	public String odjava(HttpServletRequest request) {
+		request.getSession().invalidate();
+		return "odjavljen";
+	}
+	
+	//jos uvek nema ajax dela :D
+	//preuzimanje aktivnog korisnika (jos uvek nije provereno da li radi)
+	@RequestMapping(value = "/getTrenutnoAktivan", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Korisnik getUser(HttpServletRequest request){
+		System.out.println("\n\t\ttrenutno aktivan korisnik: " + (Korisnik)request.getSession().getAttribute("aktivanKorisnik"));
+		return (Korisnik)request.getSession().getAttribute("aktivanKorisnik");	
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	/*
 	//odabir korisnika na osnovu e-mail adrese (za logovanje i prijateljstvo)
@@ -100,47 +174,6 @@ public class KorisnikController {
 		//System.out.println("**************************"+oglasDTO.getNaziv());
 		
 		return new ResponseEntity<>(toOglasDTO.convert(noviOglas), HttpStatus.OK);
-	}*/
-	
-	
-	//registracija korisnika
-	@RequestMapping(value = "/registracija", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Korisnik> registracija(@RequestBody Korisnik request) throws MailException, InterruptedException, MessagingException {		
-		System.out.println("\n\t\tadresa (grad): " + request.getAdresa().getGrad());
-		
-		Korisnik korisnik = korisnikServis.save(request);
-		//korisnik.setUloga("OBICAN");
-        
-        if (!korisnik.getIme().isEmpty() && !korisnik.getPrezime().isEmpty() && !korisnik.getEmail().isEmpty() && !korisnik.getLozinka().isEmpty() && !korisnik.getBrojTelefona().isEmpty() /*&& !korisnik.getAdresa().getGrad().toString().isEmpty()*/) {
-        	try {
-				emailService.sendMail("nijemidosadno@gmail.com", "Aktivacija korisnickog naloga", "http://localhost:8080/korisnik/aktivirajKorisnickiNalog/" + korisnik.getEmail());	        
-				System.out.println("\tEmail uspesno poslat!");
-        	} catch( Exception e ) {
-				//logger.info("Greska prilikom slanja emaila: " + e.getMessage());
-				//return new ResponseEntity<Korisnik>(korisnik, HttpStatus.BAD_REQUEST);
-			}
-			return new ResponseEntity<Korisnik>(korisnik, HttpStatus.OK);
-        }
-        return new ResponseEntity<Korisnik>(korisnik, HttpStatus.OK);
-    }
-	
-	
-	/*//slanje mejla za aktivaciju korisnickog naloga
-	@RequestMapping(value = "/aktivirajKorisnickiNalog/{email:.+}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> aktivirajKorisnickiNalog(@PathVariable String email) {
-        System.out.println("aktiviranje kor naloga");
-		korisnikServis.setActivated(true, email);
-		System.out.println("aktiviranNalog setovan na true");
-        String nalog = "Korisnicki nalog je uspesno aktiviran.";
-        return new ResponseEntity<String>(nalog, HttpStatus.OK);
-    }
-	
-	
-	//prijava korisnika
-	@RequestMapping(value = "/prijaviSe.html/{email:.+}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Korisnik> prijava(@PathVariable String email){
-        Korisnik korisnik = korisnikServis.findByEmail(email);
-        return new ResponseEntity<Korisnik>(korisnik,HttpStatus.OK);
-    }
+	}
     */
 }
