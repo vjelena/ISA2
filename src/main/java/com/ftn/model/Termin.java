@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -23,8 +24,12 @@ public class Termin implements Serializable{
 	private float cena;
 	
 	@ManyToMany
-	//@JsonBackReference
+	@JsonBackReference
 	private Set<Vreme> vreme;
+	
+	@ManyToOne(optional = false)
+	@JsonBackReference
+	private Projekcija projekcija;
 	
 	public Termin() {
 		

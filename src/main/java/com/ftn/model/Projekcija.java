@@ -44,11 +44,14 @@ public class Projekcija implements Serializable{
 	@Column(nullable = false)
 	private float ocena;
 	
+	@Column(nullable = false)
+	private float cena;
+	
 	@OneToMany 
 	private Set<Sala> sale;
-	//????
-	//@OneToMany ?
-	//private Set<Termin> termini;
+	
+	@OneToMany 
+	private Set<Termin> termini;
 	
 	@ManyToMany
 	//@JsonIgnore
@@ -135,7 +138,15 @@ public class Projekcija implements Serializable{
 		this.ocena = ocena;
 	}
 
-	/*public Set<Sala> getSale() {
+	public float getCena() {
+		return cena;
+	}
+
+	public void setCena(float cena) {
+		this.cena = cena;
+	}
+
+	public Set<Sala> getSale() {
 		return sale;
 	}
 
@@ -149,6 +160,7 @@ public class Projekcija implements Serializable{
 
 	public void setTermini(Set<Termin> termini) {
 		this.termini = termini;
-	}*/
+	}
+	
 	
 }

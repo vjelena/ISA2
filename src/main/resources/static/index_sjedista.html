@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>jQuery Seat Charts Plugin Demo</title>
+<title>Konfiguracija sale</title>
 <script src="scripts/jquery-3.2.1.min.js"></script>
 <link href="bootstrapB/css/bootstrap.css" rel="stylesheet"
 	type="text/css" />
@@ -157,7 +157,7 @@ span.seatCharts-legendDescription {
 
 	<div class="wrapper">
 		<div class="container">
-			<h1>jQuery Seat Charts Plugin Demo</h1>
+			<h1>Konfiguracija sale</h1>
 			<div id="seat-map">
 				<div class="front-indicator">Front</div>
 			</div>
@@ -325,7 +325,6 @@ if(dataOk == false){
 	  var sjedista = "";
 	  $('#seat-map').find('div').each(function(){
 		    var innerDivClass = $(this).attr('class');
-		    //console.log(innerDivId);
 		    if(innerDivClass == 'seatCharts-row'){
 		    	$(this).find('div').each(function(){
 		    		var idSjedista = $(this).attr('id');
@@ -334,7 +333,6 @@ if(dataOk == false){
 		    		if(typeof idSjedista != 'undefined'){
 		    			
 		    			var klaseSjedista = $("#" + idSjedista).attr('class');
-		    			console.log(typeof klaseSjedista);
 		    			console.log(idSjedista + ">>>>>>>>>>>>>>>" + klaseSjedista);
 		    			
 		    			if(klaseSjedista.indexOf("first-class") >= 0  && klaseSjedista.indexOf("unavailable") >= 0){

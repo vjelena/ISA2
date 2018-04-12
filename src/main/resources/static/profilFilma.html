@@ -30,6 +30,9 @@
 							$("#zanr").append(data.zanr);
 							$("#trajanje").append(data.trajanje);
 							$("#opisFilma").append(data.opis);
+							$("#cena").append(data.cena);
+							
+							
 							var glumci = "";	
 							for(j=0; j<data.glumci.length; j++){
 								glumci += data.glumci[j].ime+ " "+ data.glumci[j].prezime + ",";
@@ -93,6 +96,7 @@
       				<tr><th scope="col" id="glumci">Glumci: </th></tr>
       				<tr><th scope="col" id="zanr">Zanr: </th></tr>
       				<tr><th scope="col" id="trajanje">Trajanje: </th></tr>
+      				<tr><th scope="col" id="cena">Cena: </th></tr>
       				<tr><th></th></tr>
 				</table>
 			</div>

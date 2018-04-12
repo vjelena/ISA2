@@ -27,6 +27,12 @@
 
 							$("#opisBioskopa").append(data.opis);
 							$("#imeBioskopa").append(data.naziv);
+							
+							var adresa = "";	
+							adresa += data.adresa.ulica + " "+ data.adresa.broj +" " + data.adresa.grad;
+							console.log("Adresa:  " + adresa);
+							$("#adresaBioskopa").append(adresa);
+							
 							console.log("Reperoar: " + JSON.stringify(data));
 							
 								var repertoar = data.repertoar;
@@ -92,19 +98,22 @@
 		<div class="form-group col-lg-2" style="padding-left: 30px"
 			id="tabLevo">
 
-			<form action="/azuriranje" class="form-horizontal">
+			<form action="izmjenaProfilaBioskopa.html" class="form-horizontal">
 				<div class="text-center" style="padding-top: 10px">
 					<h1  style="color: #CD5C5C" id="imeBioskopa"></h1>
-					<img src="slike/azuriranje.jpg" class="rounded" height="20"
-						width="20"> <input class="btn btn-link" type="submit"
-						value="Azuriraj podatke">
-				</div>
+					<h5 id="adresaBioskopa"></h5>
+					
+					<img src="slike/azuriranje.jpg" class="rounded" height="20"width="20"> 
+			
+					<div class="text-center" style="padding-top: 10px">
+						<input class="btn btn-link" type="submit" value="Azuriraj podatke">	
+					</div>
+			 </div>
 			</form>
 
-			<form action="konfiguracijaSale.html" class="form-horizontal">
+			<form action="izmjeniMapu.html" class="form-horizontal">
 				<div class="text-center" style="padding-top: 10px">
-					<input class="btn btn-info" type="submit"
-						value="Sala 1">
+					<input class="btn btn-info" type="submit" value="Sala 1">
 				</div>
 			</form>
 			<form action="istorijaPoseta.html" class="form-horizontal">

@@ -24,7 +24,7 @@ public class Vreme implements Serializable{
 	private String vreme;
 	
 	@ManyToMany
-	@JsonIgnore
+	//@JsonIgnore
 	//@JsonManagedReference
 	private Set<Termin> listaTermina;
 	

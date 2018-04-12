@@ -14,7 +14,7 @@ function generisiKonfiguracijuSale(){
 	var myDiv = document.getElementById("konfiguracijaSale");
 
 	//Create array of options to be added
-	var places = ["VIP","Sjedjnje","Prolaz"];
+	var places = ["VIP","Sjedenje","Prolaz"];
 	var placeValues = ["f", "e", "_"];
 	
 	
@@ -57,10 +57,10 @@ function snimiKonfiguracijuSale(){
 		//data: formData,
 		success: function(data){
 			if(data){
-				alert("Registracija uspesna.");
-				location.href = "http://localhost:8080/index.html"				
+				alert("Konfiguracija uspesna.");
+				location.href = "http://localhost:8080/index_sjedista.html"				
 			}else
-				alert("Registracija NIJE uspela.");
+				alert("Konfiguracija nije uspela.");
 		}	
 	});	
 }
