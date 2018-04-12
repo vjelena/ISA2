@@ -18,7 +18,7 @@
             		  
             		<div class="panel-body" style="padding-top:30px">
             			<div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
-                		<form id="formaRegistrujSe" class="form-horizontal" enctype="multipart/form-data" method="POST">
+                		<form id="formaIzmjeniBioskop" class="form-horizontal" enctype="multipart/form-data" method="POST">
                     		
                     		<div class="input-group" style="margin-bottom: 25px">
                         		<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
@@ -50,7 +50,7 @@
                     		                                                                 
                     		<div class="form-group">
                         		<div class="col-lg-offset-3 col-lg-9" style="margin-top: 25px">
-                            		<input id="dugmeRegistrujSe" type="button" class="btn btn-info" style="float:right" value="Sacuvaj izmjene"> 	
+                            		<input id="btnIzmjeniProfilBioskopa" type="button" class="btn btn-info" style="float:right" value="Sacuvaj izmjene"> 	
                             	</div>
                     		</div>
                 		</form>     
@@ -58,6 +58,91 @@
         		</div>  
     		</div>
 		</div>	
+		
+		<script type="text/javascript">	
+			$("#btnIzmjeniProfilBioskopa").click(function(){
+				var provera = true;
+				var forma = $('form[id="formaIzmjeniBioskop"]');
+				var naziv = forma.find('[name=naziv]').val();
+				var opis = forma.find('[name=opis]').val();
+				var ulica = forma.find('[name=ulica]').val();
+				var broj = forma.find('[name=broj]').val();
+				var grad = forma.find('[name=grad]').val();
+				
+				console.log("Naziv " + naziv);
+				
+				
+				if(!naziv) {
+					$('#divValidacija').empty();
+					$('#divValidacija').append('<label class="col-lg-8 control-label">Morate uneti naziv.</label>');
+					provera = false;
+				}	
+				if(!opis) {
+					$('#divValidacija').empty();
+					$('#divValidacija').append('<label class="col-lg-8 control-label">Morate uneti opis.</label>');
+					provera = false;
+				}	
+				if(!ulica) {
+					$('#divValidacija').empty();
+					$('#divValidacija').append('<label class="col-lg-8 control-label">Morate uneti naziv ulice.</label>');
+					provera = false;
+				}
+				if(!broj) {
+					$('#divValidacija').empty();
+					$('#divValidacija').append('<label class="col-lg-8 control-label">Morate uneti broj.</label>');
+					provera = false;
+				}
+				if(isNaN(broj)) {
+					$('#divValidacija').empty();
+					$('#divValidacija').append('<label class="col-lg-8 control-label">Broj moze sadrzati samo cifre.</label>');
+					provera = false;
+				}
+				if(!grad) {
+					$('#divValidacija').empty();
+					$('#divValidacija').append('<label class="col-lg-8 control-label">Morate uneti naziv grada.</label>');
+					provera = false;
+				}
+				
+				if(provera) {
+					$('#divValidacija').empty();
+					
+					var adresaJSON = {"ulica":$("#formaIzmjeniBioskop [name='ulica']").val(), 
+									  "broj":$("#formaIzmjeniBioskop [name='broj']").val(),
+									  "grad":$("#formaIzmjeniBioskop [name='grad']").val()};
+					
+					console.log("AdresaJSON ulica:" + adresaJSON.ulica);
+					console.log("AdresaJSON broj:" + adresaJSON.broj);
+					console.log("AdresaJSON grad:" + adresaJSON.grad);
+					
+					formData = JSON.stringify({
+						naziv:$("#formaIzmjeniBioskop [name='naziv']").val(),
+						opis:$("#formaIzmjeniBioskop [name='opis']").val(),
+						adresa:adresaJSON
+					   });
+					
+				
+					
+					$.ajax({
+						url: "http://localhost:8080/bioskopi/izmjeniBioskop",
+						type: "PUT",
+						data: formData,
+						contentType: "application/json",
+						datatype: 'json',
+						success: function(data){
+							if(data){
+								alert("Azuriranje uspesno.");
+								location.href = "http://localhost:8080/index.html"				
+							}else
+								alert("Azuriranje NIJE uspelo.");
+						},
+						error: function(data){
+							alert('GRESKA PRILIKOM AZURIRANJA!!!')
+							alert(data)
+						}
+					});
+				}
+			});
+		</script>				
 
 </body>
 </html>

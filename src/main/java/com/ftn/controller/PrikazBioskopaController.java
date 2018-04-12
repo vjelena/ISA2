@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.ftn.model.Bioskop;
+import com.ftn.model.Korisnik;
 import com.ftn.service.impl.JpaBioskopService;
 
 @RestController
@@ -47,5 +48,21 @@ public class PrikazBioskopaController {
 		jpaBioskopService.kreirajBioskop(bioskop);
 		return new ResponseEntity<>(jpaBioskopService.nadjiSveBioskope(), HttpStatus.OK);
 	}
+	
+	
+	@RequestMapping(value="/izmjeniBioskop", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public boolean izmjeniBioskop(@RequestBody Bioskop bioskop/*, HttpServletRequest request*/) {
+		
+		Bioskop b = bioskop; 
+		b.setId(new Long(1)); 
+		
+		b.setNaziv(bioskop.getNaziv());
+		b.setOpis(bioskop.getOpis());
+		b.setAdresa(bioskop.getAdresa());
+		
+		jpaBioskopService.save(b);
+		return true;
+	}
+	
 
 }

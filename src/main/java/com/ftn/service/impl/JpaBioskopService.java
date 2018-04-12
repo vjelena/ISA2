@@ -38,6 +38,11 @@ public class JpaBioskopService implements BioskopService{
 
 	
 
+
+@Override
+public Bioskop save(Bioskop bioskop) {
+	return bioskopRepository.save(bioskop);
+}
 	
 
 }
