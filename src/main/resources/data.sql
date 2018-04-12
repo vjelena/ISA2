@@ -19,14 +19,6 @@ INSERT INTO bioskop values (2, 'Cinestar ', 'Brend CineStar razvio se iz bioskop
 
 
 
-
-/*INSERT INTO adresa values (1, 68,'Kralja Petra', 1);
-INSERT INTO adresa values (2, 123,'Bulevar Osobodjenja', 2);
-
-INSERT INTO bioskop values (1, 'Arena Cineplex', 'Pored redovnog filmskog repertoara, u Areni Cineplex se organizuju svecane premijere domacih filmova, kao i festivali FEST, Cinema City, Cinemania i Kids Fest.', 3.5, 1 ,1);
-INSERT INTO bioskop values (2, 'Cinestar ', 'Brend CineStar razvio se iz bioskopa kompanije Kieft Kieft Filmtheater GmbH, koja je, posle vise od cetiri decenije rada kao operater klasicnog bioskopa, još 1993. otvorila svoj prvi multipleks.', 4.0, 2,2);
->>>>>>> 20fd47ce6678ae63c27efb9af4ac07bfeeee0f8d
-
 INSERT INTO repertoar values (1,1);
 INSERT INTO repertoar values (2,2);
 
