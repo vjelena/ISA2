@@ -1,12 +1,16 @@
 insert into adresa values (11, '67', 'Novi Sad', 'Dositejeva');
 insert into korisnik values(1, 1, '123456', 'petar@gmail.com' , 'Petar', '123', 'Petrovic', 0, 'obican', 11);
 
-insert into adresa values (12, '35', 'Beograd', 'Puskinova');
-insert into korisnik values(2, 1, '095346', 'marko@gmail.com' , 'Marko', '777', 'Markovic', 0, 'admin', 12);
+/*insert into adresa values (12, '35', 'Beograd', 'Puskinova');
+insert into korisnik values(2, 1, '095346', 'marko@gmail.com' , 'Marko', '777', 'Markovic', 0, 'admin', 12);*/
 
 
 
-INSERT INTO adresa values (21,'Broj', 'grad', 'ulica');
+
+
+
+
+/*INSERT INTO adresa values (21,'Broj', 'grad', 'ulica');
 INSERT INTO clan values (3, 10, 5, 'zlatni');
 
 
@@ -47,4 +51,4 @@ INSERT INTO projekcija_glumci values (2,2);
 INSERT INTO projekcija_glumci values (3,2);
 
 insert into fan_zona(naziv) values ('jaslkjfa');
-insert into fan_zona(naziv) values ('stgtrgtrdgrt');
+insert into fan_zona(naziv) values ('stgtrgtrdgrt');*/

@@ -29,27 +29,27 @@
 				<form action="/azuriranje" class="form-horizontal">
 					<div class="text-center" style="padding-top:10px">
 						<img src="slike/azuriranje.jpg" class="rounded" height="20" width="20">
-				    	<input class="btn btn-link" type="submit" value="Azuriraj podatke">
+				    	<input id="dugmeAzurirajPodatke" class="btn btn-link" type="button" value="Azuriraj podatke">
 				    </div>
 				</form>
 				<form action="prikazBioskopa.html" class="form-horizontal">
 					<div class="text-center" style="padding-top:10px">
-				    	<input class="btn btn-info" type="submit" value="Bioskopi">
+				    	<input id="dugmeBioskopi" class="btn btn-info" type="button" value="Bioskopi">
 				    </div>
 				</form>
 				<form action="istorijaPoseta.html" class="form-horizontal">
 					<div class="text-center" style="padding-top:10px">
-				    	<input class="btn btn-info" type="submit" value="Istorija poseta">
+				    	<input id="dugmeIstorijaPoseta" class="btn btn-info" type="button" value="Istorija poseta">
 				    </div>
 				</form>
 				<form action="rezervacije.html" class="form-horizontal">
 					<div class="text-center" style="padding-top:10px">
-				    	<input class="btn btn-info" type="submit" value="Rezervacija">
+				    	<input id="dugmeRezervacija" class="btn btn-info" type="button" value="Rezervacija">
 				    </div>
 				</form>
 				<form action="registrovaniKorisnici.html" class="form-horizontal">
 					<div class="text-center" style="padding-top:10px">
-				    	<input class="btn btn-info" type="submit" value="Dodaj prijatelja">
+				    	<input id="dugmeDodajPrijatelja" class="btn btn-info" type="button" value="Dodaj prijatelja">
 				    </div>
 				</form>
 			</div>
@@ -142,9 +142,15 @@
 					datatype: 'json',
 					success: function(data){
 						alert("Odjavili ste se sa sistema.");
+						location.href = "http://localhost:8080/index.html"
 					}
 				});
-			});		
+			});
+			
+			
+			$("#dugmeAzurirajPodatke").click(function(){
+				location.href = "http://localhost:8080/azurirajKorisnika.html"
+			});			
 		</script>
 	</body>
 </html>
