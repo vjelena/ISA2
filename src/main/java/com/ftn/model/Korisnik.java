@@ -25,7 +25,7 @@ public class Korisnik implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	private String email;
 	
 	@Column(nullable = false)
@@ -37,30 +37,38 @@ public class Korisnik implements Serializable{
 	@Column(nullable = false)
 	private String prezime;
 	
+	@OneToOne(optional = false)
+	private Adresa adresa;
+	
 	@Column(nullable = false)
 	private String brojTelefona;
 	
-	@Column(nullable = true)
+	@Column(nullable = false)
 	private String uloga;
 	
-	@OneToOne(optional = false)
-	private Adresa adresa;
+	@Column(nullable = false)
+	private boolean aktiviranNalogPrekoMejla;
+	
+	@Column(nullable = false)
+	private boolean prviPutSeUlogovao; //za sesiju (da bismo znali koji je korisnik trenutno ulogovan)
+	
 	
 	public Korisnik() {
 		
 	}
 
-	public Korisnik(Long id, String email, String lozinka, String ime, String prezime, String brojTelefona,
-			String uloga, Adresa adresa) {
+	public Korisnik(String email, String lozinka, String ime, String prezime, Adresa adresa,
+			String brojTelefona, String uloga, boolean aktiviranNalogPrekoMejla, boolean prviPutSeUlogovao) {
 		super();
-		this.id = id;
 		this.email = email;
 		this.lozinka = lozinka;
 		this.ime = ime;
 		this.prezime = prezime;
+		this.adresa = adresa;
 		this.brojTelefona = brojTelefona;
 		this.uloga = uloga;
-		this.adresa = adresa;
+		this.aktiviranNalogPrekoMejla = aktiviranNalogPrekoMejla;
+		this.prviPutSeUlogovao = prviPutSeUlogovao;
 	}
 
 	public Long getId() {
@@ -103,6 +111,14 @@ public class Korisnik implements Serializable{
 		this.prezime = prezime;
 	}
 
+	public Adresa getAdresa() {
+		return adresa;
+	}
+
+	public void setAdresa(Adresa adresa) {
+		this.adresa = adresa;
+	}
+
 	public String getBrojTelefona() {
 		return brojTelefona;
 	}
@@ -119,15 +135,21 @@ public class Korisnik implements Serializable{
 		this.uloga = uloga;
 	}
 
-	public Adresa getAdresa() {
-		return adresa;
+	public boolean isAktiviranNalogPrekoMejla() {
+		return aktiviranNalogPrekoMejla;
 	}
 
-	public void setAdresa(Adresa adresa) {
-		this.adresa = adresa;
+	public void setAktiviranNalogPrekoMejla(boolean aktiviranNalogPrekoMejla) {
+		this.aktiviranNalogPrekoMejla = aktiviranNalogPrekoMejla;
 	}
 
-	
-	
+	public boolean isPrviPutSeUlogovao() {
+		return prviPutSeUlogovao;
+	}
+
+	public void setPrviPutSeUlogovao(boolean prviPutSeUlogovao) {
+		this.prviPutSeUlogovao = prviPutSeUlogovao;
+	}
+
 }
 

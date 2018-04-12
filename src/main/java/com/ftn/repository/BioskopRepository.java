@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import com.ftn.model.Bioskop;
 
 @Repository
-public interface BioskopRepository extends JpaRepository<Bioskop, Integer> {
+public interface BioskopRepository extends JpaRepository<Bioskop, Long> {
 
 	
 }

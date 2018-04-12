@@ -31,9 +31,10 @@ public class Bioskop implements Serializable{
 	@OneToOne(optional = false, cascade = CascadeType.ALL)
 	private Adresa adresa;
 	
-	@JsonIgnore //u modelu nam ne trebaju anotacije JsonIgnore(to ide u DTO) i JsonManageReference
+	//@JsonIgnore //u modelu nam ne trebaju anotacije JsonIgnore(to ide u DTO) i JsonManageReference
 //	@JsonManagedReference
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bioskop")
+	
+	@OneToMany
 	private Set<Sala> listaSala;
 		
 	@JsonIgnore //da se izbegne rekurzija pri slanju objekta, stavlja se sa jedne strane veze, tipa gde je set
@@ -46,7 +47,7 @@ public class Bioskop implements Serializable{
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bioskop")
 	private Set<BrzaKarta> brzeKarte;
 	
-	@JsonIgnore
+	//@JsonIgnore
 //	@JsonManagedReference
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "bioskop")//bidirekciona veza 1:1, vlasnik veze je bioskop(naziv kolone u tabeli repertoar)
 	private Repertoar repertoar;

@@ -1,0 +1,83 @@
+<html>
+<script src="scripts/jquery-3.2.1.min.js"></script>
+		<link href="bootstrapB/css/bootstrap.css" rel="stylesheet" type="text/css" />
+		<script src="bootstrapB/js/bootstrap.js" type="text/javascript"></script>
+<script>
+
+function generisiKonfiguracijuSale(){
+	document.getElementById("snimiKonfiguraciju").style.display = "block";
+	
+
+	var odabraniBrojRedova = document.getElementById("brojRedova").value;
+	var brojMjestaURedu = 4;
+	
+	var myDiv = document.getElementById("konfiguracijaSale");
+
+	//Create array of options to be added
+	var places = ["VIP","Sjedjnje","Prolaz"];
+	var placeValues = ["f", "e", "_"];
+	
+	
+	
+	for (var i = 0; i < odabraniBrojRedova; i++) {
+		var myRow = document.createElement("p");
+	
+	for(var j=0; j < brojMjestaURedu; j++){
+			//Create and append select list
+			var selectList = document.createElement("select");
+			
+			id = (i * brojMjestaURedu) + j;
+			selectList.id = "place_" + id;
+			//Create and append the options
+			for (var placeIndex = 0; placeIndex < places.length; placeIndex++) {
+				
+				myDiv.appendChild(selectList);
+				var option = document.createElement("option");
+				option.value = placeValues[placeIndex];
+				option.text = places[placeIndex];
+				selectList.appendChild(option);
+			}
+			myRow.appendChild(selectList);
+		}
+	myDiv.appendChild(myRow);
+	}
+}
+
+function snimiKonfiguracijuSale(){
+	var noviRaspored = "";
+	$('#konfiguracijaSale').find('p').each(function(){
+	    	$(this).find('select').each(function(){
+	    		noviRaspored += ($(this).val());
+	    	});
+   	});
+	
+	$.ajax({
+		url: "http://localhost:8080/sala/1/"+noviRaspored,
+		type: "GET",
+		//data: formData,
+		success: function(data){
+			if(data){
+				alert("Registracija uspesna.");
+				location.href = "http://localhost:8080/index.html"				
+			}else
+				alert("Registracija NIJE uspela.");
+		}	
+	});	
+}
+
+</script>
+
+<body>
+
+Unesi broj redova:
+<input type="text" id="brojRedova">
+<button onclick="generisiKonfiguracijuSale()">Generisi konfiguraciju</button>
+
+<div id="konfiguracijaSale">
+
+</div>
+
+<button id="snimiKonfiguraciju" style="display: none;" onclick="snimiKonfiguracijuSale()">Snimi konfiguraciju sale</button>
+
+</body>
+</html>

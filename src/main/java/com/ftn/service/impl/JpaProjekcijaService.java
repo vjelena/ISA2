@@ -22,7 +22,7 @@ public class JpaProjekcijaService implements ProjekcijaService {
 	
 	@Override
 	public Projekcija nadjiJednuProjekciju(String id) {
-		return projekcijaRepository.findOne(new Integer(id));
+		return projekcijaRepository.findOne(new Long(id));
 	}
 
 }

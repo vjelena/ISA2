@@ -39,6 +39,8 @@ public class PrikazBioskopaController {
 		System.out.println("Bice prikazan: " + bioskop.getNaziv());
 		return new ResponseEntity<>(bioskop, HttpStatus.OK);
 	}
+	
+	
 
 	@RequestMapping(method = RequestMethod.POST, value = "/bioskopi", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Bioskop>> dodajBioskop(@RequestBody Bioskop bioskop) {

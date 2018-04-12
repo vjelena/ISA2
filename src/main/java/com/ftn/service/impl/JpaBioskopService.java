@@ -33,7 +33,7 @@ public class JpaBioskopService implements BioskopService{
 	@Override
 	public Bioskop nadjiJedanBioskop(String id) {
 		System.out.println("=================== id bioskopa za pretragu: " + id);
-		return bioskopRepository.findOne(new Integer(id));
+		return bioskopRepository.findOne(new Long(id));
 	}
 
 	

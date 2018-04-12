@@ -29,6 +29,17 @@ public class Sala implements Serializable{
 	@Column(nullable = false)
 	private int brojMesta;
 	
+	@Column(nullable = true)
+	private String konfiguracija;
+	
+	public String getKonfiguracija() {
+		return konfiguracija;
+	}
+
+	public void setKonfiguracija(String konfiguracija) {
+		this.konfiguracija = konfiguracija;
+	}
+
 	@ManyToOne(optional = false)
 	@JsonBackReference
 	private Bioskop bioskop;
