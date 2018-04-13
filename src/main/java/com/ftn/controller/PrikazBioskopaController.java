@@ -15,6 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.ftn.model.Bioskop;
 import com.ftn.model.Korisnik;
+import com.ftn.model.Projekcija;
+import com.ftn.model.Sala;
+import com.ftn.service.BioskopService;
+import com.ftn.service.ProjekcijaService;
 import com.ftn.service.impl.JpaBioskopService;
 
 @RestController
@@ -23,6 +27,14 @@ public class PrikazBioskopaController {
 
 	@Autowired
 	private JpaBioskopService jpaBioskopService;
+	
+	@Autowired
+	private BioskopService bioskopService;
+	
+	@Autowired
+	private ProjekcijaService projekcijaService;
+	
+	
 
 	@RequestMapping(value = "/prikaziBioskope", method = RequestMethod.GET)
 	public ResponseEntity<List<Bioskop>> prikaziBioskope() {
@@ -32,12 +44,10 @@ public class PrikazBioskopaController {
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Bioskop> nadjiBioskop(@PathVariable String id) {
-		System.out.println("=================>>>>> Prije nadjiJedanBioskop:" + id);
 		Bioskop bioskop = jpaBioskopService.nadjiJedanBioskop(id);
 		if (bioskop == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		System.out.println("Bice prikazan: " + bioskop.getNaziv());
 		return new ResponseEntity<>(bioskop, HttpStatus.OK);
 	}
 	
@@ -50,11 +60,11 @@ public class PrikazBioskopaController {
 	}
 	
 	
-	@RequestMapping(value="/izmjeniBioskop", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public boolean izmjeniBioskop(@RequestBody Bioskop bioskop/*, HttpServletRequest request*/) {
+	/*@RequestMapping(value="/izmjeniBioskop", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public boolean izmjeniBioskop(@RequestBody Bioskop bioskop, HttpServletRequest request) {
 		
 		Bioskop b = bioskop; 
-		b.setId(new Long(1)); 
+		b.setId(new Long(bioskop.getId())); 
 		
 		b.setNaziv(bioskop.getNaziv());
 		b.setOpis(bioskop.getOpis());
@@ -62,7 +72,42 @@ public class PrikazBioskopaController {
 		
 		jpaBioskopService.save(b);
 		return true;
-	}
+	}*/
 	
+	
+/*	@RequestMapping(value = "/izmjeniBioskop/{id}", method = RequestMethod.GET)
+	public ResponseEntity<Bioskop> izmjeniBioskop(@PathVariable Long id, @PathVariable Bioskop b) {
+		
+		Bioskop bioskop = jpaBioskopService.nadjiJedanBioskop(id);
+			
+		bioskop.setNaziv(b.getNaziv());
+		bioskop.setAdresa(b.getAdresa());
+		bioskop.setOpis(b.getOpis());
+
+		bioskop = jpaBioskopService.save(bioskop);
+		if (bioskop== null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(bioskop, HttpStatus.OK);
+	}*/
+	
+	
+	@RequestMapping(value = "izmjeniBioskop/{id}",method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+		public ResponseEntity<Bioskop> izmjeniBioskop(@PathVariable Long id,@RequestBody Bioskop bioskop) {
+			bioskop.setId(id);
+			Bioskop b = bioskopService.save(bioskop);
+			return new ResponseEntity<>(b, HttpStatus.OK);
+		}
+	
+	
+	
+	@RequestMapping(value = "/{bioskopId}/dodajProjekciju/{projekcijaId}", method = RequestMethod.PUT )
+	public ResponseEntity<Projekcija> addMovie(@PathVariable String bioskopId,@PathVariable String projekcijaId) {
+		Bioskop bioskop = bioskopService.nadjiJedanBioskop(bioskopId);
+		Projekcija projekcija = projekcijaService.nadjiJednuProjekciju(projekcijaId);
+		bioskop.getRepertoar().getProjekcije();
+		bioskopService.save(bioskop);
+		return new ResponseEntity<>(projekcija, HttpStatus.OK);
+	}
 
 }

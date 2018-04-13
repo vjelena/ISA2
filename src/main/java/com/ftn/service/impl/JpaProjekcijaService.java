@@ -25,4 +25,13 @@ public class JpaProjekcijaService implements ProjekcijaService {
 		return projekcijaRepository.findOne(new Long(id));
 	}
 
+	@Override
+	public Projekcija save(Projekcija projekcija) {
+		return projekcijaRepository.save(projekcija);
+	}
+
+
+
+
+
 }

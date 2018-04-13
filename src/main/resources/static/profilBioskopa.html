@@ -159,7 +159,23 @@
 					</tr>
 				</thead>
 			</table>
+			
+				<div class="form-group">
+                    <div class="col-lg-offset-3 col-lg-9" style="margin-top: 25px">
+                    	<input id="btnObrisi" type="button" class="btn btn-primary" style="float:right" value="Obrisi">
+                    	<input id="btnIzmeni" type="button" class="btn btn-primary" style="float:right" value="Izmeni">
+                        <input id="btnDodaj" type="button" class="btn btn-primary" style="float:right" value="Dodaj"> 	 	
+                    </div>
+               	</div>
+			
 		</div>
 	</div>
+	
+	<script>
+	$("#btnDodaj").click(function(){
+	location.href = "http://localhost:8080/dodajProjekciju.html"
+     });
+	
+	</script>
 </body>
 </html>

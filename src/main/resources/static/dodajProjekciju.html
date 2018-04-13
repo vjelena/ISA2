@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Nova projekcija</title>
+<script src="scripts/jquery-3.2.1.min.js" type="text/javascript"></script>
+<link href="bootstrapB/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+<script src="bootstrapB/js/bootstrap.js" type="text/javascript"></script>
+</head>
+<body>
+		<div class="container">
+   			<div id="loginbox" style="margin-top:20px;" class="mainbox col-lg-6 col-lg-offset-3 col-lg-8 col-lg-offset-7"> 
+        		<div class="panel panel-info" >
+            		<div class="panel-heading">
+                		<div class="panel-title text-center">Nova projekcija</div>
+            		</div>
+            		  
+            		<div class="panel-body" style="padding-top:30px">
+                		<form id="formaNovaProjekcija" class="form-horizontal" accept-charset="utf-8" >
+                    		
+                    		<div class="input-group" style="margin-bottom: 25px">
+                        		<span class="input-group-addon"><i class="glyphicon glyphicon-text-background"></i></span>
+                        		<input type="text" class="form-control" name="naziv" placeholder="Naziv">                                        
+                    			<div id="divNaziv" style="float:right"></div>
+                    		</div>
+                    		
+                    		<div class="input-group" style="margin-bottom: 25px">
+                        		<span class="input-group-addon"><i class="glyphicon glyphicon-text-background"></i></span>
+                        		<input type="text" class="form-control" name="zanr" placeholder="Zanr">
+                        		<div id="divZanr" style="float:right"></div>
+                    		</div> 
+                    		
+                    		<div class="input-group" style="margin-bottom: 25px">
+                        		<span class="input-group-addon"><i class="glyphicon glyphicon-text-background"></i></span>
+                        		<input type="text" class="form-control" name="reditelj" placeholder="Reditelj">
+                        		<div id="divReditelj" style="float:right"></div>
+                    		</div> 
+                    		     
+                    		<div class="input-group" style="margin-bottom: 25px">
+                        		<span class="input-group-addon"><i class="glyphicon glyphicon-text-background"></i></span>
+                        		<input type="text" class="form-control" name="opis" placeholder="Opis">
+                        		<div id="divOpis" style="float:right"></div>
+                    		</div> 
+                    		
+                    		<div class="input-group" style="margin-bottom: 25px">
+                        		<span class="input-group-addon"><i class="glyphicon glyphicon-picture"></i></span>
+                        		<input type="file" class="form-control" name="slika" placeholder="Slika">
+                        		<div id="divSlika" style="float:right"></div>
+                    		</div> 
+                    		
+                    		<div class="input-group" style="margin-bottom: 25px">
+                        		<span class="input-group-addon"><i class="glyphicon glyphicon-text-background"></i></span>
+                        		<input type="text" class="form-control" name="trajanje" placeholder="Trajanje">
+                        		<div id="divTrajanje" style="float:right"></div>
+                    		</div> 
+                    		
+                    		<div class="input-group" style="margin-bottom: 25px">
+                        		<span class="input-group-addon"><i class="glyphicon glyphicon-text-background"></i></span>
+                        		<input type="text" class="form-control" name="ocena" placeholder="Ocena">
+                        		<div id="divOcena" style="float:right"></div>
+                    		</div> 
+                    		           
+                    		<div class="input-group" style="margin-bottom: 25px">
+                        		<span class="input-group-addon"><i class="glyphicon glyphicon-eur"></i></span>
+                        		<input type="text" class="form-control" name="cena" placeholder="Cena">
+                        		<div id="divCena" style="float:right"></div>
+                    		</div>
+                    		                                                 
+                    		<div class="form-group">
+                    <div class="col-lg-offset-3 col-lg-9" style="margin-top: 25px">
+                         <input id="btnDodaj" type="button" class="btn btn-primary" style="float:right" value="Dodaj"> 	
+                         <input id="btnIOdustani" type="button" class="btn btn-primary" style="float:right" value="Odustani"> 	
+                    </div>
+               	</div>
+                		</form>     
+            		</div>                     
+        		</div>  
+    		</div>
+		</div>
+		
+		
+		
+<script type="text/javascript">
+
+$("#btnDodaj").click(function(){
+	formData = JSON.stringify({
+        naziv:$("#formaNovaProjekcija [name='naziv']").val(),
+        zanr:$("#formaNovaProjekcija [name='zanr']").val(),
+        reditelj:$("#formaNovaProjekcija [name='reditelj']").val(),
+        opis:$("#formaNovaProjekcija [name='opis']").val(),
+        slika:$("#formaNovaProjekcija [name='slika']").val(),
+        trajanje:$("#formaNovaProjekcija [name='trajanje']").val(),
+        ocena:$("#formaNovaProjekcija [name='ocena']").val(),
+        cena:$("#formaNovaProjekcija [name='cena']").val()
+    });
+    
+	$.urlParam = function(name){
+	    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+	    if (results==null){
+	       return null;
+	    }
+	    else{
+	       return decodeURI(results[1]) || 0;
+	    }
+	};
+	
+	$.ajax({
+		url: "http://localhost:8080/bioskopi/1/dodajProjekciju/1",
+		type: "PUT",
+		data: formData,
+		contentType: "application/json",
+		datatype: 'json',
+	/*	success: function(data){
+			if(data){
+				location.href = "http://localhost:8080/profilBioskopa.html"				
+			}else
+				alert("Registracija NIJE uspela.");
+		},
+		error: function(data){
+			alert('GRESKA PRILIKOM REGISTRACIJE!!!')
+			alert(data)
+		}*/
+	});
+	$.urlParam = function(name){
+	    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+	    if (results==null){
+	       return null;
+	    }
+	    else{
+	       return decodeURI(results[1]) || 0;
+	    }
+	};
+	
+	location.href = "http://localhost:8080/index.html"
+
+
+});
+</script>
+
+
+
+
+</body>
+</html>

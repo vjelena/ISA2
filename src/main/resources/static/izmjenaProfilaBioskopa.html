@@ -45,6 +45,12 @@
                         		<input type="text" class="form-control" name="grad" placeholder="Grad">
                     		</div>
                     		
+                    		<div class="input-group" style="margin-bottom: 25px">
+                        		<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        		<input type="date" class="form-control" name="datum" placeholder="Datum do kog vazi prikupljanje ponuda">
+                        		<div id="divDatum" style="float:right"></div>
+                    		</div> 
+                    		
                     	
                     		<div id="divValidacija"></div>  
                     		                                                                 
@@ -120,10 +126,9 @@
 						adresa:adresaJSON
 					   });
 					
-				
 					
 					$.ajax({
-						url: "http://localhost:8080/bioskopi/izmjeniBioskop",
+						url: "http://localhost:8080/bioskopi/izmjeniBioskop/1",
 						type: "PUT",
 						data: formData,
 						contentType: "application/json",
@@ -137,12 +142,11 @@
 						},
 						error: function(data){
 							alert('GRESKA PRILIKOM AZURIRANJA!!!')
-							alert(data)
+							alert(data.opis)
 						}
 					});
 				}
 			});
 		</script>				
-
 </body>
 </html>
