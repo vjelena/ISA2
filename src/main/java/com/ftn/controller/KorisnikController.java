@@ -133,31 +133,29 @@ public class KorisnikController {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	//NEISKORISCENO!!!
+	//PRIJATELJSTVO:	
 	//preuzimanje liste prijatelja
 	@RequestMapping(value = "/getListaPrijatelja", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Korisnik> getListaPrijatelja(HttpServletRequest request){
+	public ResponseEntity<List<Korisnik>> getListaPrijatelja(HttpServletRequest request){
+		System.out.println("\n\t\tKorisnik kontroler: getListaPrijatelja\n");
+		
 		Korisnik k = (Korisnik)request.getSession().getAttribute("aktivanKorisnik");
 		Korisnik cijePrijateljeUzimam = korisnikRepository.findById(k.getId());
 		
 		//u listu stavljam sve moje prijatelje
 		List<Korisnik> listaPrijatelja = new ArrayList<Korisnik>();
 		listaPrijatelja.addAll(cijePrijateljeUzimam.getMojiPrijatelji());
-		listaPrijatelja.addAll(cijePrijateljeUzimam.getKomeSamJaPrijatelj()); //proveri???
+		listaPrijatelja.addAll(cijePrijateljeUzimam.getKomeSamJaPrijatelj());
 		
-		return listaPrijatelja;
+		System.out.println("\n\t\tDuzina liste prijatelja: " + listaPrijatelja.size() + "\n");				
+		return new ResponseEntity<>(listaPrijatelja, HttpStatus.OK);
 	}
 	
 	//slanje zahteva za prijateljstvo
 	@RequestMapping(value = "/posaljiZahtevZaPrijateljstvo/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public boolean posaljiZahtevZaPrijateljstvo(@PathVariable Long id, HttpServletRequest request){			
+		System.out.println("\n\t\tKorisnik kontroler: posaljiZahtevZaPrijateljstvo\n");
+		
 		Korisnik koJePoslaoZahtev = (Korisnik)request.getSession().getAttribute("aktivanKorisnik");	
 		Korisnik koJePrimioZahtev = (Korisnik) korisnikRepository.findById(id);
 		
@@ -171,6 +169,8 @@ public class KorisnikController {
 	//brisanje prijatelja
 	@RequestMapping(value = "/izbrisiPrijatelja/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public boolean izbrisiPrijatelja(@PathVariable Long id, HttpServletRequest request){		
+		System.out.println("\n\t\tKorisnik kontroler: izbrisiPrijatelja\n");
+		
 		Korisnik k = (Korisnik)request.getSession().getAttribute("aktivanKorisnik");
 		Korisnik koBrisePrijatelja = korisnikRepository.findById(k.getId());
 			
@@ -192,19 +192,23 @@ public class KorisnikController {
 		return true;
 	}
 	
-	//NEISKORISCENO!!!
 	//preuzimanje zahteva za prijateljstvo
 	@RequestMapping(value = "/getZahteviZaPrijateljstvo", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Korisnik> getZahteviZaPrijateljstvo(HttpServletRequest request){
+	public ResponseEntity<List<Korisnik>> getZahteviZaPrijateljstvo(HttpServletRequest request){
+		System.out.println("\n\t\tKorisnik kontroler: getZahteviZaPrijateljstvo\n");
+		
 		Korisnik k = (Korisnik)request.getSession().getAttribute("aktivanKorisnik");
 		Korisnik cijiSuZahteviPreuzeti = korisnikRepository.findById(k.getId());
-		return cijiSuZahteviPreuzeti.getZahteviZaPrijateljstvo();
+		
+		System.out.println("\n\t\tDuzina liste zahteva za prijateljstvo: " + cijiSuZahteviPreuzeti.getZahteviZaPrijateljstvo().size() + "\n");		
+		return new ResponseEntity<>(cijiSuZahteviPreuzeti.getZahteviZaPrijateljstvo(), HttpStatus.OK);
 	}
 	
-	//NEISKORISCENO!!!
 	//prihvatanje zahteva za prijateljstvo
 	@RequestMapping(value = "/prihvatiZahtevZaPrijateljstvo/{id}",	method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public Korisnik prihvatiZahtevZaPrijateljstvo(@PathVariable Long id, HttpServletRequest request){	
+		System.out.println("\n\t\tKorisnik kontroler: prihvatiZahtevZaPrijateljstvo\n");
+		
 		Korisnik k = (Korisnik) request.getSession().getAttribute("aktivanKorisnik");		
 		Korisnik koJePrimioZahtev = korisnikRepository.findById(k.getId());
 		Korisnik koJePoslaoZahtev = korisnikRepository.findById(id);
@@ -218,27 +222,20 @@ public class KorisnikController {
 		return koJePrimioZahtev;		
 	}
 	
-	//NEISKORISCENO!!!
 	//odbijanje zahteva za prijateljstvo
-	@RequestMapping(value = "/odbijZahtevZaPrijateljstvo/{userId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Korisnik odbijZahtevZaPrijateljstvo(@PathVariable Long userId,HttpServletRequest request){
+	@RequestMapping(value = "/odbijZahtevZaPrijateljstvo/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Korisnik odbijZahtevZaPrijateljstvo(@PathVariable Long id,HttpServletRequest request){
+		System.out.println("\n\t\tKorisnik kontroler: odbijZahtevZaPrijateljstvo\n");
+		
 		Korisnik k = (Korisnik) request.getSession().getAttribute("aktivanKorisnik");
 		Korisnik koJePrimioZahtev = korisnikRepository.findById(k.getId());
-		Korisnik koJePoslaoZahtev = korisnikRepository.findById(userId);
+		Korisnik koJePoslaoZahtev = korisnikRepository.findById(id);
 		
 		koJePrimioZahtev.getZahteviZaPrijateljstvo().remove(koJePoslaoZahtev);
 		
 		korisnikRepository.save(koJePrimioZahtev);		
 		return koJePoslaoZahtev;		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	

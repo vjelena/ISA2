@@ -52,6 +52,11 @@
 				    	<input id="dugmePosaljiZahtevZaPrijateljstvo" class="btn btn-info" type="button" value="Posalji zahtev za prijateljstvo">
 				    </div>
 				</form>
+				<form class="form-horizontal">
+					<div class="text-center" style="padding-top:10px">
+				    	<input id="dugmePrihvatiOdbijZahtevZaPrijateljstvo" class="btn btn-info" type="button" value="Prihvati/odbij zahtev za prijateljstvo">
+				    </div>
+				</form>
 			</div>
 			
 			<div class="form-group col-lg-2" id="tabInformacijeOKorisniku">
@@ -61,7 +66,7 @@
 			<div class="form-group col-lg-8" id="tabDinamickiPrikazPrijatelja">
 				<div class="tabcontent" style="padding-top: 20px">
 					<div class="form-group col-lg-5" id="tabPretragaIme">
-						<div class="row">
+						<div id="pretragaIme" class="row">
 							<form action="/pretragaPrijateljaIme" class="search-form">
 								<div class="form-group has-feedback">
 									<input type="text" class="form-control"
@@ -73,7 +78,7 @@
 					</div>
 					<div class="form-group col-lg-1" id="tabIzmedju"></div>
 					<div class="form-group col-lg-5" id="tabPretragaPrezime">
-						<div class="row">
+						<div id="pretragaPrezime" class="row">
 							<form action="/pretragaPrijateljaIme" class="search-form">
 								<div class="form-group has-feedback">
 									<input type="text" class="form-control"
@@ -83,18 +88,9 @@
 							</form>
 						</div>
 					</div>
+					<h4><span id="prazno" class="row"></span></h4>
 				</div>
-				<table id="tabelaPrijatelji" class="table table-hover table-bordered">
-	  				<thead class="thead-dark">
-	    				<tr>
-	      					<th scope="col" class="text-center">Ime</th>
-	      					<th scope="col" class="text-center">Prezime</th>
-	      					<th scope="col" class="text-center">E-mail adresa</th>
-	      					<th></th>
-	    				</tr>
-	  				</thead>
-	  				<tbody></tbody>
-				</table>
+				<table id="tabelaPrijatelji" class="table table-hover table-bordered"></table>				
 			</div>			
 		</div>
 		<script type="text/javascript">
@@ -116,21 +112,37 @@
 					$("#tabelaInformacijeOKorisniku").append(brojTelefonaKor);
 					$("#tabelaInformacijeOKorisniku").append(ulogaKor);
 				});
+								
 				
-				
-				//TODO: IZMENITI - ovde treba da budu prikazani samo prijatelji a ne svi korisnici
 				$.ajax({
-					url : "http://localhost:8080/korisnik/getKorisnici"
-				}).then(function(data){
-					$("#tabelaPrijatelji").append("<tbody>");
-					for(i = 0; i < data.length; i++) {
-						noviRed =  "<tr><td>"+ data[i].ime 
-								+ "</td><td>" + data[i].prezime
-								+ "</td><td>" + data[i].email
-								+ "</td><td><img src=\"slike/obrisi.jpg\" height=\"20\" width=\"20\"/><input type=\"button\" class=\"btn btn-link\" style=\"float:right\" value =\"Izbrisi prijatelja\" onclick =\"izbrisiPrijatelja(" + data[i].id + ")\"/></td>"
-						$("#tabelaPrijatelji").append(noviRed);
+					url: "http://localhost:8080/korisnik/getListaPrijatelja",
+					type: "GET",
+					contentType: "application/json",
+					datatype: 'json',
+					success: function(data){
+						if(data){
+							if(data.length == 0){
+								$("#pretragaIme").hide();
+								$("#pretragaPrezime").hide();
+								red = "Lista prijatelja je prazna.";
+								$("#prazno").append(red);
+							}else{
+								$("#tabelaPrijatelji").append("<thead class=\"thead-dark\"><tr><th scope=\"col\" class=\"text-center\">Ime</th><th scope=\"col\" class=\"text-center\">Prezime</th><th scope=\"col\" class=\"text-center\">E-mail adresa</th><th></th></tr></thead><tbody>");
+								for(i = 0; i < data.length; i++) {
+									noviRed =  "<tr><td>"+ data[i].ime 
+											+ "</td><td>" + data[i].prezime
+											+ "</td><td>" + data[i].email
+											+ "</td><td><img src=\"slike/obrisi.jpg\" height=\"20\" width=\"20\"/><input type=\"button\" class=\"btn btn-link\" style=\"float:right\" value =\"Izbrisi prijatelja\" onclick =\"izbrisiPrijatelja(" + data[i].id + ")\"/></td>"
+									$("#tabelaPrijatelji").append(noviRed);
+								}
+								$("#tabelaPrijatelji").append("</tbody>");
+							}
+						}else
+							alert("Greska prilikom pokusaja prikazivanja liste prijatelja.");
+					},
+					error: function(data){
+						alert('GRESKA PRILIKOM PREUZIMANJA LISTE PRIJATELJA!!!')
 					}
-					$("#tabelaPrijatelji").append("</tbody>");
 				});
 			});
 			
@@ -171,6 +183,11 @@
 			
 			$("#dugmePosaljiZahtevZaPrijateljstvo").click(function(){
 				location.href = "http://localhost:8080/posaljiZahtevZaPrijateljstvo.html"
+			});
+			
+			
+			$("#dugmePrihvatiOdbijZahtevZaPrijateljstvo").click(function(){
+				location.href = "http://localhost:8080/prihvatiOdbijZahtevZaPrijateljstvo.html"
 			});
 		</script>
 	</body>

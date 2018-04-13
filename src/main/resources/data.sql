@@ -1,9 +1,17 @@
 insert into adresa values (11, '67', 'Novi Sad', 'Dositejeva');
-insert into korisnik values(1, 1, '123456', 'petar@gmail.com' , 'Petar', '123', 'Petrovic', 0, 'obican', 11);
+insert into korisnik values(1, 1, '123456', 'petar@gmail.com' , 'Petar', '111', 'Petrovic', 0, 'obican', 11);
 
 insert into adresa values (12, '35', 'Beograd', 'Puskinova');
-insert into korisnik values(2, 1, '095346', 'marko@gmail.com' , 'Marko', '777', 'Markovic', 0, 'admin', 12);
+insert into korisnik values(2, 1, '095346', 'marko@gmail.com' , 'Marko', '222', 'Markovic', 0, 'admin', 12);
 
+insert into adresa values (13, '49', 'Nis', 'Fruskogorska');
+insert into korisnik values(3, 1, '459245', 'nikola@gmail.com' , 'Nikola', '333', 'Nikolic', 0, 'obican', 13);
+
+insert into adresa values (14, '147', 'Subotica', 'Kralja Aleksandra');
+insert into korisnik values(4, 1, '294850', 'milica@gmail.com' , 'Milica', '444', 'Milic', 0, 'obican', 14);
+
+insert into adresa values (15, '2', 'Kraljevo', 'Podunavskog odreda');
+insert into korisnik values(5, 1, '346964', 'nevena@gmail.com' , 'Nevena', '555', 'Jovic', 0, 'admin', 15);
 
 
 
