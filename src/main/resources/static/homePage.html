@@ -93,35 +93,7 @@
 	      					<th></th>
 	    				</tr>
 	  				</thead>
-	  				<tbody>
-	  					<tr>
-	    					<td>Jovan</td>
-	     					<td>Jovanovic</td>
-	    					<td>joca@gmail.com</td>
-	    					<td>
-	    						<img src="slike/obrisi.jpg" height="20" width="20"/>
-	    						<input class="btn btn-link" type="submit" value="Izbrisi prijatelja">
-	    					</td>
-	  					</tr>
-	  					<tr>
-	    					<td>Milica</td>
-	     					<td>Milic</td>
-	    					<td>mica@gmail.com</td>
-	    					<td>
-	    						<img src="slike/obrisi.jpg" height="20" width="20"/>
-	    						<input class="btn btn-link" type="submit" value="Izbrisi prijatelja">
-	    					</td>
-	  					</tr>
-	  					<tr>
-	    					<td>Zoran</td>
-	     					<td>Zoric</td>
-	    					<td>zoki@gmail.com</td>
-	    					<td>
-	    						<img src="slike/obrisi.jpg" height="20" width="20"/>
-	    						<input class="btn btn-link" type="submit" value="Izbrisi prijatelja">
-	    					</td>
-	  					</tr>
-	  				</tbody>
+	  				<tbody></tbody>
 				</table>
 			</div>			
 		</div>
@@ -144,7 +116,23 @@
 					$("#tabelaInformacijeOKorisniku").append(brojTelefonaKor);
 					$("#tabelaInformacijeOKorisniku").append(ulogaKor);
 				});
-			});		
+				
+				
+				//TODO: IZMENITI - ovde treba da budu prikazani samo prijatelji a ne svi korisnici
+				$.ajax({
+					url : "http://localhost:8080/korisnik/getKorisnici"
+				}).then(function(data){
+					$("#tabelaPrijatelji").append("<tbody>");
+					for(i = 0; i < data.length; i++) {
+						noviRed =  "<tr><td>"+ data[i].ime 
+								+ "</td><td>" + data[i].prezime
+								+ "</td><td>" + data[i].email
+								+ "</td><td><img src=\"slike/obrisi.jpg\" height=\"20\" width=\"20\"/><input class=\"btn btn-link\" type=\"submit\" value=\"Izbrisi prijatelja\"></td>"
+						$("#tabelaPrijatelji").append(noviRed);
+					}
+					$("#tabelaPrijatelji").append("</tbody>");
+				});
+			});
 		
 		
 			$("#dugmeOdjaviSe").click(function(){
