@@ -49,7 +49,7 @@
 				</form>
 				<form class="form-horizontal">
 					<div class="text-center" style="padding-top:10px">
-				    	<input id="dugmeDodajPrijatelja" class="btn btn-info" type="button" value="Dodaj prijatelja">
+				    	<input id="dugmePosaljiZahtevZaPrijateljstvo" class="btn btn-info" type="button" value="Posalji zahtev za prijateljstvo">
 				    </div>
 				</form>
 			</div>
@@ -71,7 +71,7 @@
 							</form>
 						</div>
 					</div>
-					<div class="form-group col-lg-1" id="tabIzmedju"></div>	
+					<div class="form-group col-lg-1" id="tabIzmedju"></div>
 					<div class="form-group col-lg-5" id="tabPretragaPrezime">
 						<div class="row">
 							<form action="/pretragaPrijateljaIme" class="search-form">
@@ -127,12 +127,27 @@
 						noviRed =  "<tr><td>"+ data[i].ime 
 								+ "</td><td>" + data[i].prezime
 								+ "</td><td>" + data[i].email
-								+ "</td><td><img src=\"slike/obrisi.jpg\" height=\"20\" width=\"20\"/><input class=\"btn btn-link\" type=\"submit\" value=\"Izbrisi prijatelja\"></td>"
+								+ "</td><td><img src=\"slike/obrisi.jpg\" height=\"20\" width=\"20\"/><input type=\"button\" class=\"btn btn-link\" style=\"float:right\" value =\"Izbrisi prijatelja\" onclick =\"izbrisiPrijatelja(" + data[i].id + ")\"/></td>"
 						$("#tabelaPrijatelji").append(noviRed);
 					}
 					$("#tabelaPrijatelji").append("</tbody>");
 				});
 			});
+			
+			
+			function izbrisiPrijatelja(id){				
+				$.ajax({	
+					url: "http://localhost:8080/korisnik/izbrisiPrijatelja/" + id,
+					type: "GET",
+					success: function(data){
+						alert("Zahtev za ponistavanje prijateljstva je poslat.");
+						location.href = "http://localhost:8080/homePage.html"
+					},
+				 	error: function(){
+					 alert("GRESKA PRILIKOM POKUSAJA BRISANJA PRIJATELJA!!!");
+				 	}
+				});			
+			}
 		
 		
 			$("#dugmeOdjaviSe").click(function(){
@@ -151,7 +166,12 @@
 			
 			$("#dugmeAzurirajPodatke").click(function(){
 				location.href = "http://localhost:8080/azurirajKorisnika.html"
-			});			
+			});
+			
+			
+			$("#dugmePosaljiZahtevZaPrijateljstvo").click(function(){
+				location.href = "http://localhost:8080/posaljiZahtevZaPrijateljstvo.html"
+			});
 		</script>
 	</body>
 </html>

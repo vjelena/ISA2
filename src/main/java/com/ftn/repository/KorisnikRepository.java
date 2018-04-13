@@ -14,11 +14,13 @@ import com.ftn.model.Korisnik;
 @Repository
 public interface KorisnikRepository extends JpaRepository<Korisnik, Long> {
 	
+	Korisnik findById(Long id);
 	Korisnik findByEmailIgnoreCaseContaining(String email);
+	List<Korisnik> findAll();
+	
+	//za pretragu prijatelja
+	List<Korisnik> findByImeIgnoreCaseContaining(String ime);
+	List<Korisnik> findByPrezimeIgnoreCaseContaining(String prezime);
 	List<Korisnik> findByImeIgnoreCaseContainingAndPrezimeIgnoreCaseContaining(String ime, String prezime);
 	
-	/* @Transactional
-	 @Modifying
-	 @Query("update Korisnik k set k.aktiviranNalog = ?1 where k.email = ?2")
-	void setActivated(Boolean aktiviranNalog, String email);*/
 }

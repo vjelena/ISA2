@@ -69,9 +69,4 @@ public class JpaKorisnikService implements KorisnikService {
 		return korisnikRepository.findByImeIgnoreCaseContainingAndPrezimeIgnoreCaseContaining(ime, prezime);
 	}
 
-	/*@Override
-	public void setActivated(Boolean aktiviranNalog, String email) {
-		korisnikRepository.setActivated(aktiviranNalog, email);
-	}*/
-
 }

@@ -1,22 +1,19 @@
 package com.ftn.model;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Korisnik implements Serializable{
@@ -50,9 +47,24 @@ public class Korisnik implements Serializable{
 	private boolean aktiviranNalogPrekoMejla;
 	
 	@Column(nullable = false)
-	private boolean prviPutSeUlogovao; //za sesiju (da bismo znali koji je korisnik trenutno ulogovan)
+	private boolean prviPutSeUlogovao;
 	
+	//deo za prijatelje
+	@ManyToMany
+	@JoinTable(name = "mojiPrijatelji", joinColumns = @JoinColumn(name = "id_k1", nullable = false), inverseJoinColumns = @JoinColumn(name = "id_k2", nullable = false))
+	@JsonIgnore
+	private List<Korisnik> mojiPrijatelji;
+
+	@ManyToMany/*(mappedBy = "komeSamJaPrijatelj")*/
+	@JsonIgnore
+	private List<Korisnik> komeSamJaPrijatelj;
+
+	@ManyToMany
+	@JoinTable(name = "zahteviZaPrijateljstvo", joinColumns = @JoinColumn(name = "koJePoslaoZahtev", nullable = false), inverseJoinColumns = @JoinColumn(name = "koJePrimioZahtev", nullable = false))
+	@JsonIgnore
+	private List<Korisnik> zahteviZaPrijateljstvo;
 	
+
 	public Korisnik() {
 		
 	}
@@ -149,6 +161,30 @@ public class Korisnik implements Serializable{
 
 	public void setPrviPutSeUlogovao(boolean prviPutSeUlogovao) {
 		this.prviPutSeUlogovao = prviPutSeUlogovao;
+	}
+	
+	public List<Korisnik> getMojiPrijatelji() {
+		return mojiPrijatelji;
+	}
+
+	public void setMojiPrijatelji(List<Korisnik> mojiPrijatelji) {
+		this.mojiPrijatelji = mojiPrijatelji;
+	}
+	
+	public List<Korisnik> getKomeSamJaPrijatelj() {
+		return komeSamJaPrijatelj;
+	}
+
+	public void setKomeSamJaPrijatelj(List<Korisnik> komeSamJaPrijatelj) {
+		this.komeSamJaPrijatelj = komeSamJaPrijatelj;
+	}
+	
+	public List<Korisnik> getZahteviZaPrijateljstvo() {
+		return zahteviZaPrijateljstvo;
+	}
+
+	public void setZahteviZaPrijateljstvo(List<Korisnik> zahteviZaPrijateljstvo) {
+		this.zahteviZaPrijateljstvo = zahteviZaPrijateljstvo;
 	}
 
 }
