@@ -11,9 +11,13 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 public class Bioskop implements Serializable{
@@ -33,16 +37,15 @@ public class Bioskop implements Serializable{
 	
 	//@JsonIgnore //u modelu nam ne trebaju anotacije JsonIgnore(to ide u DTO) i JsonManageReference
 //	@JsonManagedReference
-	
 	@OneToMany
 	private Set<Sala> listaSala;
 		
-	@JsonIgnore //da se izbegne rekurzija pri slanju objekta, stavlja se sa jedne strane veze, tipa gde je set
+	//@JsonIgnore //da se izbegne rekurzija pri slanju objekta, stavlja se sa jedne strane veze, tipa gde je set
 //	@JsonManagedReference  //sa jedne strane managed a sa druge back
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bioskop")
 	private Set<Karta> listaKarata;
 	
-	@JsonIgnore
+	//@JsonIgnore
 //	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bioskop")
 	private Set<BrzaKarta> brzeKarte;
@@ -52,17 +55,17 @@ public class Bioskop implements Serializable{
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "bioskop")//bidirekciona veza 1:1, vlasnik veze je bioskop(naziv kolone u tabeli repertoar)
 	private Repertoar repertoar;
 
-	@JsonIgnore
+	//@JsonIgnore
 //	@JsonManagedReference
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "bioskop")
 	private IzvestajOPoslovanju izvestaj;
 	
-	/*@JsonIgnore
+	//@JsonIgnore
 //	@JsonManagedReference
 	@ManyToMany
-	private Set<Korisnik> listaPosetilaca;*/
+	private Set<Korisnik> listaPosetilaca;
 	
-	@JsonIgnore
+	//@JsonIgnore
 //	@JsonManagedReference
 	@OneToOne
 	private FanZona fanZona;
@@ -160,6 +163,22 @@ public class Bioskop implements Serializable{
 
 	public void setProsecnaOcena(float prosecnaOcena) {
 		this.prosecnaOcena = prosecnaOcena;
+	}
+
+	public Set<Korisnik> getListaPosetilaca() {
+		return listaPosetilaca;
+	}
+
+	public void setListaPosetilaca(Set<Korisnik> listaPosetilaca) {
+		this.listaPosetilaca = listaPosetilaca;
+	}
+
+	public FanZona getFanZona() {
+		return fanZona;
+	}
+
+	public void setFanZona(FanZona fanZona) {
+		this.fanZona = fanZona;
 	}
 
 	

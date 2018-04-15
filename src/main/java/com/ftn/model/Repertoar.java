@@ -12,8 +12,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 public class Repertoar implements Serializable{
@@ -28,7 +30,7 @@ public class Repertoar implements Serializable{
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "repertoar")
 	//@JsonIgnore
-	//@JsonManagedReference
+	@JsonManagedReference
 	private Set<Projekcija> projekcije;
 	
 	public Repertoar() {

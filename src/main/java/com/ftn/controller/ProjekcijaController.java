@@ -29,7 +29,7 @@ public class ProjekcijaController {
 	
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<Projekcija> nadjiBioskop(@PathVariable String id) {
+	public ResponseEntity<Projekcija> nadjiProjekciju(@PathVariable String id) {
 		System.out.println("=================>>>>> Prije nadjiJedanBioskop:" + id);
 		Projekcija projekcija = jpaProjekcijaService.nadjiJednuProjekciju(id);
 		if (projekcija == null) {
@@ -40,13 +40,14 @@ public class ProjekcijaController {
 	}
 	
 	
-	@RequestMapping(method=RequestMethod.POST, consumes="application/json")
-	public ResponseEntity<Projekcija> addOglas(@RequestBody Projekcija projekcija){
+	/*@RequestMapping(method=RequestMethod.POST, consumes="application/json")
+	public ResponseEntity<Projekcija> dodajProjekciju@RequestBody Projekcija projekcija){
 		Projekcija novaProjekcija = projekcijaService.save(projekcija);
 		//System.out.println("**************************"+oglasDTO.getNaziv());
 		
 		return new ResponseEntity<>(novaProjekcija, HttpStatus.OK);
-	}	
+	}	*/
+	
 	
 
 

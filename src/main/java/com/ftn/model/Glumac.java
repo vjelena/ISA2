@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 public class Glumac implements Serializable{
@@ -57,13 +59,13 @@ public class Glumac implements Serializable{
 		this.prezime = prezime;
 	}
 
-	public Set<Projekcija> getProjekcije() {
+	/*public Set<Projekcija> getProjekcije() {
 		return projekcije;
 	}
 
 	public void setProjekcije(Set<Projekcija> projekcije) {
 		this.projekcije = projekcije;
-	}
+	}*/
 
 	
 }

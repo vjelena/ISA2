@@ -13,8 +13,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.ftn.DTO.BioskopDTO;
+import com.ftn.DTO.ProjekcijaDTO;
+import com.ftn.DTOconverter.OglasDTOtoOglas;
+import com.ftn.DTOconverter.ProjekcijaDTOtoProjekcija;
 import com.ftn.model.Bioskop;
 import com.ftn.model.Korisnik;
+import com.ftn.model.Oglas;
 import com.ftn.model.Projekcija;
 import com.ftn.model.Sala;
 import com.ftn.service.BioskopService;
@@ -33,6 +38,9 @@ public class PrikazBioskopaController {
 	
 	@Autowired
 	private ProjekcijaService projekcijaService;
+	
+	@Autowired
+	private ProjekcijaDTOtoProjekcija toProjekcija;
 	
 	
 
@@ -93,20 +101,19 @@ public class PrikazBioskopaController {
 	
 	
 	@RequestMapping(value = "izmjeniBioskop/{id}",method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-		public ResponseEntity<Bioskop> izmjeniBioskop(@PathVariable Long id,@RequestBody Bioskop bioskop) {
-			bioskop.setId(id);
-			Bioskop b = bioskopService.save(bioskop);
-			return new ResponseEntity<>(b, HttpStatus.OK);
+		public ResponseEntity<Bioskop> izmjeniBioskop(@RequestBody BioskopDTO bioskopDTO) {
+		System.out.println("Bioskoppppppppppppp:" + bioskopDTO);
+			
+			
+		
+			return new ResponseEntity<>(new Bioskop(), HttpStatus.OK);
 		}
 	
 	
 	
-	@RequestMapping(value = "/{bioskopId}/dodajProjekciju/{projekcijaId}", method = RequestMethod.PUT )
-	public ResponseEntity<Projekcija> addMovie(@PathVariable String bioskopId,@PathVariable String projekcijaId) {
-		Bioskop bioskop = bioskopService.nadjiJedanBioskop(bioskopId);
-		Projekcija projekcija = projekcijaService.nadjiJednuProjekciju(projekcijaId);
-		bioskop.getRepertoar().getProjekcije();
-		bioskopService.save(bioskop);
+	@RequestMapping(value = "/dodajprojekciju/{id}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE )
+	public ResponseEntity<Projekcija> dodajProjekciju(@PathVariable String id, @RequestBody ProjekcijaDTO projekcijaDTO) {
+		Projekcija projekcija = projekcijaService.save(toProjekcija.convert(projekcijaDTO));
 		return new ResponseEntity<>(projekcija, HttpStatus.OK);
 	}
 

@@ -32,7 +32,7 @@ public class AdresaDTOtoAdresa implements Converter<AdresaDTO, Adresa>{
 		adresa.setId(source.getId());
 		adresa.setBroj(source.getBroj());
 		adresa.setUlica(source.getUlica());
-		//adresa.setGrad(source.getGrad());
+		adresa.setGrad(source.getGrad());
 		
 		return adresa;
 	}

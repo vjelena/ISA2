@@ -9,6 +9,20 @@
   </head>
 <body>
 
+<script>
+		$.urlParam = function(name){
+		    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+		    if (results==null){
+		       return null;
+		    }
+		    else{
+		       return decodeURI(results[1]) || 0;
+		    }
+		};
+</script>
+
+
+
 	<div class="container">  
    			<div style="margin-top:20px;" class="mainbox col-lg-6 col-lg-offset-3 col-lg-8 col-lg-offset-7"> 
         		<div class="panel panel-info" >
@@ -22,34 +36,28 @@
                     		
                     		<div class="input-group" style="margin-bottom: 25px">
                         		<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                        		<input type="text" class="form-control" name="naziv" value="" placeholder="Naziv">
+                        		<input id="nazivBioskopaInput" type="text" class="form-control" name="naziv" value="" placeholder="Naziv">
                     		</div>
                     		
                     		<div class="input-group" style="margin-bottom: 25px">
                         		<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                        		<input type="text" class="form-control" name="opis" placeholder=Opis>
+                        		<input id="opisBioskopaInput" type="text" class="form-control" name="opis" placeholder=Opis>
                     		</div> 
                     		
                     		<div class="input-group" style="margin-bottom: 25px">
                         		<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                        		<input type="text" class="form-control" name="ulica" placeholder="Ulica">
+                        		<input id="ulicaBioskopaInput" type="text" class="form-control" name="ulica" placeholder="Ulica">
                     		</div>
                     		
                     		<div class="input-group" style="margin-bottom: 25px">
                         		<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                        		<input type="text" class="form-control" name="broj" placeholder="Broj">
+                        		<input id="brojBioskopaInput" type="text" class="form-control" name="broj" placeholder="Broj">
                     		</div>
                     		
                     		<div class="input-group" style="margin-bottom: 25px">
                         		<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                        		<input type="text" class="form-control" name="grad" placeholder="Grad">
+                        		<input id="gradBioskopaInput" type="text" class="form-control" name="grad" placeholder="Grad">
                     		</div>
-                    		
-                    		<div class="input-group" style="margin-bottom: 25px">
-                        		<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                        		<input type="date" class="form-control" name="datum" placeholder="Datum do kog vazi prikupljanje ponuda">
-                        		<div id="divDatum" style="float:right"></div>
-                    		</div> 
                     		
                     	
                     		<div id="divValidacija"></div>  
@@ -64,6 +72,28 @@
         		</div>  
     		</div>
 		</div>	
+		
+		<script>
+
+$(document).ready(
+		function() {
+			$.ajax({
+				url : "http://localhost:8080/bioskopi/" + $.urlParam('idBioskopa')
+			}).then(
+					function(data) {
+						$("#nazivBioskopaInput").val(data.naziv);
+						$("#opisBioskopaInput").val(data.opis);
+						
+						var adresa = "";	
+						adresa += data.adresa.ulica + " "+ data.adresa.broj +" " + data.adresa.grad;
+						
+						$("#ulicaBioskopaInput").val(data.adresa.ulica);
+						$("#brojBioskopaInput").val(data.adresa.broj);
+						$("#gradBioskopaInput").val(data.adresa.grad);
+						
+					});
+			});
+</script>
 		
 		<script type="text/javascript">	
 			$("#btnIzmjeniProfilBioskopa").click(function(){
@@ -126,9 +156,9 @@
 						adresa:adresaJSON
 					   });
 					
-					
+					var idBioskopa = $.urlParam("idBioskopa");
 					$.ajax({
-						url: "http://localhost:8080/bioskopi/izmjeniBioskop/1",
+						url: "http://localhost:8080/bioskopi/izmjeniBioskop/" + idBioskopa,
 						type: "PUT",
 						data: formData,
 						contentType: "application/json",
@@ -136,7 +166,7 @@
 						success: function(data){
 							if(data){
 								alert("Azuriranje uspesno.");
-								location.href = "http://localhost:8080/index.html"				
+								location.href = "http://localhost:8080/profilBioskopa.html?id="+idBioskopa				
 							}else
 								alert("Azuriranje NIJE uspelo.");
 						},

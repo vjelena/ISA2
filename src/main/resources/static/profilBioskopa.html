@@ -30,19 +30,20 @@
 							
 							var adresa = "";	
 							adresa += data.adresa.ulica + " "+ data.adresa.broj +" " + data.adresa.grad;
-							console.log("Adresa:  " + adresa);
+							//console.log("Adresa:  " + adresa);
 							$("#adresaBioskopa").append(adresa);
 							
-							console.log("Reperoar: " + JSON.stringify(data));
+							//console.log("Reperoar: " + JSON.stringify(data));
 							
 								var repertoar = data.repertoar;
+								console.log("Projekcije: " + JSON.stringify(repertoar.projekcije));
 								var projekcije = repertoar.projekcije;
 								
 								for(var i=0; i<projekcije.length; i++){
 									
 									var glumci = "";	
 									for(j=0; j<projekcije[i].glumci.length; j++){
-										glumci += projekcije[i].glumci[i].ime+ " "+ projekcije[i].glumci[j].prezime + ",";
+										glumci += projekcije[i].glumci[j].ime+ " "+ projekcije[i].glumci[j].prezime + ",";
 									}
 									if(glumci.length > 0){
 										glumci = glumci.substring(0, glumci.length - 1);
@@ -98,7 +99,7 @@
 		<div class="form-group col-lg-2" style="padding-left: 30px"
 			id="tabLevo">
 
-			<form action="izmjenaProfilaBioskopa.html" class="form-horizontal">
+			
 				<div class="text-center" style="padding-top: 10px">
 					<h1  style="color: #CD5C5C" id="imeBioskopa"></h1>
 					<h5 id="adresaBioskopa"></h5>
@@ -106,10 +107,10 @@
 					<img src="slike/azuriranje.jpg" class="rounded" height="20"width="20"> 
 			
 					<div class="text-center" style="padding-top: 10px">
-						<input class="btn btn-link" type="submit" value="Azuriraj podatke">	
+						<input id ="btnAzurirajBioskop" class="btn btn-link"  type="button" value="Azuriraj podatke">	
 					</div>
 			 </div>
-			</form>
+			
 
 			<form action="izmjeniMapu.html" class="form-horizontal">
 				<div class="text-center" style="padding-top: 10px">
@@ -173,8 +174,12 @@
 	
 	<script>
 	$("#btnDodaj").click(function(){
-	location.href = "http://localhost:8080/dodajProjekciju.html"
+	location.href = "http://localhost:8080/dodajProjekciju.html?idBioskopa=" + $.urlParam('id');
      });
+	
+	$("#btnAzurirajBioskop").click(function(){
+		location.href = "http://localhost:8080/izmjenaProfilaBioskopa.html?idBioskopa=" + $.urlParam('id');
+	     });
 	
 	</script>
 </body>

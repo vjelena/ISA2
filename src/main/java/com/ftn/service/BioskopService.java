@@ -20,6 +20,6 @@ public interface BioskopService {
 
 	public Bioskop nadjiJedanBioskop(String id);
 	
-	public Bioskop save(Bioskop bioskop);
+	
 
 }

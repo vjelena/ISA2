@@ -8,13 +8,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 public class Projekcija implements Serializable{
@@ -47,21 +51,33 @@ public class Projekcija implements Serializable{
 	@Column(nullable = false)
 	private float cena;
 	
+	//@JsonIgnore
 	@OneToMany 
 	private Set<Sala> sale;
 	
+	//@JsonIgnore
 	@OneToMany 
 	private Set<Termin> termini;
+	
 	
 	@ManyToMany
 	//@JsonIgnore
 	//@JsonManagedReference
 	private Set<Glumac> glumci;
 	
+	//@JsonIgnore
 	@ManyToOne(optional = false)
-	//@JsonBackReference
+	@JsonBackReference(value="repertoar")
 	private Repertoar repertoar;
 	
+	public Repertoar getRepertoar() {
+		return repertoar;
+	}
+
+	public void setRepertoar(Repertoar repertoar) {
+		this.repertoar = repertoar;
+	}
+
 	public Projekcija() {
 		
 	}
@@ -161,6 +177,8 @@ public class Projekcija implements Serializable{
 	public void setTermini(Set<Termin> termini) {
 		this.termini = termini;
 	}
+
+
 	
 	
 }

@@ -8,9 +8,28 @@ public class BioskopDTO {
 	private int id;
 	private String naziv;
 	private String opis;
-	private Repertoar repertoar;
-	private Adresa adresa;
+	private String grad;
+	private String ulica;
+	private String broj;
 	
+	public String getGrad() {
+		return grad;
+	}
+	public void setGrad(String grad) {
+		this.grad = grad;
+	}
+	public String getUlica() {
+		return ulica;
+	}
+	public void setUlica(String ulica) {
+		this.ulica = ulica;
+	}
+	public String getBroj() {
+		return broj;
+	}
+	public void setBroj(String broj) {
+		this.broj = broj;
+	}
 	public int getId() {
 		return id;
 	}
@@ -29,17 +48,10 @@ public class BioskopDTO {
 	public void setOpis(String opis) {
 		this.opis = opis;
 	}
-	public Repertoar getRepertoar() {
-		return repertoar;
-	}
-	public void setRepertoar(Repertoar repertoar) {
-		this.repertoar = repertoar;
-	}
-	public Adresa getAdresa() {
-		return adresa;
-	}
-	public void setAdresa(Adresa adresa) {
-		this.adresa = adresa;
+	
+	@Override
+	public String toString() {
+		return this.broj + " " + this.grad + " " + this.naziv + " " + this.opis;
 	}
 		
 }
