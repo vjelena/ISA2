@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<meta charset="UTF-8">
+		<title>Azuriranje admina bioskopa</title>
+		<script src="scripts/jquery-3.2.1.min.js"></script>
+		<link href="bootstrapB/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+		<script src="bootstrapB/js/bootstrap.js" type="text/javascript"></script>		
+</head>
+	
+	<body>
+		<div class="row">
+			<div class="col-lg-12 col-lg-9"></div>
+  			<div class="col-lg-6 col-lg-3">
+			    <div class="form-group">
+			    	<form action="index.html" class="form-horizontal">
+				        <div class="col-lg-4">
+				            <input class="btn btn-link" type="submit" value="Pocetna">
+				        </div>
+			        </form>
+			    </div>
+  			</div>
+		</div>
+
+	
+		<div class="container">  
+   			<div style="margin-top:20px;" class="mainbox col-lg-6 col-lg-offset-3 col-lg-8 col-lg-offset-7"> 
+        		<div class="panel panel-info" >
+            		<div class="panel-heading">
+                		<div class="panel-title text-center">Azuriranje admina bioskopa</div>
+            		</div>
+            		  
+            		<div class="panel-body" style="padding-top:30px">
+            			<div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+                		<form id="formaAzurirajKorisnika" class="form-horizontal" enctype="multipart/form-data" method="POST">
+                    		
+                    		
+                        	<div class="input-group" style="margin-bottom: 25px">
+                        		<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                        		<input id="emailA" type="email" class="form-control" name="email" placeholder="Nova e-mail adresa">
+                    		</div>
+                    		
+                    		
+                    		<div class="input-group" style="margin-bottom: 25px">
+                        		<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        		<input id="lozinkaA" type="password" class="form-control" name="lozinka" placeholder="Nova lozinka">
+                    		</div> 
+                    		
+                    	
+                    		<div class="input-group" style="margin-bottom: 25px">
+                        		<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        		<input id="lozinka2A" type="password" class="form-control" name="lozinka2" placeholder="Ponovo unesite novu lozinku">
+                    		</div>
+                    		
+                    		
+                    		<div class="input-group" style="margin-bottom: 25px">
+                        		<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        		<input id="imeA" type="text" class="form-control" name="ime" placeholder="Novo ime">
+                    		</div>
+                    		
+                    		
+                    		<div class="input-group" style="margin-bottom: 25px">
+                        		<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        		<input id="prezimeA" type="text" class="form-control" name="prezime" placeholder="Novo prezime">
+                    		</div>
+                    		
+                    		
+                    		<div class="input-group" style="margin-bottom: 25px">
+                        		<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                        		<input id="ulicaA" type="text" class="form-control" name="ulica" placeholder="Nova ulica">
+                    		</div>
+                    		
+                    		
+                    		<div class="input-group" style="margin-bottom: 25px">
+                        		<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                        		<input id="brojA" type="text" class="form-control" name="broj" placeholder="Novi broj">
+                    		</div>
+                    		
+                    		
+                    		<div class="input-group" style="margin-bottom: 25px">
+                        		<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                        		<input id="gradA" type="text" class="form-control" name="grad" placeholder="Novi grad">
+                    		</div>
+                    		
+                    		
+                    		<div class="input-group" style="margin-bottom: 25px">
+                        		<span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+                        		<input id="brojTelefonaA" type="text" class="form-control" name="brojTelefona" placeholder="Novi broj telefona">
+                    		</div>
+                    		              
+                    		<div id="divValidacija"></div>  
+                    		                                                                 
+                    		<div class="form-group">
+                        		<div class="col-lg-offset-3 col-lg-9" style="margin-top: 25px">
+                        		<input id="dugmeOdustaniOdAzuriranja" type="button" class="btn btn-primary" style="float:right" value="Odustani"> 
+                            		<input id="dugmeAzurirajPodatke" type="button" class="btn btn-primary" style="float:right" value="Azuriraj podatke"> 	
+                            	</div>
+                    		</div>
+                		</form>     
+            		</div>                     
+        		</div>  
+    		</div>
+		</div>
+		
+<script>
+
+$(document).ready(function(){
+	$.ajax({
+		url : "http://localhost:8080/korisnik/getTrenutnoAktivan"
+	}).then(function(data){
+		$("#emailA").val(data.email);
+		$("#lozinkaA").val(data.lozinka);
+		$("#lozinka2A").val(data.lozinka);
+		$("#imeA").val(data.ime);
+		$("#prezimeA").val(data.prezime);
+		$("#ulicaA").val(data.adresa.ulica);
+		$("#brojA").val(data.adresa.broj);
+		$("#gradA").val(data.adresa.grad);
+		$("#brojTelefonaA").val(data.brojTelefona);
+	});
+});	
+</script>		
+
+<script>
+
+$("#dugmeAzurirajPodatke").click(function(){
+	var provera = true;
+	var forma = $('form[id="formaAzurirajKorisnika"]');
+	var email = forma.find('[name=email]').val();
+	var lozinka = forma.find('[name=lozinka]').val();
+	var lozinka2 = forma.find('[name=lozinka2]').val();
+	var ime = forma.find('[name=ime]').val();
+	var prezime = forma.find('[name=prezime]').val();
+	var ulica = forma.find('[name=ulica]').val();
+	var broj = forma.find('[name=broj]').val();
+	var grad = forma.find('[name=grad]').val();
+	var brojTelefona = forma.find('[name=brojTelefona]').val();
+	
+	if(!email) {
+		$('#divValidacija').empty();
+		$('#divValidacija').append('<label class="col-lg-8 control-label">Morate uneti e-mail adresu.</label>');
+		provera = false;
+	}	
+	if(!lozinka) {
+		$('#divValidacija').empty();
+		$('#divValidacija').append('<label class="col-lg-8 control-label">Morate uneti lozinku.</label>');
+		provera = false;
+	}	
+	if(!lozinka2) {
+		$('#divValidacija').empty();
+		$('#divValidacija').append('<label class="col-lg-8 control-label">Ponovo morate uneti lozinku.</label>');
+		provera = false;
+	}	
+	if(lozinka != lozinka2) {
+		$('#divValidacija').empty();
+		$('#divValidacija').append('<label class="col-lg-8 control-label">Lozinka mora biti ista u oba polja.</label>');
+		provera = false;
+	}	
+	if(!ime) {
+		$('#divValidacija').empty();
+		$('#divValidacija').append('<label class="col-lg-8 control-label">Morate uneti ime.</label>');
+		provera = false;
+	}	
+	if(!prezime) {
+		$('#divValidacija').empty();
+		$('#divValidacija').append('<label class="col-lg-8 control-label">Morate uneti prezime.</label>');
+		provera = false;
+	}		
+	if(!ulica) {
+		$('#divValidacija').empty();
+		$('#divValidacija').append('<label class="col-lg-8 control-label">Morate uneti naziv ulice.</label>');
+		provera = false;
+	}
+	if(!broj) {
+		$('#divValidacija').empty();
+		$('#divValidacija').append('<label class="col-lg-8 control-label">Morate uneti broj.</label>');
+		provera = false;
+	}
+	if(isNaN(broj)) {
+		$('#divValidacija').empty();
+		$('#divValidacija').append('<label class="col-lg-8 control-label">Broj moze sadrzati samo cifre.</label>');
+		provera = false;
+	}
+	if(!grad) {
+		$('#divValidacija').empty();
+		$('#divValidacija').append('<label class="col-lg-8 control-label">Morate uneti naziv grada.</label>');
+		provera = false;
+	}
+	if(!brojTelefona) {
+		$('#divValidacija').empty();
+		$('#divValidacija').append('<label class="col-lg-8 control-label">Morate uneti broj telefona.</label>');
+		provera = false;
+	}	
+	if(isNaN(brojTelefona)) {
+		$('#divValidacija').empty();
+		$('#divValidacija').append('<label class="col-lg-8 control-label">Broj moze sadrzati samo cifre.</label>');
+		provera = false;
+	}
+	
+	if(provera) {
+		$('#divValidacija').empty();
+		
+		var adresaJSON = {"ulica":$("#formaAzurirajKorisnika [name='ulica']").val(), 
+						  "broj":$("#formaAzurirajKorisnika [name='broj']").val(),
+						  "grad":$("#formaAzurirajKorisnika [name='grad']").val()};
+		
+		formData = JSON.stringify({
+			email:$("#formaAzurirajKorisnika [name='email']").val(),
+			lozinka:$("#formaAzurirajKorisnika [name='lozinka']").val(),
+			ime:$("#formaAzurirajKorisnika [name='ime']").val(),
+			prezime:$("#formaAzurirajKorisnika [name='prezime']").val(),
+			adresa:adresaJSON,
+			brojTelefona:$("#formaAzurirajKorisnika [name='brojTelefona']").val()
+		   });
+		
+		$.ajax({
+			url: "http://localhost:8080/adminFanzona/azuriraj",
+			type: "PUT",
+			data: formData,
+			contentType: "application/json",
+			datatype: 'json',
+			success: function(data){
+				if(data){
+					location.href = "http://localhost:8080/adminBioskopaProfil.html"				
+				}else
+					alert("Azuriranje NIJE uspelo.");
+			},
+			error: function(data){
+				alert('GRESKA PRILIKOM AZURIRANJA!!!')
+			}
+		});
+	}
+});
+
+
+$("#dugmeOdustaniOdAzuriranja").click(function(){
+	location.href = "http://localhost:8080/homePage.html"
+});
+</script>
+
+</body>
+</html>html>
