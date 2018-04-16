@@ -23,10 +23,10 @@ public class Vreme implements Serializable{
 	@Column(nullable = false)
 	private String vreme;
 	
-	@ManyToMany
+	//@ManyToMany
 	//@JsonIgnore
 	//@JsonManagedReference
-	private Set<Termin> listaTermina;
+	//private Set<Termin> listaTermina;
 	
 	public Vreme() {
 		
@@ -40,12 +40,6 @@ public class Vreme implements Serializable{
 		this.vreme = vreme;
 	}
 
-	public Set<Termin> getListaTermina() {
-		return listaTermina;
-	}
 
-	public void setListaTermina(Set<Termin> listaTermina) {
-		this.listaTermina = listaTermina;
-	}
 	
 }

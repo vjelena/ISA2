@@ -9,6 +9,4 @@ import com.ftn.model.Projekcija;
 @Repository
 public interface ProjekcijaRepository extends JpaRepository<Projekcija, Long> {
 
-	
-
 }

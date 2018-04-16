@@ -11,6 +11,8 @@ public interface ProjekcijaService {
 	public Projekcija nadjiJednuProjekciju(String id);
 	
 	public Projekcija save(Projekcija projekcija);
+	
+	public void remove(Long id);
 
 	
 

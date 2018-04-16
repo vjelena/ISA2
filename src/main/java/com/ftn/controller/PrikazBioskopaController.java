@@ -119,6 +119,7 @@ public class PrikazBioskopaController {
 	
 	@RequestMapping(value = "/dodajprojekciju/{id}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE )
 	public ResponseEntity<Projekcija> dodajProjekciju(@PathVariable String id, @RequestBody ProjekcijaDTO projekcijaDTO) {
+		System.out.println(">>>>>>> " + projekcijaDTO);
 		Projekcija projekcija = projekcijaService.save(toProjekcija.convert(projekcijaDTO));
 		return new ResponseEntity<>(projekcija, HttpStatus.OK);
 	}

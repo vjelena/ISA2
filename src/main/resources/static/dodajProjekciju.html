@@ -42,9 +42,55 @@ $(document).ready(
 						    option.value = data[i].id;
 						    option.text = data[i].naziv;
 						    selectList.appendChild(option);
-							
 						}
+					});
+		});
+</script>
+
+<script>
+$(document).ready(
+		function() {
+			$.ajax({
+				url : "http://localhost:8080/termin/getTermini"
+			}).then(
+					function(data) {
+						console.log('Termini: ' + JSON.stringify(data));
+						var listaTerminaDiv = document.getElementById("listaTermina");
 						
+						var selectList = document.createElement("select");
+						selectList.id = "listaTerminaSelect";
+						listaTerminaDiv.appendChild(selectList);
+						for (i = 0; i < data.length; i++) {
+							
+							var option = document.createElement("option");
+						    option.value = data[i].id;
+						    option.text = data[i].vreme;
+						    selectList.appendChild(option);
+						}
+					});
+		});
+</script>
+
+<script>
+$(document).ready(
+		function() {
+			$.ajax({
+				url : "http://localhost:8080/sala/getSale"
+			}).then(
+					function(data) {
+						console.log('Sale: ' + JSON.stringify(data));
+						var listaFilmovaDiv = document.getElementById("listaSala");
+						
+						var selectList = document.createElement("select");
+						selectList.id = "listaSalaSelect";
+						listaFilmovaDiv.appendChild(selectList);
+						for (i = 0; i < data.length; i++) {
+							
+							var option = document.createElement("option");
+						    option.value = data[i].id;
+						    option.text = data[i].nazivSale;
+						    selectList.appendChild(option);
+						}
 					});
 		});
 </script>
@@ -69,16 +115,22 @@ $(document).ready(
 						
 							<div>
             					<div id="listaFilmova"  style="margin-bottom: 25px"></div>
-            				</div>           
+            				</div>  
+            				
+            				<div>
+            					<div id="listaSala"  style="margin-bottom: 25px"></div>
+            				</div>  
+            				
+            				<div>
+            					<div id="listaTermina"  style="margin-bottom: 25px"></div>
+            				</div>         
 							           
                     		<div class="input-group" style="margin-bottom: 25px">
                         		<span class="input-group-addon"><i class="glyphicon glyphicon-eur"></i></span>
                         		<input type="text" class="form-control" name="cena" placeholder="Cena">
                         		<div id="divCena" style="float:right"></div>
                     		</div>
-                    		
-
-                                        
+                    		                                        
                     		<div class="form-group">
                     <div class="col-lg-offset-3 col-lg-9" style="margin-top: 25px">
                          <input id="btnDodaj" type="button" class="btn btn-primary" style="float:right" value="Dodaj"> 	
@@ -97,13 +149,16 @@ $(document).ready(
 $("#btnDodaj").click(function(){
 	var idBioskopa = $.urlParam('idBioskopa');
 	var idFilma =  $('#listaFilmovaSelect').val();
-	alert("Id filma: " + idFilma);
-	return;
+	var idSale = $('#listaSalaSelect').val();
+	var idTermina = $('#listaTerminaSelect').val();
 	
 	formData = JSON.stringify({
      
         cena:$("#formaNovaProjekcija [name='cena']").val(),
-        bioskopId: idBioskopa
+        bioskopId: idBioskopa,
+        filmId:idFilma,
+        salaId:idSale,
+        terminId:idTermina
     });
 	
 	$.ajax({

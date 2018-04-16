@@ -86,7 +86,16 @@ public class Projekcija implements Serializable{
 		return termin;
 	}
 
-	public void setTermini(Termin termin) {
+	
+	public Film getFilm() {
+		return film;
+	}
+
+	public void setFilm(Film film) {
+		this.film = film;
+	}
+
+	public void setTermin(Termin termin) {
 		this.termin = termin;
 	}
 

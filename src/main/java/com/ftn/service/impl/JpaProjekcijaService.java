@@ -30,6 +30,11 @@ public class JpaProjekcijaService implements ProjekcijaService {
 		return projekcijaRepository.save(projekcija);
 	}
 
+	@Override
+	public void remove(Long id) {
+		projekcijaRepository.delete(id);
+	}
+
 
 
 

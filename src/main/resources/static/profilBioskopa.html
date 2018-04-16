@@ -24,9 +24,8 @@
 					url : "http://localhost:8080/bioskopi/" + $.urlParam('id')
 				}).then(
 						function(data) {
-							console.log("Tip podataka:" + typeof data);
+							console.log("Bioskop: " + JSON.stringify(data));
 							if(typeof data == 'string'){
-								console.log("Prikaz index stranice...");
 								document.getElementById("rootDiv").innerHTML = data;
 							}else{
 							$("#opisBioskopa").append(data.opis);
@@ -36,31 +35,33 @@
 							adresa += data.adresa.ulica + " "+ data.adresa.broj +" " + data.adresa.grad;
 							//console.log("Adresa:  " + adresa);
 							$("#adresaBioskopa").append(adresa);
-							
-							//console.log("Reperoar: " + JSON.stringify(data));
-							
 								var repertoar = data.repertoar;
-								console.log("Projekcije: " + JSON.stringify(repertoar.projekcije));
 								var projekcije = repertoar.projekcije;
+								var sale = data.listaSala;
 								
-								for(var i=0; i<projekcije.length; i++){
+								for(var i=0; i<sale.length; i++){
+									 var button = document.createElement("input");
+									 	button.id = sale[i].id;
+									    button.type = "button";
+									    button.value = sale[i].nazivSale;
+									    button.className  = "btnSala btn-info";
+									    document.getElementById("listaSalaBioskopa").appendChild(button);
+								}
+								
+								for(var i=0; i<projekcije.length; i++){	
+									var film = projekcije[i].film;
+								
+									newRow = "<tr><td><a class=\"bioskopi\" href=\"\" id=\"" + film.id + "\" naziv=\""+ film.naziv+"\">"+ film.naziv + "</a></td>"
+									+ "<td class=\"trajanje\">"+ film.trajanje + "</td>"
+									+ "<td class=\"sala\">"+ projekcije[i].sala.nazivSale + "</td>"
+									+ "<td class=\"termin\">"+ projekcije[i].termin.vreme + "</td>"
+									+ "<td class=\"cena\">"+ projekcije[i].cena + "</td>"
+									+ "<td><input type=\"button\" value=\"Obrisi\" class=\"btnObrisiProjekciju\" id=\""+projekcije[i].id + "\"></td></tr>"
 									
-									var glumci = "";	
-									for(j=0; j<projekcije[i].glumci.length; j++){
-										glumci += projekcije[i].glumci[j].ime+ " "+ projekcije[i].glumci[j].prezime + ",";
-									}
-									if(glumci.length > 0){
-										glumci = glumci.substring(0, glumci.length - 1);
-									}
 									
-									newRow = "<tr><td><a class=\"bioskopi\" href=\"\" id=\"" + projekcije[i].id + "\" naziv=\""+projekcije[i].naziv+"\">"+ projekcije[i].naziv + "</a></td>"
-									+ "<td class=\"reditelj\">"+ projekcije[i].reditelj + "</td>"
-									+ "<td class=\"glumci\">"+ glumci + "</td>"
-									+ "<td class=\"zanr\">"+ projekcije[i].zanr + "</td>"
-									+ "<td class=\"trajanje\">"+ projekcije[i].trajanje + "</td></tr>";
 									
 									$("#tabelaRepertoar").append(newRow);	
-							}	
+								}
 							}
 						});
 			});
@@ -117,12 +118,6 @@
 					</div>
 			  </div>
 			
-
-			<form action="izmjeniMapu.html" class="form-horizontal">
-				<div class="text-center" style="padding-top: 10px">
-					<input class="btn btn-info" type="submit" value="Sala 1">
-				</div>
-			</form>
 			<form action="istorijaPoseta.html" class="form-horizontal">
 				<div class="text-center" style="padding-top: 10px">
 					<input class="btn btn-info" type="submit" value="Brza rezervacija">
@@ -134,6 +129,9 @@
 						value="Izvestaj o poslovanju">
 				</div>
 			</form>
+			
+			<div style="padding-top: 10px" id="listaSalaBioskopa"><h4>Lista sala</h4></div>
+			
 			<form action="prikazBioskopa.html" class="form-horizontal">
 				<div class="row justify-content-md-center" style="padding-top: 10px">
 					<h2 style="color: #069">Repertoar</h2>
@@ -161,10 +159,11 @@
 				<thead class="thead-dark">
 					<tr>
 						<th scope="col" class="text-center">Naziv filma</th>
-						<th scope="col" class="text-center">Reditelj</th>
-						<th scope="col" class="text-center">Glumci</th>
-						<th scope="col" class="text-center">Zanr</th>
 						<th scope="col" class="text-center">Trajanje</th>
+						<th scope="col" class="text-center">Sala</th>
+						<th scope="col" class="text-center">Termin</th>
+						<th scope="col" class="text-center">Cena</th>
+						<th scope="col" class="text-center">Obrisi</th>
 						<th></th>
 					</tr>
 				</thead>
@@ -194,6 +193,27 @@
 	$("#btnAzurirajBioskop").click(function(){
 		location.href = "http://localhost:8080/izmjenaProfilaBioskopa.html?idBioskopa=" + $.urlParam('id');
 	     });
+	
+	$(document).on("click", ".btnObrisiProjekciju", function(event) {
+		var projekcijaId = this.id;
+		
+		$.ajax({
+			url : "http://localhost:8080/projekcija/izbrisiProjekciju/" + projekcijaId
+		}).then(
+				function(data) {
+					location.href = "http://localhost:8080/profilBioskopa.html?id=" + $.urlParam('id');
+				});
+	});
+	
+	$(".btnObrisiProjekciju").click(function(){
+		console.log("Klik na dugme....");
+		location.href = "http://localhost:8080/projekcija/izbrisiProjekciju/1";
+	});
+	
+	$(document).on("click", ".btnSala", function(event) {
+		var salaId = this.id;
+		location.href = "http://localhost:8080/index_sjedista.html?idSale="+salaId;
+	});
 	
 	</script>
 	</div>

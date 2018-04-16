@@ -14,4 +14,7 @@ public interface FilmService {
 	
 	
 	public Film kreirajFilm(Film film);
+
+
+	public Film nadjiJedanFilm(String id);
 }

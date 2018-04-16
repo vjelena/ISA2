@@ -1,33 +1,20 @@
 package com.ftn.DTO;
 
-
 public class ProjekcijaDTO {
-	
-	
-	private String naziv;
-	
-	
-	private String zanr;
-	
 
-	private String reditelj;
-	
-	
-	private String opis;
-	
-
-	private String slika;
-	
-	
-	private int trajanje;
-	
-	
-	private float ocena;
-	
-	
-	private float cena;
-	
+	private String cena;
 	private String bioskopId;
+	private String filmId;
+	private String salaId;
+	private String terminId;
+
+	public String getCena() {
+		return cena;
+	}
+
+	public void setCena(String cena) {
+		this.cena = cena;
+	}
 
 	public String getBioskopId() {
 		return bioskopId;
@@ -37,76 +24,34 @@ public class ProjekcijaDTO {
 		this.bioskopId = bioskopId;
 	}
 
-	public String getNaziv() {
-		return naziv;
+	public String getFilmId() {
+		return filmId;
 	}
 
-	public void setNaziv(String naziv) {
-		this.naziv = naziv;
+	public void setFilmId(String filmId) {
+		this.filmId = filmId;
 	}
 
-	public String getZanr() {
-		return zanr;
+	public String getSalaId() {
+		return salaId;
 	}
 
-	public void setZanr(String zanr) {
-		this.zanr = zanr;
+	public void setSalaId(String salaId) {
+		this.salaId = salaId;
 	}
 
-	public String getReditelj() {
-		return reditelj;
+	public String getTerminId() {
+		return terminId;
 	}
 
-	public void setReditelj(String reditelj) {
-		this.reditelj = reditelj;
+	public void setTerminId(String terminId) {
+		this.terminId = terminId;
 	}
 
-	public String getOpis() {
-		return opis;
-	}
-
-	public void setOpis(String opis) {
-		this.opis = opis;
-	}
-
-	public String getSlika() {
-		return slika;
-	}
-
-	public void setSlika(String slika) {
-		this.slika = slika;
-	}
-
-	public int getTrajanje() {
-		return trajanje;
-	}
-
-	public void setTrajanje(int trajanje) {
-		this.trajanje = trajanje;
-	}
-
-	public float getOcena() {
-		return ocena;
-	}
-
-	public void setOcena(float ocena) {
-		this.ocena = ocena;
-	}
-
-	public float getCena() {
-		return cena;
-	}
-
-	public void setCena(float cena) {
-		this.cena = cena;
-	}
-	
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return this.naziv + " " + this.cena + " " + this.bioskopId;
+		return this.cena + " " + this.bioskopId + " " + this.terminId + " " + this.salaId + " " + this.filmId; 
 	}
-	
-	
-	
+
 }

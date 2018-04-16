@@ -58,15 +58,18 @@ INSERT INTO film_glumci values(2,3);
 INSERT INTO sala values(1 ,150,'konfg','sala1', 1);
 INSERT INTO sala values(2 ,100 ,'konfg','sala2', 2);
 
-INSERT INTO termin values (1,'12:00');
-INSERT INTO termin values (2,'17:00');
+INSERT INTO termin values (1,'01-05-2018 12:00');
+INSERT INTO termin values (2,'01-05-2018 17:00');
+INSERT INTO termin values (3,'02-05-2018 12:00');
+INSERT INTO termin values (4,'02-05-2018 17:00');
+INSERT INTO termin values (5,'17-05-2018 19:00');
 
 INSERT INTO projekcija values (1, 120.90, 1, 1, 1, 1);
 INSERT INTO projekcija values (2, 150.00, 2, 2, 2, 2);
 
 
---INSERT INTO bioskop_lista_sala values (1 , 1);
---INSERT INTO bioskop_lista_sala values (2 , 2);
+INSERT INTO bioskop_lista_sala values (1 , 1);
+INSERT INTO bioskop_lista_sala values (2 , 2);
 
 
 --INSERT INTO projekcija_termini values (1,1);

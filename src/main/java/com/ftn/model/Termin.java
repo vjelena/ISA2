@@ -26,10 +26,6 @@ public class Termin implements Serializable{
 	@Column(nullable = false)
 	private String vreme;
 	
-//	@OneToOne
-//	@JsonBackReference
-//	private Projekcija projekcija;
-	
 	public Termin() {
 		
 	}
@@ -41,5 +37,14 @@ public class Termin implements Serializable{
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+	public String getVreme() {
+		return vreme;
+	}
+
+	public void setVreme(String vreme) {
+		this.vreme = vreme;
+	}
+	
 
 }

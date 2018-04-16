@@ -1,7 +1,10 @@
 package com.ftn.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,8 +28,6 @@ public class ProjekcijaController {
 	@Autowired
 	private ProjekcijaService projekcijaService;
 	
-	
-	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Projekcija> nadjiProjekciju(@PathVariable String id) {
 		System.out.println("=================>>>>> Prije nadjiJedanBioskop:" + id);
@@ -38,16 +39,12 @@ public class ProjekcijaController {
 		return new ResponseEntity<>(projekcija, HttpStatus.OK);
 	}
 	
+	@RequestMapping(value = "/izbrisiProjekciju/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public void izbrisiProjekciju(@PathVariable Long id, HttpServletRequest request){
+		projekcijaService.remove(id);
+	}
 	
-	/*@RequestMapping(method=RequestMethod.POST, consumes="application/json")
-	public ResponseEntity<Projekcija> dodajProjekciju@RequestBody Projekcija projekcija){
-		Projekcija novaProjekcija = projekcijaService.save(projekcija);
-		//System.out.println("**************************"+oglasDTO.getNaziv());
-		
-		return new ResponseEntity<>(novaProjekcija, HttpStatus.OK);
-	}	*/
+	}
 	
 	
 
-
-}

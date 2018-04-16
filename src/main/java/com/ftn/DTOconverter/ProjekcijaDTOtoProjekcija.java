@@ -16,12 +16,25 @@ import com.ftn.model.Oglas;
 import com.ftn.model.Projekcija;
 import com.ftn.service.BioskopService;
 import com.ftn.service.FanZonaServis;
+import com.ftn.service.impl.JpaFilmService;
+import com.ftn.service.impl.JpaSalaService;
+import com.ftn.service.impl.JpaTerminService;
 
 @Component
 public class ProjekcijaDTOtoProjekcija implements Converter<ProjekcijaDTO, Projekcija>{
 
 	@Autowired
 	private BioskopService bioskopService;
+	
+	@Autowired
+	private JpaSalaService jpaSalaService ;
+	
+
+	@Autowired
+	private JpaFilmService jpaFilmService ;
+	
+	@Autowired
+	private JpaTerminService jpaTerminService ;
 	
 	@Override
 	public Projekcija convert(ProjekcijaDTO source) {
@@ -34,10 +47,13 @@ public class ProjekcijaDTOtoProjekcija implements Converter<ProjekcijaDTO, Proje
 		
 		
 		Projekcija projekcija = new Projekcija();
+		projekcija.setSala(jpaSalaService.nadjiJednuSalu(source.getSalaId()));
 		
-		projekcija.setCena(source.getCena());
+		projekcija.setCena(new Float(source.getCena()));
 		
 		projekcija.setRepertoar(bioskop.getRepertoar());
+		projekcija.setFilm(jpaFilmService.nadjiJedanFilm(source.getFilmId()));
+		projekcija.setTermin(jpaTerminService.nadjiJedanTermin(source.getTerminId()));
 		
 		return projekcija;
 	}

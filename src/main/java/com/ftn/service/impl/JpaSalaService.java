@@ -1,5 +1,7 @@
 package com.ftn.service.impl;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,9 @@ public class JpaSalaService implements SalaService {
 	public Sala nadjiJednuSalu(String id) {
 		System.out.println("=================== id bioskopa za pretragu: " + id);
 		return salaRepository.findOne(new Long(id));
+	}
+	public List<Sala> nadjiSveSale() {
+		return salaRepository.findAll();
 	}
 	
 }

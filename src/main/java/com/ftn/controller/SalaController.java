@@ -1,5 +1,7 @@
 package com.ftn.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ftn.model.Bioskop;
+import com.ftn.model.Film;
 import com.ftn.model.Sala;
 import com.ftn.repository.BioskopRepository;
 import com.ftn.repository.SalaRepository;
@@ -25,6 +28,13 @@ public class SalaController {
 	
 	@Autowired
 	private SalaRepository salaRepository;
+	
+	
+	@RequestMapping(value = "/getSale", method = RequestMethod.GET)
+	public ResponseEntity<List<Sala>> prikaziSale() {
+		List<Sala> sale = jpaSalaService.nadjiSveSale();
+		return new ResponseEntity<>(sale, HttpStatus.OK);
+	}
 
 	@RequestMapping(value = "/konfiguracije/{id}", method = RequestMethod.GET)
 	public ResponseEntity<String> uzmiKonfiguraciju(@PathVariable String id) {

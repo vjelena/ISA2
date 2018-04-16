@@ -4,14 +4,12 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.ftn.model.Film;
 import com.ftn.model.Sala;
+import com.ftn.model.Termin;
 
 @Service
-public interface SalaService {
+public interface TerminService {
 	
-	public List<Sala> nadjiSveSale();
-	
-	public Sala azurirajKonfiguraciju(Sala sala);
+	public List<Termin> nadjiSveTermine();
 
 }
