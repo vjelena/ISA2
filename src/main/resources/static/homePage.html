@@ -108,7 +108,8 @@
 					var brojTelefonaKor = "<tr><th scope=\"col\">" + data.brojTelefona + "</th></tr>";
 					var prazanRed = "<tr><th scope=\"col\">&nbsp</th></tr>";
 					var ulogaKor = "<tr><th scope=\"col\">uloga: " + data.uloga + "</th></tr>";
-					var vrstaClana = "<tr><th scope=\"col\">vrsta clana: " + data.vrstaClana + "</th></tr>";
+					var brojPosetaKor = "<tr><th scope=\"col\">broj poseta: " + data.brojPoseta + "</th></tr>";
+					var vrstaClanaKor = "<tr><th scope=\"col\">vrsta clana: " + data.vrstaClana + "</th></tr>";
 					
 					$("#tabelaInformacijeOKorisniku").append(imeKor);
 					$("#tabelaInformacijeOKorisniku").append(prezimeKor);
@@ -117,7 +118,8 @@
 					$("#tabelaInformacijeOKorisniku").append(brojTelefonaKor);
 					$("#tabelaInformacijeOKorisniku").append(prazanRed);
 					$("#tabelaInformacijeOKorisniku").append(ulogaKor);
-					$("#tabelaInformacijeOKorisniku").append(vrstaClana);
+					$("#tabelaInformacijeOKorisniku").append(brojPosetaKor);
+					$("#tabelaInformacijeOKorisniku").append(vrstaClanaKor);
 				});
 								
 				
@@ -190,7 +192,7 @@
 			
 			
 			$("#dugmeBioskopi").click(function(){
-				location.href = "http://localhost:8080/prikazBioskopa.html"
+				location.href = "http://localhost:8080/profilBioskopa.html"
 			});
 			
 			
