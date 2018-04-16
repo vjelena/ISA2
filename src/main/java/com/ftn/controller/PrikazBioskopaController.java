@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.ftn.DTO.BioskopDTO;
 import com.ftn.DTO.ProjekcijaDTO;
-import com.ftn.DTOconverter.OglasDTOtoOglas;
 import com.ftn.DTOconverter.ProjekcijaDTOtoProjekcija;
 import com.ftn.model.Bioskop;
 import com.ftn.model.Korisnik;

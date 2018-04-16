@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ftn.model.Bioskop;
+import com.ftn.repository.AdresaRepository;
 import com.ftn.repository.BioskopRepository;
 import com.ftn.service.BioskopService;
 
@@ -17,6 +18,9 @@ public class JpaBioskopService implements BioskopService{
 	
 	@Autowired
 	private BioskopRepository bioskopRepository;
+	
+	@Autowired
+	private AdresaRepository adresaRepository;
 
 	@Override
 	public List<Bioskop> nadjiSveBioskope() {
@@ -36,10 +40,11 @@ public class JpaBioskopService implements BioskopService{
 		return bioskopRepository.findOne(new Long(id));
 	}
 
-	
-
-
-
+	@Override
+	public Bioskop save(Bioskop bioskop) {
+		adresaRepository.save(bioskop.getAdresa());
+		return bioskopRepository.save(bioskop);
+	}
 	
 
 }

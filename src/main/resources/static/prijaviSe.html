@@ -93,8 +93,16 @@
 						contentType: "application/json",
 						datatype: 'json',
 						success: function(data){
-							if(data){
-								location.href = "http://localhost:8080/homePage.html"				
+							console.log(data);
+							if(data.uloga=="sistem"){
+								localStorage.setItem("admin", "sistem");
+								location.href = "http://localhost:8080/adminHomePage.html"				
+							}else if(data.uloga=="obican"){
+								localStorage.setItem("registrovan korisnik", data.id);
+								location.href = "http://localhost:8080/homePage.html"
+							}else if(data.uloga=="fanzona"){
+								localStorage.setItem("admin", "fanzona");
+								location.href = "http://localhost:8080/prodavnica.html"
 							}else
 								alert("Logovanje NIJE uspelo.");
 						},

@@ -128,7 +128,7 @@ public class KorisnikController {
 	@RequestMapping(value = "/getTrenutnoAktivan", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public Korisnik getTrenutnoAktivan(HttpServletRequest request){
 		Korisnik k = (Korisnik)request.getSession().getAttribute("aktivanKorisnik");		
-		System.out.println("\n\t\ttrenutno aktivan korisnik: " + k.getEmail() + "\n");
+		//System.out.println("\n\t\ttrenutno aktivan korisnik: " + k.getEmail() + "\n");
 		return k;
 	}
 	

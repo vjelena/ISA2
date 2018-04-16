@@ -52,7 +52,7 @@ public class Bioskop implements Serializable{
 	
 	//@JsonIgnore
 //	@JsonManagedReference
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "bioskop")//bidirekciona veza 1:1, vlasnik veze je bioskop(naziv kolone u tabeli repertoar)
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "bioskop")
 	private Repertoar repertoar;
 
 	//@JsonIgnore

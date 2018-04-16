@@ -29,26 +29,23 @@ public class Oglas implements Serializable{
 	@Column(nullable = false)
 	private Date datum; //do kada je aktivno prikupljanje ponuda
 	
-	@Column(nullable = true)
+	@Column(nullable = false)
 	private String slika;
 	
 	@Column(nullable = false)
 	private String cena;
-	//licitacija???
 	
-	@Column(nullable = true)
-	private boolean odobren;
+	@Column(nullable = false)
+	private int status;
 	
-	/*@OneToOne
-	//@JsonBackReference
-	private Rekvizit rekvizit;	//oglasen rekvizit
+	/*@OneToMany(fetch = FetchType.LAZY, mappedBy = "oglas")
+	private Set<Ponuda> listaPonuda;
 	
 	//@JsonBackReference
 	@ManyToOne(optional = false)
 	private Korisnik korisnik;*/
 	
 	@ManyToOne(optional = false)
-	//@JsonBackReference
 	private FanZona fanZona;
 	
 	public Oglas() {
@@ -69,6 +66,14 @@ public class Oglas implements Serializable{
 
 	public void setKorisnik(Korisnik korisnik) {
 		this.korisnik = korisnik;
+	}
+	
+	public Set<Ponuda> getListaPonuda() {
+		return listaPonuda;
+	}
+
+	public void setListaPonuda(Set<Ponuda> listaPonuda) {
+		this.listaPonuda = listaPonuda;
 	}*/
 
 	public String getNaziv() {
@@ -103,14 +108,6 @@ public class Oglas implements Serializable{
 		this.slika = slika;
 	}
 
-	public boolean isOdobren() {
-		return odobren;
-	}
-
-	public void setOdobren(boolean odobren) {
-		this.odobren = odobren;
-	}
-
 	public String getCena() {
 		return cena;
 	}
@@ -118,15 +115,7 @@ public class Oglas implements Serializable{
 	public void setCena(String cena) {
 		this.cena = cena;
 	}
-
-	/*public Rekvizit getRekvizit() {
-		return rekvizit;
-	}
-
-	public void setRekvizit(Rekvizit rekvizit) {
-		this.rekvizit = rekvizit;
-	}*/
-
+	
 	public FanZona getFanZona() {
 		return fanZona;
 	}
@@ -134,7 +123,13 @@ public class Oglas implements Serializable{
 	public void setFanZona(FanZona fanZona) {
 		this.fanZona = fanZona;
 	}
-	
-	
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
 	
 }

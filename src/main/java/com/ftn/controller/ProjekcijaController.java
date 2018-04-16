@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ftn.DTO.OglasDTO;
 import com.ftn.model.Bioskop;
 import com.ftn.model.Oglas;
 import com.ftn.model.Projekcija;

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.fasterxml.jackson.databind.util.Converter;
-import com.ftn.DTO.OglasDTO;
 import com.ftn.DTO.ProjekcijaDTO;
 import com.ftn.model.Bioskop;
 import com.ftn.model.FanZona;

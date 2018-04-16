@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+		<html>
+		<head>
+			<title></title>
+			<script src="scripts/jquery-3.2.1.min.js"></script>
+			<link href="bootstrapB/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+			<script src="bootstrapB/js/bootstrap.js" type="text/javascript"></script>
+		</head>
+		<body>
+
+			<div class="container">  
+	   			
+
+	    		<div style="margin-top:20px;" class="mainbox col-lg-6 "> 
+	        		<div class="panel panel-info" >
+	            		<div class="panel-heading">
+	                		<div class="panel-title text-center">Registracija bioskopa</div>
+	            		</div>
+	            		  
+	            		<div class="panel-body" style="padding-top:30px">
+	            			<div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+	                		<form id="formaRegistrujBioskop" class="form-horizontal" enctype="multipart/form-data" method="POST">
+	                    		
+	                    		<div class="input-group" style="margin-bottom: 25px">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-text-background"></i></span>
+                        			<input type="text" class="form-control" name="naziv" placeholder="Naziv"> 
+	                    		</div>
+	                    		
+	                    		<div class="input-group" style="margin-bottom: 25px">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-text-background"></i></span>
+	                        		<input type="text" class="form-control" name="opis" placeholder="Opis">
+	                    		</div>
+	                    		
+	                    		<div class="input-group" style="margin-bottom: 25px">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+	                        		<input type="text" class="form-control" name="ulica" placeholder="Ulica">
+	                    		</div>
+	                    		
+	                    		<div class="input-group" style="margin-bottom: 25px">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+	                        		<input type="text" class="form-control" name="broj" placeholder="Broj">
+	                    		</div>
+	                    		
+	                    		<div class="input-group" style="margin-bottom: 25px">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+	                        		<input type="text" class="form-control" name="grad" placeholder="Grad">
+	                    		</div>
+	                    		
+	                    		<div class="input-group" style="margin-bottom: 25px">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+	                        		<input type="text" class="form-control" name="prosecnaOcena" placeholder="Prosecna ocena">
+	                    		</div>
+	                    		              
+	                    		<div id="divValidacijaBioskop"></div>  
+	                    		                                                                 
+	                    		<div class="form-group">
+	                        		<div class="col-lg-offset-3 col-lg-9" style="margin-top: 25px">
+	                            		<input id="dugmeRegistrujBioskop" type="button" class="btn btn-info" style="float:right" value="Registruj"> 	
+	                            	</div>
+	                    		</div>
+	                		</form>     
+	            		</div>                     
+	        		</div>  
+	    		</div>
+
+
+	    		<div class="container">  
+	   			<div style="margin-top:20px;" class="mainbox col-lg-6 "> 
+	        		<div class="panel panel-info" >
+	            		<div class="panel-heading">
+	                		<div class="panel-title text-center">Registracija admina</div>
+	            		</div>
+	            		  
+	            		<div class="panel-body" style="padding-top:30px">
+	            			<div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+	                		<form id="formaRegistrujAdmina" class="form-horizontal" enctype="multipart/form-data" method="POST">
+	                    		
+	                    		<div class="input-group" style="margin-bottom: 25px">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+	                        		<input type="email" class="form-control" name="email" value="" placeholder="E-mail adresa">
+	                    		</div>
+	                    		
+	                    		<div class="input-group" style="margin-bottom: 25px">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+	                        		<input type="password" class="form-control" name="lozinka1" placeholder=Lozinka>
+	                    		</div> 
+	                    		
+	                    		<div class="input-group" style="margin-bottom: 25px">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+	                        		<input type="password" class="form-control" name="lozinka2" placeholder="Ponovo unesite lozinku">
+	                    		</div>
+	                    		
+	                    		<div class="input-group" style="margin-bottom: 25px">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+	                        		<input type="text" class="form-control" name="ime" placeholder="Ime">
+	                    		</div>
+	                    		
+	                    		<div class="input-group" style="margin-bottom: 25px">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+	                        		<input type="text" class="form-control" name="prezime" placeholder="Prezime">
+	                    		</div>
+	                    		
+	                    		<div class="input-group" style="margin-bottom: 25px">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+	                        		<input type="text" class="form-control" name="ulica" placeholder="Ulica">
+	                    		</div>
+	                    		
+	                    		<div class="input-group" style="margin-bottom: 25px">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+	                        		<input type="text" class="form-control" name="broj" placeholder="Broj">
+	                    		</div>
+	                    		
+	                    		<div class="input-group" style="margin-bottom: 25px">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+	                        		<input type="text" class="form-control" name="grad" placeholder="Grad">
+	                    		</div>
+	                    		
+	                    		<div class="input-group" style="margin-bottom: 25px">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+	                        		<input type="text" class="form-control" name="brojTelefona" placeholder="Broj telefona">
+	                    		</div>
+
+	                    		<div class="input-group" style="margin-bottom: 25px">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+	                        		<select name="tip" class="form-control">
+									    <option value="adminBioskop">Admin bioskopa</option>
+									    <option value="adminFanZona">Admin fan zone</option>
+  									</select>
+	                    		</div>
+	                    		              
+	                    		<div id="divValidacija"></div>  
+	                    		                                                                 
+	                    		<div class="form-group">
+	                        		<div class="col-lg-offset-3 col-lg-9" style="margin-top: 25px">
+	                            		<input id="dugmeRegistrujAdmina" type="button" class="btn btn-info" style="float:right" value="Registruj"> 	
+	                            	</div>
+	                    		</div>
+	                		</form>     
+	            		</div>                     
+	        		</div>  
+	    		</div>
+
+			</div>	
+		<script type="text/javascript" src="scripts/registracijaBioskopa.js"></script>
+		<script type="text/javascript" src="scripts/registracijaAdmina.js"></script>
+		</body>
+		</html>		

@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ftn.model.Oglas;
+import com.ftn.repository.FanZonaRepozitorijum;
 import com.ftn.repository.OglasRepozitorijum;
+import com.ftn.service.FanZonaServis;
 import com.ftn.service.OglasServis;
 
 
@@ -17,6 +19,9 @@ public class OglasServisImpl implements OglasServis{
 
 	@Autowired
 	private OglasRepozitorijum oglasRepozitorijum;
+	
+	@Autowired
+	private FanZonaRepozitorijum fanZonaRepozitorijum;
 	
 	@Override
 	public Oglas findOne(Long id) {
@@ -30,6 +35,10 @@ public class OglasServisImpl implements OglasServis{
 
 	@Override
 	public Oglas save(Oglas oglas) {
+		if(oglas.getFanZona() == null){
+			oglas.setStatus(0);
+			oglas.setFanZona(fanZonaRepozitorijum.findOne((long) 1));
+		}
 		return oglasRepozitorijum.save(oglas);
 	}
 

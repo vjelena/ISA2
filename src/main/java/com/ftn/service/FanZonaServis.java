@@ -2,8 +2,11 @@ package com.ftn.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.ftn.model.FanZona;
 
+@Service
 public interface FanZonaServis {
 
 	FanZona findOne(Long id);

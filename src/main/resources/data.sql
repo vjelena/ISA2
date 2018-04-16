@@ -2,7 +2,7 @@ insert into adresa values (11, '67', 'Novi Sad', 'Dositejeva');
 insert into korisnik values(1, 1, '123456', 'petar@gmail.com' , 'Petar', '111', 'Petrovic', 0, 'obican', 11);
 
 insert into adresa values (12, '35', 'Beograd', 'Puskinova');
-insert into korisnik values(2, 1, '095346', 'marko@gmail.com' , 'Marko', '222', 'Markovic', 0, 'admin', 12);
+insert into korisnik values(2, 1, '095346', 'admin@gmail.com' , 'Marko', '222', 'Markovic', 0, 'sistem', 12);
 
 insert into adresa values (13, '49', 'Nis', 'Fruskogorska');
 insert into korisnik values(3, 1, '459245', 'nikola@gmail.com' , 'Nikola', '333', 'Nikolic', 0, 'obican', 13);
@@ -11,11 +11,11 @@ insert into adresa values (14, '147', 'Subotica', 'Kralja Aleksandra');
 insert into korisnik values(4, 1, '294850', 'milica@gmail.com' , 'Milica', '444', 'Milic', 0, 'obican', 14);
 
 insert into adresa values (15, '2', 'Kraljevo', 'Podunavskog odreda');
-insert into korisnik values(5, 1, '346964', 'nevena@gmail.com' , 'Nevena', '555', 'Jovic', 0, 'admin', 15);
+insert into korisnik values(5, 1, '346964', 'fanzona@gmail.com' , 'Nevena', '555', 'Jovic', 0, 'fanzona', 15);
 
 
 
-INSERT INTO adresa values (21,'Broj', 'grad', 'ulica');
+/*INSERT INTO adresa values (21,'Broj', 'grad', 'ulica');
 INSERT INTO clan values (3, 10, 5, 'zlatni');
 
 
@@ -58,6 +58,11 @@ INSERT INTO termin values (1, 120.0 , 1);
 
 INSERT INTO projekcija_termini values (1,1);
 
+*/
+insert into fan_zona(naziv) values ('Fan zona'); --samo jedna fan zona postoji id = 1
+insert into oglas(id, cena, datum, naziv, opis, slika, status, fan_zona_id) values (1, '100', '2018-11-10', 'Oglas 1', 'Opis oglasa 1', 'slika 1', 1, 1);
+insert into oglas(id, cena, datum, naziv, opis, slika, status, fan_zona_id) values (2, '350', '2018-07-08', 'Oglas 2', 'Opis oglasa 2', 'slika 2', 1, 1);
 
-insert into fan_zona(naziv) values ('jaslkjfa');
-insert into fan_zona(naziv) values ('stgtrgtrdgrt');
+insert into prodavnica(naziv) values ('Prodavnica');  --samo jedna prodavnica postoji id = 1
+insert into rekvizit(id, naziv, opis, slika, cena, prodavnica_id) values (1, 'Rekvizit 1', 'Opis rekvizita 1', 'slika 1', '33', 1);
+insert into rekvizit(id, naziv, opis, slika, cena, prodavnica_id) values (2, 'Rekvizit 2', 'Opis rekvizita 2', 'slika 2', '5', 1);

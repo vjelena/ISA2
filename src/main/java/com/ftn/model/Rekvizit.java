@@ -7,10 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Rekvizit implements Serializable{
@@ -22,10 +19,19 @@ public class Rekvizit implements Serializable{
 	@Column(nullable = false)
 	private String naziv;
 	
-	/*@OneToOne
-	@JsonIgnore
-	//@JsonManagedReference
-	private Oglas oglas;*/
+	@Column(nullable = false)
+	private String opis;
+	
+	@Column(nullable = false)
+	private String slika;
+	
+	@Column(nullable = false)
+	private String cena; 
+	
+	@ManyToOne(optional = false)
+	private Prodavnica prodavnica;
+	
+	//private Projekcija projekcija;
 	
 	public Rekvizit() {
 		
@@ -47,12 +53,35 @@ public class Rekvizit implements Serializable{
 		this.naziv = naziv;
 	}
 
-	/*public Oglas getOglas() {
-		return oglas;
+	public String getOpis() {
+		return opis;
 	}
 
-	public void setOglas(Oglas oglas) {
-		this.oglas = oglas;
-	}*/
-	
+	public void setOpis(String opis) {
+		this.opis = opis;
+	}
+
+	public Prodavnica getProdavnica() {
+		return prodavnica;
+	}
+
+	public void setProdavnica(Prodavnica prodavnica) {
+		this.prodavnica = prodavnica;
+	}
+
+	public String getSlika() {
+		return slika;
+	}
+
+	public void setSlika(String slika) {
+		this.slika = slika;
+	}
+
+	public String getCena() {
+		return cena;
+	}
+
+	public void setCena(String cena) {
+		this.cena = cena;
+	}
 }

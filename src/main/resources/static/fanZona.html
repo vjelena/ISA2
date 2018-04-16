@@ -2,29 +2,10 @@
 <html>
 <head>
 		<meta charset="UTF-8">
-		<title>Registrovani korisnici</title>
+		<title>Fan zona</title>
 		<link href="bootstrapB/css/bootstrap.css" rel="stylesheet" type="text/css"/>
 		<script src="bootstrapB/js/bootstrap.js" type="text/javascript"></script>
 		<script src="scripts/jquery-3.2.1.min.js"></script>		
-		
-		<script>
-		$(document).ready(function() {
-			$.ajax({
-				url: "http://localhost:1245/oglas/getOglasi"
-			}).then(function(data) {
-				for(i=0; i<data.length; i++) {
-					newRow = "<tr>"
-						+ "<td class=\"naziv\">" + data[i].naziv + "</td>"
-						+ "<td class=\"opis\">" + data[i].opis + "</td>"
-						+ "<td class=\"datum\">" + data[i].datum + "</td>"
-						+ "<td class=\"slika\">" + data[i].slika + "</td>"
-						+ "<td class=\"cena\">" + data[i].cena + "</td>"
-						+ "</tr>"
-					$("#tabelaOglasa").append(newRow)
-				}
-			});
-		});
-		</script>
 		
 </head>
 <body>
@@ -57,10 +38,14 @@
     					<th>Datum</th>
     					<th>Slika</th>
     					<th>Cena</th>
+    					<th></th>
+    					<th></th>
     				</tr>
 				</table>
 			</div>
 		</div>
+
+<script type="text/javascript" src="scripts/fanZona.js"></script>
 		
 </body>
 </html>
