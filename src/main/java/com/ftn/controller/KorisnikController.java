@@ -149,7 +149,8 @@ public class KorisnikController {
 	@RequestMapping(value = "/getTrenutnoAktivan", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public Korisnik getTrenutnoAktivan(HttpServletRequest request){
 		Korisnik k = (Korisnik)request.getSession().getAttribute("aktivanKorisnik");		
-		//System.out.println("\n\t\ttrenutno aktivan korisnik: " + k.getEmail() + "\n");
+		
+		System.out.println("\n\t\ttrenutno aktivan korisnik: " + k.getEmail() + "\n");
 		return k;
 	}
 	
@@ -169,6 +170,10 @@ public class KorisnikController {
 		listaPrijatelja.addAll(cijePrijateljeUzimam.getKomeSamJaPrijatelj());
 		
 		System.out.println("\n\t\tDuzina liste prijatelja: " + listaPrijatelja.size() + "\n");				
+		
+		cijePrijateljeUzimam.setMojiPrijatelji(listaPrijatelja); //moze bez... !!!
+		korisnikServis.save(cijePrijateljeUzimam); //moze bez... !!!
+		
 		return new ResponseEntity<>(listaPrijatelja, HttpStatus.OK);
 	}
 	
@@ -238,8 +243,10 @@ public class KorisnikController {
 		koJePoslaoZahtev.getZahteviZaPrijateljstvo().remove(koJePrimioZahtev);
 		
 		koJePrimioZahtev.getMojiPrijatelji().add(koJePoslaoZahtev);
+		koJePoslaoZahtev.getMojiPrijatelji().add(koJePrimioZahtev);
 		
-		korisnikRepository.save(koJePrimioZahtev);				
+		korisnikRepository.save(koJePrimioZahtev);
+		korisnikRepository.save(koJePoslaoZahtev);
 		return koJePrimioZahtev;		
 	}
 	
@@ -263,17 +270,13 @@ public class KorisnikController {
 	public ResponseEntity<List<Korisnik>> pretraziPrijatelje(@PathVariable String ime, @PathVariable String prezime, HttpServletRequest request){
 		Korisnik k = (Korisnik)request.getSession().getAttribute("aktivanKorisnik");
 		Korisnik cijePrijateljeUzimam = korisnikRepository.findById(k.getId());		
-
 		
 		if(ime.equals("nemaUnosa") && prezime.equals("nemaUnosa"))
 			return new ResponseEntity<>(cijePrijateljeUzimam.getMojiPrijatelji(), HttpStatus.OK);
-		
 		else if(!ime.equals("nemaUnosa") && prezime.equals("nemaUnosa"))
 			return new ResponseEntity<>(korisnikRepository.findByImeIgnoreCaseContaining(ime), HttpStatus.OK);
-		
 		else if(ime.equals("nemaUnosa") && !prezime.equals("nemaUnosa"))
-			return new ResponseEntity<>(korisnikRepository.findByPrezimeIgnoreCaseContaining(prezime), HttpStatus.OK);
-		
+			return new ResponseEntity<>(korisnikRepository.findByPrezimeIgnoreCaseContaining(prezime), HttpStatus.OK);		
 		else
 			return new ResponseEntity<>(korisnikRepository.findByImeIgnoreCaseContainingAndPrezimeIgnoreCaseContaining(ime, prezime), HttpStatus.OK);
 	}
