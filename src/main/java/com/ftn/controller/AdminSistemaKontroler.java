@@ -56,7 +56,7 @@ public class AdminSistemaKontroler {
 	@RequestMapping(method = RequestMethod.POST, value = "/dodajAdmina", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Korisnik> dodajAdmina(@RequestBody Korisnik korisnik) {
 		System.out.println(korisnik.toString());
-		Korisnik k = new Korisnik(korisnik.getEmail(), korisnik.getLozinka(), korisnik.getIme(), korisnik.getPrezime(), korisnik.getAdresa(), korisnik.getBrojTelefona(), korisnik.getUloga(), true, false);
+		Korisnik k = new Korisnik(korisnik.getEmail(), korisnik.getLozinka(), korisnik.getIme(), korisnik.getPrezime(), korisnik.getAdresa(), korisnik.getBrojTelefona(), korisnik.getUloga(), true, false, "zlatni");
 		
 		for(Korisnik kor : korisnikServis.findAll()) {
 			if(!kor.getEmail().equals(k.getEmail())) {

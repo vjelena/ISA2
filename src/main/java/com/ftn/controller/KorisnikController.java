@@ -60,7 +60,7 @@ public class KorisnikController {
 	//registracija korisnika
 	@RequestMapping(value = "/registracija", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Korisnik> registracija(@RequestBody Korisnik request) throws MailException, InterruptedException, MessagingException {		
-		Korisnik k = new Korisnik(request.getEmail(), request.getLozinka(), request.getIme(), request.getPrezime(), request.getAdresa(), request.getBrojTelefona(), request.getUloga(), request.isAktiviranNalogPrekoMejla(), request.isPrviPutSeUlogovao());
+		Korisnik k = new Korisnik(request.getEmail(), request.getLozinka(), request.getIme(), request.getPrezime(), request.getAdresa(), request.getBrojTelefona(), request.getUloga(), request.isAktiviranNalogPrekoMejla(), request.isPrviPutSeUlogovao(), request.getVrstaClana());
 							
 		for(Korisnik kor : korisnikServis.findAll()) {
 			if(!kor.getEmail().equals(k.getEmail())) {
@@ -68,6 +68,7 @@ public class KorisnikController {
 					k.setUloga("obican");
 					k.setAktiviranNalogPrekoMejla(false);
 					k.setPrviPutSeUlogovao(false);
+					k.setVrstaClana("nema pravo na popust"); //inicijalno: znaci da nema dovoljan broj bodova da bi mogao da postane bronzani clan
 					emailService.sendMail(k);
 					korisnikServis.save(k);
 					return new ResponseEntity<Korisnik>(k, HttpStatus.OK);

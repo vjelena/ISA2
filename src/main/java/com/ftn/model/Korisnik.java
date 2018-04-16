@@ -49,6 +49,9 @@ public class Korisnik implements Serializable{
 	@Column(nullable = false)
 	private boolean prviPutSeUlogovao;
 	
+	@Column(nullable = false)
+	private String vrstaClana;
+
 	//deo za prijatelje
 	@ManyToMany
 	@JoinTable(name = "mojiPrijatelji", joinColumns = @JoinColumn(name = "id_k1", nullable = false), inverseJoinColumns = @JoinColumn(name = "id_k2", nullable = false))
@@ -70,7 +73,7 @@ public class Korisnik implements Serializable{
 	}
 
 	public Korisnik(String email, String lozinka, String ime, String prezime, Adresa adresa,
-			String brojTelefona, String uloga, boolean aktiviranNalogPrekoMejla, boolean prviPutSeUlogovao) {
+			String brojTelefona, String uloga, boolean aktiviranNalogPrekoMejla, boolean prviPutSeUlogovao, String vrstaClana) {
 		super();
 		this.email = email;
 		this.lozinka = lozinka;
@@ -81,6 +84,7 @@ public class Korisnik implements Serializable{
 		this.uloga = uloga;
 		this.aktiviranNalogPrekoMejla = aktiviranNalogPrekoMejla;
 		this.prviPutSeUlogovao = prviPutSeUlogovao;
+		this.vrstaClana = vrstaClana;
 	}
 
 	public Long getId() {
@@ -161,6 +165,14 @@ public class Korisnik implements Serializable{
 
 	public void setPrviPutSeUlogovao(boolean prviPutSeUlogovao) {
 		this.prviPutSeUlogovao = prviPutSeUlogovao;
+	}
+	
+	public String getVrstaClana() {
+		return vrstaClana;
+	}
+
+	public void setVrstaClana(String vrstaClana) {
+		this.vrstaClana = vrstaClana;
 	}
 	
 	public List<Korisnik> getMojiPrijatelji() {

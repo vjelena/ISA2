@@ -34,17 +34,17 @@
 				</form>
 				<form class="form-horizontal">
 					<div class="text-center" style="padding-top:10px">
-				    	<input id="dugmeBioskopi" class="btn btn-info" type="button" value="Bioskopi">
+				    	<input id="dugmeBioskopi" class="btn btn-warning" type="button" value="Bioskopi">
 				    </div>
 				</form>
 				<form class="form-horizontal">
 					<div class="text-center" style="padding-top:10px">
-				    	<input id="dugmeIstorijaPoseta" class="btn btn-info" type="button" value="Istorija poseta">
+				    	<input id="dugmeIstorijaPoseta" class="btn btn-success" type="button" value="Istorija poseta">
 				    </div>
 				</form>
 				<form class="form-horizontal">
 					<div class="text-center" style="padding-top:10px">
-				    	<input id="dugmeRezervacija" class="btn btn-info" type="button" value="Rezervacija">
+				    	<input id="dugmeRezervacija" class="btn btn-danger" type="button" value="Rezervacija">
 				    </div>
 				</form>
 				<form class="form-horizontal">
@@ -106,14 +106,18 @@
 					var adresaKor = "<tr><th scope=\"col\">" + data.adresa.ulica + " " + data.adresa.broj + ", " + data.adresa.grad + "</th></tr>";
 					var emailKor = "<tr><th scope=\"col\">" + data.email + "</th></tr>";
 					var brojTelefonaKor = "<tr><th scope=\"col\">" + data.brojTelefona + "</th></tr>";
+					var prazanRed = "<tr><th scope=\"col\">&nbsp</th></tr>";
 					var ulogaKor = "<tr><th scope=\"col\">uloga: " + data.uloga + "</th></tr>";
+					var vrstaClana = "<tr><th scope=\"col\">vrsta clana: " + data.vrstaClana + "</th></tr>";
 					
 					$("#tabelaInformacijeOKorisniku").append(imeKor);
 					$("#tabelaInformacijeOKorisniku").append(prezimeKor);
 					$("#tabelaInformacijeOKorisniku").append(adresaKor);
 					$("#tabelaInformacijeOKorisniku").append(emailKor);
 					$("#tabelaInformacijeOKorisniku").append(brojTelefonaKor);
+					$("#tabelaInformacijeOKorisniku").append(prazanRed);
 					$("#tabelaInformacijeOKorisniku").append(ulogaKor);
+					$("#tabelaInformacijeOKorisniku").append(vrstaClana);
 				});
 								
 				
@@ -182,6 +186,11 @@
 			
 			$("#dugmeAzurirajPodatke").click(function(){
 				location.href = "http://localhost:8080/azurirajKorisnika.html"
+			});
+			
+			
+			$("#dugmeBioskopi").click(function(){
+				location.href = "http://localhost:8080/prikazBioskopa.html"
 			});
 			
 			
