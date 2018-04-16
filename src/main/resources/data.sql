@@ -23,6 +23,15 @@ insert into korisnik(id, aktiviran_nalog_preko_mejla, broj_poseta, broj_telefona
 values(6, 1, 16, '346964', 'adminbioskopa@gmail.com' , 'Nena', '666', 'Vidovic', 0, 'bioskop', 'zlatni', 16);
 
 
+insert into fan_zona(naziv) values ('Fan zona');
+insert into bioskop values (1, 'Jadran', 'Na repertoaru bioskopa Jadra mozete pogledati brojne popularne klasike.', 3.5, 11, 1);
+insert into bioskop values (2, 'Arena Cineplex', 'Pored redovnog filmskog repertoara, u Areni Cineplex se organizuju svecane premijere domacih filmova, kao i festivali FEST, Cinema City, Cinemania i Kids Fest.', 4.5, 12, 1);
+insert into bioskop values (3, 'Cinestar', 'Brend CineStar razvio se iz bioskopa kompanije Kieft Kieft Filmtheater GmbH, koja je, posle vise od cetiri decenije rada kao operater klasicnog bioskopa, još 1993. otvorila svoj prvi multipleks.', 4.0, 13, 1);
+
+
+insert into repertoar values (1, 1);
+insert into repertoar values (2, 2);
+
 
 
 /*INSERT INTO adresa(id, broj, grad, ulica) values (21,'Broj', 'grad', 'ulica');
@@ -32,12 +41,6 @@ INSERT INTO clan values (3, 10, 5, 'zlatni');
 INSERT INTO adresa(id, broj, grad, ulica) values (1, 'broj','Beograd', 'ulica');
 INSERT INTO adresa(id, broj, grad, ulica) values (2, '123','Novi Sad', 'Bulevar Osobodjenja');
 
-INSERT INTO bioskop values (1, 'Arena Cineplex', 'Pored redovnog filmskog repertoara, u Areni Cineplex se organizuju svecane premijere domacih filmova, kao i festivali FEST, Cinema City, Cinemania i Kids Fest.', 3.5, 1 ,1);
-INSERT INTO bioskop values (2, 'Cinestar ', 'Brend CineStar razvio se iz bioskopa kompanije Kieft Kieft Filmtheater GmbH, koja je, posle vise od cetiri decenije rada kao operater klasicnog bioskopa, još 1993. otvorila svoj prvi multipleks.', 4.0, 2,1);
-
-
-INSERT INTO repertoar values (1,1);
-INSERT INTO repertoar values (2,2);
 
 INSERT INTO glumac values (1,'Alicia','Vikander');
 INSERT INTO glumac values (2, 'Walton','Goggins');
@@ -58,11 +61,13 @@ INSERT INTO film_glumci values(2,3);
 INSERT INTO sala values(1 ,150,'konfg','sala1', 1);
 INSERT INTO sala values(2 ,100 ,'konfg','sala2', 2);
 
+
 INSERT INTO termin values (1,'01-05-2018 12:00');
 INSERT INTO termin values (2,'01-05-2018 17:00');
 INSERT INTO termin values (3,'02-05-2018 12:00');
 INSERT INTO termin values (4,'02-05-2018 17:00');
 INSERT INTO termin values (5,'17-05-2018 19:00');
+
 
 INSERT INTO projekcija values (1, 120.90, 1, 1, 1, 1);
 INSERT INTO projekcija values (2, 150.00, 2, 2, 2, 2);
@@ -77,6 +82,7 @@ INSERT INTO bioskop_lista_sala values (2 , 2);
 insert into fan_zona(naziv) values ('Fan zona'); --samo jedna fan zona postoji id = 1
 insert into oglas(id, cena, datum, naziv, opis, slika, status, fan_zona_id) values (1, '100', '2018-11-10', 'Oglas 1', 'Opis oglasa 1', 'slika 1', 1, 1);
 insert into oglas(id, cena, datum, naziv, opis, slika, status, fan_zona_id) values (2, '350', '2018-07-08', 'Oglas 2', 'Opis oglasa 2', 'slika 2', 1, 1);
+
 
 insert into prodavnica(naziv) values ('Prodavnica');  --samo jedna prodavnica postoji id = 1
 insert into rekvizit(id, naziv, opis, slika, cena, prodavnica_id) values (1, 'Rekvizit 1', 'Opis rekvizita 1', 'slika 1', '33', 1);
