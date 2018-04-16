@@ -50,6 +50,9 @@ public class Korisnik implements Serializable{
 	private boolean prviPutSeUlogovao;
 	
 	@Column(nullable = false)
+	private int brojPoseta; //za odredjivanje vrste clana
+	
+	@Column(nullable = false)
 	private String vrstaClana;
 
 	//deo za prijatelje
@@ -165,6 +168,14 @@ public class Korisnik implements Serializable{
 
 	public void setPrviPutSeUlogovao(boolean prviPutSeUlogovao) {
 		this.prviPutSeUlogovao = prviPutSeUlogovao;
+	}
+	
+	public int getBrojPoseta() {
+		return brojPoseta;
+	}
+
+	public void setBrojPoseta(int brojPoseta) {
+		this.brojPoseta = brojPoseta;
 	}
 	
 	public String getVrstaClana() {

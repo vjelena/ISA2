@@ -1,6 +1,7 @@
 package com.ftn.controller;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.mail.MessagingException;
@@ -34,6 +35,8 @@ public class KorisnikController {
 	
 	@Autowired
 	private EmailService emailService;
+	
+	public int kolikoSePutaUlogovao = 0;
 	
 	//preuzimanje korisnika sa zadatim id-em
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -98,7 +101,15 @@ public class KorisnikController {
 				if(k.isPrviPutSeUlogovao() == false) {
 					k.setPrviPutSeUlogovao(true);
 				}
+				
+				//za odredjivanje vrste clana na osnovu broja poseta (ovo odredjuje administrator sistema)
+				kolikoSePutaUlogovao = k.getBrojPoseta();
+				kolikoSePutaUlogovao++;
+				k.setBrojPoseta(kolikoSePutaUlogovao);
+				
 				request.getSession().setAttribute("aktivanKorisnik", k);
+				
+				korisnikServis.save(k);
 				return new ResponseEntity<Korisnik>(k, HttpStatus.OK);
 			}
 		} else {
@@ -266,5 +277,9 @@ public class KorisnikController {
 		else
 			return new ResponseEntity<>(korisnikRepository.findByImeIgnoreCaseContainingAndPrezimeIgnoreCaseContaining(ime, prezime), HttpStatus.OK);
 	}
+	
+	//TODO: sortiranje liste bioskopa
+	//TODO: sortiranje liste prijatelja
+	
 	
 }

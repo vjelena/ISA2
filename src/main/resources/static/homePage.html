@@ -33,28 +33,24 @@
 				    </div>
 				</form>
 				<form class="form-horizontal">
-					<div class="text-center" style="padding-top:10px">
-				    	<input id="dugmeBioskopi" class="btn btn-warning" type="button" value="Bioskopi">
+					<div class="btn-group-vertical" style="padding-top:35px">
+				    	<p class="font-weight-bold">Prijatelji:</p>
+				    	<input id="dugmePosaljiZahtevZaPrijateljstvo" class="btn btn-info" type="button" value="Posalji zahtev">
+				    	<input id="dugmePrihvatiOdbijZahtevZaPrijateljstvo" class="btn btn-info" type="button" value="Prihvati / odbij zahtev">
 				    </div>
 				</form>
 				<form class="form-horizontal">
-					<div class="text-center" style="padding-top:10px">
-				    	<input id="dugmeIstorijaPoseta" class="btn btn-success" type="button" value="Istorija poseta">
+					<div class="btn-group-vertical" style="padding-top:35px">
+						<p class="font-weight-bold">Bioskopi:</p>
+				    	<input id="dugmeBioskopi" class="btn btn-warning" type="button" value="Prikazi sve">
+				    	<input id="dugmeIstorijaPoseta" class="btn btn-warning" type="button" value="Istorija poseta">
 				    </div>
 				</form>
 				<form class="form-horizontal">
-					<div class="text-center" style="padding-top:10px">
-				    	<input id="dugmeRezervacija" class="btn btn-danger" type="button" value="Rezervacija">
-				    </div>
-				</form>
-				<form class="form-horizontal">
-					<div class="text-center" style="padding-top:10px">
-				    	<input id="dugmePosaljiZahtevZaPrijateljstvo" class="btn btn-info" type="button" value="Posalji zahtev za prijateljstvo">
-				    </div>
-				</form>
-				<form class="form-horizontal">
-					<div class="text-center" style="padding-top:10px">
-				    	<input id="dugmePrihvatiOdbijZahtevZaPrijateljstvo" class="btn btn-info" type="button" value="Prihvati/odbij zahtev za prijateljstvo">
+					<div class="btn-group-vertical" style="padding-top:35px">
+						<p class="font-weight-bold">Rezervacija mesta:</p>
+				    	<input id="dugmeRezervacija" class="btn btn-danger" type="button" value="Rezervisi">
+				    	<input id="dugmeOtkaziRezervaciju" class="btn btn-danger" type="button" value="Otkazi">
 				    </div>
 				</form>
 			</div>
@@ -85,7 +81,14 @@
 					<div class="form-group col-lg-2">
 						<div class="row">
 							<div class="form-group has-feedback">
-								<input id="dugmePretraziPrijatelje" type="button" class="btn btn-warning" style="float:right" onclick="pretraziPrijatelje()" value="Pretrazi">
+								<input id="dugmePretraziPrijatelje" type="button" class="btn btn-info" style="float:right" onclick="pretraziPrijatelje()" value="Pretrazi">
+							</div>
+						</div>
+					</div>
+					<div class="form-group col-lg-2">
+						<div class="row">
+							<div class="form-group">
+								<input id="dugmeSortirajPrijatelje" type="button" class="btn btn-info" style="float:right" value="Sortiraj prijatelje">
 							</div>
 						</div>
 					</div>
@@ -108,7 +111,8 @@
 					var brojTelefonaKor = "<tr><th scope=\"col\">" + data.brojTelefona + "</th></tr>";
 					var prazanRed = "<tr><th scope=\"col\">&nbsp</th></tr>";
 					var ulogaKor = "<tr><th scope=\"col\">uloga: " + data.uloga + "</th></tr>";
-					var vrstaClana = "<tr><th scope=\"col\">vrsta clana: " + data.vrstaClana + "</th></tr>";
+					var brojPosetaKor = "<tr><th scope=\"col\">broj poseta: " + data.brojPoseta + "</th></tr>";
+					var vrstaClanaKor = "<tr><th scope=\"col\">vrsta clana: " + data.vrstaClana + "</th></tr>";
 					
 					$("#tabelaInformacijeOKorisniku").append(imeKor);
 					$("#tabelaInformacijeOKorisniku").append(prezimeKor);
@@ -117,7 +121,8 @@
 					$("#tabelaInformacijeOKorisniku").append(brojTelefonaKor);
 					$("#tabelaInformacijeOKorisniku").append(prazanRed);
 					$("#tabelaInformacijeOKorisniku").append(ulogaKor);
-					$("#tabelaInformacijeOKorisniku").append(vrstaClana);
+					$("#tabelaInformacijeOKorisniku").append(brojPosetaKor);
+					$("#tabelaInformacijeOKorisniku").append(vrstaClanaKor);
 				});
 								
 				
@@ -132,6 +137,7 @@
 								$("#pretragaIme").hide();
 								$("#pretragaPrezime").hide();
 								$('#dugmePretraziPrijatelje').hide();
+								$("#dugmeSortirajPrijatelje").hide();
 								red = "Lista prijatelja je prazna.";
 								$("#prazno").append(red);
 							}else{
@@ -226,6 +232,8 @@
 							$("#prazno").show();
 							$("#pretragaIme").show();
 							$("#pretragaPrezime").show();
+							$("#dugmePretraziPrijatelje").show();
+							$("#dugmeSortirajPrijatelje").show();
 							$("#tabelaPrijatelji").show();
 						}else{
 							$("#prazno").hide();
@@ -246,6 +254,26 @@
 					}
 				});
 			}
+			
+			
+			$("#dugmeIstorijaPoseta").click(function(){
+				alert('Prikazivanje istorije poseta nije implementirano.')
+			});
+			
+			
+			$("#dugmeRezervacija").click(function(){
+				location.href = "http://localhost:8080/rezervacijaMesta.html"
+			});
+			
+			
+			$("#dugmeOtkaziRezervaciju").click(function(){
+				alert('Otkazivanje rezervacije nije implementirano.')
+			});
+			
+			
+			$("#dugmeSortirajPrijatelje").click(function(){
+				alert('Sortiranje prijatelja nije implementirano.')
+			});
 		</script>
 	</body>
 </html>
