@@ -27,9 +27,9 @@ public class Glumac implements Serializable{
 	@Column(nullable = false)
 	private String prezime;
 	
-	@ManyToMany
+/*	@ManyToMany
 	@JsonBackReference
-	private Set<Projekcija> projekcije;
+	private Set<Film> filmovi;*/
 	
 	public Glumac() {
 		
@@ -59,6 +59,7 @@ public class Glumac implements Serializable{
 		this.prezime = prezime;
 	}
 
+	
 	/*public Set<Projekcija> getProjekcije() {
 		return projekcije;
 	}

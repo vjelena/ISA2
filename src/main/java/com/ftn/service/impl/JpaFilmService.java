@@ -1,5 +1,7 @@
 package com.ftn.service.impl;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,10 @@ public class JpaFilmService implements FilmService{
 	@Override
 	public Film kreirajFilm(Film film) {
 		return filmRepository.save(film);
+	}
+
+	public List<Film> nadjiSveFilmove() {
+		return filmRepository.findAll();
 	}
 
 }

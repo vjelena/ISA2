@@ -30,7 +30,7 @@ public class Repertoar implements Serializable{
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "repertoar")
 	//@JsonIgnore
-	@JsonManagedReference
+	//@JsonManagedReference
 	private Set<Projekcija> projekcije;
 	
 	public Repertoar() {

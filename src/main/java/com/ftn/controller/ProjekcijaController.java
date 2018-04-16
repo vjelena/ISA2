@@ -34,7 +34,7 @@ public class ProjekcijaController {
 		if (projekcija == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		System.out.println("Bice prikazan: " + projekcija.getNaziv());
+		System.out.println("Bice prikazan: " + projekcija.getCena());
 		return new ResponseEntity<>(projekcija, HttpStatus.OK);
 	}
 	

@@ -36,14 +36,8 @@ public class ProjekcijaDTOtoProjekcija implements Converter<ProjekcijaDTO, Proje
 		Projekcija projekcija = new Projekcija();
 		
 		projekcija.setCena(source.getCena());
-		projekcija.setNaziv(source.getNaziv());
-		projekcija.setOcena(source.getOcena());
-		projekcija.setOpis(source.getOpis());
-		projekcija.setReditelj(source.getReditelj());
+		
 		projekcija.setRepertoar(bioskop.getRepertoar());
-		projekcija.setSlika(source.getSlika());
-		projekcija.setTrajanje(source.getTrajanje());
-		projekcija.setZanr(source.getZanr());
 		
 		return projekcija;
 	}

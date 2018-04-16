@@ -42,8 +42,4 @@ public class Termin implements Serializable{
 		this.id = id;
 	}
 
-	
-
-	
-
 }

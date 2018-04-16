@@ -26,7 +26,7 @@ public class Sala implements Serializable{
 	private Long id;
 	
 	@Column(nullable = false)
-	private int brojSale;
+	private String nazivSale;
 	
 	@Column(nullable = false)
 	private int brojMesta;
@@ -34,21 +34,9 @@ public class Sala implements Serializable{
 	@Column(nullable = true)
 	private String konfiguracija;
 	
-	public String getKonfiguracija() {
-		return konfiguracija;
-	}
-
-	public void setKonfiguracija(String konfiguracija) {
-		this.konfiguracija = konfiguracija;
-	}
-
 	@ManyToOne(optional = false)
 	@JsonBackReference
 	private Bioskop bioskop;
-	
-	//@OneToOne
-	//@JsonBackReference
-	//private Projekcija projekcija;
 		
 	@JsonIgnore
 	//@JsonManagedReference
@@ -68,12 +56,14 @@ public class Sala implements Serializable{
 		this.id = id;
 	}
 
-	public int getBrojSale() {
-		return brojSale;
+	
+
+	public String getNazivSale() {
+		return nazivSale;
 	}
 
-	public void setBrojSale(int brojSale) {
-		this.brojSale = brojSale;
+	public void setNazivSale(String nazivSale) {
+		this.nazivSale = nazivSale;
 	}
 
 	public int getBrojMesta() {
@@ -98,6 +88,13 @@ public class Sala implements Serializable{
 
 	public void setListaSegmenata(Set<Segment> listaSegmenata) {
 		this.listaSegmenata = listaSegmenata;
+	}
+	public String getKonfiguracija() {
+		return konfiguracija;
+	}
+
+	public void setKonfiguracija(String konfiguracija) {
+		this.konfiguracija = konfiguracija;
 	}
 	
 }

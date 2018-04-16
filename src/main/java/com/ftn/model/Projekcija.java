@@ -2,7 +2,6 @@ package com.ftn.model;
 
 import java.io.Serializable;
 import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,7 +13,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -27,43 +25,20 @@ public class Projekcija implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
-	@Column(nullable = false)
-	private String naziv;
 	
-	@Column(nullable = false)
-	private String zanr;
-	
-	@Column(nullable = false)
-	private String reditelj;
-	
-	@Column(nullable = false)
-	private String opis;
-	
-	@Column(nullable = false)
-	private String slika;
-	
-	@Column(nullable = false)
-	private int trajanje;
-	
-	@Column(nullable = false)
-	private float ocena;
+	@OneToOne
+	private Film film;
 	
 	@Column(nullable = false)
 	private float cena;
 	
 	//@JsonIgnore
-	@OneToOne
+	@ManyToOne
 	private Sala sala;     
 	
 	//@JsonIgnore
-	@OneToOne
+	@ManyToOne
 	private Termin termin;
-	
-	@ManyToMany
-	//@JsonIgnore
-	//@JsonManagedReference
-	private Set<Glumac> glumci;
 	
 	//@JsonIgnore
 	@ManyToOne(optional = false)
@@ -90,69 +65,6 @@ public class Projekcija implements Serializable{
 		this.id = id;
 	}
 
-	public String getNaziv() {
-		return naziv;
-	}
-
-	public void setNaziv(String naziv) {
-		this.naziv = naziv;
-	}
-
-	public String getZanr() {
-		return zanr;
-	}
-
-	public void setZanr(String zanr) {
-		this.zanr = zanr;
-	}
-
-	public String getReditelj() {
-		return reditelj;
-	}
-
-	public void setReditelj(String reditelj) {
-		this.reditelj = reditelj;
-	}
-
-	public String getOpis() {
-		return opis;
-	}
-
-	public void setOpis(String opis) {
-		this.opis = opis;
-	}
-
-	public Set<Glumac> getGlumci() {
-		return glumci;
-	}
-
-	public void setGlumci(Set<Glumac> glumci) {
-		this.glumci = glumci;
-	}
-
-	public String getSlika() {
-		return slika;
-	}
-
-	public void setSlika(String slika) {
-		this.slika = slika;
-	}
-
-	public int getTrajanje() {
-		return trajanje;
-	}
-
-	public void setTrajanje(int trajanje) {
-		this.trajanje = trajanje;
-	}
-
-	public float getOcena() {
-		return ocena;
-	}
-
-	public void setOcena(float ocena) {
-		this.ocena = ocena;
-	}
 
 	public float getCena() {
 		return cena;
@@ -178,7 +90,4 @@ public class Projekcija implements Serializable{
 		this.termin = termin;
 	}
 
-
-	
-	
 }

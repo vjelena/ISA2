@@ -1,31 +1,30 @@
 package com.ftn.DTO;
 
-import javax.persistence.Column;
 
 public class ProjekcijaDTO {
 	
-	@Column(nullable = false)
+	
 	private String naziv;
 	
-	@Column(nullable = false)
+	
 	private String zanr;
 	
-	@Column(nullable = false)
+
 	private String reditelj;
 	
-	@Column(nullable = false)
+	
 	private String opis;
 	
-	@Column(nullable = false)
+
 	private String slika;
 	
-	@Column(nullable = false)
+	
 	private int trajanje;
 	
-	@Column(nullable = false)
+	
 	private float ocena;
 	
-	@Column(nullable = false)
+	
 	private float cena;
 	
 	private String bioskopId;

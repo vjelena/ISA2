@@ -7,24 +7,46 @@
 <link href="bootstrapB/css/bootstrap.css" rel="stylesheet" type="text/css"/>
 <script src="bootstrapB/js/bootstrap.js" type="text/javascript"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
-
 </head>
 <body>
+
 <script>
+	$.urlParam = function(name){
+			 var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+				if (results==null){
+				    return null;
+						}
+				else{
+					 return decodeURI(results[1]) || 0;
+					}
+			};
+		var idBioskopa = $.urlParam('idBioskopa');
+</script>
 
-
-
-						$.urlParam = function(name){
-						    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-						    if (results==null){
-						       return null;
-						    }
-						    else{
-						       return decodeURI(results[1]) || 0;
-						    }
-						};
-						var idBioskopa = $.urlParam('idBioskopa');
+<script>
+$(document).ready(
+		function() {
+			$.ajax({
+				url : "http://localhost:8080/film/getFilmovi"
+			}).then(
+					function(data) {
+						console.log('Filmovi: ' + JSON.stringify(data));
+						var listaFilmovaDiv = document.getElementById("listaFilmova");
+						
+						var selectList = document.createElement("select");
+						selectList.id = "listaFilmovaSelect";
+						listaFilmovaDiv.appendChild(selectList);
+						for (i = 0; i < data.length; i++) {
+							
+							var option = document.createElement("option");
+						    option.value = data[i].id;
+						    option.text = data[i].naziv;
+						    selectList.appendChild(option);
+							
+						}
+						
+					});
+		});
 </script>
 
 		<div class="container">
@@ -33,6 +55,8 @@
             		<div class="panel-heading">
                 		<div class="panel-title text-center">Nova projekcija</div>
             		</div>
+            		
+            		
             		  
             		<div class="panel-body" style="padding-top:30px">
                 		<form id="formaNovaProjekcija" class="form-horizontal" accept-charset="utf-8" >
@@ -41,54 +65,12 @@
 							$('#formaNovaProjekcija').append('<input type="hidden" name="idBioskopa" value="' + idBioskopa + '" />');
 						</script>
 						
-						<div id="idBioskopaDiv">
-							                                      
-                    	</div>		
-                    	
-        
-                    		
-                    		<div class="input-group" style="margin-bottom: 25px">
-                        		<span class="input-group-addon"><i class="glyphicon glyphicon-text-background"></i></span>
-                        		<input type="text" class="form-control" name="naziv" placeholder="Naziv">                                        
-                    			<div id="divNaziv" style="float:right"></div>
-                    		</div>
-                    		
-                    		<div class="input-group" style="margin-bottom: 25px">
-                        		<span class="input-group-addon"><i class="glyphicon glyphicon-text-background"></i></span>
-                        		<input type="text" class="form-control" name="zanr" placeholder="Zanr">
-                        		<div id="divZanr" style="float:right"></div>
-                    		</div> 
-                    		
-                    		<div class="input-group" style="margin-bottom: 25px">
-                        		<span class="input-group-addon"><i class="glyphicon glyphicon-text-background"></i></span>
-                        		<input type="text" class="form-control" name="reditelj" placeholder="Reditelj">
-                        		<div id="divReditelj" style="float:right"></div>
-                    		</div> 
-                    		     
-                    		<div class="input-group" style="margin-bottom: 25px">
-                        		<span class="input-group-addon"><i class="glyphicon glyphicon-text-background"></i></span>
-                        		<input type="text" class="form-control" name="opis" placeholder="Opis">
-                        		<div id="divOpis" style="float:right"></div>
-                    		</div> 
-                    		
-                    		<div class="input-group" style="margin-bottom: 25px">
-                        		<span class="input-group-addon"><i class="glyphicon glyphicon-picture"></i></span>
-                        		<input type="file" class="form-control" name="slika" placeholder="Slika">
-                        		<div id="divSlika" style="float:right"></div>
-                    		</div> 
-                    		
-                    		<div class="input-group" style="margin-bottom: 25px">
-                        		<span class="input-group-addon"><i class="glyphicon glyphicon-text-background"></i></span>
-                        		<input type="text" class="form-control" name="trajanje" placeholder="Trajanje">
-                        		<div id="divTrajanje" style="float:right"></div>
-                    		</div> 
-                    		
-                    		<div class="input-group" style="margin-bottom: 25px">
-                        		<span class="input-group-addon"><i class="glyphicon glyphicon-text-background"></i></span>
-                        		<input type="text" class="form-control" name="ocena" placeholder="Ocena">
-                        		<div id="divOcena" style="float:right"></div>
-                    		</div> 
-                    		           
+						<div id="idBioskopaDiv"> </div>		
+						
+							<div>
+            					<div id="listaFilmova"  style="margin-bottom: 25px"></div>
+            				</div>           
+							           
                     		<div class="input-group" style="margin-bottom: 25px">
                         		<span class="input-group-addon"><i class="glyphicon glyphicon-eur"></i></span>
                         		<input type="text" class="form-control" name="cena" placeholder="Cena">
@@ -114,15 +96,12 @@
 <script type="text/javascript">
 $("#btnDodaj").click(function(){
 	var idBioskopa = $.urlParam('idBioskopa');
+	var idFilma =  $('#listaFilmovaSelect').val();
+	alert("Id filma: " + idFilma);
+	return;
 	
 	formData = JSON.stringify({
-        naziv:$("#formaNovaProjekcija [name='naziv']").val(),
-        zanr:$("#formaNovaProjekcija [name='zanr']").val(),
-        reditelj:$("#formaNovaProjekcija [name='reditelj']").val(),
-        opis:$("#formaNovaProjekcija [name='opis']").val(),
-        slika:$("#formaNovaProjekcija [name='slika']").val(),
-        trajanje:$("#formaNovaProjekcija [name='trajanje']").val(),
-        ocena:$("#formaNovaProjekcija [name='ocena']").val(),
+     
         cena:$("#formaNovaProjekcija [name='cena']").val(),
         bioskopId: idBioskopa
     });
@@ -149,9 +128,9 @@ $("#btnDodaj").click(function(){
 });
 
 
-$(document).ready(function(){
+/* $(document).ready(function(){
 	$(".form_datetime").datetimepicker({format: 'yyyy-mm-dd hh:ii'});
-});
+}); */
 
 </script>
 </body>

@@ -2,6 +2,7 @@ package com.ftn.controller;
 
 import java.util.List;
 
+import org.apache.tomcat.jni.BIOCallback;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.ftn.DTO.BioskopDTO;
 import com.ftn.DTO.ProjekcijaDTO;
 import com.ftn.DTOconverter.ProjekcijaDTOtoProjekcija;
+import com.ftn.model.Adresa;
 import com.ftn.model.Bioskop;
 import com.ftn.model.Korisnik;
 import com.ftn.model.Oglas;
@@ -100,12 +102,17 @@ public class PrikazBioskopaController {
 	
 	
 	@RequestMapping(value = "izmjeniBioskop/{id}",method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-		public ResponseEntity<Bioskop> izmjeniBioskop(@RequestBody BioskopDTO bioskopDTO) {
+		public ResponseEntity<Bioskop> izmjeniBioskop(@RequestBody BioskopDTO bioskopDTO,@PathVariable Long id) {
 		System.out.println("Bioskoppppppppppppp:" + bioskopDTO);
+		Bioskop bioskop = jpaBioskopService.nadjiJedanBioskop(Long.toString(id));
+			bioskop.setNaziv(bioskopDTO.getNaziv());
+			bioskop.setOpis(bioskopDTO.getOpis());
 			
+			Adresa adresa = new Adresa(bioskopDTO.getUlica(), bioskopDTO.getBroj(), bioskopDTO.getGrad());
+			bioskop.setAdresa(adresa);
 			
-		
-			return new ResponseEntity<>(new Bioskop(), HttpStatus.OK);
+			jpaBioskopService.save(bioskop);
+			return new ResponseEntity<>(bioskop, HttpStatus.OK);
 		}
 	
 	

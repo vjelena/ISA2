@@ -1,10 +1,14 @@
 package com.ftn.model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 
 @Entity
@@ -34,6 +38,9 @@ public class Film {
 	
 	@Column(nullable = false)
 	private float ocena;
+	
+	@ManyToMany
+	private Set<Glumac> glumci;
 	
 	
 	public Film() {
@@ -95,6 +102,26 @@ public class Film {
 
 	public void setOcena(float ocena) {
 		this.ocena = ocena;
+	}
+
+
+	public Long getId() {
+		return id;
+	}
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
+	public Set<Glumac> getGlumci() {
+		return glumci;
+	}
+
+
+	public void setGlumci(Set<Glumac> glumci) {
+		this.glumci = glumci;
 	}
 
 	

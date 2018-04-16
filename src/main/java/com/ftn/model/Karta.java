@@ -22,6 +22,7 @@ public class Karta implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	
 	@Column(nullable = false)
 	private Date datum;
 	

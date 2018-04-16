@@ -1,7 +1,6 @@
 package com.ftn.DTO;
 
-import com.ftn.model.Adresa;
-import com.ftn.model.Repertoar;
+
 
 public class BioskopDTO {
 

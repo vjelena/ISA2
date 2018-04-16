@@ -28,6 +28,13 @@ public class FilmController {
 	@Autowired
 	private FilmService filmService;
 	
+
+	@RequestMapping(value = "/getFilmovi", method = RequestMethod.GET)
+	public ResponseEntity<List<Film>> prikaziBioskope() {
+		List<Film> filmovi = jpaFilmService.nadjiSveFilmove();
+		return new ResponseEntity<>(filmovi, HttpStatus.OK);
+	}
+	
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/dodajFilm", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Film> dodajBioskop(@RequestBody Film film) {
