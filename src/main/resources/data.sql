@@ -17,7 +17,7 @@ insert into adresa values (16, '68', 'Novi Sad', 'Cirpanova');
 insert into korisnik values(6, 1, '346964', 'adminbioskopa@gmail.com' , 'Nena', '666', 'Vidovic', 0, 'bioskop', 16);
 
 
-INSERT INTO adresa values (21,'Broj', 'grad', 'ulica');
+/*INSERT INTO adresa values (21,'Broj', 'grad', 'ulica');
 INSERT INTO clan values (3, 10, 5, 'zlatni');
 
 
@@ -70,3 +70,4 @@ insert into oglas(id, cena, datum, naziv, opis, slika, status, fan_zona_id) valu
 insert into prodavnica(naziv) values ('Prodavnica');  --samo jedna prodavnica postoji id = 1
 insert into rekvizit(id, naziv, opis, slika, cena, prodavnica_id) values (1, 'Rekvizit 1', 'Opis rekvizita 1', 'slika 1', '33', 1);
 insert into rekvizit(id, naziv, opis, slika, cena, prodavnica_id) values (2, 'Rekvizit 2', 'Opis rekvizita 2', 'slika 2', '5', 1);
+*/

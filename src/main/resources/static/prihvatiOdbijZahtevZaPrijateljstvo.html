@@ -46,8 +46,6 @@
 				$.ajax({
 					url : "http://localhost:8080/korisnik/getZahteviZaPrijateljstvo"
 				}).then(function(data){
-					alert('getZahteviZaPrijateljstvo')
-					
 					if(data.length == 0) {
 						$("#tabelaPrijateljiNaCekanju").hide();
 						red = "Nemate zahteva za prijateljstvo.";

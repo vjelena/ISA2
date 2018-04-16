@@ -35,6 +35,15 @@ public class KorisnikController {
 	@Autowired
 	private EmailService emailService;
 	
+	//preuzimanje korisnika sa zadatim id-em
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public ResponseEntity<Korisnik> getKorisnik(@PathVariable Long id) {
+		Korisnik korisnik = korisnikServis.findOne(id);
+		if (korisnik == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(korisnik, HttpStatus.OK);
+	}
 	
 	//preuzimanje svih korisnika
 	@RequestMapping(value="getKorisnici", method = RequestMethod.GET)
@@ -237,29 +246,24 @@ public class KorisnikController {
 		return koJePoslaoZahtev;		
 	}
 	
+	//pretraga prijatelja
+	@RequestMapping(value = "/pretraziPrijatelje/{ime}/{prezime}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Korisnik>> pretraziPrijatelje(@PathVariable String ime, @PathVariable String prezime, HttpServletRequest request){
+		Korisnik k = (Korisnik)request.getSession().getAttribute("aktivanKorisnik");
+		Korisnik cijePrijateljeUzimam = korisnikRepository.findById(k.getId());		
+
+		
+		if(ime.equals("nemaUnosa") && prezime.equals("nemaUnosa"))
+			return new ResponseEntity<>(cijePrijateljeUzimam.getMojiPrijatelji(), HttpStatus.OK);
+		
+		else if(!ime.equals("nemaUnosa") && prezime.equals("nemaUnosa"))
+			return new ResponseEntity<>(korisnikRepository.findByImeIgnoreCaseContaining(ime), HttpStatus.OK);
+		
+		else if(ime.equals("nemaUnosa") && !prezime.equals("nemaUnosa"))
+			return new ResponseEntity<>(korisnikRepository.findByPrezimeIgnoreCaseContaining(prezime), HttpStatus.OK);
+		
+		else
+			return new ResponseEntity<>(korisnikRepository.findByImeIgnoreCaseContainingAndPrezimeIgnoreCaseContaining(ime, prezime), HttpStatus.OK);
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	/*@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<Korisnik> getKorisnik(@PathVariable Long id) {
-		Korisnik korisnik = korisnikServis.findOne(id);
-		if (korisnik == null) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-		return new ResponseEntity<>(korisnik, HttpStatus.OK);
-	}*/
-	
-	
-	/*@RequestMapping(value="/search", method=RequestMethod.POST, consumes="application/json")
-	public ResponseEntity<List<Korisnik>> search(@RequestBody Korisnik korisnik) {
-		System.out.println(korisnik.getIme() + "  " + korisnik.getPrezime());
-		List<Korisnik> ret = korisnikServis.search(korisnik.getIme(), korisnik.getPrezime());
-		System.out.println(ret);
-		return new ResponseEntity<>(ret, HttpStatus.OK);
-	}*/
 }

@@ -65,30 +65,33 @@
 			
 			<div class="form-group col-lg-8" id="tabDinamickiPrikazPrijatelja">
 				<div class="tabcontent" style="padding-top: 20px">
-					<div class="form-group col-lg-5" id="tabPretragaIme">
+					<div class="form-group col-lg-4">
 						<div id="pretragaIme" class="row">
-							<form action="/pretragaPrijateljaIme" class="search-form">
-								<div class="form-group has-feedback">
-									<input type="text" class="form-control"
-										id="pretragaPrijateljaIme" placeholder="Pretrazi prijatelje po imenu"><span
-										class="glyphicon glyphicon-search form-control-feedback"></span>
-								</div>
-							</form>
+							<div class="form-group has-feedback">
+								<input type="text" class="form-control" id="pretraziPrijateljeIme" placeholder="Pretrazi prijatelje po imenu">
+								<span class="glyphicon glyphicon-search form-control-feedback"></span>
+							</div>
 						</div>
 					</div>
 					<div class="form-group col-lg-1" id="tabIzmedju"></div>
-					<div class="form-group col-lg-5" id="tabPretragaPrezime">
+					<div class="form-group col-lg-4">
 						<div id="pretragaPrezime" class="row">
-							<form action="/pretragaPrijateljaIme" class="search-form">
-								<div class="form-group has-feedback">
-									<input type="text" class="form-control"
-										id="pretragaPrijateljaIme" placeholder="Pretrazi prijatelje po prezimenu"><span
-										class="glyphicon glyphicon-search form-control-feedback"></span>
-								</div>
-							</form>
+							<div class="form-group has-feedback">
+								<input type="text" class="form-control" id="pretraziPrijateljePrezime" placeholder="Pretrazi prijatelje po prezimenu">
+								<span class="glyphicon glyphicon-search form-control-feedback"></span>
+							</div>
 						</div>
 					</div>
-					<h4><span id="prazno" class="row"></span></h4>
+					<div class="form-group col-lg-2">
+						<div class="row">
+							<div class="form-group has-feedback">
+								<input id="dugmePretraziPrijatelje" type="button" class="btn btn-warning" style="float:right" onclick="pretraziPrijatelje()" value="Pretrazi">
+							</div>
+						</div>
+					</div>
+					<div class="form-group col-lg-6">
+						<h5><span id="prazno" class="row"></span></h5>
+					</div>
 				</div>
 				<table id="tabelaPrijatelji" class="table table-hover table-bordered"></table>				
 			</div>			
@@ -124,6 +127,7 @@
 							if(data.length == 0){
 								$("#pretragaIme").hide();
 								$("#pretragaPrezime").hide();
+								$('#dugmePretraziPrijatelje').hide();
 								red = "Lista prijatelja je prazna.";
 								$("#prazno").append(red);
 							}else{
@@ -189,6 +193,50 @@
 			$("#dugmePrihvatiOdbijZahtevZaPrijateljstvo").click(function(){
 				location.href = "http://localhost:8080/prihvatiOdbijZahtevZaPrijateljstvo.html"
 			});
+			
+			
+			function pretraziPrijatelje(){
+				var ime = $("#pretraziPrijateljeIme").val();
+				var prezime = $("#pretraziPrijateljePrezime").val();
+
+				if(ime == ""){
+					ime = "nemaUnosa";
+				}
+				if(prezime == ""){
+					prezime = "nemaUnosa";
+				}
+				
+				$.ajax({	
+				url: "korisnik/pretraziPrijatelje/" + ime + "/" + prezime,
+				type: "GET",
+				success: function(data){
+						if(data.length == 0){
+							$("#prazno").empty();
+							red = "Nema rezultata pretrage.<br/>Prikazana je lista svih Vasih prijatelja:";
+							$("#prazno").append(red);
+							$("#prazno").show();
+							$("#pretragaIme").show();
+							$("#pretragaPrezime").show();
+							$("#tabelaPrijatelji").show();
+						}else{
+							$("#prazno").hide();
+							$("#tabelaPrijatelji").empty();
+							$("#tabelaPrijatelji").append("<thead class=\"thead-dark\"><tr><th scope=\"col\" class=\"text-center\">Ime</th><th scope=\"col\" class=\"text-center\">Prezime</th><th scope=\"col\" class=\"text-center\">E-mail adresa</th><th></th></tr></thead><tbody>");
+							for(i = 0; i < data.length; i++) {
+								noviRed =  "<tr><td>"+ data[i].ime 
+										+ "</td><td>" + data[i].prezime
+										+ "</td><td>" + data[i].email
+										+ "</td><td><img src=\"slike/obrisi.jpg\" height=\"20\" width=\"20\"/><input type=\"button\" class=\"btn btn-link\" style=\"float:right\" value =\"Izbrisi prijatelja\" onclick =\"izbrisiPrijatelja(" + data[i].id + ")\"/></td>"
+								$("#tabelaPrijatelji").append(noviRed);
+							}
+							$("#tabelaPrijatelji").append("</tbody>");
+						}
+				 	},
+				 	error: function(data){
+						alert('GRESKA PRILIKOM PRETRAGE PRIJATELJA!!!')
+					}
+				});
+			}
 		</script>
 	</body>
 </html>
