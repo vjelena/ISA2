@@ -62,11 +62,12 @@ public class Korisnik implements Serializable{
 	private List<Korisnik> mojiPrijatelji;
 
 	@ManyToMany/*(mappedBy = "komeSamJaPrijatelj")*/
+	@JoinTable(name = "komeSamJaPrijatelj", joinColumns = @JoinColumn(name = "komeSamJaPrijatelj", nullable = false), inverseJoinColumns = @JoinColumn(name = "koJeMeniPrijatelj", nullable = false))
 	@JsonIgnore
 	private List<Korisnik> komeSamJaPrijatelj;
 
 	@ManyToMany
-	@JoinTable(name = "zahteviZaPrijateljstvo", joinColumns = @JoinColumn(name = "koJePoslaoZahtev", nullable = false), inverseJoinColumns = @JoinColumn(name = "koJePrimioZahtev", nullable = false))
+	@JoinTable(name = "zahteviZaPrijateljstvo", joinColumns = @JoinColumn(name = "koJePrimioZahtev", nullable = false), inverseJoinColumns = @JoinColumn(name = "koJePoslaoZahtev", nullable = false))
 	@JsonIgnore
 	private List<Korisnik> zahteviZaPrijateljstvo;
 	
