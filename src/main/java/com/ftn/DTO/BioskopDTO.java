@@ -5,7 +5,7 @@ import com.ftn.model.Repertoar;
 
 public class BioskopDTO {
 
-	private int id;
+	private Long id;
 	private String naziv;
 	private String opis;
 	private String grad;
@@ -30,10 +30,10 @@ public class BioskopDTO {
 	public void setBroj(String broj) {
 		this.broj = broj;
 	}
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getNaziv() {
@@ -51,7 +51,7 @@ public class BioskopDTO {
 	
 	@Override
 	public String toString() {
-		return this.broj + " " + this.grad + " " + this.naziv + " " + this.opis;
+		return this.grad + " " + this.ulica + " " + this.broj + " " + this.naziv + " " + this.opis;
 	}
 		
 }

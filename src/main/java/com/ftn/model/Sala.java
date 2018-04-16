@@ -9,8 +9,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -44,9 +46,9 @@ public class Sala implements Serializable{
 	@JsonBackReference
 	private Bioskop bioskop;
 	
-	@ManyToOne(optional = false)
-	@JsonBackReference
-	private Projekcija projekcija;
+	//@OneToOne
+	//@JsonBackReference
+	//private Projekcija projekcija;
 		
 	@JsonIgnore
 	//@JsonManagedReference

@@ -13,16 +13,14 @@
 					url : "http://localhost:8080/bioskopi/prikaziBioskope"
 				}).then(
 						function(data) {
-							console.log("Prikaz podataka za bioskop...");
 							for (i = 0; i < data.length; i++) {
-								//console.log('Id bioskopa: ' + data[i].id + " Naziv: " + data[i].naziv);
-								//console.log('<a class=\"bioskopi\" href=\"\" id=\"" + data[i].id + "\" naziv=\""+data[i].naziv+"\">"+ data[i].naziv + "</a>');
 								newRow = "<tr><td><a class=\"bioskopi\" href=\"\" id=\"" + data[i].id + "\" naziv=\""+data[i].naziv+"\">"+ data[i].naziv + "</a></td>"
 										+ "<td class=\"adresa\">"+ data[i].adresa.ulica + " "+ data[i].adresa.broj + "</td>"
 										+ "<td class=\"opis\">" + data[i].opis+ "</td>"
 										+ "<td class=\"prosecnaOcena\">"+ data[i].prosecnaOcena + "</td>"
 								$("#dataTable").append(newRow)
 							}
+							
 						});
 			});
 	
@@ -49,6 +47,7 @@
 	</head>
 
 <body>
+<div id="rootDiv">
 	<div class="row">
 		<div class="col-lg-12 col-lg-8"></div>
 		<div class="col-lg-6 col-lg-3">
@@ -86,6 +85,6 @@
 			</table>
 		</div>
 	</div>
-	
+</div>
 </body>
 </html>

@@ -1,6 +1,7 @@
 package com.ftn.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -10,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -21,15 +24,11 @@ public class Termin implements Serializable{
 	private Long id;
 	
 	@Column(nullable = false)
-	private float cena;
+	private String vreme;
 	
-	@ManyToMany
-	@JsonBackReference
-	private Set<Vreme> vreme;
-	
-	@ManyToOne(optional = false)
-	@JsonBackReference
-	private Projekcija projekcija;
+//	@OneToOne
+//	@JsonBackReference
+//	private Projekcija projekcija;
 	
 	public Termin() {
 		
@@ -43,20 +42,8 @@ public class Termin implements Serializable{
 		this.id = id;
 	}
 
-	public float getCena() {
-		return cena;
-	}
+	
 
-	public void setCena(float cena) {
-		this.cena = cena;
-	}
-
-	public Set<Vreme> getVreme() {
-		return vreme;
-	}
-
-	public void setVreme(Set<Vreme> vreme) {
-		this.vreme = vreme;
-	}
+	
 
 }

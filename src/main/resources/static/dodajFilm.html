@@ -11,42 +11,17 @@
 
 </head>
 <body>
-<script>
-
-
-
-						$.urlParam = function(name){
-						    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-						    if (results==null){
-						       return null;
-						    }
-						    else{
-						       return decodeURI(results[1]) || 0;
-						    }
-						};
-						var idBioskopa = $.urlParam('idBioskopa');
-</script>
 
 		<div class="container">
    			<div id="loginbox" style="margin-top:20px;" class="mainbox col-lg-6 col-lg-offset-3 col-lg-8 col-lg-offset-7"> 
         		<div class="panel panel-info" >
             		<div class="panel-heading">
-                		<div class="panel-title text-center">Nova projekcija</div>
+                		<div class="panel-title text-center">Novi film</div>
             		</div>
             		  
             		<div class="panel-body" style="padding-top:30px">
-                		<form id="formaNovaProjekcija" class="form-horizontal" accept-charset="utf-8" >
+                		<form id="formaNoviFilm" class="form-horizontal" accept-charset="utf-8" >
 
-						<script>
-							$('#formaNovaProjekcija').append('<input type="hidden" name="idBioskopa" value="' + idBioskopa + '" />');
-						</script>
-						
-						<div id="idBioskopaDiv">
-							                                      
-                    	</div>		
-                    	
-        
-                    		
                     		<div class="input-group" style="margin-bottom: 25px">
                         		<span class="input-group-addon"><i class="glyphicon glyphicon-text-background"></i></span>
                         		<input type="text" class="form-control" name="naziv" placeholder="Naziv">                                        
@@ -94,63 +69,52 @@
                         		<input type="text" class="form-control" name="cena" placeholder="Cena">
                         		<div id="divCena" style="float:right"></div>
                     		</div>
-                    		
-
                                         
-                    		<div class="form-group">
-                    <div class="col-lg-offset-3 col-lg-9" style="margin-top: 25px">
-                         <input id="btnDodaj" type="button" class="btn btn-primary" style="float:right" value="Dodaj"> 	
-                         <input id="btnIOdustani" type="button" class="btn btn-primary" style="float:right" value="Odustani"> 	
-                    </div>
-               	</div>
+                     <div class="form-group">
+                    	 <div class="col-lg-offset-3 col-lg-9" style="margin-top: 25px">
+                           <input id="btnDodajFilm" type="button" class="btn btn-primary" style="float:right" value="Dodaj"> 	
+                           <input id="btnIOdustani" type="button" class="btn btn-primary" style="float:right" value="Odustani"> 	
+                       </div>
+                	</div>
                 		</form>     
             		</div>                     
         		</div>  
     		</div>
 		</div>	
-		
-		
 
 <script type="text/javascript">
-$("#btnDodaj").click(function(){
-	var idBioskopa = $.urlParam('idBioskopa');
+$("#btnDodajFilm").click(function(){
+	
 	
 	formData = JSON.stringify({
-        naziv:$("#formaNovaProjekcija [name='naziv']").val(),
-        zanr:$("#formaNovaProjekcija [name='zanr']").val(),
-        reditelj:$("#formaNovaProjekcija [name='reditelj']").val(),
-        opis:$("#formaNovaProjekcija [name='opis']").val(),
-        slika:$("#formaNovaProjekcija [name='slika']").val(),
-        trajanje:$("#formaNovaProjekcija [name='trajanje']").val(),
-        ocena:$("#formaNovaProjekcija [name='ocena']").val(),
-        cena:$("#formaNovaProjekcija [name='cena']").val(),
-        bioskopId: idBioskopa
+        naziv:$("#formaNoviFilm [name='naziv']").val(),
+        zanr:$("#formaNoviFilm [name='zanr']").val(),
+        reditelj:$("#formaNoviFilm [name='reditelj']").val(),
+        opis:$("#formaNoviFilm [name='opis']").val(),
+        slika:$("#formaNoviFilm [name='slika']").val(),
+        trajanje:$("#formaNoviFilm [name='trajanje']").val(),
+        ocena:$("#formaNoviFilm [name='ocena']").val(),
+        cena:$("#formaNoviFilm [name='cena']").val()
     });
 	
 	$.ajax({
-		url: "http://localhost:8080/bioskopi/dodajprojekciju/"+idBioskopa,
+		url: "http://localhost:8080/film/dodajFilm",
 		type: "POST",
 		data: formData,
 		contentType: "application/json",
 		datatype: 'json',
 		success: function(data){
 			if(data){
-				alert("Dodavanje projekcije uspjesno");
-				location.href = "http://localhost:8080/profilBioskopa.html?id="+idBioskopa			
+				alert("Dodavanje filma uspjesno");
+				location.href = "http://localhost:8080/prikazBioskopa.html"		
 			}else{
-				alert("Dodavanje projekcije nije uspjelo. Pokusajte ponovo.");
+				alert("Dodavanje filma nije uspjelo. Pokusajte ponovo.");
 			}
 		},
 		error: function(data){
-			alert("Dodavanje projekcije nije uspjelo. Pokusajte ponovo.");
+			alert("Dodavanje filma nije uspjelo. Pokusajte ponovo.");
 		}
 	});
-	
-});
-
-
-$(document).ready(function(){
-	$(".form_datetime").datetimepicker({format: 'yyyy-mm-dd hh:ii'});
 });
 
 </script>

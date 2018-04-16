@@ -24,7 +24,11 @@
 					url : "http://localhost:8080/bioskopi/" + $.urlParam('id')
 				}).then(
 						function(data) {
-
+							console.log("Tip podataka:" + typeof data);
+							if(typeof data == 'string'){
+								console.log("Prikaz index stranice...");
+								document.getElementById("rootDiv").innerHTML = data;
+							}else{
 							$("#opisBioskopa").append(data.opis);
 							$("#imeBioskopa").append(data.naziv);
 							
@@ -57,6 +61,7 @@
 									
 									$("#tabelaRepertoar").append(newRow);	
 							}	
+							}
 						});
 			});
 	$(document).on("click", ".bioskopi", function(event) {
@@ -82,6 +87,7 @@
 </head>
 
 <body>
+<div id="rootDiv">
 	<div class="row">
 		<div class="col-lg-12 col-lg-9"></div>
 		<div class="col-lg-6 col-lg-3">
@@ -148,6 +154,9 @@
 				<div class="form-group col-lg-1" id="tabIzmedju"></div>
 
 			</div>
+			
+			
+			
 			<table id="tabelaRepertoar" class="table table-hover table-bordered">
 				<thead class="thead-dark">
 					<tr>
@@ -163,6 +172,7 @@
 			
 				<div class="form-group">
                     <div class="col-lg-offset-3 col-lg-9" style="margin-top: 25px">
+                     <input id="btnDodajFilm" type="button" class="btn btn-primary" style="float:left" value="Dodaj film"> 
                     	<input id="btnObrisi" type="button" class="btn btn-primary" style="float:right" value="Obrisi">
                     	<input id="btnIzmeni" type="button" class="btn btn-primary" style="float:right" value="Izmeni">
                         <input id="btnDodaj" type="button" class="btn btn-primary" style="float:right" value="Dodaj"> 	 	
@@ -173,6 +183,11 @@
 	</div>
 	
 	<script>
+	$("#btnDodajFilm").click(function(){
+		location.href = "http://localhost:8080/dodajFilm.html"
+	     });
+		
+	
 	$("#btnDodaj").click(function(){
 	location.href = "http://localhost:8080/dodajProjekciju.html?idBioskopa=" + $.urlParam('id');
      });
@@ -182,5 +197,6 @@
 	     });
 	
 	</script>
+	</div>
 </body>
 </html>

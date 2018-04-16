@@ -38,7 +38,6 @@ a {
 .wrapper {
 	width: 100%;
 	text-align: center;
-	margin-top: 150px;
 }
 
 .container {
@@ -141,37 +140,13 @@ span.seatCharts-legendDescription {
 </head>
 
 <body>
-	<div id="jquery-script-menu">
-		<div class="jquery-script-center">
-			<ul>
-				<li><a
-					href="http://www.jqueryscript.net/chart-graph/Full-featured-Seating-Chart-Plugin-With-jQuery-Seat-Charts.html">Download
-						This Plugin</a></li>
-				<li><a href="http://www.jqueryscript.net/">Back To
-						jQueryScript.Net</a></li>
-			</ul>
-
-		</div>
-		<div class="jquery-script-clear"></div>
-	</div>
 
 	<div class="wrapper">
 		<div class="container">
 			<h1>Konfiguracija sale</h1>
 			<div id="seat-map">
-				<div class="front-indicator">Front</div>
-			</div>
-			<div class="booking-details">
-				<h2>Booking Details</h2>
-				<h3>
-					Selected Seats (<span id="counter">0</span>):
-				</h3>
-				<ul id="selected-seats">
-				</ul>
-				Total: <b>$<span id="total">0</span></b>
-				<button class="checkout-button">Checkout &raquo;</button>
-				<div id="legend"></div>
-			</div>
+				<!-- Ovdje ce biti prikazana sala -->
+			</div>			
 		</div>
 	</div>
 
@@ -210,9 +185,7 @@ span.seatCharts-legendDescription {
 				alert(" podaci za konfiguraciju NIJE uspela.");
 		}	
 	});	
-	//alert("Ajax gotov...");
 iscrtajMapu = function(){
-	//alert("Iscrtavanje mape...");
 	var firstSeatLabel = 1;
 
 	$(document).ready(function() {
@@ -331,29 +304,20 @@ if(dataOk == false){
 		    		var tmp = $(this).attr('class');
 		    		
 		    		if(typeof idSjedista != 'undefined'){
-		    			
 		    			var klaseSjedista = $("#" + idSjedista).attr('class');
-		    			console.log(idSjedista + ">>>>>>>>>>>>>>>" + klaseSjedista);
-		    			
 		    			if(klaseSjedista.indexOf("first-class") >= 0  && klaseSjedista.indexOf("unavailable") >= 0){
 		    				sjedista += "#11";
-		    				//console.log("prva klasa - selektovano");
 		    			}else if(klaseSjedista.indexOf("first-class") >= 0){
 		    				sjedista += "#10";
-		    				//console.log("prva klasa");
 		    			}if(klaseSjedista.indexOf("economy-class") >= 0  && klaseSjedista.indexOf("unavailable") >= 0){
 		    				sjedista += "#21";
-		    				//console.log("economy klasa - selektovano");
 		    			}else if(klaseSjedista.indexOf("economy-class") >= 0){
 		    				sjedista += "#20";
-		    				//console.log("economy klasa");
 		    			}
 		    		}
-		    		
 		    	});
 		    }
 		});
-	  console.log("Raspored sjedista:" + sjedista);
   }
 
 </script>

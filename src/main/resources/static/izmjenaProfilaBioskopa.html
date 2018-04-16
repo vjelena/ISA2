@@ -149,11 +149,14 @@ $(document).ready(
 					console.log("AdresaJSON ulica:" + adresaJSON.ulica);
 					console.log("AdresaJSON broj:" + adresaJSON.broj);
 					console.log("AdresaJSON grad:" + adresaJSON.grad);
-					
+					var idBioskopa = $.urlParam('idBioskopa');
 					formData = JSON.stringify({
 						naziv:$("#formaIzmjeniBioskop [name='naziv']").val(),
 						opis:$("#formaIzmjeniBioskop [name='opis']").val(),
-						adresa:adresaJSON
+						grad:$("#formaIzmjeniBioskop [name='grad']").val(),
+						ulica:$("#formaIzmjeniBioskop [name='ulica']").val(),
+						broj:$("#formaIzmjeniBioskop [name='broj']").val(),
+						id: idBioskopa
 					   });
 					
 					var idBioskopa = $.urlParam("idBioskopa");

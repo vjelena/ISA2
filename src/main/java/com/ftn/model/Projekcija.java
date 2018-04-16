@@ -13,6 +13,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
@@ -52,13 +53,12 @@ public class Projekcija implements Serializable{
 	private float cena;
 	
 	//@JsonIgnore
-	@OneToMany 
-	private Set<Sala> sale;
+	@OneToOne
+	private Sala sala;     
 	
 	//@JsonIgnore
-	@OneToMany 
-	private Set<Termin> termini;
-	
+	@OneToOne
+	private Termin termin;
 	
 	@ManyToMany
 	//@JsonIgnore
@@ -162,20 +162,20 @@ public class Projekcija implements Serializable{
 		this.cena = cena;
 	}
 
-	public Set<Sala> getSale() {
-		return sale;
+	public Sala getSala() {
+		return sala;
 	}
 
-	public void setSale(Set<Sala> sale) {
-		this.sale = sale;
+	public void setSala(Sala sala) {
+		this.sala = sala;
 	}
 
-	public Set<Termin> getTermini() {
-		return termini;
+	public Termin getTermin() {
+		return termin;
 	}
 
-	public void setTermini(Set<Termin> termini) {
-		this.termini = termini;
+	public void setTermini(Termin termin) {
+		this.termin = termin;
 	}
 
 
