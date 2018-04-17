@@ -21,6 +21,7 @@ import com.ftn.model.Adresa;
 import com.ftn.model.Bioskop;
 import com.ftn.model.Korisnik;
 import com.ftn.model.Projekcija;
+import com.ftn.model.Repertoar;
 import com.ftn.repository.BioskopRepository;
 import com.ftn.repository.KorisnikRepository;
 import com.ftn.service.BioskopService;
@@ -143,6 +144,17 @@ public class PrikazBioskopaController {
 			return new ResponseEntity<>(bioskopRepository.findByNazivIgnoreCaseContaining(naziv), HttpStatus.OK);
 	}
 	
+	//preuzimanje projekcija koje su na repertoaru selektovanog bioskopa
+	@RequestMapping(value = "projekcijeIzRepertoaraSelektovanogBioskopa/{naziv}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Projekcija>> projekcijeIzRepertoaraSelektovanogBioskopa(@PathVariable String naziv) {
+		Bioskop bioskop = bioskopRepository.findByNaziv(naziv);
+	
+		if (bioskop == null) {
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		}
+		
+		return new ResponseEntity<>(bioskop.getRepertoar().getProjekcije(), HttpStatus.OK);
+	}
 	
 	//------------------------------------------------------------------------------------------------------------------------
 	//TODO: ajax!!! -> kada uradis rezervaciju mesta u bioskopu
@@ -164,5 +176,5 @@ public class PrikazBioskopaController {
 		return new ResponseEntity<>(posecenBioskop, HttpStatus.OK);	
 	}
 	//------------------------------------------------------------------------------------------------------------------------
-	
+
 }

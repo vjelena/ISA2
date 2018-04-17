@@ -46,6 +46,8 @@ insert into bioskop values (4, 'Bioskop 4', 'Opis bioskopa 4.', 4.3, 15, 1);
 
 insert into repertoar values (1, 1);
 insert into repertoar values (2, 2);
+insert into repertoar values (3, 3);
+insert into repertoar values (4, 4);
 
 
 INSERT INTO film values (1,'Ready player one', 4.2, 'opis', 'Steven Spielberg', 'slika 1', 120, 'drama');
@@ -64,8 +66,9 @@ insert into termin values (4, '02-05-2018 17:00');
 insert into termin values (5, '17-05-2018 19:00');
 
 
-insert into projekcija values (1, 420, 3, 1, 2, 5);
-insert into projekcija values (2, 350, 1, 2, 1, 2);
+insert into projekcija values (1, 320, 3, 1, 2, 3);
+insert into projekcija values (2, 500, 2, 1, 1, 3);
+insert into projekcija values (3, 470, 1, 2, 1, 2);
 
 
 insert into glumac values (1, 'Alicia', 'Vikander');

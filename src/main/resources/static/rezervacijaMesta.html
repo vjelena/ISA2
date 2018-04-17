@@ -94,12 +94,7 @@
 							</div>
 							<div class="form-group col-lg-5">
 								<div class="row">
-									<div class="form-group has-feedback">
-										<select class="form-control" id="selectProjekcija">
-											<option>Projekcija 1</option>
-											<option>Projekcija 2</option>
-										</select>
-									</div>
+									<div id="listaProjekcija" class="form-group has-feedback"></div>
 								</div>
 							</div>
 						</div>
@@ -268,6 +263,9 @@
 						</div>
 					</div>
 				</div>
+				<div class="form-group col-lg-8">
+					<h4><span id="prazno" class="row"></span></h4>
+				</div>
 				<!-- KRAJ -->			
 			</div>
 		</div>
@@ -279,6 +277,8 @@
 				$("#deo3").hide();
 				$("#deo4").hide();
 				$("#deo5").hide();
+				$("#dugmeDalje1").hide();
+				
 			});	
 		
 		
@@ -287,47 +287,12 @@
 			});
 			
 			
-			$("#dugmeDalje1").click(function(){
-				$("#deo1").show();
-				$("#deo2").show();
-				$("#deo3").hide();
-				$("#deo4").hide();
-				$("#deo5").hide();
-			});
-			
-			
-			$("#dugmeDalje2").click(function(){
-				$("#deo1").show();
-				$("#deo2").show();
-				$("#deo3").show();
-				$("#deo4").hide();
-				$("#deo5").hide();
-			});
-			
-			
-			$("#dugmeDalje3").click(function(){
-				$("#deo1").show();
-				$("#deo2").show();
-				$("#deo3").show();
-				$("#deo4").show();
-				$("#deo5").hide();
-			});
-			
-			
-			$("#dugmeDalje4").click(function(){
-				$("#deo1").show();
-				$("#deo2").show();
-				$("#deo3").show();
-				$("#deo4").show();
-				$("#deo5").show();
-			});
-			
-			
 			function pretraziBioskope(){
 				document.getElementById("dugmePretraziBioskope").onclick = function() {
 				    //da se select ne bi pojavio x puta :D
 					this.disabled = true;
 				}
+				$("#dugmeDalje1").show();
 				var naziv = $("#pretraziBioskope").val();
 	
 				if(naziv == ""){
@@ -335,9 +300,9 @@
 				}
 				
 				$.ajax({	
-				url: "bioskopi/pretraziBioskope/" + naziv,
-				type: "GET",
-				success: function(data){
+					url: "bioskopi/pretraziBioskope/" + naziv,
+					type: "GET",
+					success: function(data){
 						if(data.length != 0){ //ima rezultata pretrage
 							var listaBioskopaDiv = document.getElementById("listaBioskopa");							
 							var selectList = document.createElement("select");
@@ -369,6 +334,77 @@
 					}
 				});
 			}
+			
+			
+			$("#dugmeDalje1").click(function(){
+				$("#deo1").show();
+				$("#deo2").show();
+				$("#deo3").hide();
+				$("#deo3").hide();
+				$("#deo4").hide();
+				$("#deo5").hide();
+				
+				if($('#listaBioskopaSelect').val() != ""){
+					var nazivSelektovanogBioskopa = $('#listaBioskopaSelect option:selected').text();
+					alert(nazivSelektovanogBioskopa);
+					
+					$.ajax({	
+						url: "http://localhost:8080/bioskopi/projekcijeIzRepertoaraSelektovanogBioskopa/" + nazivSelektovanogBioskopa,
+						type: "GET",
+						success: function(data){
+							if(data.length != 0){
+								var listaProjekcijaDiv = document.getElementById("listaProjekcija");							
+								var selectListProjekcije = document.createElement("select");
+								selectListProjekcije.id = "listaProjekcijaSelect";
+								listaProjekcijaDiv.appendChild(selectListProjekcije);
+								
+								for (i = 0; i < data.length; i++) {
+									var optionProjekcije = document.createElement("option");
+									optionProjekcije.value = data[i].id;
+									optionProjekcije.text = data[i].film.naziv;
+									selectListProjekcije.appendChild(optionProjekcije);
+								}
+							} else {
+								$("#prazno").empty();
+								$("#deo2").hide();
+								$("#prazno").append("Nema projekcija na repertoaru selektovanog bioskopa.");
+							}
+					 	},
+					 	error: function(data){
+							alert('GRESKA PRILIKOM PRIKAZA PROJEKCIJA KOJE SU NA REPERTOARU SELEKTOVANOG BIOSKOPA!!!')
+						}
+					});
+				} else {
+					alert('Za nastavak postupka rezervacije mesta, morate odabrati naziv bioskopa.');
+				}
+			});
+			
+			
+			$("#dugmeDalje2").click(function(){
+				$("#deo1").show();
+				$("#deo2").show();
+				$("#deo3").show();
+				$("#deo4").hide();
+				$("#deo5").hide();
+			});
+			
+			
+			$("#dugmeDalje3").click(function(){
+				$("#deo1").show();
+				$("#deo2").show();
+				$("#deo3").show();
+				$("#deo4").show();
+				$("#deo5").hide();
+			});
+			
+			
+			$("#dugmeDalje4").click(function(){
+				$("#deo1").show();
+				$("#deo2").show();
+				$("#deo3").show();
+				$("#deo4").show();
+				$("#deo5").show();
+			});
 		</script>
 	</body>
 </html>
