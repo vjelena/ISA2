@@ -170,6 +170,8 @@ public class KorisnikController {
 		
 		cijePrijateljeUzimam.setMojiPrijatelji(listaPrijatelja); //moze bez... !!!
 		korisnikServis.save(cijePrijateljeUzimam); //moze bez... !!!		
+		
+		//System.out.println("\n\t\t\tDuzina cijePrijateljeUzimam.getMojiPrijatelji() je: " + cijePrijateljeUzimam.getMojiPrijatelji().size());
 		return new ResponseEntity<>(listaPrijatelja, HttpStatus.OK);
 	}
 	
@@ -187,7 +189,7 @@ public class KorisnikController {
 		}		
 		koJePrimioZahtev.getZahteviZaPrijateljstvo().add(koJePoslaoZahtev);
 		
-		korisnikRepository.save(koJePrimioZahtev);
+		korisnikServis.save(koJePrimioZahtev);
 		return true;
 	}
 	
@@ -211,7 +213,7 @@ public class KorisnikController {
 			}
 		}
 		
-		korisnikRepository.save(koBrisePrijatelja);		
+		korisnikServis.save(koBrisePrijatelja);		
 		return true;
 	}
 	
@@ -244,8 +246,8 @@ public class KorisnikController {
 		koJePoslaoZahtev.getMojiPrijatelji().add(koJePrimioZahtev);
 		koJePrimioZahtev.getMojiPrijatelji().add(koJePoslaoZahtev);
 		
-		korisnikRepository.save(koJePoslaoZahtev);
-		korisnikRepository.save(koJePrimioZahtev);
+		korisnikServis.save(koJePoslaoZahtev);
+		korisnikServis.save(koJePrimioZahtev);
 		return koJePoslaoZahtev;		
 	}
 	
@@ -258,7 +260,7 @@ public class KorisnikController {
 		
 		koJePrimioZahtev.getZahteviZaPrijateljstvo().remove(koJePoslaoZahtev);
 		
-		korisnikRepository.save(koJePrimioZahtev);		
+		korisnikServis.save(koJePrimioZahtev);		
 		return koJePoslaoZahtev;		
 	}
 	

@@ -12,6 +12,7 @@ import com.ftn.model.Bioskop;
 public interface BioskopRepository extends JpaRepository<Bioskop, Long> {
 
 	Bioskop findById(Long id);
+	Bioskop findByNaziv(String naziv);
 	
 	//za pretragu bioskopa
 	List<Bioskop> findByNazivIgnoreCaseContaining(String naziv);

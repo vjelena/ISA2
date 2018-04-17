@@ -1,6 +1,7 @@
 package com.ftn.model;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -31,7 +32,7 @@ public class Repertoar implements Serializable{
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "repertoar")
 	//@JsonIgnore
 	//@JsonManagedReference
-	private Set<Projekcija> projekcije;
+	private List<Projekcija> projekcije;
 	
 	public Repertoar() {
 		
@@ -53,11 +54,11 @@ public class Repertoar implements Serializable{
 		this.bioskop = bioskop;
 	}
 
-	public Set<Projekcija> getProjekcije() {
+	public List<Projekcija> getProjekcije() {
 		return projekcije;
 	}
 
-	public void setProjekcije(Set<Projekcija> projekcije) {
+	public void setProjekcije(List<Projekcija> projekcije) {
 		this.projekcije = projekcije;
 	}
 	

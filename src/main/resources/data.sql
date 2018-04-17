@@ -63,9 +63,7 @@ insert into sala values(5, 100, 'konfiguracija B', 'sala E', 1);
 insert into sala values(6, 100, 'konfiguracija B', 'sala F', 2);
 
 
-
-
-insert into termin values (1, '01-05-2018 12:00');
+insert into termin values (1, '01-05-2018 15:15');
 insert into termin values (2, '01-05-2018 17:00');
 insert into termin values (3, '02-05-2018 12:00');
 insert into termin values (4, '02-05-2018 17:00');
@@ -86,7 +84,6 @@ insert into glumac values (3, 'Olivia', 'Cooke');
 insert into glumac values (4, 'Jack', 'Nicholson');
 insert into glumac values (5, 'Al', 'Pacino');
 insert into glumac values (6, 'Tom', 'Hanks');
-
 
 insert into film_glumci values (1, 1);
 insert into film_glumci values (1, 2);

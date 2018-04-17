@@ -34,7 +34,7 @@ public class Projekcija implements Serializable{
 	
 	//@JsonIgnore
 	@ManyToOne
-	private Sala sala;     
+	private Sala sala;
 	
 	//@JsonIgnore
 	@ManyToOne

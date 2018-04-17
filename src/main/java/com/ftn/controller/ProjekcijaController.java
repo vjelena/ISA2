@@ -1,5 +1,7 @@
 package com.ftn.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ftn.DTO.BioskopDTO;
 import com.ftn.DTO.ProjekcijaDTO;
 import com.ftn.DTOconverter.ProjekcijaDTOtoProjekcija;
-import com.ftn.model.Adresa;
-import com.ftn.model.Bioskop;
-import com.ftn.model.Oglas;
 import com.ftn.model.Projekcija;
+import com.ftn.model.Termin;
+import com.ftn.repository.ProjekcijaRepository;
 import com.ftn.service.ProjekcijaService;
 import com.ftn.service.impl.JpaFilmService;
 import com.ftn.service.impl.JpaProjekcijaService;
@@ -48,6 +48,10 @@ public class ProjekcijaController {
 	private ProjekcijaDTOtoProjekcija toProjekcija;
 	
 	
+	@Autowired
+	private ProjekcijaRepository projekcijaRepository;
+	
+	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Projekcija> nadjiProjekciju(@PathVariable String id) {
 		System.out.println("=================>>>>> Prije nadjiJedanBioskop:" + id);
@@ -74,5 +78,18 @@ public class ProjekcijaController {
 		jpaProjekcijaService.save(projekcija);
 		return new ResponseEntity<>(projekcija, HttpStatus.OK);
 	}
-	
+	//BS
+	//preuzimanje termina u kojima se odrzavaju projekcije koje su na repertoaru selektovanog bioskopa
+	@RequestMapping(value = "/preuzmiTermineZaSelektovanuProjekciju/{naziv}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Termin> preuzmiTermineZaSelektovanuProjekciju(@PathVariable String naziv) {
+		Projekcija projekcija = projekcijaRepository.findByFilm(naziv);
+		
+		if (projekcija == null) {
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		}
+			
+		System.out.println("\n\t\t\tpovratna vrednost ProjekcijaController preuzmiTermineZaSelektovanuProjekciju/{naziv}:\t" + projekcija.getTermin());
+		return new ResponseEntity<>(projekcija.getTermin(), HttpStatus.OK);
+
+	}
 }

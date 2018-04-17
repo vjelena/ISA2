@@ -34,7 +34,7 @@
 					<!-- PRETRAGA BIOSKOPA -->
 					<div class="form-group col-lg-10">
 						<div style="padding-top: 1px">
-							<div class="form-group col-lg-3">
+							<div class="form-group col-lg-5">
 								<div class="row">
 									<div class="form-group has-feedback">
 										<input type="text" class="form-control" id="pretraziBioskope" placeholder="Pretrazi bioskope">
@@ -42,7 +42,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="form-group col-lg-3">
+							<div class="form-group col-lg-5">
 								<div class="row">
 									<div class="form-group has-feedback">
 										<input id="dugmePretraziBioskope" type="button" class="btn btn-warning" style="float:right" onclick="pretraziBioskope()" value="Pretrazi bioskope">
@@ -57,7 +57,7 @@
 					<div class="form-group col-lg-10">
 						<div class="form-group col-lg-3">
 							<div class="row">
-								<div class="form-group has-feedback">
+								<div id="lblNazivBioskopa" class="form-group has-feedback">
 									<label>Naziv bioskopa:</label>
 								</div>
 							</div>
@@ -94,31 +94,14 @@
 							</div>
 							<div class="form-group col-lg-5">
 								<div class="row">
+									<div id="listaProjekcija" class="form-group has-feedback"></div>
+								</div>
+							</div>
+							<div class="form-group col-lg-2">
+								<div class="row">
 									<div class="form-group has-feedback">
-										<select class="form-control" id="selectProjekcija">
-											<option>Projekcija 1</option>
-											<option>Projekcija 2</option>
-										</select>
+										<input id="dugmeNastaviTermin" type="button" class="btn btn-success" style="float:right" value="Odabir termina...">
 									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-					
-					<!-- ODABIR DATUMA -->
-					<div class="form-group col-lg-10">
-						<div class="form-group col-lg-3">
-							<div class="row">
-								<div class="form-group has-feedback">
-									<label>Datum:</label>
-								</div>
-							</div>
-						</div>
-						<div class="form-group col-lg-3">
-							<div class="row">
-								<div class="form-group has-feedback">
-									<input type="date" class="form-control" id="datum">
 								</div>
 							</div>
 						</div>
@@ -129,18 +112,20 @@
 					<div class="form-group col-lg-10">
 						<div class="form-group col-lg-3">
 							<div class="row">
-								<div class="form-group has-feedback">
-									<label>Termin:</label>
+								<div id="lblTermin" class="form-group has-feedback">
+									<label>Termin (datum i vreme):</label>
 								</div>
 							</div>
 						</div>
 						<div class="form-group col-lg-5">
 							<div class="row">
+								<div id="listaTermina" class="form-group has-feedback"></div>
+							</div>
+						</div>
+						<div class="form-group col-lg-2">
+							<div class="row">
 								<div class="form-group has-feedback">
-									<select class="form-control" id="selectTermin">
-										<option>Termin 1</option>
-										<option>Termin 2</option>
-									</select>
+									<input id="dugmeNastaviSala" type="button" class="btn btn-success" style="float:right" value="Odabir sale...">
 								</div>
 							</div>
 						</div>
@@ -152,19 +137,14 @@
 					<div class="form-group col-lg-10">
 						<div class="form-group col-lg-3">
 							<div class="row">
-								<div class="form-group has-feedback">
+								<div id="lblSala" class="form-group has-feedback">
 									<label>Sala:</label>
 								</div>
 							</div>
 						</div>
 						<div class="form-group col-lg-5">
 							<div class="row">
-								<div class="form-group has-feedback">
-									<select class="form-control" id="selectSala">
-										<option>Sala 1</option>
-										<option>Sala 2</option>
-									</select>
-								</div>
+								<div id="listaSala" class="form-group has-feedback"></div>
 							</div>
 						</div>
 						<div class="form-group col-lg-2">
@@ -190,7 +170,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="form-group col-lg-2">
+							<div class="form-group col-lg-5">
 								<div class="row">
 									<div class="form-group has-feedback">
 										<input id="dugmeDalje3" type="button" class="btn btn-secondary" style="float:right" value="Dalje 3">
@@ -207,7 +187,7 @@
 					<!-- sakriti dugme dalje3 -->
 					<div class="form-group col-lg-10">
 						<div style="padding-top: 40px">
-							<div class="form-group col-lg-3">
+							<div class="form-group col-lg-5">
 								<div class="row">
 									<div class="form-group has-feedback">
 										<input type="text" class="form-control" id="pretraziPrijatelje" placeholder="Pretrazi prijatelje">
@@ -215,7 +195,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="form-group col-lg-3">
+							<div class="form-group col-lg-5">
 								<div class="row">
 									<div class="form-group has-feedback">
 										<input id="dugmePretraziPrijatelje" type="button" class="btn btn-danger" style="float:right" value="Pretrazi prijatelje">
@@ -235,7 +215,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="form-group col-lg-5">
+						<div class="form-group col-lg-4">
 							<div class="row">
 								<div class="form-group has-feedback">
 									<select class="form-control" id="selectPrijatelji">
@@ -259,7 +239,7 @@
 				<!-- ZAVRSETAK REZERVACIJE -->
 				<div id="deo5" class="form-group col-lg-10">
 					<div style="padding-top: 40px">
-						<div class="form-group col-lg-8">
+						<div class="form-group col-lg-10">
 							<div class="row">
 								<div class="form-group has-feedback">
 									<input id="dugmeZavrsiRezervaciju" type="button" class="btn btn-primary" style="float:right" value="Zavrsi rezervaciju">
@@ -268,6 +248,9 @@
 						</div>
 					</div>
 				</div>
+				<div class="form-group col-lg-8">
+					<h4><span id="prazno" class="row"></span></h4>
+				</div>
 				<!-- KRAJ -->			
 			</div>
 		</div>
@@ -275,10 +258,13 @@
 		<script type="text/javascript">
 			$(document).ready(function(){
 				$("#deo1").show();
+				$("#lblNazivBioskopa").hide();
 				$("#deo2").hide();
 				$("#deo3").hide();
 				$("#deo4").hide();
 				$("#deo5").hide();
+				$("#dugmeDalje1").hide();
+				
 			});	
 		
 		
@@ -287,47 +273,12 @@
 			});
 			
 			
-			$("#dugmeDalje1").click(function(){
-				$("#deo1").show();
-				$("#deo2").show();
-				$("#deo3").hide();
-				$("#deo4").hide();
-				$("#deo5").hide();
-			});
-			
-			
-			$("#dugmeDalje2").click(function(){
-				$("#deo1").show();
-				$("#deo2").show();
-				$("#deo3").show();
-				$("#deo4").hide();
-				$("#deo5").hide();
-			});
-			
-			
-			$("#dugmeDalje3").click(function(){
-				$("#deo1").show();
-				$("#deo2").show();
-				$("#deo3").show();
-				$("#deo4").show();
-				$("#deo5").hide();
-			});
-			
-			
-			$("#dugmeDalje4").click(function(){
-				$("#deo1").show();
-				$("#deo2").show();
-				$("#deo3").show();
-				$("#deo4").show();
-				$("#deo5").show();
-			});
-			
-			
 			function pretraziBioskope(){
 				document.getElementById("dugmePretraziBioskope").onclick = function() {
 				    //da se select ne bi pojavio x puta :D
 					this.disabled = true;
 				}
+				$("#dugmeDalje1").show();
 				var naziv = $("#pretraziBioskope").val();
 	
 				if(naziv == ""){
@@ -335,10 +286,12 @@
 				}
 				
 				$.ajax({	
-				url: "bioskopi/pretraziBioskope/" + naziv,
-				type: "GET",
-				success: function(data){
+					url: "bioskopi/pretraziBioskope/" + naziv,
+					type: "GET",
+					success: function(data){
 						if(data.length != 0){ //ima rezultata pretrage
+							$("#lblNazivBioskopa").show();
+							
 							var listaBioskopaDiv = document.getElementById("listaBioskopa");							
 							var selectList = document.createElement("select");
 							selectList.id = "listaBioskopaSelect";
@@ -369,6 +322,140 @@
 					}
 				});
 			}
+			
+			
+			$("#dugmeDalje1").click(function(){
+				$("#deo1").show();
+				$("#deo2").show();
+				$("#dugmeDalje2").hide();
+				$("#deo3").hide();
+				$("#deo3").hide();
+				$("#deo4").hide();
+				$("#deo5").hide();
+				
+				if($('#listaBioskopaSelect').val() != ""){
+					var nazivSelektovanogBioskopa = $('#listaBioskopaSelect option:selected').text();
+					alert(nazivSelektovanogBioskopa);
+					
+					$.ajax({	
+						url: "http://localhost:8080/bioskopi/projekcijeIzRepertoaraSelektovanogBioskopa/" + nazivSelektovanogBioskopa,
+						type: "GET",
+						success: function(data){
+							if(data.length != 0){
+								//odabir projekcije
+								var listaProjekcijaDiv = document.getElementById("listaProjekcija");							
+								var selectListProjekcije = document.createElement("select");
+								selectListProjekcije.id = "listaProjekcijaSelect";
+								listaProjekcijaDiv.appendChild(selectListProjekcije);
+								
+								for (i = 0; i < data.length; i++) {
+									var optionProjekcije = document.createElement("option");
+									optionProjekcije.value = data[i].id;
+									optionProjekcije.text = data[i].film.naziv;
+									selectListProjekcije.appendChild(optionProjekcije);
+								}
+								
+								$("#lblTermin").hide();
+								$("#lblSala").hide();
+								$("#dugmeDalje2").hide();
+								$("#dugmeNastaviSala").hide();
+								$("#div3").hide();
+								$("#div4").hide();
+								$("#div5").hide();
+								
+								//odabir termina i datuma
+								$("#dugmeNastaviTermin").click(function(){
+									var nazivSelektovaneProjekcije = $('#listaProjekcijaSelect option:selected').text();
+									alert(nazivSelektovaneProjekcije);
+									
+									var listaTerminaDiv = document.getElementById("listaTermina");							
+									var selectListTermini = document.createElement("select");
+									selectListTermini.id = "listaTerminaSelect";
+									listaTerminaDiv.appendChild(selectListTermini);
+									
+									for (i = 0; i < data.length; i++) {
+										var optionTermini = document.createElement("option");
+										optionTermini.value = data[i].termin.id;
+										optionTermini.text = data[i].termin.vreme;
+										selectListTermini.appendChild(optionTermini);
+									}
+									
+									$("#dugmeDalje2").hide();
+									$("#dugmeNastaviSala").show();
+									$("#lblTermin").show();
+									$("#div3").hide();
+									$("#div4").hide();
+									$("#div5").hide();
+								});
+								
+								//odabir sale
+								$("#dugmeNastaviSala").click(function(){
+									var odabranTermin = $('#listaTerminaSelect option:selected').text();
+									alert(odabranTermin);
+									
+									var listaSalaDiv = document.getElementById("listaSala");							
+									var selectListSale = document.createElement("select");
+									selectListSale.id = "listaSalaSelect";
+									listaSalaDiv.appendChild(selectListSale);
+									
+									for (i = 0; i < data.length; i++) {
+										var optionSale = document.createElement("option");
+										optionSale.value = data[i].sala.id;
+										optionSale.text = data[i].sala.nazivSale;
+										selectListSale.appendChild(optionSale);
+									}
+									
+									$("#lblSala").show();
+									$("#dugmeDalje2").show();
+									$("#deo3").hide();
+									$("#div4").hide();
+									$("#div5").hide();
+								});
+								//kraj odabira sale
+							} else {
+								$("#prazno").empty();
+								$("#deo2").hide();
+								$("#deo3").hide();
+								$("#deo4").hide();
+								$("#deo5").hide();
+								$("#prazno").append("Nema projekcija na repertoaru selektovanog bioskopa.");
+							}
+					 	},
+					 	error: function(data){
+							alert('GRESKA PRILIKOM PRIKAZA PROJEKCIJA KOJE SU NA REPERTOARU SELEKTOVANOG BIOSKOPA!!!')
+						}
+					});
+				} else {
+					alert('Za nastavak postupka rezervacije mesta, morate odabrati naziv bioskopa.');
+				}
+			});
+			
+			
+			$("#dugmeDalje2").click(function(){
+				$("#deo1").show();
+				$("#deo2").show();
+				$("#deo3").show();
+				$("#deo4").hide();
+				$("#deo5").hide();
+			});
+			
+			
+			$("#dugmeDalje3").click(function(){
+				$("#deo1").show();
+				$("#deo2").show();
+				$("#deo3").show();
+				$("#deo4").show();
+				$("#deo5").hide();
+			});
+			
+			
+			$("#dugmeDalje4").click(function(){
+				$("#deo1").show();
+				$("#deo2").show();
+				$("#deo3").show();
+				$("#deo4").show();
+				$("#deo5").show();
+			});
 		</script>
 	</body>
 </html>
