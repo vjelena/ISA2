@@ -59,14 +59,14 @@ insert into sala values(1, 150, 'konfiguracija A', 'sala 1', 2);
 insert into sala values(2, 100, 'konfiguracija B', 'sala 2', 3);
 
 
-insert into termin values (1, '01-05-2018 12:00');
+insert into termin values (1, '01-05-2018 15:15');
 insert into termin values (2, '01-05-2018 17:00');
-insert into termin values (3, '02-05-2018 12:00');
-insert into termin values (4, '02-05-2018 17:00');
+insert into termin values (3, '02-05-2018 18:30');
+insert into termin values (4, '02-05-2018 21:45');
 insert into termin values (5, '17-05-2018 19:00');
 
 
-insert into projekcija values (1, 320, 3, 1, 2, 3);
+insert into projekcija values (1, 320, 3, 1, 2, 1);
 insert into projekcija values (2, 500, 2, 1, 1, 3);
 insert into projekcija values (3, 470, 1, 2, 1, 2);
 

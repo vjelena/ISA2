@@ -145,7 +145,7 @@ public class PrikazBioskopaController {
 	}
 	
 	//preuzimanje projekcija koje su na repertoaru selektovanog bioskopa
-	@RequestMapping(value = "projekcijeIzRepertoaraSelektovanogBioskopa/{naziv}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/projekcijeIzRepertoaraSelektovanogBioskopa/{naziv}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Projekcija>> projekcijeIzRepertoaraSelektovanogBioskopa(@PathVariable String naziv) {
 		Bioskop bioskop = bioskopRepository.findByNaziv(naziv);
 	
