@@ -2,7 +2,8 @@ package com.ftn.controller;
 
 import java.util.List;
 
-import org.apache.tomcat.jni.BIOCallback;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -13,16 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.ftn.DTO.BioskopDTO;
 import com.ftn.DTO.ProjekcijaDTO;
 import com.ftn.DTOconverter.ProjekcijaDTOtoProjekcija;
 import com.ftn.model.Adresa;
 import com.ftn.model.Bioskop;
-import com.ftn.model.Korisnik;
-import com.ftn.model.Oglas;
 import com.ftn.model.Projekcija;
-import com.ftn.model.Sala;
+import com.ftn.repository.BioskopRepository;
 import com.ftn.service.BioskopService;
 import com.ftn.service.ProjekcijaService;
 import com.ftn.service.impl.JpaBioskopService;
@@ -43,6 +41,8 @@ public class PrikazBioskopaController {
 	@Autowired
 	private ProjekcijaDTOtoProjekcija toProjekcija;
 	
+	@Autowired
+	private BioskopRepository bioskopRepository;
 	
 
 	@RequestMapping(value = "/prikaziBioskope", method = RequestMethod.GET)
@@ -122,6 +122,20 @@ public class PrikazBioskopaController {
 		System.out.println(">>>>>>> " + projekcijaDTO);
 		Projekcija projekcija = projekcijaService.save(toProjekcija.convert(projekcijaDTO));
 		return new ResponseEntity<>(projekcija, HttpStatus.OK);
+	}
+	
+	
+	
+	//BS
+	//pretraga bioskopa
+	@RequestMapping(value = "/pretraziBioskope/{naziv}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Bioskop>> pretraziBioskope(@PathVariable String naziv, HttpServletRequest request){
+		System.out.println("\n\t\tBioskopController: pretraziBioskope\n");
+		
+		if(naziv.equals("nemaUnosa"))
+			return new ResponseEntity<>(bioskopRepository.findAll(), HttpStatus.OK);
+		else
+			return new ResponseEntity<>(bioskopRepository.findByNazivIgnoreCaseContaining(naziv), HttpStatus.OK);
 	}
 
 }

@@ -30,168 +30,49 @@
 		<div class="container">
    			<div style="margin-top:20px;" class="mainbox col-lg-10 col-lg-offset-3 col-lg-11 col-lg-offset-7"> 
 				
-				<!-- PRETRAGA BIOSKOPA -->
-				<div class="form-group col-lg-10">
-					<div style="padding-top: 1px">
-						<div class="form-group col-lg-6">
-							<div class="row">
-								<div class="form-group has-feedback">
-									<input type="text" class="form-control" id="pretraziBioskope" placeholder="Pretrazi bioskope">
-									<span class="glyphicon glyphicon-search form-control-feedback"></span>
+				<div id="deo1">
+					<!-- PRETRAGA BIOSKOPA -->
+					<div class="form-group col-lg-10">
+						<div style="padding-top: 1px">
+							<div class="form-group col-lg-3">
+								<div class="row">
+									<div class="form-group has-feedback">
+										<input type="text" class="form-control" id="pretraziBioskope" placeholder="Pretrazi bioskope">
+										<span class="glyphicon glyphicon-search form-control-feedback"></span>
+									</div>
+								</div>
+							</div>
+							<div class="form-group col-lg-3">
+								<div class="row">
+									<div class="form-group has-feedback">
+										<input id="dugmePretraziBioskope" type="button" class="btn btn-warning" style="float:right" onclick="pretraziBioskope()" value="Pretrazi bioskope">
+									</div>
 								</div>
 							</div>
 						</div>
+					</div>
+					
+					
+					<!-- ODABIR BIOSKOPA IZ LISTE -->
+					<div class="form-group col-lg-10">
 						<div class="form-group col-lg-3">
 							<div class="row">
 								<div class="form-group has-feedback">
-									<input id="dugmePretraziBioskope" type="button" class="btn btn-warning" style="float:right" value="Pretrazi bioskope">
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				
-				<!-- ODABIR BIOSKOPA IZ LISTE -->
-				<div class="form-group col-lg-10">
-					<div class="form-group col-lg-3">
-						<div class="row">
-							<div class="form-group has-feedback">
-								<label>Naziv bioskopa:</label>
-							</div>
-						</div>
-					</div>
-					<div class="form-group col-lg-5">
-						<div class="row">
-							<div class="form-group has-feedback">
-								<select class="form-control" id="selectBioskop">
-									<option>Bioskop 1</option>
-									<option>Bioskop 2</option>
-								</select>
-							</div>
-						</div>
-					</div>
-					<div class="form-group col-lg-2">
-						<div class="row">
-							<div class="form-group has-feedback">
-								<input id="dugmeDalje1" type="button" class="btn btn-warning" style="float:right" value="Dalje 1">
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				
-				<!-- ODABIR PROJEKCIJE IZ LISTE -->
-				<!-- sakriti dugme dalje1 -->
-				<div class="form-group col-lg-10">
-					<div style="padding-top: 40px">
-						<div class="form-group col-lg-3">
-							<div class="row">
-								<div class="form-group has-feedback">
-									<label>Projekcija:</label>
+									<label>Naziv bioskopa:</label>
 								</div>
 							</div>
 						</div>
 						<div class="form-group col-lg-5">
 							<div class="row">
 								<div class="form-group has-feedback">
-									<select class="form-control" id="selectProjekcija">
-										<option>Projekcija 1</option>
-										<option>Projekcija 2</option>
-									</select>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				
-				<!-- ODABIR DATUMA -->
-				<div class="form-group col-lg-10">
-					<div class="form-group col-lg-3">
-						<div class="row">
-							<div class="form-group has-feedback">
-								<label>Datum:</label>
-							</div>
-						</div>
-					</div>
-					<div class="form-group col-lg-5">
-						<div class="row">
-							<div class="form-group has-feedback">
-								<input type="date" class="form-control" id="datum">
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				
-				<!-- ODABIR TERMINA -->
-				<div class="form-group col-lg-10">
-					<div class="form-group col-lg-3">
-						<div class="row">
-							<div class="form-group has-feedback">
-								<label>Termin:</label>
-							</div>
-						</div>
-					</div>
-					<div class="form-group col-lg-5">
-						<div class="row">
-							<div class="form-group has-feedback">
-								<select class="form-control" id="selectTermin">
-									<option>Termin 1</option>
-									<option>Termin 2</option>
-								</select>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				
-				<!-- ODABIR SALE -->
-				<!-- sakriti dugme dalje1 -->
-				<div class="form-group col-lg-10">
-					<div class="form-group col-lg-3">
-						<div class="row">
-							<div class="form-group has-feedback">
-								<label>Sala:</label>
-							</div>
-						</div>
-					</div>
-					<div class="form-group col-lg-5">
-						<div class="row">
-							<div class="form-group has-feedback">
-								<select class="form-control" id="selectSala">
-									<option>Sala 1</option>
-									<option>Sala 2</option>
-								</select>
-							</div>
-						</div>
-					</div>
-					<div class="form-group col-lg-2">
-						<div class="row">
-							<div class="form-group has-feedback">
-								<input id="dugmeDalje2" type="button" class="btn btn-success" style="float:right" value="Dalje 2">
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				
-				<!-- GRAFICKI PRIKAZ -->
-				<!-- sakriti dugme dalje2 -->
-				<div class="form-group col-lg-10">
-					<div style="padding-top: 40px">
-						<div class="form-group col-lg-5">
-							<div class="row">
-								<div class="form-group has-feedback">
-									<div id="grafickiPrikaz">OVDE CE BITI GRAFICKI PRIKAZ</div>
+									<div id="listaBioskopa"></div>
 								</div>
 							</div>
 						</div>
 						<div class="form-group col-lg-2">
 							<div class="row">
 								<div class="form-group has-feedback">
-									<input id="dugmeDalje3" type="button" class="btn btn-secondary" style="float:right" value="Dalje 3">
+									<input id="dugmeDalje1" type="button" class="btn btn-warning" style="float:right" value="Dalje 1">
 								</div>
 							</div>
 						</div>
@@ -199,22 +80,97 @@
 				</div>
 				
 				
-				<!-- PRETRAGA PRIJATELJA -->
-				<!-- sakriti dugme dalje3 -->
-				<div class="form-group col-lg-10">
-					<div style="padding-top: 40px">
-						<div class="form-group col-lg-6">
+				<div id="deo2">
+					<!-- ODABIR PROJEKCIJE IZ LISTE -->
+					<!-- sakriti dugme dalje1 -->
+					<div class="form-group col-lg-10">
+						<div style="padding-top: 40px">
+							<div class="form-group col-lg-3">
+								<div class="row">
+									<div class="form-group has-feedback">
+										<label>Projekcija:</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group col-lg-5">
+								<div class="row">
+									<div class="form-group has-feedback">
+										<select class="form-control" id="selectProjekcija">
+											<option>Projekcija 1</option>
+											<option>Projekcija 2</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					
+					<!-- ODABIR DATUMA -->
+					<div class="form-group col-lg-10">
+						<div class="form-group col-lg-3">
 							<div class="row">
 								<div class="form-group has-feedback">
-									<input type="text" class="form-control" id="pretraziPrijatelje" placeholder="Pretrazi prijatelje">
-									<span class="glyphicon glyphicon-search form-control-feedback"></span>
+									<label>Datum:</label>
 								</div>
 							</div>
 						</div>
 						<div class="form-group col-lg-3">
 							<div class="row">
 								<div class="form-group has-feedback">
-									<input id="dugmePretraziPrijatelje" type="button" class="btn btn-danger" style="float:right" value="Pretrazi prijatelje">
+									<input type="date" class="form-control" id="datum">
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					
+					<!-- ODABIR TERMINA -->
+					<div class="form-group col-lg-10">
+						<div class="form-group col-lg-3">
+							<div class="row">
+								<div class="form-group has-feedback">
+									<label>Termin:</label>
+								</div>
+							</div>
+						</div>
+						<div class="form-group col-lg-5">
+							<div class="row">
+								<div class="form-group has-feedback">
+									<select class="form-control" id="selectTermin">
+										<option>Termin 1</option>
+										<option>Termin 2</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					
+					<!-- ODABIR SALE -->
+					<!-- sakriti dugme dalje1 -->
+					<div class="form-group col-lg-10">
+						<div class="form-group col-lg-3">
+							<div class="row">
+								<div class="form-group has-feedback">
+									<label>Sala:</label>
+								</div>
+							</div>
+						</div>
+						<div class="form-group col-lg-5">
+							<div class="row">
+								<div class="form-group has-feedback">
+									<select class="form-control" id="selectSala">
+										<option>Sala 1</option>
+										<option>Sala 2</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="form-group col-lg-2">
+							<div class="row">
+								<div class="form-group has-feedback">
+									<input id="dugmeDalje2" type="button" class="btn btn-success" style="float:right" value="Dalje 2">
 								</div>
 							</div>
 						</div>
@@ -222,36 +178,86 @@
 				</div>
 				
 				
-				<!-- ODABIR PRIJATELJA IZ LISTE -->
-				<div class="form-group col-lg-10">
-					<div class="form-group col-lg-3">
-						<div class="row">
-							<div class="form-group has-feedback">
-								<label>Pozovi prijatelje:</label>
+				<div id="deo3">
+					<!-- GRAFICKI PRIKAZ -->
+					<!-- sakriti dugme dalje2 -->
+					<div class="form-group col-lg-10">
+						<div style="padding-top: 40px">
+							<div class="form-group col-lg-5">
+								<div class="row">
+									<div class="form-group has-feedback">
+										<div id="grafickiPrikaz">OVDE CE BITI GRAFICKI PRIKAZ</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-group col-lg-2">
+								<div class="row">
+									<div class="form-group has-feedback">
+										<input id="dugmeDalje3" type="button" class="btn btn-secondary" style="float:right" value="Dalje 3">
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
-					<div class="form-group col-lg-5">
-						<div class="row">
-							<div class="form-group has-feedback">
-								<select class="form-control" id="selectPrijatelji">
-									<option>Prijatelj 1</option>
-									<option>Prijatelj 2</option>
-								</select>
+				</div>
+				
+				
+				<div id="deo4">
+					<!-- PRETRAGA PRIJATELJA -->
+					<!-- sakriti dugme dalje3 -->
+					<div class="form-group col-lg-10">
+						<div style="padding-top: 40px">
+							<div class="form-group col-lg-3">
+								<div class="row">
+									<div class="form-group has-feedback">
+										<input type="text" class="form-control" id="pretraziPrijatelje" placeholder="Pretrazi prijatelje">
+										<span class="glyphicon glyphicon-search form-control-feedback"></span>
+									</div>
+								</div>
+							</div>
+							<div class="form-group col-lg-3">
+								<div class="row">
+									<div class="form-group has-feedback">
+										<input id="dugmePretraziPrijatelje" type="button" class="btn btn-danger" style="float:right" value="Pretrazi prijatelje">
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
-					<div class="form-group col-lg-3">
-						<div class="row">
-							<div class="form-group has-feedback">
-								<input id="dugmePozoviPrijatelje" type="button" class="btn btn-danger" style="float:right" value="Pozovi prijatelje">
+					
+					
+					<!-- ODABIR PRIJATELJA IZ LISTE -->
+					<div class="form-group col-lg-10">
+						<div class="form-group col-lg-3">
+							<div class="row">
+								<div class="form-group has-feedback">
+									<label>Odaberi prijatelja:</label>
+								</div>
+							</div>
+						</div>
+						<div class="form-group col-lg-5">
+							<div class="row">
+								<div class="form-group has-feedback">
+									<select class="form-control" id="selectPrijatelji">
+										<option>Prijatelj 1</option>
+										<option>Prijatelj 2</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="form-group col-lg-3">
+							<div class="row">
+								<div class="form-group has-feedback">
+									<input id="dugmePozoviPrijatelje" type="button" class="btn btn-danger" style="float:right" value="Pozovi prijatelje">
+									<input id="dugmeDalje4" type="button" class="btn btn-danger" style="float:right" value="Dalje 4">
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 				
 				<!-- ZAVRSETAK REZERVACIJE -->
-				<div class="form-group col-lg-10">
+				<div id="deo5" class="form-group col-lg-10">
 					<div style="padding-top: 40px">
 						<div class="form-group col-lg-8">
 							<div class="row">
@@ -267,9 +273,102 @@
 		</div>
 		
 		<script type="text/javascript">
+			$(document).ready(function(){
+				$("#deo1").show();
+				$("#deo2").hide();
+				$("#deo3").hide();
+				$("#deo4").hide();
+				$("#deo5").hide();
+			});	
+		
+		
 			$("#dugmeNazad").click(function(){
 				location.href = "http://localhost:8080/homePage.html"
 			});
+			
+			
+			$("#dugmeDalje1").click(function(){
+				$("#deo1").show();
+				$("#deo2").show();
+				$("#deo3").hide();
+				$("#deo4").hide();
+				$("#deo5").hide();
+			});
+			
+			
+			$("#dugmeDalje2").click(function(){
+				$("#deo1").show();
+				$("#deo2").show();
+				$("#deo3").show();
+				$("#deo4").hide();
+				$("#deo5").hide();
+			});
+			
+			
+			$("#dugmeDalje3").click(function(){
+				$("#deo1").show();
+				$("#deo2").show();
+				$("#deo3").show();
+				$("#deo4").show();
+				$("#deo5").hide();
+			});
+			
+			
+			$("#dugmeDalje4").click(function(){
+				$("#deo1").show();
+				$("#deo2").show();
+				$("#deo3").show();
+				$("#deo4").show();
+				$("#deo5").show();
+			});
+			
+			
+			function pretraziBioskope(){
+				document.getElementById("dugmePretraziBioskope").onclick = function() {
+				    //da se select ne bi pojavio x puta :D
+					this.disabled = true;
+				}
+				var naziv = $("#pretraziBioskope").val();
+	
+				if(naziv == ""){
+					naziv = "nemaUnosa";
+				}
+				
+				$.ajax({	
+				url: "bioskopi/pretraziBioskope/" + naziv,
+				type: "GET",
+				success: function(data){
+						if(data.length != 0){ //ima rezultata pretrage
+							var listaBioskopaDiv = document.getElementById("listaBioskopa");							
+							var selectList = document.createElement("select");
+							selectList.id = "listaBioskopaSelect";
+							listaBioskopaDiv.appendChild(selectList);
+							
+							for (i = 0; i < data.length; i++) {	
+								//ako ima unosa prikazuje se samo 1 bioskop, sa unetim nazivom
+								if(data[i].naziv == naziv){
+									var option = document.createElement("option");
+								    option.value = data[i].id;
+								    option.text = data[i].naziv;
+								    selectList.appendChild(option);
+							    } else {
+							    	//ako nema unosa prikazuju se svi bioskopi
+							    	var option = document.createElement("option");
+									option.value = data[i].id;
+									option.text = data[i].naziv;
+									selectList.appendChild(option);
+							    }
+							}
+						} else {
+							alert('Nema rezultata pretrage. \nMolimo pokusajte ponovo.');
+							$("#pretraziBioskope").val('');
+						}
+				 	},
+				 	error: function(data){
+						alert('GRESKA PRILIKOM PRETRAGE BIOSKOPA!!!')
+					}
+				});
+			}
 		</script>
 	</body>
 </html>
