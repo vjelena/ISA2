@@ -1,90 +1,162 @@
 <!DOCTYPE html>
-<html>
+	<html>
 	<head>
 		<meta charset="UTF-8">
 		<title>Bioskopi</title>
 		<script src="scripts/jquery-3.2.1.min.js"></script>
 		<link href="bootstrapB/css/bootstrap.css" rel="stylesheet" type="text/css" />
 		<script src="bootstrapB/js/bootstrap.js" type="text/javascript"></script>
-	<script>
-	$(document).ready(
-			function() {
+		<script>
+			$(document).ready(function() {
 				$.ajax({
 					url : "http://localhost:8080/bioskopi/prikaziBioskope"
-				}).then(
-						function(data) {
-							for (i = 0; i < data.length; i++) {
-								newRow = "<tr><td><a class=\"bioskopi\" href=\"\" id=\"" + data[i].id + "\" naziv=\""+data[i].naziv+"\">"+ data[i].naziv + "</a></td>"
-										+ "<td class=\"adresa\">"+ data[i].adresa.ulica + " "+ data[i].adresa.broj + "</td>"
-										+ "<td class=\"opis\">" + data[i].opis+ "</td>"
-										+ "<td class=\"prosecnaOcena\">"+ data[i].prosecnaOcena + "</td>"
-								$("#dataTable").append(newRow)
-							}
-							
-						});
+				}).then(function(data) {
+					for (i = 0; i < data.length; i++) {
+						newRow = "<tr><td><a class=\"bioskopi\" href=\"\" id=\"" + data[i].id + "\" naziv=\""+data[i].naziv+"\">"
+									+ data[i].naziv
+									+ "</a></td>"
+									+ "<td class=\"adresa\">"
+									+ data[i].adresa.ulica
+									+ " "
+									+ data[i].adresa.broj
+									+ "</td>"
+									+ "<td class=\"opis\">"
+									+ data[i].opis
+									+ "</td>"
+									+ "<td class=\"prosecnaOcena\">"
+									+ data[i].prosecnaOcena
+									+ "</td>"
+						$("#dataTable").append(newRow)
+					}
+				});
 			});
-	
-	$(document).on("click", ".bioskopi", function(event) {
-		event.preventDefault();
-		id=$(this).closest("a").attr("id");
-		var redirect = function(url, method) {
-			var div = document.createElement('div');
-			var form = document.createElement('form');
-			div.setAttribute("class","invisible");
-			div.appendChild(form);
-			document.body.appendChild(div);
-			var input = document.createElement('input');
-			input.name='id';
-			input.value=id;
-			form.appendChild(input);
-			form.method = method;
-			form.action = url;
-			form.submit();
-		};
-		redirect('profilBioskopa.html','GET');
-	});	
+		
+			
+			$(document).on("click", ".bioskopi", function(event) {
+				event.preventDefault();
+				id = $(this).closest("a").attr("id");
+				var redirect = function(url, method) {
+					var div = document.createElement('div');
+					var form = document.createElement('form');
+					div.setAttribute("class", "invisible");
+					div.appendChild(form);
+					document.body.appendChild(div);
+					var input = document.createElement('input');
+					input.name = 'id';
+					input.value = id;
+					form.appendChild(input);
+					form.method = method;
+					form.action = url;
+					form.submit();
+				};
+				redirect('profilBioskopa.html', 'GET');
+			});
 		</script>
 	</head>
 
-<body>
-<div id="rootDiv">
-	<div class="row">
-		<div class="col-lg-12 col-lg-8"></div>
-		<div class="col-lg-6 col-lg-3">
-			<div class="form-group">
-				<form action="profilBioskopa.html" class="form-horizontal">
-					<div class="col-lg-4">
-						<input class="btn btn-link" type="submit" value="Nazad">
+	<body>
+		<div id="rootDiv">
+			<div class="row">
+				<div class="col-lg-12 col-lg-8"></div>
+				<div class="col-lg-6 col-lg-3">
+					<div class="form-group">
+						<form action="prijaviSe.html" class="form-horizontal">
+							<div class="col-lg-4">
+								<input class="btn btn-link" type="submit" value="Prijavi se">
+							</div>
+						</form>
+						<form action="registrujSe.html" class="form-horizontal">
+							<div class="col-lg-4">
+								<input class="btn btn-link" type="submit" value="Registruj se">
+							</div>
+						</form>
 					</div>
-				</form>
-				<form action="prijaviSe.html" class="form-horizontal">
-					<div class="col-lg-4">
-						<input class="btn btn-link" type="submit" value="Prijavi se">
+				</div>
+			</div>
+		
+			<div class="row">
+				<div class="col-lg-12 col-lg-8"></div>
+				<div class="col-lg-6 col-lg-3">
+					<div class="form-group">
+						<form action="profilBioskopa.html" class="form-horizontal">
+							<div class="col-lg-4">
+								<input class="btn btn-link" type="submit" value="Profil bioskopa">
+							</div>
+						</form>
+						<form class="form-horizontal">
+							<div class="col-lg-4">
+								<input id="dugmeMojProfil" class="btn btn-link" type="button" value="Moj profil">
+							</div>
+						</form>
+						<form class="form-horizontal">
+							<div class="col-lg-4">
+								<input id="dugmeSortirajBioskope" class="btn btn-warning" type="button" onclick="sortTable()" value="Sortiraj">
+							</div>
+						</form>
 					</div>
-				</form>
-				<form action="registrujSe.html" class="form-horizontal">
-					<div class="col-lg-4">
-						<input class="btn btn-link" type="submit" value="Registruj se">
-					</div>
-				</form>
+				</div>
+			</div>			
+	
+			<div class="container">
+				<div style="margin-top: 20px;">
+					<table id="dataTable" class="table table-hover table-bordered">
+						<thead class="thead-dark">
+							<tr>
+								<th scope="col" class="text-center">Naziv</th>
+								<th scope="col" class="text-center">Adresa</th>
+								<th scope="col" class="text-center">Promotivni opis</th>
+								<th scope="col" class="text-center">Prosecna ocena</th>
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+				</div>
 			</div>
 		</div>
-	</div>
-
-<div class="container">
-		<div style="margin-top: 20px;">
-			<table id="dataTable" class="table table-hover table-bordered">
-				<thead class="thead-dark">
-					<tr>
-						<th scope="col" class="text-center">Naziv</th>
-						<th scope="col" class="text-center">Adresa</th>
-						<th scope="col" class="text-center">Promotivni opis</th>
-						<th scope="col" class="text-center">Prosecna ocena</th>
-					</tr>
-				</thead>
-			</table>
-		</div>
-	</div>
-</div>
-</body>
+		
+		<script type="text/javascript">
+			$("#dugmeMojProfil").click(function(){
+				alert('Za nastavak rada, morate se ponovo prijaviti na sistem.')
+				location.href = "http://localhost:8080/prijaviSe.html"
+			});
+			
+			
+			//sortiranje: 	https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_sort_table			
+			function sortTable() {
+				var table, rows, switching, i, x, y, shouldSwitch;
+				table = document.getElementById("dataTable");
+				switching = true;
+				/*Make a loop that will continue until
+				no switching has been done:*/
+				while (switching) {
+					//start by saying: no switching is done:
+					switching = false;
+					rows = table.getElementsByTagName("TR");
+					/*Loop through all table rows (except the
+					first, which contains table headers):*/
+					for (i = 1; i < (rows.length - 1); i++) {
+						//start by saying there should be no switching:
+						shouldSwitch = false;
+						/*Get the two elements you want to compare,
+						one from current row and one from the next:*/
+						x = rows[i].getElementsByTagName("TD")[0];
+						y = rows[i + 1].getElementsByTagName("TD")[0];
+						//check if the two rows should switch place:
+						if (x.innerHTML.toLowerCase() < y.innerHTML
+								.toLowerCase()) {
+							//if so, mark as a switch and break the loop:
+							shouldSwitch = true;
+							break;
+						}
+					}
+					if (shouldSwitch) {
+						/*If a switch has been marked, make the switch
+						and mark that a switch has been done:*/
+						rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+						switching = true;
+					}
+				}
+			}
+		</script>
+	</body>
 </html>
