@@ -19,8 +19,10 @@ import com.ftn.DTO.ProjekcijaDTO;
 import com.ftn.DTOconverter.ProjekcijaDTOtoProjekcija;
 import com.ftn.model.Adresa;
 import com.ftn.model.Bioskop;
+import com.ftn.model.Korisnik;
 import com.ftn.model.Projekcija;
 import com.ftn.repository.BioskopRepository;
+import com.ftn.repository.KorisnikRepository;
 import com.ftn.service.BioskopService;
 import com.ftn.service.ProjekcijaService;
 import com.ftn.service.impl.JpaBioskopService;
@@ -43,6 +45,9 @@ public class PrikazBioskopaController {
 	
 	@Autowired
 	private BioskopRepository bioskopRepository;
+	
+	@Autowired
+	private KorisnikRepository korisnikRepository;
 	
 
 	@RequestMapping(value = "/prikaziBioskope", method = RequestMethod.GET)
@@ -137,5 +142,27 @@ public class PrikazBioskopaController {
 		else
 			return new ResponseEntity<>(bioskopRepository.findByNazivIgnoreCaseContaining(naziv), HttpStatus.OK);
 	}
-
+	
+	
+	//------------------------------------------------------------------------------------------------------------------------
+	//TODO: ajax!!! -> kada uradis rezervaciju mesta u bioskopu
+	//dodavanje posecenih bioskopa i posetilaca u liste
+	@RequestMapping(value = "/dodajPosecene/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Bioskop> dodajPosecene(@PathVariable Long id, HttpServletRequest request) {
+		System.out.println("\n\t\tPrikazBioskopa kontroler: dodajPosecene\n");
+		
+		Korisnik k = (Korisnik)request.getSession().getAttribute("aktivanKorisnik");
+		Korisnik posetilac = korisnikRepository.findById(k.getId());
+		Bioskop posecenBioskop = bioskopRepository.findById(id);
+		
+		posetilac.getPoseceniBioskopi().add(posecenBioskop);
+		posecenBioskop.getPosetioci().add(posetilac);
+		
+		korisnikRepository.save(posetilac);
+		bioskopRepository.save(posecenBioskop);
+		
+		return new ResponseEntity<>(posecenBioskop, HttpStatus.OK);	
+	}
+	//------------------------------------------------------------------------------------------------------------------------
+	
 }

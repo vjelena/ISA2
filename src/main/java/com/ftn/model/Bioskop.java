@@ -1,7 +1,8 @@
 package com.ftn.model;
 
 import java.io.Serializable;
-
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -11,13 +12,13 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 public class Bioskop implements Serializable{
@@ -62,18 +63,19 @@ public class Bioskop implements Serializable{
 	
 	//@JsonIgnore
 //	@JsonManagedReference
-	@ManyToMany
-	private Set<Korisnik> listaPosetilaca;
-	
-	//@JsonIgnore
-//	@JsonManagedReference
 	@OneToOne
 	private FanZona fanZona;
 	
 	@Column(nullable = false)
 	private float prosecnaOcena;
 
-	
+	//istorija poseta bioskopima
+	@ManyToMany
+	@JoinTable(name = "korisnikovaIstorijaPoseta", joinColumns = { @JoinColumn(name = "posecenBioskop", nullable = false) }, inverseJoinColumns = { @JoinColumn(name = "posetilac") })
+	@JsonIgnore
+	List<Korisnik> posetioci;
+
+
 	public Bioskop() {
 		
 	}
@@ -82,7 +84,7 @@ public class Bioskop implements Serializable{
 		super();
 		this.naziv = naziv;
 		this.opis = opis;
-		
+		this.posetioci = new ArrayList<Korisnik>();
 	}
 
 	public String getNaziv() {
@@ -165,14 +167,6 @@ public class Bioskop implements Serializable{
 		this.prosecnaOcena = prosecnaOcena;
 	}
 
-	public Set<Korisnik> getListaPosetilaca() {
-		return listaPosetilaca;
-	}
-
-	public void setListaPosetilaca(Set<Korisnik> listaPosetilaca) {
-		this.listaPosetilaca = listaPosetilaca;
-	}
-
 	public FanZona getFanZona() {
 		return fanZona;
 	}
@@ -181,6 +175,12 @@ public class Bioskop implements Serializable{
 		this.fanZona = fanZona;
 	}
 
-	
+	public List<Korisnik> getPosetioci() {
+		return posetioci;
+	}
+
+	public void setPosetioci(List<Korisnik> posetioci) {
+		this.posetioci = posetioci;
+	}
 	
 }

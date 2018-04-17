@@ -1,6 +1,7 @@
 package com.ftn.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -71,7 +72,12 @@ public class Korisnik implements Serializable{
 	@JsonIgnore
 	private List<Korisnik> zahteviZaPrijateljstvo;
 	
-
+	//istorija poseta bioskopima
+	@ManyToMany(mappedBy = "posetioci")
+	@JsonIgnore
+    List<Bioskop> poseceniBioskopi;
+	
+	
 	public Korisnik() {
 		
 	}
@@ -89,6 +95,10 @@ public class Korisnik implements Serializable{
 		this.aktiviranNalogPrekoMejla = aktiviranNalogPrekoMejla;
 		this.prviPutSeUlogovao = prviPutSeUlogovao;
 		this.vrstaClana = vrstaClana;
+		this.mojiPrijatelji = new ArrayList<Korisnik>();
+		this.komeSamJaPrijatelj = new ArrayList<Korisnik>();
+		this.zahteviZaPrijateljstvo = new ArrayList<Korisnik>();
+		this.poseceniBioskopi = new ArrayList<Bioskop>();
 	}
 
 	public Long getId() {
@@ -209,6 +219,14 @@ public class Korisnik implements Serializable{
 
 	public void setZahteviZaPrijateljstvo(List<Korisnik> zahteviZaPrijateljstvo) {
 		this.zahteviZaPrijateljstvo = zahteviZaPrijateljstvo;
+	}
+	
+	public List<Bioskop> getPoseceniBioskopi() {
+		return poseceniBioskopi;
+	}
+
+	public void setPoseceniBioskopi(List<Bioskop> poseceniBioskopi) {
+		this.poseceniBioskopi = poseceniBioskopi;
 	}
 
 }
