@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ftn.model.Bioskop;
+import com.ftn.model.Film;
 import com.ftn.model.Sala;
 import com.ftn.repository.SalaRepository;
 import com.ftn.service.SalaService;
@@ -25,11 +26,15 @@ public class JpaSalaService implements SalaService {
 		
 	}
 	public Sala nadjiJednuSalu(String id) {
-		System.out.println("=================== id bioskopa za pretragu: " + id);
 		return salaRepository.findOne(new Long(id));
 	}
 	public List<Sala> nadjiSveSale() {
 		return salaRepository.findAll();
+	}
+	
+	
+	public Sala kreirajSalu(Sala sala) {
+		return salaRepository.save(sala);
 	}
 	
 }

@@ -39,13 +39,15 @@ insert into fan_zona(naziv) values ('fan zona'); --samo jedna fan zona postoji i
 
 
 insert into bioskop values (1, 'Jadran', 'Na repertoaru bioskopa Jadra mozete pogledati brojne popularne klasike.', 3.5, 11, 1);
-insert into bioskop values (2, 'Arena Cineplex', 'Pored redovnog filmskog repertoara, u Areni Cineplex se organizuju svecane premijere domacih filmova, kao i festivali FEST, Cinema City, Cinemania i Kids Fest.', 4.5, 12, 1);
-insert into bioskop values (3, 'Cinestar', 'Brend CineStar razvio se iz bioskopa kompanije Kieft Kieft Filmtheater GmbH, koja je, posle vise od cetiri decenije rada kao operater klasicnog bioskopa, još 1993. otvorila svoj prvi multipleks.', 4.0, 13, 1);
+insert into bioskop values (2, 'Arena Cineplex', 'Pored redovnog filmskog repertoara, u Areni Cineplex se organizuju svecane premijere domacih filmova, kao i festivali FEST, Cinema City, Cinemania i Kids Fest.', 4.5,12, 1);
+insert into bioskop values (3, 'Cinestar', 'Brend CineStar razvio se iz bioskopa kompanije Kieft Kieft Filmtheater GmbH, koja je, posle vise od cetiri decenije rada kao operater klasicnog bioskopa, još 1993. otvorila svoj prvi multipleks.', 4.0,13, 1);
 insert into bioskop values (4, 'Bioskop 4', 'Opis bioskopa 4.', 4.3, 15, 1);
 
 
 insert into repertoar values (1, 1);
 insert into repertoar values (2, 2);
+insert into repertoar values (3, 3);
+insert into repertoar values (4, 4);
 
 
 INSERT INTO film values (1,'Ready player one', 4.2, 'opis', 'Steven Spielberg', 'slika 1', 120, 'drama');
@@ -53,19 +55,29 @@ INSERT INTO film values (2,'Tomb raider 3D', 4.5, 'Lara Kroft je strastvena, sam
 insert into film values (3, 'Eat, pray, love', 5, 'Romanticna prica o pomalo izgubljenoj devojci.', 'reditelj 3', 'slika 3', 193, 'romanticna komedija');
 
 
-insert into sala values(1, 150, 'konfiguracija A', 'sala 1', 2);
-insert into sala values(2, 100, 'konfiguracija B', 'sala 2', 3);
+insert into sala values(1, 150, 'konfiguracija A', 'sala A', 2);
+insert into sala values(2, 100, 'konfiguracija B', 'sala B', 3);
+insert into sala values(3, 100, 'konfiguracija B', 'sala C', 1);
+insert into sala values(4, 100, 'konfiguracija B', 'sala D', 4);
+insert into sala values(5, 100, 'konfiguracija B', 'sala E', 1);
+insert into sala values(6, 100, 'konfiguracija B', 'sala F', 2);
+
+
 
 
 insert into termin values (1, '01-05-2018 12:00');
 insert into termin values (2, '01-05-2018 17:00');
 insert into termin values (3, '02-05-2018 12:00');
 insert into termin values (4, '02-05-2018 17:00');
-insert into termin values (5, '17-05-2018 19:00');
+insert into termin values (5, '05-05-2018 20:00');
+insert into termin values (6, '05-05-2018 21:00');
+insert into termin values (7, '11-05-2018 19:00');
 
 
 insert into projekcija values (1, 420, 3, 1, 2, 5);
 insert into projekcija values (2, 350, 1, 2, 1, 2);
+insert into projekcija values (3, 420, 3, 3, 2, 3);
+insert into projekcija values (4, 350, 2, 4, 1, 4);
 
 
 insert into glumac values (1, 'Alicia', 'Vikander');
@@ -87,6 +99,9 @@ insert into film_glumci values (3, 6);
 
 insert into bioskop_lista_sala values (1, 1);
 insert into bioskop_lista_sala values (2, 2);
+insert into bioskop_lista_sala values (3, 3);
+insert into bioskop_lista_sala values (4, 4);
+
 
 
 insert into oglas(id, cena, datum, naziv, opis, slika, status, fan_zona_id) values (1, '100', '2018-11-10', 'Oglas 1', 'Opis oglasa 1', 'slika 1', 1, 1);

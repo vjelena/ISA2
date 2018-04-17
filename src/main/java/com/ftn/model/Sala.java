@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -73,7 +74,9 @@ public class Sala implements Serializable{
 	public void setBrojMesta(int brojMesta) {
 		this.brojMesta = brojMesta;
 	}
-
+	
+	@ManyToOne
+    @JoinColumn(name = "bioskop_id")
 	public Bioskop getBioskop() {
 		return bioskop;
 	}

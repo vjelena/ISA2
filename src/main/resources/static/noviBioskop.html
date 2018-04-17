@@ -50,6 +50,18 @@
                     		
                     		<div class="input-group" style="margin-bottom: 25px">
                         		<span class="input-group-addon"><i class="glyphicon glyphicon-eur"></i></span>
+                        		<input type="text" class="form-control" name="xKoordinata" id="xKoordinata" placeholder="X koordinata">
+                        		<div id="divXkoordinata" style="float:right"></div>
+                    		</div>
+                    		
+                    		<div class="input-group" style="margin-bottom: 25px">
+                        		<span class="input-group-addon"><i class="glyphicon glyphicon-eur"></i></span>
+                        		<input type="text" class="form-control" name="yKoordinata" id="yKoordinata" placeholder="Y koordinata">
+                        		<div id="divYkoordinata" style="float:right"></div>
+                    		</div>
+                    		
+                    		<div class="input-group" style="margin-bottom: 25px">
+                        		<span class="input-group-addon"><i class="glyphicon glyphicon-eur"></i></span>
                         		<input type="text" class="form-control" id="ocena" name="ocena" placeholder="Prosecna ocena">
                         		<div id="divOcena" style="float:right"></div>
                     		</div>
@@ -78,6 +90,9 @@ $("#ocena").change(function(){
 });
 
 $("#potvrdi").click(function(){
+	
+	xKoordinata = Math.floor(Math.random() * 100);
+	
 	formData = JSON.stringify({
         naziv:$("#formaNoviBioskop [name='naziv']").val(),
         opis:$("#formaNoviBioskop [name='opis']").val(),

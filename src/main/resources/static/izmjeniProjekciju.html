@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Nova projekcija</title>
+<script src="scripts/jquery-3.2.1.min.js" type="text/javascript"></script>
+<link href="bootstrapB/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+<script src="bootstrapB/js/bootstrap.js" type="text/javascript"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.js"></script>
+</head>
+<body>
+
+<script>
+	$.urlParam = function(name){
+			 var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+				if (results==null){
+				    return null;
+						}
+				else{
+					 return decodeURI(results[1]) || 0;
+					}
+			};
+		var idProjekcije = $.urlParam('idProjekcije');
+		var idBioskopa = $.urlParam('idBioskopa');
+</script>
+
+<script>
+$(document).ready(
+		function() {
+			$.ajax({
+				url : "http://localhost:8080/film/getFilmovi"
+			}).then(
+					function(data) {
+						console.log('Filmovi: ' + JSON.stringify(data));
+						var listaFilmovaDiv = document.getElementById("listaFilmova");
+						
+						var selectList = document.createElement("select");
+						selectList.id = "listaFilmovaSelect";
+						selectList.className = "film";
+						listaFilmovaDiv.appendChild(selectList);
+						for (i = 0; i < data.length; i++) {
+							
+							var option = document.createElement("option");
+						    option.value = data[i].id;
+						    option.text = data[i].naziv;
+						    selectList.appendChild(option);
+						}
+					});
+		});
+</script>
+
+<script>
+$(document).ready(
+		function() {
+			$.ajax({
+				url : "http://localhost:8080/termin/getTermini"
+			}).then(
+					function(data) {
+						console.log('Termini: ' + JSON.stringify(data));
+						var listaTerminaDiv = document.getElementById("listaTermina");
+						
+						var selectList = document.createElement("select");
+						selectList.id = "listaTerminaSelect";
+						selectList.className = "termin";
+						listaTerminaDiv.appendChild(selectList);
+						for (i = 0; i < data.length; i++) {
+							
+							var option = document.createElement("option");
+						    option.value = data[i].id;
+						    option.text = data[i].vreme;
+						    selectList.appendChild(option);
+						}
+					});
+		});
+</script>
+
+<script>
+$(document).ready(
+		function() {
+			$.ajax({
+				url : "http://localhost:8080/sala/getSale"
+			}).then(
+					function(data) {
+						console.log('Sale: ' + JSON.stringify(data));
+						var listaFilmovaDiv = document.getElementById("listaSala");
+						
+						var selectList = document.createElement("select");
+						selectList.id = "listaSalaSelect";
+						selectList.className ="sala";
+						listaFilmovaDiv.appendChild(selectList);
+						for (i = 0; i < data.length; i++) {
+							
+							var option = document.createElement("option");
+						    option.value = data[i].id;
+						    option.text = data[i].nazivSale;
+						    selectList.appendChild(option);
+						}
+					});
+		});
+</script>
+
+		<div class="container">
+   			<div id="loginbox" style="margin-top:20px;" class="mainbox col-lg-6 col-lg-offset-3 col-lg-8 col-lg-offset-7"> 
+        		<div class="panel panel-info" >
+            		<div class="panel-heading">
+                		<div class="panel-title text-center">Izmjena projekcije</div>
+            		</div>
+            		
+            		
+            		  
+            		<div class="panel-body" style="padding-top:30px">
+                		<form id="formaIzmjeniProjekciju" class="form-horizontal" accept-charset="utf-8" >
+
+						<script>
+							$('#formaIzmjeniProjekciju').append('<input type="hidden" name="idProjekcije" value="' + idProjekcije + '" />');
+						</script>
+						
+						<div id="idBioskopaDiv"> </div>		
+						
+							<div>
+            					<div id="listaFilmova" style="margin-bottom: 25px"></div>
+            				</div>  
+            				
+            				<div>
+            					<div id="listaSala"  style="margin-bottom: 25px"></div>
+            				</div>  
+            				
+            				<div>
+            					<div id="listaTermina"  style="margin-bottom: 25px"></div>
+            				</div>         
+							           
+                    		<div class="input-group" style="margin-bottom: 25px">
+                        		<span class="input-group-addon"><i class="glyphicon glyphicon-eur"></i></span>
+                        		<input type="text" class="form-control" name="cena" placeholder="Cena">
+                        		<div id="divCena" style="float:right"></div>
+                    		</div>
+                    		                                        
+                    		<div class="form-group">
+                    <div class="col-lg-offset-3 col-lg-9" style="margin-top: 25px">
+                         <input id="btnIzmjeni" type="button" class="btn btn-primary" style="float:right" value="Sacuvaj izmene"> 	
+                         <input id="btnIOdustani" type="button" class="btn btn-primary" style="float:right" value="Odustani"> 	
+                    </div>
+               	</div>
+                		</form>     
+            		</div>                     
+        		</div>  
+    		</div>
+		</div>	
+		
+		
+
+	<script type="text/javascript">	
+			$("#btnIzmjeni").click(function(){
+				var forma = $('form[id="formaIzmjeniProjekciju"]');
+				var cena = forma.find('[name=cena]').val();
+				
+				
+				var idFilma =  $('#listaFilmovaSelect').val();
+				var idSale = $('#listaSalaSelect').val();
+				var idTermina = $('#listaTerminaSelect').val();
+			
+					
+					var idBioskopa = $.urlParam('idBioskopa');
+					
+					formData = JSON.stringify({
+						cena:$("#formaIzmjeniProjekciju [name='cena']").val(),
+						salaId:idSale,
+						terminId:idTermina,
+						filmId:idFilma,
+						bioskopId:idBioskopa,
+						id:idProjekcije
+					   });
+					
+					var idProjekcije = $.urlParam("idProjekcije");
+					$.ajax({
+						url: "http://localhost:8080/projekcija/izmjeniProjekciju/" + idProjekcije,
+						type: "PUT",
+						data: formData,
+						contentType: "application/json",
+						datatype: 'json',
+						success: function(data){
+							if(data){
+								alert("Azuriranje uspesno.");
+								location.href = "http://localhost:8080/profilBioskopa.html?id=" + idBioskopa;			
+							}else
+								alert("Azuriranje NIJE uspelo.");
+						},
+						error: function(data){
+							alert('GRESKA PRILIKOM AZURIRANJA!!!')
+						}
+					});
+				
+			});
+			
+
+$("#btnIOdustani").click(function(){
+ location.href = "http://localhost:8080/prikazBioskopa.html"
+});			
+</script>	
+</body>
+</html>

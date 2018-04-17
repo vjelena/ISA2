@@ -39,6 +39,7 @@
 								var projekcije = repertoar.projekcije;
 								var sale = data.listaSala;
 								
+								
 								for(var i=0; i<sale.length; i++){
 									 var button = document.createElement("input");
 									 	button.id = sale[i].id;
@@ -56,7 +57,8 @@
 									+ "<td class=\"sala\">"+ projekcije[i].sala.nazivSale + "</td>"
 									+ "<td class=\"termin\">"+ projekcije[i].termin.vreme + "</td>"
 									+ "<td class=\"cena\">"+ projekcije[i].cena + "</td>"
-									+ "<td><input type=\"button\" value=\"Obrisi\" class=\"btnObrisiProjekciju\" id=\""+projekcije[i].id + "\"></td></tr>"
+									+ "<td><input type=\"button\" value=\"Obrisi\" class=\"btnObrisiProjekciju\" id=\""+projekcije[i].id + "\"></td>"
+									+ "<td><input type=\"button\" value=\"Izmjeni\" class=\"btnIzmjeniProjekciju\" id=\""+projekcije[i].id + "\"></td></tr>"
 									
 									
 									
@@ -120,7 +122,7 @@
 			
 			<form action="istorijaPoseta.html" class="form-horizontal">
 				<div class="text-center" style="padding-top: 10px">
-					<input class="btn btn-info" type="submit" value="Brza rezervacija">
+					<input  id ="btnKarteNaPopustu" class="btn btn-info" type="submit" value="Karte na popustu">
 				</div>
 			</form>
 			<form action="izvjestajObioskopu.html" class="form-horizontal">
@@ -163,7 +165,7 @@
 						<th scope="col" class="text-center">Sala</th>
 						<th scope="col" class="text-center">Termin</th>
 						<th scope="col" class="text-center">Cena</th>
-						<th scope="col" class="text-center">Obrisi</th>
+						<th scope="col" class="text-center"></th>
 						<th></th>
 					</tr>
 				</thead>
@@ -171,8 +173,6 @@
 			
 				<div class="form-group">
                     <div class="col-lg-offset-3 col-lg-9" style="margin-top: 25px">
-                    	<input id="btnObrisi" type="button" class="btn btn-primary" style="float:right" value="Obrisi">
-                    	<input id="btnIzmeni" type="button" class="btn btn-primary" style="float:right" value="Izmeni">
                         <input id="btnDodaj" type="button" class="btn btn-primary" style="float:right" value="Dodaj"> 	 	
                     </div>
                	</div>
@@ -189,6 +189,7 @@
 	$("#btnDodaj").click(function(){
 	location.href = "http://localhost:8080/dodajProjekciju.html?idBioskopa=" + $.urlParam('id');
      });
+	     
 	
 	$("#btnAzurirajBioskop").click(function(){
 		location.href = "http://localhost:8080/izmjenaProfilaBioskopa.html?idBioskopa=" + $.urlParam('id');
@@ -205,9 +206,15 @@
 				});
 	});
 	
+	
 	$(".btnObrisiProjekciju").click(function(){
 		console.log("Klik na dugme....");
-		location.href = "http://localhost:8080/projekcija/izbrisiProjekciju/1";
+		location.href = "http://localhost:8080/projekcija/izbrisiProjekciju/" + projekcijaId
+	});
+	
+	$(document).on("click", ".btnIzmjeniProjekciju", function(event) {
+		var projekcijaId=this.id;
+		location.href = "http://localhost:8080/izmjeniProjekciju.html?idProjekcije=" +  projekcijaId+"&idBioskopa="+ $.urlParam('id') ;
 	});
 	
 	$(document).on("click", ".btnSala", function(event) {

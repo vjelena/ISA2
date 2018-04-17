@@ -74,37 +74,6 @@ public class PrikazBioskopaController {
 	}
 	
 	
-	/*@RequestMapping(value="/izmjeniBioskop", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public boolean izmjeniBioskop(@RequestBody Bioskop bioskop, HttpServletRequest request) {
-		
-		Bioskop b = bioskop; 
-		b.setId(new Long(bioskop.getId())); 
-		
-		b.setNaziv(bioskop.getNaziv());
-		b.setOpis(bioskop.getOpis());
-		b.setAdresa(bioskop.getAdresa());
-		
-		jpaBioskopService.save(b);
-		return true;
-	}*/
-	
-	
-/*	@RequestMapping(value = "/izmjeniBioskop/{id}", method = RequestMethod.GET)
-	public ResponseEntity<Bioskop> izmjeniBioskop(@PathVariable Long id, @PathVariable Bioskop b) {
-		
-		Bioskop bioskop = jpaBioskopService.nadjiJedanBioskop(id);
-			
-		bioskop.setNaziv(b.getNaziv());
-		bioskop.setAdresa(b.getAdresa());
-		bioskop.setOpis(b.getOpis());
-
-		bioskop = jpaBioskopService.save(bioskop);
-		if (bioskop== null) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-		return new ResponseEntity<>(bioskop, HttpStatus.OK);
-	}*/
-	
 	
 	@RequestMapping(value = "izmjeniBioskop/{id}",method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 		public ResponseEntity<Bioskop> izmjeniBioskop(@RequestBody BioskopDTO bioskopDTO,@PathVariable Long id) {
@@ -124,7 +93,6 @@ public class PrikazBioskopaController {
 	
 	@RequestMapping(value = "/dodajprojekciju/{id}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE )
 	public ResponseEntity<Projekcija> dodajProjekciju(@PathVariable String id, @RequestBody ProjekcijaDTO projekcijaDTO) {
-		System.out.println(">>>>>>> " + projekcijaDTO);
 		Projekcija projekcija = projekcijaService.save(toProjekcija.convert(projekcijaDTO));
 		return new ResponseEntity<>(projekcija, HttpStatus.OK);
 	}

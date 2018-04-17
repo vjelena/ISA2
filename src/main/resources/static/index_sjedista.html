@@ -164,20 +164,17 @@ span.seatCharts-legendDescription {
 	    }
 	};
 	var idSale = $.urlParam("idSale");
-	//alert("Ajax...");
+	
 	$.ajax({
-		
 		url: "http://localhost:8080/sala/" + idSale,
 		type: "GET",
-		//data: formData,
 		success: function(data){
 			if(data){
 				var konfiguracijaTmp = data.konfiguracija;
-				console.log("trenutna:" + konfiguracijaTmp);
 				var trenutniRed = "";
+				
 				for (var i = 0; i < konfiguracijaTmp.length; i++) {
 					  if(((i % 4) == 0 && i > 0)){
-						  console.log("kompletan red:" + trenutniRed);
 						  konfiguracija.push(trenutniRed);
 						  trenutniRed = "";
 						  trenutniRed += "" + konfiguracijaTmp[i];
@@ -283,58 +280,22 @@ iscrtajMapu = function(){
 
 });
 
-function recalculateTotal(sc) {
-	var total = 0;
 
-	//basically find every selected seat and sum its price
-	sc.find('selected').each(function () {
-		total += this.data().price;
-	});
-	
-	return total;
-}
 
 }
 
 if(dataOk == false){
 	setInterval(iscrtajMapu,500);
 }
-		</script>
-	<script type="text/javascript">
-
-
-  
-  function posaljiMapu(){
-	  alert("Slanje mape...");
-	  var sjedista = "";
-	  $('#seat-map').find('div').each(function(){
-		    var innerDivClass = $(this).attr('class');
-		    if(innerDivClass == 'seatCharts-row'){
-		    	$(this).find('div').each(function(){
-		    		var idSjedista = $(this).attr('id');
-		    		var tmp = $(this).attr('class');
-		    		
-		    		if(typeof idSjedista != 'undefined'){
-		    			var klaseSjedista = $("#" + idSjedista).attr('class');
-		    			if(klaseSjedista.indexOf("first-class") >= 0  && klaseSjedista.indexOf("unavailable") >= 0){
-		    				sjedista += "#11";
-		    			}else if(klaseSjedista.indexOf("first-class") >= 0){
-		    				sjedista += "#10";
-		    			}if(klaseSjedista.indexOf("economy-class") >= 0  && klaseSjedista.indexOf("unavailable") >= 0){
-		    				sjedista += "#21";
-		    			}else if(klaseSjedista.indexOf("economy-class") >= 0){
-		    				sjedista += "#20";
-		    			}
-		    		}
-		    	});
-		    }
-		});
-  }
-
 </script>
+
+<script type="text/javascript">
+</script>
+
 	<div class="text-center" style="padding-top: 10px">
 		<input id ="btnKonfiguracija" class="btn btn-link"  type="button" value="Izmjeni konfiguraciju">	
 	</div>
+	
 <script>
 	$("#btnKonfiguracija").click(function(){
 		location.href = "http://localhost:8080/izmjeniMapu.html?idSale=" +  $.urlParam("idSale");

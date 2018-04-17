@@ -19,6 +19,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Bioskop implements Serializable{
@@ -26,7 +27,7 @@ public class Bioskop implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-		
+
 	@Column(nullable = false)
 	private String naziv;
 	
@@ -37,7 +38,7 @@ public class Bioskop implements Serializable{
 	private Adresa adresa;
 	
 	//@JsonIgnore //u modelu nam ne trebaju anotacije JsonIgnore(to ide u DTO) i JsonManageReference
-//	@JsonManagedReference
+	//@JsonManagedReference
 	@OneToMany
 	private Set<Sala> listaSala;
 		
@@ -111,6 +112,7 @@ public class Bioskop implements Serializable{
 		this.adresa = adresa;
 	}
 
+	@OneToMany(mappedBy = "bioskop", cascade = CascadeType.ALL)
 	public Set<Sala> getListaSala() {
 		return listaSala;
 	}

@@ -14,4 +14,6 @@ public interface SalaService {
 	
 	public Sala azurirajKonfiguraciju(Sala sala);
 
+	public Sala kreirajSalu(Sala sala);
+
 }
