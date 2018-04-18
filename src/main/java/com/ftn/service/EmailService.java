@@ -32,4 +32,17 @@ public class EmailService {
 		javaMailSender.send(mail);
     }
 	
+	
+	/*
+	 * Anotacija za oznacavanje asinhronog zadatka
+	 */
+	@Async
+	public void sendMailReservation(Korisnik korisnik, String poruka) throws MailException, InterruptedException  {		
+		SimpleMailMessage mail = new SimpleMailMessage();
+		mail.setTo("nijemidosadno@gmail.com");
+		mail.setFrom(env.getProperty("spring.mail.username"));
+		mail.setSubject("Podaci o napravljenoj rezervaciji");
+		mail.setText(poruka + "\n\n\nZa povratak u aplikaciju posetite sledeci link: http://localhost:8080/index.html");
+		javaMailSender.send(mail);
+    }
 }

@@ -45,7 +45,7 @@
 							<div class="form-group col-lg-5">
 								<div class="row">
 									<div class="form-group has-feedback">
-										<input id="dugmePretraziBioskope" type="button" class="btn btn-warning" style="float:right" onclick="pretraziBioskope()" value="Pretrazi bioskope">
+										<input id="dugmePretraziBioskope" type="button" class="btn btn-warning" style="float:right" onclick="pretraziBioskope()" value="Pretrazi bioskope...">
 									</div>
 								</div>
 							</div>
@@ -72,7 +72,7 @@
 						<div class="form-group col-lg-2">
 							<div class="row">
 								<div class="form-group has-feedback">
-									<input id="dugmeDalje1" type="button" class="btn btn-warning" style="float:right" value="Dalje 1">
+									<input id="dugmeDalje1" type="button" class="btn btn-warning" style="float:right" value="...Dalje 1">
 								</div>
 							</div>
 						</div>
@@ -150,7 +150,7 @@
 						<div class="form-group col-lg-2">
 							<div class="row">
 								<div class="form-group has-feedback">
-									<input id="dugmeDalje2" type="button" class="btn btn-success" style="float:right" value="Dalje 2">
+									<input id="dugmeDalje2" type="button" class="btn btn-success" style="float:right" value="...Dalje 2">
 								</div>
 							</div>
 						</div>
@@ -164,16 +164,16 @@
 					<div class="form-group col-lg-10">
 						<div style="padding-top: 40px">
 							<div class="form-group col-lg-5">
-								<div class="row">
+							<div class="row">
 									<div class="form-group has-feedback">
-										<div id="grafickiPrikaz">OVDE CE BITI GRAFICKI PRIKAZ</div>
+										<label>TODO: graficki prikaz mesta u sali<br/>nije implementirano...</label>
 									</div>
 								</div>
 							</div>
 							<div class="form-group col-lg-5">
 								<div class="row">
 									<div class="form-group has-feedback">
-										<input id="dugmeDalje3" type="button" class="btn btn-secondary" style="float:right" value="Dalje 3">
+										<input id="dugmeDalje3" type="button" class="btn btn-secondary" style="float:right" value="...Dalje 3">
 									</div>
 								</div>
 							</div>
@@ -190,7 +190,9 @@
 							<div class="form-group col-lg-5">
 								<div class="row">
 									<div class="form-group has-feedback">
-										<input type="text" class="form-control" id="pretraziPrijatelje" placeholder="Pretrazi prijatelje">
+										<input type="text" class="form-control" id="pretraziPrijateljeIme" placeholder="Ime prijatelja">
+										<span class="glyphicon glyphicon-search form-control-feedback"></span>
+										<input type="text" class="form-control" id="pretraziPrijateljePrezime" placeholder="Prezime prijatelja">
 										<span class="glyphicon glyphicon-search form-control-feedback"></span>
 									</div>
 								</div>
@@ -198,7 +200,7 @@
 							<div class="form-group col-lg-5">
 								<div class="row">
 									<div class="form-group has-feedback">
-										<input id="dugmePretraziPrijatelje" type="button" class="btn btn-danger" style="float:right" value="Pretrazi prijatelje">
+										<input id="dugmePretraziPrijatelje" type="button" class="btn btn-danger" style="float:right" onclick="pretraziPrijatelje()" value="Pretrazi prijatelje">
 									</div>
 								</div>
 							</div>
@@ -210,26 +212,20 @@
 					<div class="form-group col-lg-10">
 						<div class="form-group col-lg-3">
 							<div class="row">
-								<div class="form-group has-feedback">
-									<label>Odaberi prijatelja:</label>
+								<div id="lblOdaberiPrijatelja" class="form-group has-feedback">
+									<label>Prijatelj:</label>
 								</div>
 							</div>
 						</div>
 						<div class="form-group col-lg-4">
 							<div class="row">
-								<div class="form-group has-feedback">
-									<select class="form-control" id="selectPrijatelji">
-										<option>Prijatelj 1</option>
-										<option>Prijatelj 2</option>
-									</select>
-								</div>
+								<div id="listaPrijatelja" class="form-group has-feedback"></div>
 							</div>
 						</div>
 						<div class="form-group col-lg-3">
 							<div class="row">
 								<div class="form-group has-feedback">
 									<input id="dugmePozoviPrijatelje" type="button" class="btn btn-danger" style="float:right" value="Pozovi prijatelje">
-									<input id="dugmeDalje4" type="button" class="btn btn-danger" style="float:right" value="Dalje 4">
 								</div>
 							</div>
 						</div>
@@ -274,10 +270,7 @@
 			
 			
 			function pretraziBioskope(){
-				document.getElementById("dugmePretraziBioskope").onclick = function() {
-				    //da se select ne bi pojavio x puta :D
-					this.disabled = true;
-				}
+				$("#dugmePretraziBioskope").prop("disabled", true);
 				$("#dugmeDalje1").show();
 				var naziv = $("#pretraziBioskope").val();
 	
@@ -286,11 +279,12 @@
 				}
 				
 				$.ajax({	
-					url: "bioskopi/pretraziBioskope/" + naziv,
+					url: "http://localhost:8080/bioskopi/pretraziBioskope/" + naziv,
 					type: "GET",
 					success: function(data){
 						if(data.length != 0){ //ima rezultata pretrage
 							$("#lblNazivBioskopa").show();
+							$("#dugmeDalje1").prop("disabled", false);
 							
 							var listaBioskopaDiv = document.getElementById("listaBioskopa");							
 							var selectList = document.createElement("select");
@@ -314,7 +308,9 @@
 							}
 						} else {
 							alert('Nema rezultata pretrage. \nMolimo pokusajte ponovo.');
+							$("#dugmePretraziBioskope").prop("disabled", false);
 							$("#pretraziBioskope").val('');
+							$("#dugmeDalje1").prop("disabled", true);
 						}
 				 	},
 				 	error: function(data){
@@ -325,6 +321,8 @@
 			
 			
 			$("#dugmeDalje1").click(function(){
+				$("#dugmeDalje1").prop("disabled", true);
+				$("#listaBioskopaSelect").prop('disabled', 'disabled');
 				$("#deo1").show();
 				$("#deo2").show();
 				$("#dugmeDalje2").hide();
@@ -334,8 +332,8 @@
 				$("#deo5").hide();
 				
 				if($('#listaBioskopaSelect').val() != ""){
-					var nazivSelektovanogBioskopa = $('#listaBioskopaSelect option:selected').text();
-					alert(nazivSelektovanogBioskopa);
+					nazivSelektovanogBioskopa = $('#listaBioskopaSelect option:selected').text();
+					//alert(nazivSelektovanogBioskopa);
 					
 					$.ajax({	
 						url: "http://localhost:8080/bioskopi/projekcijeIzRepertoaraSelektovanogBioskopa/" + nazivSelektovanogBioskopa,
@@ -365,8 +363,10 @@
 								
 								//odabir termina i datuma
 								$("#dugmeNastaviTermin").click(function(){
-									var nazivSelektovaneProjekcije = $('#listaProjekcijaSelect option:selected').text();
-									alert(nazivSelektovaneProjekcije);
+									$("#dugmeNastaviTermin").prop("disabled", true);
+									$("#listaProjekcijaSelect").prop('disabled', 'disabled');
+									nazivSelektovaneProjekcije = $('#listaProjekcijaSelect option:selected').text();
+									//alert(nazivSelektovaneProjekcije);
 									
 									var listaTerminaDiv = document.getElementById("listaTermina");							
 									var selectListTermini = document.createElement("select");
@@ -390,8 +390,10 @@
 								
 								//odabir sale
 								$("#dugmeNastaviSala").click(function(){
-									var odabranTermin = $('#listaTerminaSelect option:selected').text();
-									alert(odabranTermin);
+									$("#dugmeNastaviSala").prop("disabled", true);
+									$("#listaTerminaSelect").prop('disabled', 'disabled');
+									nazivSelektovanogTermina = $('#listaTerminaSelect option:selected').text();
+									//alert(nazivSelektovanogTermina);
 									
 									var listaSalaDiv = document.getElementById("listaSala");							
 									var selectListSale = document.createElement("select");
@@ -411,7 +413,6 @@
 									$("#div4").hide();
 									$("#div5").hide();
 								});
-								//kraj odabira sale
 							} else {
 								$("#prazno").empty();
 								$("#deo2").hide();
@@ -432,6 +433,10 @@
 			
 			
 			$("#dugmeDalje2").click(function(){
+				$("#dugmeDalje2").prop("disabled", true);
+				$("#listaSalaSelect").prop('disabled', 'disabled');
+				nazivSelektovaneSale = $('#listaSalaSelect option:selected').text();
+				//alert(nazivSelektovaneSale);
 				$("#deo1").show();
 				$("#deo2").show();
 				$("#deo3").show();
@@ -441,20 +446,92 @@
 			
 			
 			$("#dugmeDalje3").click(function(){
+				$("#dugmeDalje3").prop("disabled", true);
 				$("#deo1").show();
 				$("#deo2").show();
 				$("#deo3").show();
 				$("#deo4").show();
 				$("#deo5").hide();
+				$("#lblOdaberiPrijatelja").hide();
+				$("#dugmePozoviPrijatelje").prop("disabled", true);
 			});
 			
 			
-			$("#dugmeDalje4").click(function(){
-				$("#deo1").show();
-				$("#deo2").show();
-				$("#deo3").show();
-				$("#deo4").show();
-				$("#deo5").show();
+			function pretraziPrijatelje(){
+				$("#dugmePretraziPrijatelje").prop("disabled", true);
+				$("#dugmePozoviPrijatelje").show();
+				var ime = $("#pretraziPrijateljeIme").val();
+				var prezime = $("#pretraziPrijateljePrezime").val();
+				
+				if(ime == ""){
+					ime = "nemaUnosa";
+				}
+				if(prezime == ""){
+					prezime = "nemaUnosa";
+				}
+				
+				$.ajax({
+					url: "http://localhost:8080/korisnik/pretraziPrijatelje/" + ime + "/" + prezime,
+					type: "GET",
+					success: function(data){
+						if(data.length != 0){ //ima rezultata pretrage
+							$("#lblOdaberiPrijatelja").show();
+							$("#dugmePozoviPrijatelje").prop("disabled", false);
+							
+							var listaPrijateljaDiv = document.getElementById("listaPrijatelja");							
+							var selectListPrijatelji = document.createElement("select");
+							selectListPrijatelji.id = "listaPrijateljaSelect";
+							listaPrijateljaDiv.appendChild(selectListPrijatelji);
+							
+							for (i = 0; i < data.length; i++) {
+							    var optionPrijatelj = document.createElement("option");
+							    optionPrijatelj.value = data[i].id;
+							    optionPrijatelj.text = data[i].ime + " " + data[i].prezime + ", " + data[i].email;
+							    selectListPrijatelji.appendChild(optionPrijatelj);
+							}
+							
+							//pozivanje prijatelja
+							$("#dugmePozoviPrijatelje").click(function(){
+								$("#dugmePozoviPrijatelje").prop("disabled", true);
+								$("#listaPrijateljaSelect").prop('disabled', 'disabled');
+								$("#deo1").show();
+								$("#deo2").show();
+								$("#deo3").show();
+								$("#deo4").show();
+								$("#deo5").show();
+								
+								nazivSelektovanogPrijatelja = $('#listaPrijateljaSelect option:selected').text().split(',')[0];
+								//alert(nazivSelektovanogPrijatelja);
+							});
+						} else {
+							alert('Nema rezultata pretrage. \nMolimo pokusajte ponovo.');
+							$("#dugmePretraziPrijatelje").prop("disabled", false);
+							$("#pretraziPrijateljeIme").val('');
+							$("#pretraziPrijateljePrezime").val('');
+						}
+				 	},
+				 	error: function(data){
+						alert('GRESKA PRILIKOM PRETRAGE PRIJATELJA!!!')
+					}
+				});
+			}
+			
+			
+			$("#dugmeZavrsiRezervaciju").click(function(){
+				$("#dugmePozoviPrijatelje").prop("disabled", true);
+				
+				$.ajax({
+					url: "http://localhost:8080/podaciORezervaciji/podaciORezervacijiZaSlanjeMejla/" + nazivSelektovanogBioskopa + "/" + nazivSelektovaneProjekcije + "/" + nazivSelektovanogTermina + "/" + nazivSelektovaneSale + "/" + nazivSelektovanogPrijatelja,
+					type: "GET",
+					success: function(data){
+						alert(data.email);
+						console.log(data);
+						location.href = "http://localhost:8080/homePage.html"
+					},
+					error: function(data){
+						alert('GRESKA PRILIKOM SLANJA MEJLA O REZERVACIJI!!!')
+					}
+				});
 			});
 		</script>
 	</body>
