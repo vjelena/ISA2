@@ -8,10 +8,9 @@ $(document).ready(function() {
 				+ "<td class=\"opis\">" + data[i].opis + "</td>"
 				+ "<td class=\"slika\">" + data[i].slika + "</td>"
 				+ "<td class=\"cena\">" + data[i].cena + "</td>"
-				+ "<td><a class=\"ponuda\" href='" + data[i].id + "'>Posalji ponudu</a></td>"
 				+ "<td><a class=\"rezervacija\" href='" + data[i].id + "'>Rezervisi</a></td>"
 				+ "<td><a class=\"izbrisi\" href='/rekvizit/" + data[i].id + "'>Izbrisi</a></td>"
-				+ "<td><a class=\"izmeni\" href='" + data[i].id + "'>Izmeni</a></td>"
+				+ "<td><a class=\"izmeni\" href='/rekvizit/" + data[i].id + "'>Izmeni</a></td>"
 				+ "</tr>"
 			$("#tabelaRekvizita").append(newRow)
 		}
@@ -53,4 +52,8 @@ $(document).on("click", ".izbrisi", function(event){
 		        }
 			});
 		}
-	});
+});
+
+$(document).on("click", ".izmeni", function(event){
+
+});

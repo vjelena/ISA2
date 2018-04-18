@@ -1,3 +1,24 @@
+$.ajax({
+	url: "http://localhost:8080/bioskopi/prikaziBioskope",
+	type: "GET",
+	contentType: "application/json",
+	datatype: 'json',
+	success: function(data){
+		if(data){
+			console.log("GET ZAHTEV");
+			console.log(data);
+			$.each(data, function(index, val){
+				console.log(index, val);
+				$("#sviBioskopi").append('<option value="' + val.id + '">' + val.naziv + '</option>');
+			});
+							
+		}else
+			alert("GRESKA");
+	}
+});
+
+
+
 $("#dugmeRegistrujBioskop").click(function(){
 
 	var provera = true;
@@ -63,13 +84,39 @@ $("#dugmeRegistrujBioskop").click(function(){
 				datatype: 'json',
 				success: function(data){
 					if(data){
-						location.href = "http://localhost:8080/index.html"				
+						location.reload();
 					}else
 						alert("Registracija NIJE uspela.");
 				}
 			});
 
-					console.log(formData);
+			
+
 	}
 
+	
+
+});
+
+$("#dugmeDodajSalu").click(function(){
+	formData = JSON.stringify({
+		brojSale:$("#formaDodajSalu [name='brojSale']").val(),
+		brojMesta:$("#formaDodajSalu [name='brojMesta']").val(),
+		konfiguracija:$("#formaDodajSalu [name='konfiguracija']").val(), 
+		bioskop:$("#formaDodajSalu [name='bioskop']").val()
+	});
+			
+	$.ajax({
+		url: "http://localhost:8080/admin/dodajSalu",
+		type: "POST",
+		data: formData,
+		contentType: "application/json",
+		datatype: 'json',
+		success: function(data){
+			if(data){
+				console.log("TOP");				
+			}else
+				alert("Registracija NIJE uspela.");
+		}
+	});
 });

@@ -57,7 +57,7 @@ public class SalaController {
 	
 	@RequestMapping(value = "/dodajSalu", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE )
 	public ResponseEntity<Sala> dodajSalu( @RequestBody SalaDTO salaDTO) {
-		String idBioskopa = salaDTO.getBioskopId();
+		String idBioskopa = salaDTO.getBioskop();
 		Bioskop bioskop = jpaBioskopService.nadjiJedanBioskop(idBioskopa);
 		
 		Sala sala = jpaSalaService.kreirajSalu(toSala.convert(salaDTO));

@@ -16,4 +16,6 @@ public interface SalaService {
 
 	public Sala kreirajSalu(Sala sala);
 
+	public Sala save(Sala sala);
+
 }

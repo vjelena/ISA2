@@ -38,8 +38,9 @@ public class Bioskop implements Serializable{
 	private Adresa adresa;
 	
 	//@JsonIgnore //u modelu nam ne trebaju anotacije JsonIgnore(to ide u DTO) i JsonManageReference
-	//@JsonManagedReference
-	@OneToMany
+//	@JsonManagedReference
+	
+	@OneToMany(cascade = {CascadeType.ALL})
 	private Set<Sala> listaSala;
 		
 	//@JsonIgnore //da se izbegne rekurzija pri slanju objekta, stavlja se sa jedne strane veze, tipa gde je set
@@ -81,6 +82,14 @@ public class Bioskop implements Serializable{
 		
 	}
 	
+	public Bioskop(String naziv, String opis, Adresa adresa, float prosecnaOcena) {
+		super();
+		this.naziv = naziv;
+		this.opis = opis;
+		this.adresa = adresa;
+		this.prosecnaOcena = prosecnaOcena;
+	}
+
 	public Bioskop(String naziv, String opis) {
 		super();
 		this.naziv = naziv;

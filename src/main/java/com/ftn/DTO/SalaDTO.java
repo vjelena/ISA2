@@ -12,17 +12,26 @@ public class SalaDTO {
 	
 	private String konfiguracija;
 	
+	private String bioskop;
 	
-	private String bioskopId;
+	public SalaDTO(){
+		
+	}
 
+	public SalaDTO(String brojSale, int brojMesta, String konfiguracija, String bioskop) {
+		super();
+		this.nazivSale = brojSale;
+		this.brojMesta = brojMesta;
+		this.konfiguracija = konfiguracija;
+		this.bioskop = bioskop;
+	}
 
-	public String getNazivSale() {
+	public String getBrojSale() {
 		return nazivSale;
 	}
 
-
-	public void setNazivSale(String nazivSale) {
-		this.nazivSale = nazivSale;
+	public void setBrojSale(String brojSale) {
+		this.nazivSale = brojSale;
 	}
 
 
@@ -45,14 +54,12 @@ public class SalaDTO {
 		this.konfiguracija = konfiguracija;
 	}
 
-
-	public String getBioskopId() {
-		return bioskopId;
+	public String getBioskop() {
+		return bioskop;
 	}
 
-
-	public void setBioskopId(String bioskopId) {
-		this.bioskopId = bioskopId;
+	public void setBioskop(String bioskop) {
+		this.bioskop = bioskop;
 	}
 	
 	

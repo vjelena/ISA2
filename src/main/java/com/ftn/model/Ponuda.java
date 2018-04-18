@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Ponuda implements Serializable{
 
@@ -25,9 +27,10 @@ public class Ponuda implements Serializable{
 	private int status;			//0 odbijen 1 prihvacen
 	
 	@ManyToOne(optional = false)
+	@JsonIgnore
 	private Oglas oglas;
 	
-	@OneToOne(optional = false, cascade = CascadeType.ALL)
+	@ManyToOne(optional = false, cascade = CascadeType.ALL)
 	private Korisnik ponudjac;
 	
 	public Ponuda(){
