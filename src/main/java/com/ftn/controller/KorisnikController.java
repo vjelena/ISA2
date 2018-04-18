@@ -165,13 +165,8 @@ public class KorisnikController {
 		
 		//u listu stavljam sve moje prijatelje
 		List<Korisnik> listaPrijatelja = new ArrayList<Korisnik>();
-		listaPrijatelja.addAll(cijePrijateljeUzimam.getMojiPrijatelji());
-		listaPrijatelja.addAll(cijePrijateljeUzimam.getKomeSamJaPrijatelj());
+		listaPrijatelja.addAll(cijePrijateljeUzimam.getMojiPrijatelji());		
 		
-		cijePrijateljeUzimam.setMojiPrijatelji(listaPrijatelja); //moze bez... !!!
-		korisnikServis.save(cijePrijateljeUzimam); //moze bez... !!!		
-		
-		//System.out.println("\n\t\t\tDuzina cijePrijateljeUzimam.getMojiPrijatelji() je: " + cijePrijateljeUzimam.getMojiPrijatelji().size());
 		return new ResponseEntity<>(listaPrijatelja, HttpStatus.OK);
 	}
 	
@@ -197,23 +192,41 @@ public class KorisnikController {
 	@RequestMapping(value = "/izbrisiPrijatelja/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public boolean izbrisiPrijatelja(@PathVariable Long id, HttpServletRequest request){		
 		Korisnik k = (Korisnik)request.getSession().getAttribute("aktivanKorisnik");
-		Korisnik koBrisePrijatelja = korisnikRepository.findById(k.getId());
-			
-		//iz mojih prijatelja brisem onog sa kim zelim da prekinem prijateljstvo
-		for(int i = 0; i < koBrisePrijatelja.getMojiPrijatelji().size(); i++){
-			if(koBrisePrijatelja.getMojiPrijatelji().get(i).getId().equals(id)){
-				koBrisePrijatelja.getMojiPrijatelji().remove(i);		
-			}
-		}
-			
-		//mene brisem iz liste prijatelja onoga sa kim zelim da prekinem prijateljstvo
-		for(int j = 0; j < koBrisePrijatelja.getKomeSamJaPrijatelj().size(); j++){
-			if(koBrisePrijatelja.getKomeSamJaPrijatelj().get(j).getId().equals(id)){
-				koBrisePrijatelja.getKomeSamJaPrijatelj().remove(j);
+		Korisnik koJePoslaoZahtevZaBrisanje = korisnikRepository.findById(k.getId());
+		Korisnik komeJePoslatZahtevZaBrsianje = korisnikRepository.findById(id);
+		
+		//iz mojih prijatelja brisem onog sa kim zelim da prekinem prijateljstvo (lista: mojiPrijatelji)
+		for(int i = 0; i < koJePoslaoZahtevZaBrisanje.getMojiPrijatelji().size(); i++) {
+			if(koJePoslaoZahtevZaBrisanje.getMojiPrijatelji().get(i).getId().equals(id)) {
+				koJePoslaoZahtevZaBrisanje.getMojiPrijatelji().remove(i);				
 			}
 		}
 		
-		korisnikServis.save(koBrisePrijatelja);		
+		//iz mojih prijatelja brisem onog sa kim zelim da prekinem prijateljstvo (lista: komeSamJaPrijatelj)
+		for(int i = 0; i < koJePoslaoZahtevZaBrisanje.getKomeSamJaPrijatelj().size(); i++) {
+			if(koJePoslaoZahtevZaBrisanje.getKomeSamJaPrijatelj().get(i).getId().equals(id)) {
+				koJePoslaoZahtevZaBrisanje.getKomeSamJaPrijatelj().remove(i);				
+			}
+		}
+		
+		
+		//mene brisem iz liste prijatelja onoga sa kim zelim da prekinem prijateljstvo (lista: mojiPrijatelji)
+		for(int i = 0; i < komeJePoslatZahtevZaBrsianje.getMojiPrijatelji().size(); i++) {
+			if(komeJePoslatZahtevZaBrsianje.getMojiPrijatelji().get(i).getId().equals(koJePoslaoZahtevZaBrisanje.getId())) {
+				komeJePoslatZahtevZaBrsianje.getMojiPrijatelji().remove(i);				
+			}
+		}
+		
+		//mene brisem iz liste prijatelja onoga sa kim zelim da prekinem prijateljstvo (lista: komeSamJaPrijatelj)
+		for(int i = 0; i < komeJePoslatZahtevZaBrsianje.getKomeSamJaPrijatelj().size(); i++) {
+			if(komeJePoslatZahtevZaBrsianje.getKomeSamJaPrijatelj().get(i).getId().equals(koJePoslaoZahtevZaBrisanje.getId())) {
+				komeJePoslatZahtevZaBrsianje.getKomeSamJaPrijatelj().remove(i);				
+			}
+		}
+		
+		
+		korisnikRepository.save(koJePoslaoZahtevZaBrisanje);
+		korisnikRepository.save(komeJePoslatZahtevZaBrsianje);
 		return true;
 	}
 	
@@ -281,7 +294,7 @@ public class KorisnikController {
 	}
 	
 	
-	//ISTORIJA POSETA:
+	//ISTORIJA POSETA BIOSKOPIMA:
 	//preuzimanje posecenih bioskopa prijavljenog korisnika
 	@RequestMapping(value = "/getPoseceniBioskopi", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Bioskop>> getPoseceniBioskopi(HttpServletRequest request){						

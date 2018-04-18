@@ -32,7 +32,7 @@ public class FilmController {
 	
 
 	@RequestMapping(value = "/getFilmovi", method = RequestMethod.GET)
-	public ResponseEntity<List<Film>> prikaziBioskope() {
+	public ResponseEntity<List<Film>> prikaziFilmove() {
 		List<Film> filmovi = jpaFilmService.nadjiSveFilmove();
 		return new ResponseEntity<>(filmovi, HttpStatus.OK);
 	}
