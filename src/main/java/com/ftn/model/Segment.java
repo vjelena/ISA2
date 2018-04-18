@@ -29,10 +29,10 @@ public class Segment implements Serializable{
 	@Column(nullable = false)
 	private boolean zatvoreno;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "segment")
+	/*@OneToMany(fetch = FetchType.LAZY, mappedBy = "segment")
 	@JsonIgnore
 	//@JsonManagedReference
-	private Set<Sediste> listaSedista;
+	private Set<Sediste> listaSedista;*/
 	
 	//@JsonBackReference
 	@ManyToOne(optional = false)
@@ -66,13 +66,13 @@ public class Segment implements Serializable{
 		this.zatvoreno = zatvoreno;
 	}
 
-	public Set<Sediste> getListaSedista() {
+	/*public Set<Sediste> getListaSedista() {
 		return listaSedista;
 	}
 
 	public void setListaSedista(Set<Sediste> listaSedista) {
 		this.listaSedista = listaSedista;
-	}
+	}*/
 
 	public Sala getSala() {
 		return sala;

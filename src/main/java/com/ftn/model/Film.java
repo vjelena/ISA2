@@ -1,5 +1,6 @@
 package com.ftn.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -44,7 +45,7 @@ public class Film {
 	
 	
 	public Film() {
-		
+		glumci = new HashSet<Glumac>(); 
 	}
 	
 	
@@ -122,6 +123,15 @@ public class Film {
 
 	public void setGlumci(Set<Glumac> glumci) {
 		this.glumci = glumci;
+	}
+	
+	@Override
+	public String toString() {
+		String film = "LISTA GLUMACA U FLIMU : ";
+		for (Glumac glumac : glumci) {
+			film += glumac.getIme();
+		}
+		return film;
 	}
 
 	

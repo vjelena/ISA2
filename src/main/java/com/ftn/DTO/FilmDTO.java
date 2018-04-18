@@ -1,5 +1,6 @@
 package com.ftn.DTO;
 
+import java.util.Arrays;
 
 public class FilmDTO {
 	
@@ -17,7 +18,7 @@ public class FilmDTO {
 	
 	private float ocena;
 	
-	private String glumacId;
+	private Long[] listaGlumaca;
 
 	public String getNaziv() {
 		return naziv;
@@ -75,14 +76,17 @@ public class FilmDTO {
 		this.ocena = ocena;
 	}
 
-	public String getGlumacId() {
-		return glumacId;
+	public Long[] getListaGlumaca() {
+		return listaGlumaca;
 	}
 
-	public void setGlumacId(String glumacId) {
-		this.glumacId = glumacId;
+	public void setListaGlumaca(Long[] listaGlumaca) {
+		this.listaGlumaca = listaGlumaca;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return naziv + " " + Arrays.toString(listaGlumaca);
+	}
 
 }

@@ -22,13 +22,13 @@ public class Sediste implements Serializable{
 	@Column(nullable = false)
 	private int rbr;
 	
-	@OneToOne
+	//@OneToOne
 	//@JsonBackReference
-	private Karta karta;
+	//private Karta karta;
 	
 	@ManyToOne(optional = false)
-	//@JsonBackReference
-	private Segment segment;
+	@JsonBackReference
+	private Sala sala;
 	
 	public Sediste() {
 		
@@ -50,20 +50,29 @@ public class Sediste implements Serializable{
 		this.rbr = rbr;
 	}
 
-	public Karta getKarta() {
+	public Sala getSala() {
+		return sala;
+	}
+
+	public void setSala(Sala sala) {
+		this.sala = sala;
+	}
+	
+
+	/*public Karta getKarta() {
 		return karta;
 	}
 
 	public void setKarta(Karta karta) {
 		this.karta = karta;
-	}
+	}*/
 
-	public Segment getSegment() {
+	/*public Segment getSegment() {
 		return segment;
 	}
 
 	public void setSegment(Segment segment) {
 		this.segment = segment;
-	}
+	}*/
 
 }

@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ftn.DTO.FilmDTO;
+import com.ftn.DTOconverter.FilmDTOtoFilm;
+import com.ftn.DTOconverter.ProjekcijaDTOtoProjekcija;
 import com.ftn.model.Bioskop;
 import com.ftn.model.Film;
 import com.ftn.model.Projekcija;
@@ -30,6 +33,9 @@ public class FilmController {
 	@Autowired
 	private FilmService filmService;
 	
+	@Autowired
+	private FilmDTOtoFilm toFilm;
+	
 
 	@RequestMapping(value = "/getFilmovi", method = RequestMethod.GET)
 	public ResponseEntity<List<Film>> prikaziFilmove() {
@@ -47,9 +53,19 @@ public class FilmController {
 	}
 	
 	
-	@RequestMapping(method = RequestMethod.POST, value = "/dodajFilm", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	/*@RequestMapping(method = RequestMethod.POST, value = "/dodajFilm", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Film> dodajFilm(@RequestBody Film film) {
 		Film noviFilm = jpaFilmService.kreirajFilm(film);
+		return new ResponseEntity<>(noviFilm, HttpStatus.OK);
+	}*/
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/dodajFilm", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Film> dodajFilm(@RequestBody FilmDTO filmDTO) {
+		System.out.println("FilmDTO: " + filmDTO);
+		Film film = toFilm.convert(filmDTO);
+		System.out.println("Konvertovani film: " + film );
+		Film noviFilm = filmService.kreirajFilm(film);
+		
 		return new ResponseEntity<>(noviFilm, HttpStatus.OK);
 	}
 

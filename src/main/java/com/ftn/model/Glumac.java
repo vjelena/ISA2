@@ -68,5 +68,8 @@ public class Glumac implements Serializable{
 		this.projekcije = projekcije;
 	}*/
 
-	
+	@Override
+	public String toString() {
+		return ime + " " + prezime;
+	}
 }

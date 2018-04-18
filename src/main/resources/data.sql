@@ -74,14 +74,14 @@ insert into fan_zona(naziv) values ('fan zona'); --samo jedna fan zona postoji i
 
 
 insert into bioskop values (1, 'Jadran', 'Na repertoaru bioskopa Jadra mozete pogledati brojne popularne klasike.', 3.5, '45.25' , '19.845' , 11, 1);
-insert into bioskop values (2, 'Arena Cineplex', 'Pored redovnog filmskog repertoara, u Areni Cineplex se organizuju svecane premijere domacih filmova, kao i festivali FEST, Cinema City, Cinemania i Kids Fest.', 4.5,'35.10','56.30',12, 1);
-insert into bioskop values (3, 'Cinestar', 'Brend CineStar razvio se iz bioskopa kompanije Kieft Kieft Filmtheater GmbH, koja je, posle vise od cetiri decenije rada kao operater klasicnog bioskopa, još 1993. otvorila svoj prvi multipleks.', 4.0,'37.20','20.25',13, 1);
+insert into bioskop values (2, 'Arena Cineplex', 'Pored redovnog filmskog repertoara, u Areni Cineplex se organizuju svecane premijere domacih filmova, kao i festivali FEST, Cinema City, Cinemania i Kids Fest.', 4.5,'42.10','19.345',12, 1);
+insert into bioskop values (3, 'Cinestar', 'Brend CineStar razvio se iz bioskopa kompanije Kieft Kieft Filmtheater GmbH, koja je, posle vise od cetiri decenije rada kao operater klasicnog bioskopa, još 1993. otvorila svoj prvi multipleks.', 4.0,'42.20','19.25',13, 1);
 insert into bioskop values (4, 'Bioskop 4', 'Opis bioskopa 4.', 4.3,'26.25','32.20', 15, 1);
 
 insert into pozoriste values (1, 'Pozoriste Narodno', 'Na repertoaru bioskopa Jadra mozete pogledati brojne popularne klasike.', 3.5, '45.25' , '19.845' , 11, 1);
 insert into pozoriste values (2, 'Pozoriste decije', 'Pored redovnog filmskog repertoara, u Areni Cineplex se organizuju svecane premijere domacih filmova, kao i festivali FEST, Cinema City, Cinemania i Kids Fest.', 4.5,'35.10','56.30',12, 1);
-insert into pozoriste values (3, 'Pozoriste 3', 'Brend CineStar razvio se iz bioskopa kompanije Kieft Kieft Filmtheater GmbH, koja je, posle vise od cetiri decenije rada kao operater klasicnog bioskopa, još 1993. otvorila svoj prvi multipleks.', 4.0,'37.20','20.25',13, 1);
-insert into pozoriste values (4, 'Pozoriste 4', 'Opis bioskopa 4.', 4.3,'26.25','32.20', 15, 1);
+insert into pozoriste values (3, 'Pozoriste 3', 'Brend CineStar razvio se iz bioskopa kompanije Kieft Kieft Filmtheater GmbH, koja je, posle vise od cetiri decenije rada kao operater klasicnog bioskopa, još 1993. otvorila svoj prvi multipleks.', 4.0,'43.20','20.25',13, 1);
+insert into pozoriste values (4, 'Pozoriste 4', 'Opis bioskopa 4.', 4.3,'41.25','19.20', 15, 1);
 
 
 insert into repertoar values (1, 1);
@@ -111,6 +111,11 @@ insert into sala values(4, 100, 'konfiguracija B', 'sala D', 4);
 insert into sala values(5, 100, 'konfiguracija B', 'sala E', 1);
 insert into sala values(6, 100, 'konfiguracija B', 'sala F', 2);
 
+insert into sediste values(1,1,1);
+insert into sediste values(2,2,1);
+insert into sediste values(3,3,1);
+insert into sediste values(4,4,2);
+
 
 insert into termin values (1, '2018-04-18T03:05');
 insert into termin values (2, '2018-04-01T05:06');
@@ -124,6 +129,12 @@ insert into projekcija values (1, 420, 3, 1, 2, 5);
 insert into projekcija values (2, 350, 1, 2, 1, 2);
 insert into projekcija values (3, 420, 3, 3, 2, 3);
 insert into projekcija values (4, 350, 2, 4, 1, 4);
+
+
+insert into karta values (1,1,0,20,1,1);
+insert into karta values (2,1,1,20,1,2);
+insert into karta values (3,1,0,20,2,3);
+insert into karta values (4,1,0,20,1,4);
 
 insert into projekcija_pozorista values (1, 420, 3, 1, 2, 5);
 insert into projekcija_pozorista values (2, 350, 1, 2, 1, 2);

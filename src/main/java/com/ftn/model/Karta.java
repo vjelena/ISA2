@@ -21,15 +21,12 @@ public class Karta implements Serializable{
 	private Long id;
 	
 	@OneToOne
-	@JsonIgnore
+	//@JsonIgnore
 	//@JsonManagedReference
 	private Sediste sediste;
 	
 	@ManyToOne(optional = false)
 	private Projekcija projekcija;
-	
-	@Column(nullable = false, columnDefinition="boolean default 0")
-	private boolean brzaKarta;
 	
 	@Column(nullable = false, columnDefinition="boolean default 0")
 	private boolean kartaSPopustom;	
@@ -63,14 +60,6 @@ public class Karta implements Serializable{
 	//public void setRezervacija(Rezervacija rezervacija) {
 	//	this.rezervacija = rezervacija;
 	//}
-
-	public boolean isBrzaKarta() {
-		return brzaKarta;
-	}
-
-	public void setBrzaKarta(boolean brzaKarta) {
-		this.brzaKarta = brzaKarta;
-	}
 
 	public boolean isKartaSPopustom() {
 		return kartaSPopustom;

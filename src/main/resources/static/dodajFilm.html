@@ -12,25 +12,49 @@
 </head>
 <body>
 <script>
+
+function createNewCheckboxt(name, id){
+    var checkbox = document.createElement('input'); 
+    checkbox.type= 'checkbox';
+    checkbox.name = name;
+    checkbox.id = id;
+    return checkbox;
+}
+
 $(document).ready(
 		function() {
 			$.ajax({
 				url : "http://localhost:8080/glumac/getGlumci"
 			}).then(
 					function(data) {
-						console.log('Glumci: ' + JSON.stringify(data));
+						//console.log('Glumci: ' + JSON.stringify(data));
 						var listaFilmovaDiv = document.getElementById("listaGlumaca");
-						
-						var selectList = document.createElement("select");
-						selectList.id = "listaGlumacaSelect";
-						listaFilmovaDiv.appendChild(selectList);
+
+						console.log("Glumci: " + JSON.stringify(data));
 						for (i = 0; i < data.length; i++) {
 							
-							var option = document.createElement("option");
-						    option.value = data[i].id;
-						    option.text = data[i].ime + "" +data[i].prezime;
-						    selectList.appendChild(option);
+							if(data[i].ime == "" || data[i].prezime == ""){
+								continue;
+							}
+							var div = document.createElement('div'); 
+							div.className = "glumac";
+							
+							var checkbox = document.createElement('input'); 
+						    checkbox.type= 'checkbox';
+						    checkbox.name = data[i].ime + ' ' + data[i].prezime;
+						    checkbox.value = data[i].ime + ' ' + data[i].prezime;
+						    checkbox.id = data[i].id;
+						    
+						    var label = document.createElement('label');
+							label.setAttribute("for", data[i].id);
+							label.innerHTML = data[i].ime + ' ' + data[i].prezime;
+						    
+							
+							div.appendChild(checkbox);
+							div.appendChild(label);
+						    listaFilmovaDiv.appendChild(div);
 						}
+						
 					});
 		});
 </script>
@@ -121,7 +145,10 @@ var idBioskopa = $.urlParam('id');
 
 $("#btnDodajFilm").click(function(){
 	
-	var idGlumca = $('#listaGlumacaSelect').val();
+	var selektovaniGlumci = [];
+	$('#listaGlumaca input:checked').each(function() {
+		selektovaniGlumci.push($(this).attr('id'));
+	});
 	
 	formData = JSON.stringify({
         naziv:$("#formaNoviFilm [name='naziv']").val(),
@@ -131,7 +158,7 @@ $("#btnDodajFilm").click(function(){
         slika:$("#formaNoviFilm [name='slika']").val(),
         trajanje:$("#formaNoviFilm [name='trajanje']").val(),
         ocena:$("#formaNoviFilm [name='ocena']").val(),
-      
+      	listaGlumaca: selektovaniGlumci
     });
 	
 	$.ajax({
