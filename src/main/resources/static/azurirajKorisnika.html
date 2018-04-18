@@ -34,58 +34,49 @@
             			<div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
                 		<form id="formaAzurirajKorisnika" class="form-horizontal" enctype="multipart/form-data" method="POST">
                     		
-                    		<span id="emailA" class="label label-default">stara email adresa: </span>
-                        	<div class="input-group" style="margin-bottom: 25px">
+                    		<div class="input-group" style="margin-bottom: 25px">
                         		<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                        		<input type="email" class="form-control" name="email" placeholder="Nova e-mail adresa">
+                        		<input id="emailA" type="email" class="form-control" name="email" placeholder="Nova e-mail adresa">
                     		</div>
                     		
-                    		<span id="lozinkaA" class="label label-default">stara lozinka: </span>
                     		<div class="input-group" style="margin-bottom: 25px">
                         		<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                        		<input type="password" class="form-control" name="lozinka" placeholder="Nova lozinka">
+                        		<input id="lozinkaA" type="password" class="form-control" name="lozinka" placeholder="Nova lozinka">
                     		</div> 
                     		
-                    		<span id="lozinka2A" class="label label-default">stara lozinka: </span>
                     		<div class="input-group" style="margin-bottom: 25px">
                         		<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                        		<input type="password" class="form-control" name="lozinka2" placeholder="Ponovo unesite novu lozinku">
+                        		<input id="lozinka2A" type="password" class="form-control" name="lozinka2" placeholder="Ponovo unesite novu lozinku">
                     		</div>
                     		
-                    		<span id="imeA" class="label label-default">staro ime: </span>
                     		<div class="input-group" style="margin-bottom: 25px">
                         		<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        		<input type="text" class="form-control" name="ime" placeholder="Novo ime">
+                        		<input id="imeA" type="text" class="form-control" name="ime" placeholder="Novo ime">
                     		</div>
                     		
-                    		<span id="prezimeA" class="label label-default">staro prezime: </span>
                     		<div class="input-group" style="margin-bottom: 25px">
                         		<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        		<input type="text" class="form-control" name="prezime" placeholder="Novo prezime">
+                        		<input id="prezimeA" type="text" class="form-control" name="prezime" placeholder="Novo prezime">
                     		</div>
                     		
-                    		<span id="ulicaA" class="label label-default">stara ulica: </span>
                     		<div class="input-group" style="margin-bottom: 25px">
                         		<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                        		<input type="text" class="form-control" name="ulica" placeholder="Nova ulica">
+                        		<input id="ulicaA" type="text" class="form-control" name="ulica" placeholder="Nova ulica">
                     		</div>
                     		
-                    		<span id="brojA" class="label label-default">stari broj: </span>
                     		<div class="input-group" style="margin-bottom: 25px">
                         		<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                        		<input type="text" class="form-control" name="broj" placeholder="Novi broj">
+                        		<input id="brojA" type="text" class="form-control" name="broj" placeholder="Novi broj">
                     		</div>
                     		
-                    		<span id="gradA" class="label label-default">stari grad: </span>
                     		<div class="input-group" style="margin-bottom: 25px">
                         		<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                        		<input type="text" class="form-control" name="grad" placeholder="Novi grad">
+                        		<input id="gradA" type="text" class="form-control" name="grad" placeholder="Novi grad">
                     		</div>
                     		
-                    		<span id="brojTelefonaA" class="label label-default">stari broj telefona: </span>
                     		<div class="input-group" style="margin-bottom: 25px">
                         		<span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
-                        		<input type="text" class="form-control" name="brojTelefona" placeholder="Novi broj telefona">
+                        		<input id="brojTelefonaA" type="text" class="form-control" name="brojTelefona" placeholder="Novi broj telefona">
                     		</div>
                     		              
                     		<div id="divValidacija"></div>  
@@ -106,15 +97,15 @@
 				$.ajax({
 					url : "http://localhost:8080/korisnik/getTrenutnoAktivan"
 				}).then(function(data){
-					$("#emailA").append(data.email);
-					$("#lozinkaA").append(data.lozinka);
-					$("#lozinka2A").append(data.lozinka);
-					$("#imeA").append(data.ime);
-					$("#prezimeA").append(data.prezime);
-					$("#ulicaA").append(data.adresa.ulica);
-					$("#brojA").append(data.adresa.broj);
-					$("#gradA").append(data.adresa.grad);
-					$("#brojTelefonaA").append(data.brojTelefona);
+					$("#emailA").val(data.email);
+					$("#lozinkaA").val(data.lozinka);
+					$("#lozinka2A").val(data.lozinka);
+					$("#imeA").val(data.ime);
+					$("#prezimeA").val(data.prezime);
+					$("#ulicaA").val(data.adresa.ulica);
+					$("#brojA").val(data.adresa.broj);
+					$("#gradA").val(data.adresa.grad);
+					$("#brojTelefonaA").val(data.brojTelefona);
 				});
 			});	
 		

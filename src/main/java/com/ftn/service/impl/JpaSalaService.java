@@ -36,5 +36,10 @@ public class JpaSalaService implements SalaService {
 	public Sala kreirajSalu(Sala sala) {
 		return salaRepository.save(sala);
 	}
+
+	@Override
+	public Sala save(Sala sala) {
+		return salaRepository.save(sala);
+	}
 	
 }

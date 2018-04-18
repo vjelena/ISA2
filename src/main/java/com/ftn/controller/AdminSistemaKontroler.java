@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ftn.DTO.BioskopDTO;
+import com.ftn.DTO.SalaDTO;
 import com.ftn.model.Adresa;
 import com.ftn.model.Bioskop;
 import com.ftn.model.BrzaKarta;
@@ -25,6 +26,7 @@ import com.ftn.model.Sala;
 import com.ftn.service.FanZonaServis;
 import com.ftn.service.KorisnikService;
 import com.ftn.service.impl.JpaBioskopService;
+import com.ftn.service.impl.JpaSalaService;
 
 @RestController
 @RequestMapping(value = "/admin")
@@ -35,6 +37,9 @@ public class AdminSistemaKontroler {
 	
 	@Autowired
 	private JpaBioskopService jpaBioskopService;
+	
+	@Autowired
+	private JpaSalaService jpaSalaService;
 	
 	@Autowired
 	private KorisnikService korisnikServis;
@@ -55,6 +60,26 @@ public class AdminSistemaKontroler {
 		
 		jpaBioskopService.save(noviBioskop);		
 		return new ResponseEntity<>(noviBioskop, HttpStatus.OK);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/dodajSalu", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Sala> dodajSalu(@RequestBody SalaDTO salaDTO) {
+		System.out.println(salaDTO.toString());
+		System.out.println(jpaBioskopService.nadjiJedanBioskop("1").toString());
+		
+		Bioskop b = jpaBioskopService.nadjiJedanBioskop(salaDTO.getBioskop());
+		
+		Sala novaSala = new Sala();
+		novaSala.setBioskop(b);
+		novaSala.setBrojMesta(salaDTO.getBrojMesta());
+		novaSala.setNazivSale(salaDTO.getBrojSale());
+		novaSala.setKonfiguracija(salaDTO.getKonfiguracija());
+		b.getListaSala().add(novaSala);
+		
+		System.out.println("BROJ DODATIH SALA JE: "  + jpaBioskopService.nadjiJedanBioskop("1").getListaSala().size());
+		jpaSalaService.save(novaSala);
+		jpaBioskopService.save(b);
+		return new ResponseEntity<>(novaSala, HttpStatus.OK);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/dodajAdmina", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)

@@ -133,7 +133,8 @@
 	                        		<select name="tip" class="form-control">
 									    <option value="adminBioskop">Admin bioskopa</option>
 									    <option value="adminFanZona">Admin fan zone</option>
-  									</select>
+									    <option value="sistem">Admin sistem</option>
+								</select>
 	                    		</div>
 	                    		              
 	                    		<div id="divValidacija"></div>  
@@ -141,6 +142,52 @@
 	                    		<div class="form-group">
 	                        		<div class="col-lg-offset-3 col-lg-9" style="margin-top: 25px">
 	                            		<input id="dugmeRegistrujAdmina" type="button" class="btn btn-info" style="float:right" value="Registruj"> 	
+	                            	</div>
+	                    		</div>
+	                		</form>     
+	            		</div>                     
+	        		</div>  
+				</div>
+				
+				<div style="margin-top:20px;" class="mainbox col-lg-6 "> 
+	        		<div class="panel panel-info" >
+	            		<div class="panel-heading">
+	                		<div class="panel-title text-center">Registracija sala</div>
+	            		</div>
+	            		  
+	            		<div class="panel-body" style="padding-top:30px">
+	            			<div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+	                		<form id="formaDodajSalu" class="form-horizontal" enctype="multipart/form-data" method="POST">
+	                    		
+	                    		<div class="input-group" style="margin-bottom: 25px">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+	                        		<input type="text" class="form-control" name="brojSale" value="" placeholder="Broj sale">
+	                    		</div>
+	                    		
+	                    		<div class="input-group" style="margin-bottom: 25px">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+	                        		<input type="text" class="form-control" name="brojMesta" placeholder="Broj mesta">
+	                    		</div> 
+	                    		
+	                    		<div class="input-group" style="margin-bottom: 25px">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+	                        		<input type="text" class="form-control" name="konfiguracija" placeholder="Konfiguracija">
+	                    		</div>
+	                    		
+	                    		
+
+	                    		<div class="input-group" style="margin-bottom: 25px">
+	                        		<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+	                        		<select id="sviBioskopi" name="bioskop" class="form-control">
+									    
+  									</select>
+	                    		</div>
+	                    		              
+	                    		<div id="divValidacija"></div>  
+	                    		                                                                 
+	                    		<div class="form-group">
+	                        		<div class="col-lg-offset-3 col-lg-9" style="margin-top: 25px">
+	                            		<input id="dugmeDodajSalu" type="button" class="btn btn-info" style="float:right" value="Dodaj Salu"> 	
 	                            	</div>
 	                    		</div>
 	                		</form>     

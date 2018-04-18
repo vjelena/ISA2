@@ -35,8 +35,15 @@ public class RekvizitKontroler {
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Rekvizit> delete(@PathVariable Long id) {
-		System.out.println("************"+id);
 		Rekvizit deleted = rekvizitServis.delete(id);
 		return new ResponseEntity<>(deleted, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes="application/json")
+	public boolean azurirajRekvizit(@PathVariable Long id) {
+		
+		Rekvizit rekvizit = rekvizitServis.findOne(id);
+		System.out.println("************"+rekvizit.getNaziv());
+		return true;
 	}
 }
