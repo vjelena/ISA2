@@ -34,6 +34,41 @@ insert into adresa(id, broj, grad, ulica) values (19, '48', 'Valjevo', 'Vojvode 
 insert into korisnik(id, aktiviran_nalog_preko_mejla, broj_poseta, broj_telefona, email, ime, lozinka, prezime, prvi_put_se_ulogovao, uloga, vrsta_clana, adresa_id) 
 values(9, 1, 19, '794758', 'stefan@gmail.com' , 'Stefan', '999', 'Stefanovic', 0, 'obican', 'nema pravo na popust', 19);
 
+--Petar i Stefan nisu prijatelji -> radi sa njima
+insert into moji_prijatelji values(1, 3);
+insert into moji_prijatelji values(1, 4);
+insert into moji_prijatelji values(1, 7);
+insert into moji_prijatelji values(1, 8);
+
+insert into moji_prijatelji values(3, 1);
+insert into moji_prijatelji values(3, 4);
+insert into moji_prijatelji values(3, 7);
+insert into moji_prijatelji values(3, 8);
+insert into moji_prijatelji values(3, 9);
+
+insert into moji_prijatelji values(4, 1);
+insert into moji_prijatelji values(4, 3);
+insert into moji_prijatelji values(4, 7);
+insert into moji_prijatelji values(4, 8);
+insert into moji_prijatelji values(4, 9);
+
+insert into moji_prijatelji values(7, 1);
+insert into moji_prijatelji values(7, 3);
+insert into moji_prijatelji values(7, 4);
+insert into moji_prijatelji values(7, 8);
+insert into moji_prijatelji values(7, 9);
+
+insert into moji_prijatelji values(8, 1);
+insert into moji_prijatelji values(8, 3);
+insert into moji_prijatelji values(8, 4);
+insert into moji_prijatelji values(8, 7);
+insert into moji_prijatelji values(8, 9);
+
+insert into moji_prijatelji values(9, 3);
+insert into moji_prijatelji values(9, 4);
+insert into moji_prijatelji values(9, 7);
+insert into moji_prijatelji values(9, 8);
+
 
 insert into fan_zona(naziv) values ('fan zona'); --samo jedna fan zona postoji id = 1
 

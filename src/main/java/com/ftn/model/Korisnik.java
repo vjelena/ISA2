@@ -62,8 +62,7 @@ public class Korisnik implements Serializable{
 	@JsonIgnore
 	private List<Korisnik> mojiPrijatelji;
 
-	@ManyToMany/*(mappedBy = "komeSamJaPrijatelj")*/
-	@JoinTable(name = "komeSamJaPrijatelj", joinColumns = @JoinColumn(name = "komeSamJaPrijatelj", nullable = false), inverseJoinColumns = @JoinColumn(name = "koJeMeniPrijatelj", nullable = false))
+	@ManyToMany(mappedBy = "mojiPrijatelji")
 	@JsonIgnore
 	private List<Korisnik> komeSamJaPrijatelj;
 
