@@ -1,48 +1,88 @@
-<html>
-  <head>
-    <!--Load the AJAX API-->
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
+<!-- Styles -->
+<style>
+#chartdiv {
+  width: 100%;
+  height: 500px;
+}
 
-      // Load the Visualization API and the corechart package.
-      google.charts.load('current', {'packages':['corechart']});
+.amcharts-export-menu-top-right {
+  top: 10px;
+  right: 0;
+}
+</style>
 
-      // Set a callback to run when the Google Visualization API is loaded.
-      google.charts.setOnLoadCallback(drawChart);
+<!-- Resources -->
+<script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+<script src="https://www.amcharts.com/lib/3/serial.js"></script>
+<script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+<link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+<script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
 
-      // Callback that creates and populates a data table,
-      // instantiates the pie chart, passes in the data and
-      // draws it.
-      function drawChart() {
+<!-- Chart code -->
+<script>
+var chart = AmCharts.makeChart("chartdiv", {
+  "type": "serial",
+  "theme": "light",
+  "marginRight": 70,
+  "dataProvider": [{
+    "country": "PONEDELJAK",
+    "visits": 3025,
+    "color": "#FF0F00"
+  }, {
+    "country": "UTORAK",
+    "visits": 1882,
+    "color": "#FF6600"
+  }, {
+    "country": "SRIJEDA",
+    "visits": 1809,
+    "color": "#FF9E01"
+  }, {
+    "country": "CETVRTAK",
+    "visits": 1322,
+    "color": "#FCD202"
+  }, {
+    "country": "PETAK",
+    "visits": 1122,
+    "color": "#F8FF01"
+  }, {
+    "country": "SUBOTA",
+    "visits": 1114,
+    "color": "#B0DE09"
+  }, {
+    "country": "NEDELJA",
+    "visits": 984,
+    "color": "#04D215"
+  }],
+  "valueAxes": [{
+    "axisAlpha": 0,
+    "position": "left",
+    "title": "Broj posjetilaca"
+  }],
+  "startDuration": 1,
+  "graphs": [{
+    "balloonText": "<b>[[category]]: [[value]]</b>",
+    "fillColorsField": "color",
+    "fillAlphas": 0.9,
+    "lineAlpha": 0.2,
+    "type": "column",
+    "valueField": "visits"
+  }],
+  "chartCursor": {
+    "categoryBalloonEnabled": false,
+    "cursorAlpha": 0,
+    "zoomable": false
+  },
+  "categoryField": "country",
+  "categoryAxis": {
+    "gridPosition": "start",
+    "labelRotation": 45
+  },
+  "export": {
+    "enabled": true
+  }
 
-        // Create the data table.
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Topping');
-        data.addColumn('number', 'Slices');
-        data.addRows([
-          ['Ponedeljak', 3],
-          ['Utorak', 1],
-          ['Srijeda', 1],
-          ['Cetvrtak', 1],
-          ['Petak', 2],
-          ['Subota', 2],
-          ['Nedelja', 2]
-        ]);
+});
+</script>
 
-        // Set chart options
-        var options = {'title':'Posecenost bioskopa na sedmicnom nivou',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-        chart.draw(data, options);
-      }
-    </script>
-  </head>
-
-  <body>
-    <!--Div that will hold the pie chart-->
-    <div id="chart_div"></div>
-  </body>
-</html>
+<!-- HTML -->
+<div id="chartdiv"></div>				

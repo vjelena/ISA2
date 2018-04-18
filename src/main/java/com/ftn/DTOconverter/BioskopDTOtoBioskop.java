@@ -31,8 +31,8 @@ public class BioskopDTOtoBioskop implements Converter<BioskopDTO, Bioskop>{
 		Bioskop bioskop = new Bioskop();
 		bioskop.setNaziv(source.getNaziv());
 		bioskop.setOpis(source.getOpis());
-		
-		
+		bioskop.setxKoordinata(source.getxKoordinata());
+		bioskop.setyKoordinata(source.getyKoordianta());
 		
 		return bioskop;
 	}

@@ -7,6 +7,9 @@ $("#dugmeRegistrujBioskop").click(function(){
 	var ulica = forma.find('[name=ulica]').val();
 	var broj = forma.find('[name=broj]').val();
 	var grad = forma.find('[name=grad]').val();
+	var xKoordinata = forma.find('[name=xKoordinata]').val();
+	var yKoordinata = forma.find('[name=yKoordinata]').val();
+	
 
 	if(!naziv) {
 		$('#divValidacijaBioskop').empty();
@@ -52,7 +55,9 @@ $("#dugmeRegistrujBioskop").click(function(){
         		opis:$("#formaRegistrujBioskop [name='opis']").val(),
         		ulica:$("#formaRegistrujBioskop [name='ulica']").val(), 
 				broj:$("#formaRegistrujBioskop [name='broj']").val(),
-				grad:$("#formaRegistrujBioskop [name='grad']").val()
+				grad:$("#formaRegistrujBioskop [name='grad']").val(),
+				xKoordinata:xKoordinata,
+				yKoordianta:yKoordinata
 			});
 					
 			$.ajax({

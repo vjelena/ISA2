@@ -16,7 +16,7 @@
 									+ "<td class=\"adresa\">"+ data[i].adresa.ulica + " "+ data[i].adresa.broj+ "</td>"
 									+ "<td class=\"opis\">"+ data[i].opis+ "</td>"
 									+ "<td class=\"prosecnaOcena\">"+ data[i].prosecnaOcena + "</td>"
-									+ "<td><a class=\"lokacija\" href=\"\" id=\"" + data[i].id + "\" naziv=\""+data[i].naziv+"\">Vidi lokaciju</a></td>"
+									+ "<td><a class=\"lokacija\" href=\"\" id=\"" + data[i].id + "\" naziv=\""+data[i].naziv+ "\" xKoordinata=\""+data[i].xKoordinata+ "\" yKoordinata=\"" + data[i].yKoordinata+"\">Vidi lokaciju</a></td>"
 						$("#dataTable").append(newRow)
 					}
 				});
@@ -47,7 +47,9 @@
 				
 				event.preventDefault();
 				id = $(this).closest("a").attr("id");
-				location.href = "http://localhost:8080/lokacijaBioskopa.html?id=" + id
+				xKoordinata= $(this).closest("a").attr("xKoordinata");
+				yKoordinata= $(this).closest("a").attr("yKoordinata");
+				location.href = "http://localhost:8080/lokacijaBioskopa.html?id=" + id+"&xKoordinata="+ xKoordinata +"&yKoordinata="+yKoordinata;
 			});
 		</script>
 	</head>

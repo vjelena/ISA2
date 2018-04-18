@@ -1,5 +1,7 @@
 package com.ftn.controller;
 
+import static org.mockito.Matchers.floatThat;
+
 import java.util.HashSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +50,8 @@ public class AdminSistemaKontroler {
 		noviBioskop.setProsecnaOcena(0);
 		noviBioskop.setFanZona(fanZonaServis.findOne((long) 1));
 		noviBioskop.setAdresa(adresa);
+		noviBioskop.setxKoordinata(bioskopDTO.getxKoordinata());
+		noviBioskop.setyKoordinata(bioskopDTO.getyKoordianta());
 		
 		jpaBioskopService.save(noviBioskop);		
 		return new ResponseEntity<>(noviBioskop, HttpStatus.OK);

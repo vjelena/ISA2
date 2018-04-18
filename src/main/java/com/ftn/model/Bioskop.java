@@ -34,8 +34,16 @@ public class Bioskop implements Serializable{
 	@Column(nullable = false)
 	private String opis;
 	
+	@Column(nullable = false)
+	private String xKoordinata;
+	
+	@Column(nullable = false)
+	private String yKoordinata;
+	
+	
 	@OneToOne(optional = false, cascade = CascadeType.ALL)
 	private Adresa adresa;
+	
 	
 	//@JsonIgnore //u modelu nam ne trebaju anotacije JsonIgnore(to ide u DTO) i JsonManageReference
 	//@JsonManagedReference
@@ -184,5 +192,22 @@ public class Bioskop implements Serializable{
 	public void setPosetioci(List<Korisnik> posetioci) {
 		this.posetioci = posetioci;
 	}
+
+	public String getxKoordinata() {
+		return xKoordinata;
+	}
+
+	public void setxKoordinata(String xKoordinata) {
+		this.xKoordinata = xKoordinata;
+	}
+
+	public String getyKoordinata() {
+		return yKoordinata;
+	}
+
+	public void setyKoordinata(String yKoordinata) {
+		this.yKoordinata = yKoordinata;
+	}
+	
 	
 }

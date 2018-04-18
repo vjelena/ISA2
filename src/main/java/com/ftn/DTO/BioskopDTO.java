@@ -10,6 +10,8 @@ public class BioskopDTO {
 	private String grad;
 	private String ulica;
 	private String broj;
+	private String xKoordinata;
+	private String yKoordianta;
 	
 	public String getGrad() {
 		return grad;
@@ -48,9 +50,21 @@ public class BioskopDTO {
 		this.opis = opis;
 	}
 	
+	public String getxKoordinata() {
+		return xKoordinata;
+	}
+	public void setxKoordinata(String xKoordinata) {
+		this.xKoordinata = xKoordinata;
+	}
+	public String getyKoordianta() {
+		return yKoordianta;
+	}
+	public void setyKoordianta(String yKoordianta) {
+		this.yKoordianta = yKoordianta;
+	}
 	@Override
 	public String toString() {
-		return this.grad + " " + this.ulica + " " + this.broj + " " + this.naziv + " " + this.opis;
+		return this.grad + " " + this.ulica + " " + this.broj + " " + this.naziv + " " + this.opis + this.yKoordianta ;
 	}
 		
 }

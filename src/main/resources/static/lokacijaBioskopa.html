@@ -27,11 +27,35 @@ $.urlParam = function(name){
 <h3>Lokacija bioskopa</h3>
 <div id="map"></div>
     <script>
-    //ajax na bioskop/id
-    //var x = data.xKoordinata;
-    //var y = data.yKoordinata;
-      var x = 45.25;
-	  var y = 19.845;
+    
+ /*    $(document).ready(
+			function() {
+				$.ajax({
+					url : "http://localhost:8080/bioskopi/" + $.urlParam('id')
+				}).then(function(data) {
+					
+					var x = data.xKoordinata;
+					var y = data.yKoordinata;
+
+				});
+			});
+				 */
+				 
+				 $.urlParam = function(name){
+					 var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+						if (results==null){
+						    return null;
+								}
+						else{
+							 return decodeURI(results[1]) || 0;
+							}
+					};
+				var x = parseFloat( $.urlParam('xKoordinata'));
+				var y = parseFloat($.urlParam('yKoordinata'));
+				console.log("Tip parametra xKOOr  " + typeof x);
+    
+     // var x = 45.25;
+	//  var y = 19.845;
       function prikaziLokaciju() {
         var bioskop = {lat: x, lng: y};
         var map = new google.maps.Map(document.getElementById('map'), {
