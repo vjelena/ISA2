@@ -105,14 +105,14 @@ $("#dugmeRegistrujBioskop").click(function(){
 
 $("#dugmeDodajSalu").click(function(){
 	formData = JSON.stringify({
-		brojSale:$("#formaDodajSalu [name='brojSale']").val(),
+		nazivSale:$("#formaDodajSalu [name='nazivSale']").val(),
 		brojMesta:$("#formaDodajSalu [name='brojMesta']").val(),
 		konfiguracija:$("#formaDodajSalu [name='konfiguracija']").val(), 
-		bioskop:$("#formaDodajSalu [name='bioskop']").val()
+		bioskopId:$("#formaDodajSalu [name='bioskop']").val()
 	});
 			
 	$.ajax({
-		url: "http://localhost:8080/admin/dodajSalu",
+		url: "http://localhost:8080/sala/dodajSalu",
 		type: "POST",
 		data: formData,
 		contentType: "application/json",
