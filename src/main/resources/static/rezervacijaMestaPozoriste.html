@@ -332,11 +332,11 @@
 				$("#deo5").hide();
 				
 				if($('#listaBioskopaSelect').val() != ""){
-					nazivSelektovanogBioskopa = $('#listaBioskopaSelect option:selected').text();
-					//alert(nazivSelektovanogBioskopa);
+					nazivSelektovanogPozorista = $('#listaBioskopaSelect option:selected').text();
+					//alert(nazivSelektovanogPozorista);
 					
 					$.ajax({	
-						url: "http://localhost:8080/pozorista/projekcijeIzRepertoaraSelektovanogPozorista/" + nazivSelektovanogBioskopa,
+						url: "http://localhost:8080/pozorista/projekcijeIzRepertoaraSelektovanogPozorista/" + nazivSelektovanogPozorista,
 						type: "GET",
 						success: function(data){
 							if(data.length != 0){
@@ -523,24 +523,24 @@
 				$("#dugmePozoviPrijatelje").prop("disabled", true);
 				
 				$.ajax({
-					url: "http://localhost:8080/podaciORezervaciji/podaciORezervacijiZaSlanjeMejla/" + nazivSelektovanogBioskopa + "/" + nazivSelektovaneProjekcije + "/" + nazivSelektovanogTermina + "/" + nazivSelektovaneSale + "/" + nazivSelektovanogPrijatelja,
+					url: "http://localhost:8080/podaciORezervaciji/podaciORezervacijiZaSlanjeMejlaPozoriste/" + nazivSelektovanogPozorista + "/" + nazivSelektovaneProjekcije + "/" + nazivSelektovanogTermina + "/" + nazivSelektovaneSale + "/" + nazivSelektovanogPrijatelja,
 					type: "GET",
 					success: function(data){
 						location.href = "http://localhost:8080/homePage.html"
 					},
 					error: function(data){
-						alert('GRESKA PRILIKOM SLANJA MEJLA SA PODACIMA O REZERVACIJI MESTA!!!')
+						alert('GRESKA PRILIKOM SLANJA MEJLA SA PODACIMA O REZERVACIJI MESTA U POZORISTU!!!')
 					}
 				});
 				
 				$.ajax({
-					url: "http://localhost:8080/podaciORezervaciji/rezervacijaPozvanPrijatelj/" + emailPozvanogPrijatelja + "/" + nazivSelektovaneProjekcije + "/" + nazivSelektovanogTermina + "/" + nazivSelektovanogBioskopa,
+					url: "http://localhost:8080/podaciORezervaciji/rezervacijaPozvanPrijateljPozoriste/" + emailPozvanogPrijatelja + "/" + nazivSelektovaneProjekcije + "/" + nazivSelektovanogTermina + "/" + nazivSelektovanogPozorista,
 					type: "GET",
 					success: function(data){
 						location.href = "http://localhost:8080/homePage.html"
 					},
 					error: function(data){
-						alert('GRESKA PRILIKOM SLANJA POZIVA PRIJATELJA ZA REZERVACIJU MESTA!!!')
+						alert('GRESKA PRILIKOM SLANJA POZIVA PRIJATELJA ZA REZERVACIJU MESTA U POZORISTU!!!')
 					}
 				});
 			});

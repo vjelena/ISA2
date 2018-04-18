@@ -19,6 +19,9 @@ public class PodaciORezervaciji implements Serializable {
 	private String nazivSelektovanogBioskopa;
 	
 	@Column(nullable = false)
+	private String nazivSelektovanogPozorista;
+
+	@Column(nullable = false)
 	private String nazivSelektovaneProjekcije;
 	
 	@Column(nullable = false)
@@ -36,10 +39,11 @@ public class PodaciORezervaciji implements Serializable {
 		
 	}
 
-	public PodaciORezervaciji(String nazivSelektovanogBioskopa, String nazivSelektovaneProjekcije,
+	public PodaciORezervaciji(String nazivSelektovanogBioskopa, String nazivSelektovanogPozorista, String nazivSelektovaneProjekcije,
 			String nazivSelektovanogTermina, String nazivSelektovaneSale, String nazivSelektovanogPrijatelja) {
 		super();
 		this.nazivSelektovanogBioskopa = nazivSelektovanogBioskopa;
+		this.nazivSelektovanogPozorista = nazivSelektovanogPozorista;
 		this.nazivSelektovaneProjekcije = nazivSelektovaneProjekcije;
 		this.nazivSelektovanogTermina = nazivSelektovanogTermina;
 		this.nazivSelektovaneSale = nazivSelektovaneSale;
@@ -62,6 +66,14 @@ public class PodaciORezervaciji implements Serializable {
 		this.nazivSelektovanogBioskopa = nazivSelektovanogBioskopa;
 	}
 
+	public String getNazivSelektovanogPozorista() {
+		return nazivSelektovanogPozorista;
+	}
+
+	public void setNazivSelektovanogPozorista(String nazivSelektovanogPozorista) {
+		this.nazivSelektovanogPozorista = nazivSelektovanogPozorista;
+	}
+	
 	public String getNazivSelektovaneProjekcije() {
 		return nazivSelektovaneProjekcije;
 	}

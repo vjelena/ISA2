@@ -28,6 +28,7 @@ public class PodaciORezervacijiController {
 	private EmailService emailService;
 	
 	
+	//BIOSKOP:
 	//slanje mejla o detaljima rezervacije
 	@RequestMapping(value = "/podaciORezervacijiZaSlanjeMejla/{nazivSelektovanogBioskopa}/{nazivSelektovaneProjekcije}/{nazivSelektovanogTermina}/{nazivSelektovaneSale}/{nazivSelektovanogPrijatelja}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Korisnik> podaciORezervacijiZaSlanjeMejla(@PathVariable String nazivSelektovanogBioskopa, @PathVariable String nazivSelektovaneProjekcije, @PathVariable String nazivSelektovanogTermina, @PathVariable String nazivSelektovaneSale, @PathVariable String nazivSelektovanogPrijatelja, HttpServletRequest request) throws MailException, InterruptedException, MessagingException {						
@@ -51,9 +52,39 @@ public class PodaciORezervacijiController {
 		Korisnik k = (Korisnik) request.getSession().getAttribute("aktivanKorisnik");
 		Korisnik koJeNapravioRezervaciju = korisnikRepository.findById(k.getId());
 		
-		String poruka = "Pozivam te da mi se pridruzis na projekciji filma/predstave '" + nazivSelektovaneProjekcije + "', u terminu " + nazivSelektovanogTermina + " , u bioskopu/pozoristu '" + nazivSelektovanogBioskopa + "'" + ".";
+		String poruka = "Pozivam te da mi se pridruzis na projekciji filma '" + nazivSelektovaneProjekcije + "', u terminu " + nazivSelektovanogTermina + " , u bioskopu '" + nazivSelektovanogBioskopa + "'" + ".";
 		
 		emailService.sendMailReservationFriend(koJeNapravioRezervaciju, poruka);		
+		return new ResponseEntity<>(koJeNapravioRezervaciju, HttpStatus.OK);
+	}
+	
+	//POZORISTE:
+	//slanje mejla o detaljima rezervacije
+	@RequestMapping(value = "/podaciORezervacijiZaSlanjeMejlaPozoriste/{nazivSelektovanogPozorista}/{nazivSelektovaneProjekcije}/{nazivSelektovanogTermina}/{nazivSelektovaneSale}/{nazivSelektovanogPrijatelja}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Korisnik> podaciORezervacijiZaSlanjeMejlaPozoriste(@PathVariable String nazivSelektovanogPozorista, @PathVariable String nazivSelektovaneProjekcije, @PathVariable String nazivSelektovanogTermina, @PathVariable String nazivSelektovaneSale, @PathVariable String nazivSelektovanogPrijatelja, HttpServletRequest request) throws MailException, InterruptedException, MessagingException {						
+		Korisnik k = (Korisnik) request.getSession().getAttribute("aktivanKorisnik");
+		Korisnik koJeNapravioRezervaciju = korisnikRepository.findById(k.getId());
+			
+		String poruka = "Vasa rezervacija:\n" 
+						+ "\tpozoriste: " + nazivSelektovanogPozorista + "\n" 
+						+ "\tprojekcija: " + nazivSelektovaneProjekcije + "\n"
+						+ "\ttermin: " + nazivSelektovanogTermina + "\n"
+						+ "\tsala: " + nazivSelektovaneSale + "\n"
+						+ "\tpozvan prijatelj: " + nazivSelektovanogPrijatelja;
+			
+		emailService.sendMailReservationPozoriste(koJeNapravioRezervaciju, poruka);			
+		return new ResponseEntity<>(koJeNapravioRezervaciju, HttpStatus.OK);
+	}
+		
+	//slanje mejla pozvanom prijatelju
+	@RequestMapping(value = "/rezervacijaPozvanPrijateljPozoriste/{email}/{nazivSelektovaneProjekcije}/{nazivSelektovanogTermina}/{nazivSelektovanogPozorista}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Korisnik> rezervacijaPozvanPrijateljPozoriste(@PathVariable String email, @PathVariable String nazivSelektovaneProjekcije, @PathVariable String nazivSelektovanogTermina, @PathVariable String nazivSelektovanogPozorista, HttpServletRequest request) throws MailException, InterruptedException, MessagingException {						
+		Korisnik k = (Korisnik) request.getSession().getAttribute("aktivanKorisnik");
+		Korisnik koJeNapravioRezervaciju = korisnikRepository.findById(k.getId());
+			
+		String poruka = "Pozivam te da mi se pridruzis na projekciji predstave '" + nazivSelektovaneProjekcije + "', u terminu " + nazivSelektovanogTermina + ", u pozoristu '" + nazivSelektovanogPozorista + "'" + ".";
+			
+		emailService.sendMailReservationFriendPozoriste(koJeNapravioRezervaciju, poruka);		
 		return new ResponseEntity<>(koJeNapravioRezervaciju, HttpStatus.OK);
 	}
 	
