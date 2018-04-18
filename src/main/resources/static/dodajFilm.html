@@ -77,8 +77,19 @@
 		</div>	
 
 <script type="text/javascript">
+
+$.urlParam = function(name){
+	 var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+		if (results==null){
+		    return null;
+				}
+		else{
+			 return decodeURI(results[1]) || 0;
+			}
+	};
+var idBioskopa = $.urlParam('id');
+
 $("#btnDodajFilm").click(function(){
-	
 	
 	formData = JSON.stringify({
         naziv:$("#formaNoviFilm [name='naziv']").val(),
@@ -99,7 +110,7 @@ $("#btnDodajFilm").click(function(){
 		success: function(data){
 			if(data){
 				alert("Dodavanje filma uspjesno");
-				location.href = "http://localhost:8080/prikazBioskopa.html"		
+				location.href = "http://localhost:8080/dodajProjekciju.html?idBioskopa="+idBioskopa	
 			}else{
 				alert("Dodavanje filma nije uspjelo. Pokusajte ponovo.");
 			}
@@ -108,6 +119,11 @@ $("#btnDodajFilm").click(function(){
 			alert("Dodavanje filma nije uspjelo. Pokusajte ponovo.");
 		}
 	});
+
+});
+
+$("#btnIOdustani").click(function(){
+	location.href = "http://localhost:8080/dodajProjekciju.html?idBioskopa="+idBioskopa
 });
 
 </script>

@@ -100,7 +100,7 @@ $("#btnDodajSalu").click(function(){
 		success: function(data){
 			if(data){
 				alert("Dodavanje sale uspjesno");
-				location.href = "http://localhost:8080/prikazBioskopa.html"		
+				location.href = "http://localhost:8080/dodajProjekciju.html?idBioskopa="+idBioskopa
 			}else{
 				alert("Dodavanje sale nije uspjelo. Pokusajte ponovo.");
 			}

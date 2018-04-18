@@ -25,9 +25,7 @@ public class BrzaKarta implements Serializable{
 	@Column(nullable = false)
 	private boolean prodata;
 	
-	@Column(nullable = false)
-	private Date datum;
-	
+
 	//@JsonBackReference
 	@ManyToOne(optional = false)
 	private Bioskop bioskop;
@@ -35,11 +33,7 @@ public class BrzaKarta implements Serializable{
 	@ManyToOne(optional = false)
 	private Projekcija projekcija;	
 	
-	@ManyToOne(optional = false)
-	private Termin termin;
-	
-	@ManyToOne(optional = false)
-	private Sala sala;	
+
 	
 	public BrzaKarta() {
 
@@ -69,30 +63,7 @@ public class BrzaKarta implements Serializable{
 		this.projekcija = projekcija;
 	}
 
-	public Date getDatum() {
-		return datum;
-	}
-
-	public void setDatum(Date datum) {
-		this.datum = datum;
-	}
-
-	public Termin getTermin() {
-		return termin;
-	}
-
-	public void setTermin(Termin termin) {
-		this.termin = termin;
-	}
-
-	public Sala getSala() {
-		return sala;
-	}
-
-	public void setSala(Sala sala) {
-		this.sala = sala;
-	}
-
+	
 	public float getCenaSaPopustom() {
 		return cenaSaPopustom;
 	}

@@ -30,8 +30,8 @@ public class Rezervacija implements Serializable{
 	@ManyToOne(optional = false)//da li je ovo suvisno?
 	private Projekcija projekcija;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "rezervacija")
-	private Set<Karta> listaKarta;
+	//@OneToMany(fetch = FetchType.LAZY, mappedBy = "rezervacija")
+	//private Set<Karta> listaKarta;
 	//jquerry za graficki prikaz liste rezervisanih sedista	
 	
 	public Rezervacija() {
@@ -69,13 +69,13 @@ public class Rezervacija implements Serializable{
 	public void setProjekcija(Projekcija projekcija) {
 		this.projekcija = projekcija;
 	}
-
+/*
 	public Set<Karta> getListaKarta() {
 		return listaKarta;
 	}
 
 	public void setListaKarta(Set<Karta> listaKarta) {
 		this.listaKarta = listaKarta;
-	}
+	}*/
 
 }

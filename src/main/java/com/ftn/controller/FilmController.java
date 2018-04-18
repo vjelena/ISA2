@@ -48,7 +48,7 @@ public class FilmController {
 	
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/dodajFilm", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Film> dodajBioskop(@RequestBody Film film) {
+	public ResponseEntity<Film> dodajFilm(@RequestBody Film film) {
 		Film noviFilm = jpaFilmService.kreirajFilm(film);
 		return new ResponseEntity<>(noviFilm, HttpStatus.OK);
 	}

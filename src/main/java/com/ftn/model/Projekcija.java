@@ -45,6 +45,8 @@ public class Projekcija implements Serializable{
 	@JsonBackReference(value="repertoar")
 	private Repertoar repertoar;
 	
+	
+	
 	public Repertoar getRepertoar() {
 		return repertoar;
 	}

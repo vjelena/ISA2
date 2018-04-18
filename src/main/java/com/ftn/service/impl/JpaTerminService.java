@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ftn.model.Film;
 import com.ftn.model.Sala;
 import com.ftn.model.Termin;
 import com.ftn.repository.SalaRepository;
@@ -26,6 +27,10 @@ public class JpaTerminService {
 	}
 	public List<Termin> nadjiSveTermine() {
 		return terminRepository.findAll();
+	}
+	
+	public Termin kreirajTermin(Termin termin) {
+		return terminRepository.save(termin);
 	}
 
 }

@@ -44,13 +44,13 @@ public class Bioskop implements Serializable{
 		
 	//@JsonIgnore //da se izbegne rekurzija pri slanju objekta, stavlja se sa jedne strane veze, tipa gde je set
 //	@JsonManagedReference  //sa jedne strane managed a sa druge back
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bioskop")
-	private Set<Karta> listaKarata;
+	//@OneToMany(fetch = FetchType.LAZY, mappedBy = "bioskop")
+	//private Set<Karta> listaKarata;
 	
 	//@JsonIgnore
 //	@JsonManagedReference
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bioskop")
-	private Set<BrzaKarta> brzeKarte;
+	//@OneToMany(fetch = FetchType.LAZY, mappedBy = "bioskop")
+	//private Set<BrzaKarta> brzeKarte;
 	
 	//@JsonIgnore
 //	@JsonManagedReference
@@ -121,7 +121,7 @@ public class Bioskop implements Serializable{
 		this.listaSala = listaSala;
 	}
 
-	public Set<Karta> getListaKarata() {
+	/*public Set<Karta> getListaKarata() {
 		return listaKarata;
 	}
 
@@ -136,7 +136,7 @@ public class Bioskop implements Serializable{
 	public void setBrzeKarte(Set<BrzaKarta> brzeKarte) {
 		this.brzeKarte = brzeKarte;
 	}
-
+*/
 	public Repertoar getRepertoar() {
 		return repertoar;
 	}

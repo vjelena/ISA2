@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Nova projekcija</title>
+<script src="scripts/jquery-3.2.1.min.js" type="text/javascript"></script>
+<link href="bootstrapB/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+<script src="bootstrapB/js/bootstrap.js" type="text/javascript"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.js"></script>
+
+
+</head>
+<body>
+
+
+		<div class="container">
+   			<div id="loginbox" style="margin-top:20px;" class="mainbox col-lg-6 col-lg-offset-3 col-lg-8 col-lg-offset-7"> 
+        		<div class="panel panel-info" >
+            		<div class="panel-heading">
+                		<div class="panel-title text-center">Novi termin</div>
+            		</div>
+            		  
+            		<div class="panel-body" style="padding-top:30px">
+                		<form id="formaNoviFilm" class="form-horizontal" accept-charset="utf-8" >
+
+                    			           
+                    		<div class="form-group" style="margin-bottom: 25px">
+                        		<div class="col-sm-8">
+                        		<input type="datetime-local" class="form-control" id ="datum" name="datum" >
+                        		</div>
+                    		</div>
+                    		                
+                     <div class="form-group">
+                    	 <div class="col-lg-offset-3 col-lg-9" style="margin-top: 25px">
+                           <input id="btnDodajTermin" type="button" class="btn btn-primary" style="float:right" value="Dodaj"> 	
+                           <input id="btnIOdustani" type="button" class="btn btn-primary" style="float:right" value="Odustani"> 	
+                       </div>
+                	</div>
+                		</form>     
+            		</div>                     
+        		</div>  
+    		</div>
+		</div>	
+
+<script type="text/javascript">
+
+$.urlParam = function(name){
+	 var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+		if (results==null){
+		    return null;
+				}
+		else{
+			 return decodeURI(results[1]) || 0;
+			}
+	};
+var idBioskopa = $.urlParam('id');
+
+$("#btnDodajTermin").click(function(){
+	formData = JSON.stringify({
+        vreme:$("#formaNoviFilm [name='datum']").val(),
+    });
+	
+	$.ajax({
+		url: "http://localhost:8080/termin/dodajTermin",
+		type: "POST",
+		data: formData,
+		contentType: "application/json",
+		datatype: 'json',
+		success: function(data){
+			if(data){
+				alert("Dodavanje termina uspjesno");
+				location.href = "http://localhost:8080/dodajProjekciju.html?idBioskopa="+idBioskopa
+			}else{
+				alert("Dodavanje termina nije uspjelo. Pokusajte ponovo.");
+			}
+		},
+		error: function(data){
+			alert("Dodavanje termina nije uspjelo. Pokusajte ponovo.");
+		}
+	});
+});
+
+$("#btnIOdustani").click(function(){
+	location.href = "http://localhost:8080/dodajProjekciju.html?idBioskopa="+idBioskopa
+});
+
+</script>
+</body>
+</html>
