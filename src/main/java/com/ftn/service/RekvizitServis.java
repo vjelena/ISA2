@@ -13,9 +13,9 @@ public interface RekvizitServis {
 
 	List<Rekvizit> findAll();
 	
-	Rekvizit save(Rekvizit oglas);
+	Rekvizit save(Rekvizit rekvizit);
 	
-	List<Rekvizit> save(List<Rekvizit> oglasi);
+	List<Rekvizit> save(List<Rekvizit> rekviziti);
 	
 	Rekvizit delete(Long id);
 	

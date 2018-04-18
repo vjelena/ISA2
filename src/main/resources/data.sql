@@ -158,14 +158,12 @@ insert into pozoriste_lista_sala values (2, 2);
 insert into pozoriste_lista_sala values (3, 3);
 insert into pozoriste_lista_sala values (4, 4);
 
-
-
-insert into oglas(id, cena, datum, naziv, opis, slika, status, fan_zona_id) values (1, '100', '2018-11-10', 'Oglas 1', 'Opis oglasa 1', 'slika 1', 1, 1);
-insert into oglas(id, cena, datum, naziv, opis, slika, status, fan_zona_id) values (2, '350', '2018-07-08', 'Oglas 2', 'Opis oglasa 2', 'slika 2', 1, 1);
+insert into oglas(id, cena, datum, naziv, opis, slika, status, fan_zona_id, korisnik_id) values (1, '100', '2018-04-10', 'Oglas 1', 'Opis oglasa 1', 'slika 1', 1, 1, 3);
+insert into oglas(id, cena, datum, naziv, opis, slika, status, fan_zona_id, korisnik_id) values (2, '350', '2018-07-08', 'Oglas 2', 'Opis oglasa 2', 'slika 2', 1, 1, 1);
 
 
 insert into prodavnica(naziv) values ('prodavnica');  --samo jedna prodavnica postoji id = 1
 
 
-insert into rekvizit(id, naziv, opis, slika, cena, prodavnica_id) values (1, 'Rekvizit 1', 'Opis rekvizita 1', 'slika 1', '33', 1);
-insert into rekvizit(id, naziv, opis, slika, cena, prodavnica_id) values (2, 'Rekvizit 2', 'Opis rekvizita 2', 'slika 2', '5', 1);
+insert into rekvizit(id, naziv, opis, slika, cena, prodavnica_id, film_id) values (1, 'Rekvizit 1', 'Opis rekvizita 1', 'slika 1', '33', 1, 1);
+insert into rekvizit(id, naziv, opis, slika, cena, prodavnica_id, film_id) values (2, 'Rekvizit 2', 'Opis rekvizita 2', 'slika 2', '5', 1, 2);

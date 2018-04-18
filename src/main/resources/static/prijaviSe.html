@@ -62,6 +62,9 @@
 		</div>		
 		<script type="text/javascript">
 			$("#dugmePrijaviSe").click(function(){
+
+				localStorage.clear();
+				
 				var provera = true;
 				var forma = $('form[id="formaPrijaviSe"]');
 				var email = forma.find('[name=email]').val();
@@ -99,10 +102,15 @@
 								location.href = "http://localhost:8080/adminHomePage.html"				
 							}else if(data.uloga=="obican"){
 								localStorage.setItem("registrovan korisnik", data.id);
+								localStorage.setItem("registrovan korisnik mejl", data.email);
 								location.href = "http://localhost:8080/homePage.html"
 							}else if(data.uloga=="fanzona"){
 								localStorage.setItem("admin", "fanzona");
-								location.href = "http://localhost:8080/homePage.html"
+								if(data.brojPoseta == 1){
+									location.href = "http://localhost:8080/promenaLozinke.html"
+								}else{
+									location.href = "http://localhost:8080/prodavnica.html"
+								}
 							}else if(data.uloga=="bioskop"){
 								localStorage.setItem("admin", "bioskop");
 								location.href = "http://localhost:8080/adminBioskopaProfil.html"

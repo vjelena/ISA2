@@ -16,7 +16,7 @@
             		</div>
             		  
             		<div class="panel-body" style="padding-top:30px">
-                		<form id="formaNoviOglas" class="form-horizontal" accept-charset="utf-8" >
+                		<form id="formaNoviOglas" class="form-horizontal" accept-charset="utf-8">
                     		
                     		<div class="input-group" style="margin-bottom: 25px">
                         		<span class="input-group-addon"><i class="glyphicon glyphicon-text-background"></i></span>
@@ -35,10 +35,21 @@
                         		<input type="date" class="form-control" name="datum" placeholder="Datum do kog vazi prikupljanje ponuda">
                         		<div id="divDatum" style="float:right"></div>
                     		</div> 
+
+                            <div class="input-group" style="margin-bottom: 25px">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-eur"></i></span>
+                                <input type="text" class="form-control" name="cena" placeholder="Cena">
+                                <div id="divCena" style="float:right"></div>
+                            </div>
                     		     
                     		<div class="input-group" style="margin-bottom: 25px">
                         		<span class="input-group-addon"><i class="glyphicon glyphicon-picture"></i></span>
-                        		<input type="file" class="form-control" name="slika" placeholder="Slika">
+                        		<!--<input type="file" id="imgInp" class="form-control" name="slika" placeholder="Slika"/>
+                                <img id="blah" src="#" alt="your image" /> -->
+                                <form id="form1"  runat="server">
+                                    <input type='file' id="imgInp" class="form-control" name="slika" placeholder="Slika" />
+                                    <img id="blah" src="#" alt="Vasa slika" />
+                                 </form>
                         		<div id="divSlika" style="float:right"></div>
                     		</div> 
                     		           

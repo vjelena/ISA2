@@ -191,6 +191,7 @@
 		
 		
 			$("#dugmeOdjaviSe").click(function(){
+				localStorage.clear();
 				$.ajax({
 					url: "http://localhost:8080/korisnik/odjava",
 					type: "GET",

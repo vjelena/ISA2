@@ -6,9 +6,6 @@ function getID(e){
 
 $(document).ready(function() {
 
-	//var obj = { "id":localStorage.getItem("snippetId")};
-	///clear local storage kad se odjavim i prijavim
-
 	$.ajax({
 		url : "http://localhost:8080/korisnik/getTrenutnoAktivan"
 	}).then(function(data){
@@ -21,6 +18,7 @@ $(document).ready(function() {
 				$.ajax({
 					url: "http://localhost:8080/oglas/getOglasi"
 				}).then(function(data) {
+
 					for(i=0; i<data.length; i++) {
 					newRow = "<tr>"
 						+ "<td class=\"naziv\">" + data[i].naziv + "</td>"
@@ -28,14 +26,15 @@ $(document).ready(function() {
 						+ "<td class=\"datum\">" + data[i].datum + "</td>"
 						+ "<td class=\"slika\">" + data[i].slika + "</td>"
 						+ "<td class=\"cena\">" + data[i].cena + "</td>"
-						+ "<td><a class=\"odobri\" href='/oglas/odobri/" + data[i].id + "'>Odobri</a></td>"
+						+ "<td class=\"cena\">" + data[i].korisnik.email + "</td>"
+						+ "<td><a class=\"odobri\" id = \"odobri\" href='/oglas/odobri/" + data[i].id + "'>Odobri</a></td>"
 						+ "</tr>"
 						$("#tabelaOglasa").append(newRow)
 
 						if(data[i].status == 0){
-							$(".odobri").show();
+							$("#odobri").show();
 						}else{
-							$(".odobri").hide();
+							$("#odobri").hide();
 						}
 					
 					}
@@ -44,31 +43,46 @@ $(document).ready(function() {
 		}else if(data.uloga == "obican"){
 			console.log("b")
 
-			//$("#name").prop('readonly', false);
-
 				$.ajax({
 					url: "http://localhost:8080/oglas/getOglasi"
 				}).then(function(data) {
+
 					for(i=0; i<data.length; i++) {
 						newRow = "<tr>"
-						+ "<td onclick=\"getID(this)\" data-id=\"" + data[i].id +"\" class=\"naziv\">" + data[i].naziv + "</td>"
+						+ "<td onclick=\"getID(this)\" data-id=\"" + data[i].id +"\" id=\"naziv\" class=\"naziv\">" + data[i].naziv + "</td>"
 						+ "<td class=\"opis\">" + data[i].opis + "</td>"
 						+ "<td class=\"datum\">" + data[i].datum + "</td>"
 						+ "<td class=\"slika\">" + data[i].slika + "</td>"
 						+ "<td class=\"cena\">" + data[i].cena + "</td>"
-						+ "<td><input type=\"text\" class=\"form-control\" name=\"" + data[i].id +"\" placeholder=\"Ponuda\">"
+						+ "<td class=\"cena\">" + data[i].korisnik.email + "</td>"
+						+ "<td id=\"slanjePonude\"><input type=\"text\" class=\"form-control\" name=\"" + data[i].id +"\" placeholder=\"Ponuda\">"
 						+ "<a class=\"ponuda\" href='/oglas/ponuda/" + data[i].id + "'>Posalji ponudu</a></td>"
 						+ "<td><a class=\"rezervacija\" href='/oglas/rezervacija/" + data[i].id + "'>Rezervisi</a></td>"
 						+ "</tr>"
 						$("#tabelaOglasa").append(newRow)
 
 						if(data[i].status == 0){
-							console.log(data[i].naziv)
-							red = $(".naziv").closest("tr")
+							console.log(data[i].naziv +"statuuus"+ data[i].status)
+							red = $("#naziv").closest("tr")
 							$(red).hide();
 						}else{
-							$(".naziv").show();
+							$("#naziv").show();
 						}
+
+						var d = new Date();
+						var month = d.getMonth()+1;
+						var day = d.getDate();
+						var datum = d.getFullYear() + '-' + (month<10 ? '0' : '') + month + '-' +(day<10 ? '0' : '') + day;
+						console.log("datum danasnji  "+datum)
+						console.log("datum ponude  "+data[i].datum)
+						//ako je istekao datum za prikupljanje ponuda i ako si vec poslao ponudu sakrij 
+						/*if((data[i].datum <= datum) || (data[i].ponudjac.id == localStorage.getItem("registrovan korisnik"))){
+							$("#slanjePonude").hide();
+							console.log("**")
+						}else{
+							console.log("888")
+							$("#slanjePonude").show();
+						}*/
 					
 					}
 				});

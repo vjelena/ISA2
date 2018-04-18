@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ftn.DTO.OglasDTO;
 import com.ftn.DTO.PonudaDTO;
 import com.ftn.model.Korisnik;
 import com.ftn.model.Oglas;
@@ -34,8 +35,17 @@ public class OglasKontroler {
 	private KorisnikService korisnikServis;
 	
 	@RequestMapping(method=RequestMethod.POST, consumes="application/json")
-	public ResponseEntity<Oglas> addOglas(@RequestBody Oglas oglas){
-		Oglas noviOglas = oglasServis.save(oglas);
+	public ResponseEntity<Oglas> addOglas(@RequestBody OglasDTO oglasDTO){
+		Oglas noviOglas = new Oglas();
+		noviOglas.setNaziv(oglasDTO.getNaziv());
+		noviOglas.setOpis(oglasDTO.getOpis());
+		noviOglas.setDatum(oglasDTO.getDatum());
+		noviOglas.setSlika(oglasDTO.getSlika());
+		noviOglas.setCena(oglasDTO.getCena());
+		noviOglas.setStatus(0);
+		Korisnik korisnik = korisnikServis.findOne(oglasDTO.getKorisnikId());
+		noviOglas.setKorisnik(korisnik);
+		oglasServis.save(noviOglas);
 		return new ResponseEntity<>(noviOglas, HttpStatus.OK);
 	}	
 	
@@ -66,7 +76,6 @@ public class OglasKontroler {
 	@RequestMapping(value="/getOglas/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Oglas> getOglas(@PathVariable Long id) {
 		Oglas oglas = oglasServis.findOne(id);
-		System.out.println("********"+oglas.getNaziv());
 		return new ResponseEntity<>(oglas, HttpStatus.OK);
 	}
 

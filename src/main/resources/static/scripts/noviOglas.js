@@ -1,3 +1,20 @@
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+            
+        reader.onload = function (e) {
+            $('#blah').attr('src', e.target.result);
+        }
+            
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+$("#imgInp").change(function(){
+	console.log("ucitavanje slike");
+    readURL(this);
+});
+
 $("#potvrdi").click(function(){
 
 	var provera = true;
@@ -26,12 +43,6 @@ $("#potvrdi").click(function(){
 		provera = false;
 	}
 
-	if(!slika) {
-		$('#divValidacija').empty();
-		$('#divValidacija').append('<label class="col-lg-8 control-label">Morate uneti sliku.</label>');
-		provera = false;
-	}
-
 	if(!cena) {
 		$('#divValidacija').empty();
 		$('#divValidacija').append('<label class="col-lg-8 control-label">Morate uneti cenu.</label>');
@@ -47,12 +58,15 @@ $("#potvrdi").click(function(){
 
 		$('#divValidacija').empty();
 
+		console.log("prijavljen je " + localStorage.getItem("registrovan korisnik"));
+
 		formData = JSON.stringify({
 	        naziv:$("#formaNoviOglas [name='naziv']").val(),
 	        opis:$("#formaNoviOglas [name='opis']").val(),
 	        datum:$("#formaNoviOglas [name='datum']").val(),
 	        slika:$("#formaNoviOglas [name='slika']").val(),
-	        cena:$("#formaNoviOglas [name='cena']").val()
+	        cena:$("#formaNoviOglas [name='cena']").val(),
+	        korisnikId:localStorage.getItem("registrovan korisnik")
 	    });
 		$.ajax({
 			url: "http://localhost:8080/oglas",
