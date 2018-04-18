@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Profil bioskopa</title>
+		<script src="scripts/jquery-3.2.1.min.js"></script>
+		<link href="bootstrapB/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+		<script src="bootstrapB/js/bootstrap.js" type="text/javascript"></script>
+		
+		<script>
+		$.urlParam = function(name){
+		    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+		    if (results==null){
+		       return null;
+		    }
+		    else{
+		       return decodeURI(results[1]) || 0;
+		    }
+		};
+	$(document).ready(
+			function() {
+				$.ajax({
+					url : "http://localhost:8080/predstava/" + $.urlParam('id')
+				}).then(
+						function(data) {
+							console.log("Ajax za prjekciju ");
+							
+							$("#imeFilma").append(data.naziv);
+							$("#reditelj").append(data.reditelj);
+							$("#zanr").append(data.zanr);
+							$("#trajanje").append(data.trajanje);
+							$("#opisFilma").append(data.opis);
+							$("#ocena").append(data.ocena);
+							
+							
+							var glumci = "";	
+							for(j=0; j<data.glumci.length; j++){
+								glumci += data.glumci[j].ime+ " "+ data.glumci[j].prezime + ",";
+							}
+							if(glumci.length > 0){
+								glumci = glumci.substring(0, glumci.length - 1);
+							}
+							
+							$("#glumci").append(glumci);
+							
+						});
+			});
+		</script>
+	</head>
+
+	<body>
+		<div class="row">
+			<div class="col-lg-12 col-lg-9"></div>
+  			<div class="col-lg-6 col-lg-3">
+			    <div class="form-group">
+			    	<form action="index.html" class="form-horizontal">
+				        <div class="col-lg-4">
+				            <input class="btn btn-primary" type="submit" value="Odjavi se">
+				        </div>
+			        </form>
+			    </div>
+  			</div>
+		</div>
+	
+		<div class="tabcontent" style="padding-top:20px">
+			<div class="form-group col-lg-2" style="padding-left:30px" id="tabLevo">
+				<img class="img-thumbnail" src="slike/arenaCineplex.jpg" height="190" width="190"/>				
+				
+				<form action="istorijaPoseta.html" class="form-horizontal">
+					<div class="text-center" style="padding-top:10px">
+				    	<input class="btn btn-info" type="submit" value="Brza rezervacija">
+				    </div>
+				</form>
+				
+			</div>
+			
+			<div class="form-group col-lg-2" >
+				<table class="table" id="infoOProjekciji">
+    				<tr><th scope="col" id="imeFilma"> </th></tr>
+    				<tr><th scope="col" id="reditelj">Reditelj: </th></tr>
+      				<tr><th scope="col" id="glumci">Glumci: </th></tr>
+      				<tr><th scope="col" id="zanr">Zanr: </th></tr>
+      				<tr><th scope="col" id="trajanje">Trajanje: </th></tr>
+      				<tr><th scope="col" id="ocena">Ocena: </th></tr>
+      				<tr><th></th></tr>
+				</table>
+			</div>
+			
+			<div class="form-group col-lg-13" style="padding-top: 350px">
+				<h4 id="opisFilma"></h4>
+			</div>
+			
+		</div>
+	</body>
+</html>

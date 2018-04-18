@@ -78,16 +78,30 @@ insert into bioskop values (2, 'Arena Cineplex', 'Pored redovnog filmskog repert
 insert into bioskop values (3, 'Cinestar', 'Brend CineStar razvio se iz bioskopa kompanije Kieft Kieft Filmtheater GmbH, koja je, posle vise od cetiri decenije rada kao operater klasicnog bioskopa, još 1993. otvorila svoj prvi multipleks.', 4.0,'37.20','20.25',13, 1);
 insert into bioskop values (4, 'Bioskop 4', 'Opis bioskopa 4.', 4.3,'26.25','32.20', 15, 1);
 
+insert into pozoriste values (1, 'Pozoriste Narodno', 'Na repertoaru bioskopa Jadra mozete pogledati brojne popularne klasike.', 3.5, '45.25' , '19.845' , 11, 1);
+insert into pozoriste values (2, 'Pozoriste decije', 'Pored redovnog filmskog repertoara, u Areni Cineplex se organizuju svecane premijere domacih filmova, kao i festivali FEST, Cinema City, Cinemania i Kids Fest.', 4.5,'35.10','56.30',12, 1);
+insert into pozoriste values (3, 'Pozoriste 3', 'Brend CineStar razvio se iz bioskopa kompanije Kieft Kieft Filmtheater GmbH, koja je, posle vise od cetiri decenije rada kao operater klasicnog bioskopa, još 1993. otvorila svoj prvi multipleks.', 4.0,'37.20','20.25',13, 1);
+insert into pozoriste values (4, 'Pozoriste 4', 'Opis bioskopa 4.', 4.3,'26.25','32.20', 15, 1);
+
 
 insert into repertoar values (1, 1);
 insert into repertoar values (2, 2);
 insert into repertoar values (3, 3);
 insert into repertoar values (4, 4);
 
+insert into repertoar_pozorista values (1, 1);
+insert into repertoar_pozorista values (2, 2);
+insert into repertoar_pozorista values (3, 3);
+insert into repertoar_pozorista values (4, 4);
 
 INSERT INTO film values (1,'Ready player one', 4.2, 'opis', 'Steven Spielberg', 'slika 1', 120, 'drama');
 INSERT INTO film values (2,'Tomb raider 3D', 4.5, 'Lara Kroft je strastvena, samostalna devojka i cerka ekscentricnog pustolova.', 'Roar Uthaug', 'slika 2', 120, 'triler');
 insert into film values (3, 'Eat, pray, love', 5, 'Romanticna prica o pomalo izgubljenoj devojci.', 'reditelj 3', 'slika 3', 193, 'romanticna komedija');
+
+
+INSERT INTO predstava values (1,'Pokondirena tikva', 4.2, 'opis', 'Steven Spielberg', 'slika 1', 120, 'drama');
+INSERT INTO predstava values (2,'Gospodja Ministarka', 4.5, 'Lara Kroft je strastvena, samostalna devojka i cerka ekscentricnog pustolova.', 'Roar Uthaug', 'slika 2', 120, 'triler');
+insert into predstava values (3, 'Laza i paralaza', 5, 'Romanticna prica o pomalo izgubljenoj devojci.', 'reditelj 3', 'slika 3', 193, 'romanticna komedija');
 
 
 insert into sala values(1, 150, 'konfiguracija A', 'sala A', 2);
@@ -110,6 +124,11 @@ insert into projekcija values (1, 420, 3, 1, 2, 5);
 insert into projekcija values (2, 350, 1, 2, 1, 2);
 insert into projekcija values (3, 420, 3, 3, 2, 3);
 insert into projekcija values (4, 350, 2, 4, 1, 4);
+
+insert into projekcija_pozorista values (1, 420, 3, 1, 2, 5);
+insert into projekcija_pozorista values (2, 350, 1, 2, 1, 2);
+insert into projekcija_pozorista values (3, 420, 3, 3, 2, 3);
+insert into projekcija_pozorista values (4, 350, 2, 4, 1, 4);
 
 
 insert into glumac values (1, 'Alicia', 'Vikander');
