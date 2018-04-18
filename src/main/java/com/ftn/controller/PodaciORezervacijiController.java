@@ -41,8 +41,19 @@ public class PodaciORezervacijiController {
 						+ "\tsala: " + nazivSelektovaneSale + "\n"
 						+ "\tpozvan prijatelj: " + nazivSelektovanogPrijatelja;
 		
-		emailService.sendMailReservation(koJeNapravioRezervaciju, poruka);
-			
+		emailService.sendMailReservation(koJeNapravioRezervaciju, poruka);			
+		return new ResponseEntity<>(koJeNapravioRezervaciju, HttpStatus.OK);
+	}
+	
+	//slanje mejla pozvanom prijatelju
+	@RequestMapping(value = "/rezervacijaPozvanPrijatelj/{email}/{nazivSelektovaneProjekcije}/{nazivSelektovanogTermina}/{nazivSelektovanogBioskopa}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Korisnik> rezervacijaPozvanPrijatelj(@PathVariable String email, @PathVariable String nazivSelektovaneProjekcije, @PathVariable String nazivSelektovanogTermina, @PathVariable String nazivSelektovanogBioskopa, HttpServletRequest request) throws MailException, InterruptedException, MessagingException {						
+		Korisnik k = (Korisnik) request.getSession().getAttribute("aktivanKorisnik");
+		Korisnik koJeNapravioRezervaciju = korisnikRepository.findById(k.getId());
+		
+		String poruka = "Pozivam te da mi se pridruzis na projekciji filma/predstave '" + nazivSelektovaneProjekcije + "', u terminu " + nazivSelektovanogTermina + " , u bioskopu/pozoristu '" + nazivSelektovanogBioskopa + "'" + ".";
+		
+		emailService.sendMailReservationFriend(koJeNapravioRezervaciju, poruka);		
 		return new ResponseEntity<>(koJeNapravioRezervaciju, HttpStatus.OK);
 	}
 	

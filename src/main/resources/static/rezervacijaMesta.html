@@ -502,6 +502,8 @@
 								
 								nazivSelektovanogPrijatelja = $('#listaPrijateljaSelect option:selected').text().split(',')[0];
 								//alert(nazivSelektovanogPrijatelja);
+								emailPozvanogPrijatelja = $('#listaPrijateljaSelect option:selected').text().split(',')[1];
+								//alert('pozvan prijatelj: ' + emailPozvanogPrijatelja)
 							});
 						} else {
 							alert('Nema rezultata pretrage. \nMolimo pokusajte ponovo.');
@@ -524,12 +526,21 @@
 					url: "http://localhost:8080/podaciORezervaciji/podaciORezervacijiZaSlanjeMejla/" + nazivSelektovanogBioskopa + "/" + nazivSelektovaneProjekcije + "/" + nazivSelektovanogTermina + "/" + nazivSelektovaneSale + "/" + nazivSelektovanogPrijatelja,
 					type: "GET",
 					success: function(data){
-						alert(data.email);
-						console.log(data);
 						location.href = "http://localhost:8080/homePage.html"
 					},
 					error: function(data){
-						alert('GRESKA PRILIKOM SLANJA MEJLA O REZERVACIJI!!!')
+						alert('GRESKA PRILIKOM SLANJA MEJLA SA PODACIMA O REZERVACIJI MESTA!!!')
+					}
+				});
+				
+				$.ajax({
+					url: "http://localhost:8080/podaciORezervaciji/rezervacijaPozvanPrijatelj/" + emailPozvanogPrijatelja + "/" + nazivSelektovaneProjekcije + "/" + nazivSelektovanogTermina + "/" + nazivSelektovanogBioskopa,
+					type: "GET",
+					success: function(data){
+						location.href = "http://localhost:8080/homePage.html"
+					},
+					error: function(data){
+						alert('GRESKA PRILIKOM SLANJA POZIVA PRIJATELJA ZA REZERVACIJU MESTA!!!')
 					}
 				});
 			});

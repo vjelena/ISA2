@@ -28,14 +28,10 @@ public class EmailService {
 		mail.setTo("nijemidosadno@gmail.com");
 		mail.setFrom(env.getProperty("spring.mail.username"));
 		mail.setSubject("Aktivacija korisnickog naloga");
-		mail.setText("Da biste aktivirali Vas korisnicki nalog, molimo posetite sledeci link:\n http://localhost:8080/korisnik/aktivirajKorisnickiNalog/"+korisnik.getEmail());
+		mail.setText("Da biste aktivirali Vas korisnicki nalog, molimo posetite sledeci link: http://localhost:8080/korisnik/aktivirajKorisnickiNalog/"+korisnik.getEmail());
 		javaMailSender.send(mail);
     }
 	
-	
-	/*
-	 * Anotacija za oznacavanje asinhronog zadatka
-	 */
 	@Async
 	public void sendMailReservation(Korisnik korisnik, String poruka) throws MailException, InterruptedException  {		
 		SimpleMailMessage mail = new SimpleMailMessage();
@@ -43,6 +39,17 @@ public class EmailService {
 		mail.setFrom(env.getProperty("spring.mail.username"));
 		mail.setSubject("Podaci o napravljenoj rezervaciji");
 		mail.setText(poruka + "\n\n\nZa povratak u aplikaciju posetite sledeci link: http://localhost:8080/index.html");
+		javaMailSender.send(mail);
+    }
+	
+	
+	@Async
+	public void sendMailReservationFriend(Korisnik korisnik, String poruka) throws MailException, InterruptedException  {		
+		SimpleMailMessage mail = new SimpleMailMessage();
+		mail.setTo("nijemidosadno@gmail.com");
+		mail.setFrom(env.getProperty("spring.mail.username"));
+		mail.setSubject("Poziv na projekciju filma/predstave");
+		mail.setText(poruka + "\nZa potvrdu/odustanak od dolaska na projekciju, poseti sledeci link: http://localhost:8080/potvrdaOdustanakOdDolaskaNaProjekciju.html" + "\n\n\nPovratak u aplikaciju: http://localhost:8080/index.html");
 		javaMailSender.send(mail);
     }
 }
