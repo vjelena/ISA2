@@ -403,7 +403,7 @@
 									for (i = 0; i < data.length; i++) {
 										var optionSale = document.createElement("option");
 										optionSale.value = data[i].sala.id;
-										optionSale.text = data[i].sala.nazivSale;
+										optionSale.text = "id: " + data[i].sala.id + ", naziv: " + data[i].sala.nazivSale;
 										selectListSale.appendChild(optionSale);
 									}
 									
@@ -437,11 +437,28 @@
 				$("#listaSalaSelect").prop('disabled', 'disabled');
 				nazivSelektovaneSale = $('#listaSalaSelect option:selected').text();
 				//alert(nazivSelektovaneSale);
+				idSelektovaneSale = $('#listaSalaSelect option:selected').text().split(',')[0].split('id: ')[1];
+				//alert('konfiguracijaSale:' + idSelektovaneSale);
+				
 				$("#deo1").show();
 				$("#deo2").show();
 				$("#deo3").show();
 				$("#deo4").hide();
 				$("#deo5").hide();
+				
+				//AJAX ZA PRIKAZ KONFIGURACIJE SALE
+				$.ajax({
+					url: "http://localhost:8080/sala/konfiguracijaSale/" + idSelektovaneSale,
+					type: "GET",
+					success: function(data){
+						alert('AJAX za preuzimanje selektovane sale:\nid: ' + data.id + '\nnaziv: ' + data.nazivSale + '\nbroj mesta: ' + data.brojMesta + '\nkonfiguracija: ' + data.konfiguracija)
+						
+						location.href = "http://localhost:8080/grafickiPrikazMesta.html?idSale=" + data.id;
+					},
+					error: function(data){
+						alert('GRESKA PRILIKOM POKUSAJA GRAFICKOG PRIKAZA KONFIGURACIJE SELEKTOVANE SALE!!!')
+					}
+				});
 			});
 			
 			
