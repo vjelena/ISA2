@@ -34,6 +34,56 @@ insert into adresa(id, broj, grad, ulica) values (19, '48', 'Valjevo', 'Vojvode 
 insert into korisnik(id, aktiviran_nalog_preko_mejla, broj_poseta, broj_telefona, email, ime, lozinka, prezime, prvi_put_se_ulogovao, uloga, vrsta_clana, adresa_id) 
 values(9, 1, 19, '794758', 'stefan@gmail.com' , 'Stefan', '999', 'Stefanovic', 0, 'obican', 'nema pravo na popust', 19);
 
+--Petar i Stefan nisu prijatelji -> radi sa njima
+insert into moji_prijatelji values(1, 3);
+insert into moji_prijatelji values(1, 4);
+insert into moji_prijatelji values(1, 7);
+insert into moji_prijatelji values(1, 8);
+
+insert into moji_prijatelji values(3, 1);
+insert into moji_prijatelji values(3, 4);
+insert into moji_prijatelji values(3, 7);
+insert into moji_prijatelji values(3, 8);
+insert into moji_prijatelji values(3, 9);
+
+insert into moji_prijatelji values(4, 1);
+insert into moji_prijatelji values(4, 3);
+insert into moji_prijatelji values(4, 7);
+insert into moji_prijatelji values(4, 8);
+insert into moji_prijatelji values(4, 9);
+
+insert into moji_prijatelji values(7, 1);
+insert into moji_prijatelji values(7, 3);
+insert into moji_prijatelji values(7, 4);
+insert into moji_prijatelji values(7, 8);
+insert into moji_prijatelji values(7, 9);
+
+insert into moji_prijatelji values(8, 1);
+insert into moji_prijatelji values(8, 3);
+insert into moji_prijatelji values(8, 4);
+insert into moji_prijatelji values(8, 7);
+insert into moji_prijatelji values(8, 9);
+--Petar i Stefan nisu prijatelji -> radi sa njima
+insert into moji_prijatelji values(1, 3);
+insert into moji_prijatelji values(1, 4);
+insert into moji_prijatelji values(1, 7);
+insert into moji_prijatelji values(1, 8);
+--Petar i Stefan nisu prijatelji -> radi sa njima
+insert into moji_prijatelji values(1, 3);
+insert into moji_prijatelji values(1, 4);
+insert into moji_prijatelji values(1, 7);
+insert into moji_prijatelji values(1, 8);
+--Petar i Stefan nisu prijatelji -> radi sa njima
+insert into moji_prijatelji values(1, 3);
+insert into moji_prijatelji values(1, 4);
+insert into moji_prijatelji values(1, 7);
+insert into moji_prijatelji values(1, 8);
+
+insert into moji_prijatelji values(9, 3);
+insert into moji_prijatelji values(9, 4);
+insert into moji_prijatelji values(9, 7);
+insert into moji_prijatelji values(9, 8);
+
 
 insert into fan_zona(naziv) values ('fan zona'); --samo jedna fan zona postoji id = 1
 
@@ -44,15 +94,32 @@ insert into bioskop values (3, 'Cinestar', 'Brend CineStar razvio se iz bioskopa
 insert into bioskop values (4, 'Bioskop 4', 'Opis bioskopa 4.', 4.3,'26.25','32.20', 15, 1);
 
 
+
+insert into pozoriste values (1, 'Pozoriste Narodno', 'Na repertoaru bioskopa Jadra mozete pogledati brojne popularne klasike.', 3.5, '45.25' , '19.845' , 11, 1);
+insert into pozoriste values (2, 'Pozoriste decije', 'Pored redovnog filmskog repertoara, u Areni Cineplex se organizuju svecane premijere domacih filmova, kao i festivali FEST, Cinema City, Cinemania i Kids Fest.', 4.5,'35.10','56.30',12, 1);
+insert into pozoriste values (3, 'Pozoriste 3', 'Brend CineStar razvio se iz bioskopa kompanije Kieft Kieft Filmtheater GmbH, koja je, posle vise od cetiri decenije rada kao operater klasicnog bioskopa, još 1993. otvorila svoj prvi multipleks.', 4.0,'37.20','20.25',13, 1);
+insert into pozoriste values (4, 'Pozoriste 4', 'Opis bioskopa 4.', 4.3,'26.25','32.20', 15, 1);
+
+
 insert into repertoar values (1, 1);
 insert into repertoar values (2, 2);
 insert into repertoar values (3, 3);
 insert into repertoar values (4, 4);
 
+insert into repertoar_pozorista values (1, 1);
+insert into repertoar_pozorista values (2, 2);
+insert into repertoar_pozorista values (3, 3);
+insert into repertoar_pozorista values (4, 4);
+
+
 
 INSERT INTO film values (1,'Ready player one', 4.2, 'opis', 'Steven Spielberg', 'slika 1', 120, 'drama');
 INSERT INTO film values (2,'Tomb raider 3D', 4.5, 'Lara Kroft je strastvena, samostalna devojka i cerka ekscentricnog pustolova.', 'Roar Uthaug', 'slika 2', 120, 'triler');
 insert into film values (3, 'Eat, pray, love', 5, 'Romanticna prica o pomalo izgubljenoj devojci.', 'reditelj 3', 'slika 3', 193, 'romanticna komedija');
+
+INSERT INTO predstava values (1,'Pokondirena tikva', 4.2, 'opis', 'Steven Spielberg', 'slika 1', 120, 'drama');
+INSERT INTO predstava values (2,'Gospodja Ministarka', 4.5, 'Lara Kroft je strastvena, samostalna devojka i cerka ekscentricnog pustolova.', 'Roar Uthaug', 'slika 2', 120, 'triler');
+insert into predstava values (3, 'Art', 5, 'Romanticna prica o pomalo izgubljenoj devojci.', 'reditelj 3', 'slika 3', 193, 'romanticna komedija');
 
 
 insert into sala values(1, 150, 'konfiguracija A', 'sala A', 2);
@@ -76,6 +143,11 @@ insert into projekcija values (2, 350, 1, 2, 1, 2);
 insert into projekcija values (3, 420, 3, 3, 2, 3);
 insert into projekcija values (4, 350, 2, 4, 1, 4);
 
+
+insert into projekcija_pozorista values (1, 420, 3, 1, 2, 5);
+insert into projekcija_pozorista values (2, 350, 1, 2, 1, 2);
+insert into projekcija_pozorista values (3, 420, 3, 3, 2, 3);
+insert into projekcija_pozorista values (4, 350, 2, 4, 1, 4);
 
 insert into glumac values (1, 'Alicia', 'Vikander');
 insert into glumac values (2, 'Walton', 'Goggins');
