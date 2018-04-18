@@ -33,14 +33,14 @@ public class SalaDTOtoSala {
 			return null;
 		}
 		
-		Bioskop bioskop = bioskopService.nadjiJedanBioskop(source.getBioskop());
+		Bioskop bioskop = bioskopService.nadjiJedanBioskop(source.getBioskopId());
 		
 		
 		Sala sala = new Sala();
 		sala.setBioskop(bioskop);
 		sala.setBrojMesta(source.getBrojMesta());
 		sala.setKonfiguracija(source.getKonfiguracija());
-		sala.setNazivSale(source.getBrojSale());
+		sala.setNazivSale(source.getNazivSale());
 		
 		return sala;
 	}

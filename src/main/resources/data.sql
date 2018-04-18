@@ -39,9 +39,9 @@ insert into fan_zona(naziv) values ('fan zona'); --samo jedna fan zona postoji i
 
 
 insert into bioskop values (1, 'Jadran', 'Na repertoaru bioskopa Jadra mozete pogledati brojne popularne klasike.', 3.5, '45.25' , '19.845' , 11, 1);
-insert into bioskop values (2, 'Arena Cineplex', 'Pored redovnog filmskog repertoara, u Areni Cineplex se organizuju svecane premijere domacih filmova, kao i festivali FEST, Cinema City, Cinemania i Kids Fest.', 4.5,35,56,12, 1);
-insert into bioskop values (3, 'Cinestar', 'Brend CineStar razvio se iz bioskopa kompanije Kieft Kieft Filmtheater GmbH, koja je, posle vise od cetiri decenije rada kao operater klasicnog bioskopa, još 1993. otvorila svoj prvi multipleks.', 4.0,37,20,13, 1);
-insert into bioskop values (4, 'Bioskop 4', 'Opis bioskopa 4.', 4.3,26,32, 15, 1);
+insert into bioskop values (2, 'Arena Cineplex', 'Pored redovnog filmskog repertoara, u Areni Cineplex se organizuju svecane premijere domacih filmova, kao i festivali FEST, Cinema City, Cinemania i Kids Fest.', 4.5,'35.10','56.30',12, 1);
+insert into bioskop values (3, 'Cinestar', 'Brend CineStar razvio se iz bioskopa kompanije Kieft Kieft Filmtheater GmbH, koja je, posle vise od cetiri decenije rada kao operater klasicnog bioskopa, još 1993. otvorila svoj prvi multipleks.', 4.0,'37.20','20.25',13, 1);
+insert into bioskop values (4, 'Bioskop 4', 'Opis bioskopa 4.', 4.3,'26.25','32.20', 15, 1);
 
 
 insert into repertoar values (1, 1);

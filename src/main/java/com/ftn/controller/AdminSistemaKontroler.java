@@ -62,7 +62,7 @@ public class AdminSistemaKontroler {
 		return new ResponseEntity<>(noviBioskop, HttpStatus.OK);
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, value = "/dodajSalu", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	/*@RequestMapping(method = RequestMethod.POST, value = "/dodajSalu", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Sala> dodajSalu(@RequestBody SalaDTO salaDTO) {
 		System.out.println(salaDTO.toString());
 		System.out.println(jpaBioskopService.nadjiJedanBioskop("1").toString());
@@ -80,7 +80,7 @@ public class AdminSistemaKontroler {
 		jpaSalaService.save(novaSala);
 		jpaBioskopService.save(b);
 		return new ResponseEntity<>(novaSala, HttpStatus.OK);
-	}
+	}*/
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/dodajAdmina", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Korisnik> dodajAdmina(@RequestBody Korisnik korisnik) {
