@@ -78,12 +78,12 @@ public class Pozoriste implements Serializable{
 	
 	@Column(nullable = false)
 	private float prosecnaOcena;
-
-	//istorija poseta bioskopima
+	
+	//istorija poseta pozoristima
 	@ManyToMany
-	@JoinTable(name = "korisnikovaIstorijaPoseta", joinColumns = { @JoinColumn(name = "posecenBioskop", nullable = false) }, inverseJoinColumns = { @JoinColumn(name = "posetilac") })
+	@JoinTable(name = "korisnikovaIstorijaPosetaPozoristima", joinColumns = { @JoinColumn(name = "posecenoPozoriste", nullable = false) }, inverseJoinColumns = { @JoinColumn(name = "posetilac") })
 	@JsonIgnore
-	List<Korisnik> posetioci;
+	List<Korisnik> posetiociPozorista;
 
 
 	public Pozoriste() {
@@ -102,7 +102,7 @@ public class Pozoriste implements Serializable{
 		super();
 		this.naziv = naziv;
 		this.opis = opis;
-		this.posetioci = new ArrayList<Korisnik>();
+		this.posetiociPozorista = new ArrayList<Korisnik>();
 	}
 
 	public String getNaziv() {
@@ -195,14 +195,14 @@ public class Pozoriste implements Serializable{
 	public void setFanZona(FanZona fanZona) {
 		this.fanZona = fanZona;
 	}
-
-	public List<Korisnik> getPosetioci() {
-		return posetioci;
+	
+	public List<Korisnik> getPosetiociPozorista() {
+		return posetiociPozorista;
 	}
 
-	public void setPosetioci(List<Korisnik> posetioci) {
-		this.posetioci = posetioci;
-	}
+	public void setPosetiociPozorista(List<Korisnik> posetiociPozorista) {
+		this.posetiociPozorista = posetiociPozorista;
+	}	
 
 	public String getxKoordinata() {
 		return xKoordinata;

@@ -77,7 +77,7 @@ public class Korisnik implements Serializable{
     List<Bioskop> poseceniBioskopi;
 	
 	//istorija poseta pozoristima
-	@ManyToMany(mappedBy = "posetioci") //mappedBy = "korisnik" ???
+	@ManyToMany(mappedBy = "posetiociPozorista")
 	@JsonIgnore
 	List<Pozoriste> posecenaPozorista;
 	

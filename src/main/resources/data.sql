@@ -153,6 +153,12 @@ insert into bioskop_lista_sala values (3, 3);
 insert into bioskop_lista_sala values (4, 4);
 
 
+insert into pozoriste_lista_sala values (1, 1);
+insert into pozoriste_lista_sala values (2, 2);
+insert into pozoriste_lista_sala values (3, 3);
+insert into pozoriste_lista_sala values (4, 4);
+
+
 
 insert into oglas(id, cena, datum, naziv, opis, slika, status, fan_zona_id) values (1, '100', '2018-11-10', 'Oglas 1', 'Opis oglasa 1', 'slika 1', 1, 1);
 insert into oglas(id, cena, datum, naziv, opis, slika, status, fan_zona_id) values (2, '350', '2018-07-08', 'Oglas 2', 'Opis oglasa 2', 'slika 2', 1, 1);

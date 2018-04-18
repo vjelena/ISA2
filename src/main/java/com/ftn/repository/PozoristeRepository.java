@@ -15,6 +15,6 @@ public interface PozoristeRepository extends JpaRepository<Pozoriste, Long> {
 	Pozoriste findById(Long id);
 	Pozoriste findByNaziv(String naziv);
 	
-	//za pretragu bioskopa
+	//za pretragu pozorista
 	List<Pozoriste> findByNazivIgnoreCaseContaining(String naziv);
 }
