@@ -76,7 +76,12 @@ public class Korisnik implements Serializable{
 	@JsonIgnore
     List<Bioskop> poseceniBioskopi;
 	
+	//istorija poseta pozoristima
+	@ManyToMany(mappedBy = "posetioci") //mappedBy = "korisnik" ???
+	@JsonIgnore
+	List<Pozoriste> posecenaPozorista;
 	
+
 	public Korisnik() {
 		
 	}
@@ -98,6 +103,7 @@ public class Korisnik implements Serializable{
 		this.komeSamJaPrijatelj = new ArrayList<Korisnik>();
 		this.zahteviZaPrijateljstvo = new ArrayList<Korisnik>();
 		this.poseceniBioskopi = new ArrayList<Bioskop>();
+		this.posecenaPozorista = new ArrayList<Pozoriste>();
 	}
 
 	public Long getId() {
@@ -226,6 +232,14 @@ public class Korisnik implements Serializable{
 
 	public void setPoseceniBioskopi(List<Bioskop> poseceniBioskopi) {
 		this.poseceniBioskopi = poseceniBioskopi;
+	}
+	
+	public List<Pozoriste> getPosecenaPozorista() {
+		return posecenaPozorista;
+	}
+
+	public void setPosecenaPozorista(List<Pozoriste> posecenaPozorista) {
+		this.posecenaPozorista = posecenaPozorista;
 	}
 
 }
