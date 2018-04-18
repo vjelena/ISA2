@@ -31,7 +31,8 @@ public class Rekvizit implements Serializable{
 	@ManyToOne(optional = false)
 	private Prodavnica prodavnica;
 	
-	//private Projekcija projekcija;
+	@ManyToOne(optional = false)
+	private Film film;
 	
 	public Rekvizit() {
 		
@@ -84,4 +85,13 @@ public class Rekvizit implements Serializable{
 	public void setCena(String cena) {
 		this.cena = cena;
 	}
+
+	public Film getFilm() {
+		return film;
+	}
+
+	public void setFilm(Film film) {
+		this.film = film;
+	}
+	
 }

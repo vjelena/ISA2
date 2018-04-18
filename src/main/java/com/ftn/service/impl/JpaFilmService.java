@@ -36,4 +36,9 @@ public class JpaFilmService implements FilmService{
 		return filmRepository.findOne(new Long(id));
 	}
 
+	@Override
+	public Film findOne(Long id) {
+		return filmRepository.findOne(id);
+	}
+
 }

@@ -33,7 +33,7 @@ public class Oglas implements Serializable{
 	@Column(nullable = false)
 	private Date datum; //do kada je aktivno prikupljanje ponuda
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private String slika;
 	
 	@Column(nullable = false)
@@ -46,9 +46,8 @@ public class Oglas implements Serializable{
 	@JsonIgnore
 	private Set<Ponuda> listaPonuda;
 	
-	/*//@JsonBackReference
 	@ManyToOne(optional = false)
-	private Korisnik korisnik;*/
+	private Korisnik korisnik;
 	
 	@ManyToOne(optional = false)
 	private FanZona fanZona;
@@ -65,13 +64,13 @@ public class Oglas implements Serializable{
 		this.id = id;
 	}
 
-	/*public Korisnik getKorisnik() {
+	public Korisnik getKorisnik() {
 		return korisnik;
 	}
 
 	public void setKorisnik(Korisnik korisnik) {
 		this.korisnik = korisnik;
-	}*/
+	}
 	
 	public Set<Ponuda> getListaPonuda() {
 		return listaPonuda;

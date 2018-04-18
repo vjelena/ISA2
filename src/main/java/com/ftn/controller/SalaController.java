@@ -102,4 +102,12 @@ public class SalaController {
 		return new ResponseEntity<>(sala, HttpStatus.OK);
 	}
 
+	
+	//BS
+	//preuzimanje selektovane sale da bi se mogla prikazati njena konfiguracija
+	@RequestMapping(value = "/konfiguracijaSale/{id}", method = RequestMethod.GET)
+	public ResponseEntity<Sala> konfiguracijaSale(@PathVariable String id) {
+		Sala sala = jpaSalaService.nadjiJednuSalu(id);
+		return new ResponseEntity<>(sala, HttpStatus.OK);
+	}
 }

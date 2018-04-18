@@ -1,32 +1,41 @@
+function getID(e){
+	localStorage.setItem("rekvizitId", $(e).attr('data-id'));
+	console.log("usao u getid")
+	console.log(localStorage.getItem("rekvizitId"));
+}
+
+var admin = localStorage.getItem("admin");
+console.log(admin);
+
 $(document).ready(function() {
 	$.ajax({
 		url: "http://localhost:8080/rekvizit/getRekviziti"
 	}).then(function(data) {
 		for(i=0; i<data.length; i++) {
 			newRow = "<tr>"
-				+ "<td class=\"naziv\">" + data[i].naziv + "</td>"
-				+ "<td class=\"opis\">" + data[i].opis + "</td>"
-				+ "<td class=\"slika\">" + data[i].slika + "</td>"
-				+ "<td class=\"cena\">" + data[i].cena + "</td>"
+				+ "<td id=\"naziv\" class=\"naziv\">" + data[i].naziv + "</td>"
+				+ "<td id=\"opis\" class=\"opis\">" + data[i].opis + "</td>"
+				+ "<td id=\"slika\" class=\"slika\">" + data[i].slika + "</td>"
+				+ "<td id=\"cena\" class=\"cena\">" + data[i].cena + "</td>"
 				+ "<td><a class=\"rezervacija\" href='" + data[i].id + "'>Rezervisi</a></td>"
 				+ "<td><a class=\"izbrisi\" href='/rekvizit/" + data[i].id + "'>Izbrisi</a></td>"
-				+ "<td><a class=\"izmeni\" href='/rekvizit/" + data[i].id + "'>Izmeni</a></td>"
+				+ "<td><a onclick=\"getID(this)\" data-id=\"" + data[i].id + "\" class=\"izmeni\" href='/rekvizit/" + data[i].id + "'>Izmeni</a></td>"
 				+ "</tr>"
 			$("#tabelaRekvizita").append(newRow)
-		}
-	});
 
-	$.ajax({
-		url : "http://localhost:8080/korisnik/getTrenutnoAktivan"
-	}).then(function(data){
-		if(data.uloga == "fanzona"){
-			$("#dodajRekvizit").show();
-			$(".izbrisi").show();
-			$(".izmeni").show();
-		}else{
-			$("#dodajRekvizit").hide();
-			$(".izbrisi").hide();
-			$(".izmeni").hide();
+			if(admin == "fanzona"){
+				$("#dodajRekvizit").show();
+				$("#azurirajAdmina").show();
+				$(".izbrisi").show();
+				$(".izmeni").show();
+				$(".rezervacija").hide();
+			}else{
+				$("#dodajRekvizit").hide();
+				$("#azurirajAdmina").hide();
+				$(".izbrisi").hide();
+				$(".izmeni").hide();
+				$(".rezervacija").show();
+			}
 		}
 	});
 });
@@ -56,4 +65,7 @@ $(document).on("click", ".izbrisi", function(event){
 
 $(document).on("click", ".izmeni", function(event){
 
+	event.preventDefault(); 
+
+	location.href = "http://localhost:8080/azurirajRekvizit.html"
 });

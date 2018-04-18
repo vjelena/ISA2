@@ -17,4 +17,6 @@ public interface FilmService {
 
 
 	public Film nadjiJedanFilm(String id);
+	
+	Film findOne(Long id);
 }

@@ -1,6 +1,9 @@
 package com.ftn.model;
 
 import java.util.HashSet;
+
+import java.io.Serializable;
+
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -13,7 +16,7 @@ import javax.persistence.OneToMany;
 
 
 @Entity
-public class Film {
+public class Film implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

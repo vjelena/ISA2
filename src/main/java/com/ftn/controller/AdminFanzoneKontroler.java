@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ftn.DTO.LozinkaDTO;
 import com.ftn.model.Korisnik;
 import com.ftn.service.KorisnikService;
 
@@ -32,6 +33,16 @@ public class AdminFanzoneKontroler {
 		k.setUloga("fanzona");
 		k.setAktiviranNalogPrekoMejla(true);
 		k.setPrviPutSeUlogovao(false);
+			
+		korisnikServis.save(k);
+		return true;
+	}
+	
+	@RequestMapping(value="/promenaLozinke", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public boolean promenaLozinke(@RequestBody LozinkaDTO lozinkaDTO, HttpServletRequest request) {
+		Korisnik k = (Korisnik)request.getSession().getAttribute("aktivanKorisnik");
+			
+		k.setLozinka(lozinkaDTO.getLozinka());
 			
 		korisnikServis.save(k);
 		return true;

@@ -19,12 +19,14 @@ $(document).ready(function(){
 		var datum = "<tr><th scope=\"col\">Datum do kog vazi prikupljanje ponuda: " + data.datum + "</th></tr>";
 		var slika = "<tr><th scope=\"col\">Slika: " + data.slika + "</th></tr>";
 		var cena = "<tr><th scope=\"col\">Cena: " + data.cena + "</th></tr>";
+		var vlasnik = "<tr><th scope=\"col\">Vlasnik: " + data.korisnik.email + "</th></tr>";
 
 		$("#tabelaOglasPrikaz").append(naziv);
 		$("#tabelaOglasPrikaz").append(opis);
 		$("#tabelaOglasPrikaz").append(datum);
 		$("#tabelaOglasPrikaz").append(slika);
 		$("#tabelaOglasPrikaz").append(cena);
+		$("#tabelaOglasPrikaz").append(vlasnik);
 
 		$.each(data.listaPonuda, function(index, val){
 			console.log("each")

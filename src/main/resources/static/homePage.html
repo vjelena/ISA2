@@ -48,9 +48,23 @@
 				</form>
 				<form class="form-horizontal">
 					<div class="btn-group-vertical" style="padding-top:35px">
-						<p class="font-weight-bold">Rezervacija mesta:</p>
-				    	<input id="dugmeRezervacija" class="btn btn-danger" type="button" value="Rezervisi">
-				    	<input id="dugmeOtkaziRezervaciju" class="btn btn-danger" type="button" value="Otkazi">
+						<p class="font-weight-bold">Pozorista:</p>
+				    	<input id="dugmePozorista" class="btn btn-success" type="button" value="Prikazi sve">
+				    	<input id="dugmeIstorijaPosetaPozorista" class="btn btn-success" type="button" value="Istorija poseta">
+				    </div>
+				</form>
+				<form class="form-horizontal">
+					<div class="btn-group-vertical" style="padding-top:35px">
+						<p class="font-weight-bold">Rezervacija mesta u bioskopu:</p>
+				    	<input id="dugmeRezervacija" class="btn" type="button" value="Rezervisi">
+				    	<input id="dugmeOtkaziRezervaciju" class="btn" type="button" value="Otkazi">
+				    </div>
+				</form>
+				<form class="form-horizontal">
+					<div class="btn-group-vertical" style="padding-top:35px">
+						<p class="font-weight-bold">Rezervacija mesta u pozoristu:</p>
+				    	<input id="dugmeRezervacijaPozoriste" class="btn btn-danger" type="button" value="Rezervisi">
+				    	<input id="dugmeOtkaziRezervacijuPozoriste" class="btn btn-danger" type="button" value="Otkazi">
 				    </div>
 				</form>
 			</div>
@@ -177,6 +191,7 @@
 		
 		
 			$("#dugmeOdjaviSe").click(function(){
+				localStorage.clear();
 				$.ajax({
 					url: "http://localhost:8080/korisnik/odjava",
 					type: "GET",
@@ -197,6 +212,11 @@
 			
 			$("#dugmeBioskopi").click(function(){
 				location.href = "http://localhost:8080/prikazBioskopa.html"
+			});
+			
+			
+			$("#dugmePozorista").click(function(){
+				location.href = "http://localhost:8080/prikazPozorista.html"
 			});
 			
 			
@@ -261,13 +281,28 @@
 			});
 			
 			
+			$("#dugmeIstorijaPosetaPozorista").click(function(){
+				location.href = "http://localhost:8080/istorijaPosetaPozorista.html"
+			});
+			
+			
 			$("#dugmeRezervacija").click(function(){
 				location.href = "http://localhost:8080/rezervacijaMesta.html"
 			});
 			
 			
 			$("#dugmeOtkaziRezervaciju").click(function(){
-				alert('Otkazivanje rezervacije nije implementirano.')
+				alert('Otkazivanje rezervacije mesta u bioskopu nije implementirano.')
+			});
+			
+			
+			$("#dugmeRezervacijaPozoriste").click(function(){
+				location.href = "http://localhost:8080/rezervacijaMestaPozoriste.html"
+			});
+			
+			
+			$("#dugmeOtkaziRezervacijuPozoriste").click(function(){
+				alert('Otkazivanje rezervacije u pozoristu nije implementirano.')
 			});
 			
 			

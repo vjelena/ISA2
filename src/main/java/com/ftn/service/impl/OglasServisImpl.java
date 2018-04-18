@@ -36,7 +36,6 @@ public class OglasServisImpl implements OglasServis{
 	@Override
 	public Oglas save(Oglas oglas) {
 		if(oglas.getFanZona() == null){
-			oglas.setStatus(0);
 			oglas.setFanZona(fanZonaRepozitorijum.findOne((long) 1));
 		}
 		return oglasRepozitorijum.save(oglas);

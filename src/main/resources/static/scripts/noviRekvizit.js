@@ -1,3 +1,24 @@
+$.ajax({
+	url: "http://localhost:8080/film/getFilmovi",
+	type: "GET",
+	contentType: "application/json",
+	datatype: 'json',
+	success: function(data){
+		if(data){
+			console.log("GET ZAHTEV");
+			console.log(data);
+			$.each(data, function(index, val){
+				console.log(index, val);
+				$("#sviFilmovi").append('<option value="' + val.id + '">' + val.naziv + '</option>');
+			});
+							
+		}else
+			alert("GRESKA");
+	}
+});
+
+
+
 $("#potvrdi").click(function(){
 
 	var provera = true;
@@ -6,6 +27,7 @@ $("#potvrdi").click(function(){
 	var opis = forma.find('[name=opis]').val();
 	var slika = forma.find('[name=slika]').val();
 	var cena = forma.find('[name=cena]').val();
+	var film = forma.find('[name=film]').val();
 
 	if(!naziv) {
 		$('#divValidacija').empty();
@@ -44,8 +66,10 @@ $("#potvrdi").click(function(){
 	        naziv:$("#formaNoviRekvizit [name='naziv']").val(),
 	        opis:$("#formaNoviRekvizit [name='opis']").val(),
 	        slika:$("#formaNoviRekvizit [name='slika']").val(),
-	        cena:$("#formaNoviRekvizit [name='cena']").val()
-	    });	console.log(formData);
+	        cena:$("#formaNoviRekvizit [name='cena']").val(),
+	        filmId:$("#formaNoviRekvizit [name='film']").val()
+	    });	
+	    console.log(formData);
 		$.ajax({
 			url: "http://localhost:8080/rekvizit",
 			type: "POST",

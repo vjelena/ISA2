@@ -1,7 +1,6 @@
 package com.ftn.controller;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import javax.mail.MessagingException;
@@ -20,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ftn.model.Bioskop;
 import com.ftn.model.Korisnik;
+import com.ftn.model.Pozoriste;
 import com.ftn.repository.KorisnikRepository;
 import com.ftn.service.EmailService;
 import com.ftn.service.KorisnikService;
@@ -294,13 +294,21 @@ public class KorisnikController {
 	}
 	
 	
-	//ISTORIJA POSETA BIOSKOPIMA:
+	//ISTORIJA POSETA:
 	//preuzimanje posecenih bioskopa prijavljenog korisnika
 	@RequestMapping(value = "/getPoseceniBioskopi", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Bioskop>> getPoseceniBioskopi(HttpServletRequest request){						
 		Korisnik k = (Korisnik) request.getSession().getAttribute("aktivanKorisnik");
 		Korisnik posetilac = korisnikRepository.findById(k.getId());		
 		return new ResponseEntity<>(posetilac.getPoseceniBioskopi(), HttpStatus.OK);
+	}
+	
+	//preuzimanje posecenih pozorista prijavljenog korisnika
+	@RequestMapping(value = "/getPosecenaPozorista", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Pozoriste>> getPosecenaPozorista(HttpServletRequest request){						
+		Korisnik k = (Korisnik) request.getSession().getAttribute("aktivanKorisnik");
+		Korisnik posetilac = korisnikRepository.findById(k.getId());		
+		return new ResponseEntity<>(posetilac.getPosecenaPozorista(), HttpStatus.OK);
 	}
 	
 }

@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Istorija poseta bioskopima</title>
+		<title>Istorija poseta pozoristima</title>
 		<link href="bootstrapB/css/bootstrap.css" rel="stylesheet" type="text/css"/>
 		<script src="bootstrapB/js/bootstrap.js" type="text/javascript"></script>
 		<script src="scripts/jquery-3.2.1.min.js"></script>
@@ -24,7 +24,7 @@
 		
 		<div class="container">
 			<div style="margin-top: 20px;">
-				<table id="tabelaPosecenihBioskopa" class="table table-hover table-bordered">
+				<table id="tabelaPosecenihPozorista" class="table table-hover table-bordered">
 					<thead class="thead-dark">
 						<tr>
 							<th scope="col" class="text-center">Naziv</th>
@@ -44,20 +44,20 @@
 		<script type="text/javascript">
 		$(document).ready(function() {
 			$.ajax({
-				url : "http://localhost:8080/korisnik/getPoseceniBioskopi"
+				url : "http://localhost:8080/korisnik/getPosecenaPozorista"
 			}).then(function(data) {
 				if(data.length == 0){
 					$("#prazno").empty();
-					red = "Niste posetili nijedan bioskop.";
+					red = "Niste posetili nijedno pozoriste.";
 					$("#prazno").append(red);
-					$("#tabelaPosecenihBioskopa").hide();
+					$("#tabelaPosecenihPozorista").hide();
 				}else{
 					for (i = 0; i < data.length; i++) {
 						newRow = "<tr><td class=\"naziv\">" + data[i].naziv + "</td>"
 									+ "<td class=\"adresa\">" + data[i].adresa.ulica + " " + data[i].adresa.broj + "</td>"
 									+ "<td class=\"opis\">" + data[i].opis + "</td>"
 									+ "<td class=\"prosecnaOcena\">" + data[i].prosecnaOcena + "</td></tr>"
-						$("#tabelaPosecenihBioskopa").append(newRow);
+						$("#tabelaPosecenihPozorista").append(newRow);
 					}
 				}
 			});

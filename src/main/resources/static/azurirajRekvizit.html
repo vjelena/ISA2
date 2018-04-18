@@ -1,10 +1,70 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>Azuriraj rekvizit</title>
+	<link href="bootstrapB/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+	<script src="bootstrapB/js/bootstrap.js" type="text/javascript"></script>
+	<script src="scripts/jquery-3.2.1.min.js" type="text/javascript"></script>
 </head>
 <body>
-AAA
+
+		<div class="container">  
+   			<div style="margin-top:20px;" class="mainbox col-lg-6 col-lg-offset-3 col-lg-8 col-lg-offset-7"> 
+        		<div class="panel panel-info" >
+            		<div class="panel-heading">
+                		<div class="panel-title text-center">Azuriranje rekvizita</div>
+            		</div>
+            		  
+            		<div class="panel-body" style="padding-top:30px">
+            			<div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+                		<form id="formaAzurirajRekvizit" class="form-horizontal" enctype="multipart/form-data" method="POST">
+                    		
+                    		<span id="nazivA" class="label label-default">stari naziv: </span>
+                        	<div class="input-group" style="margin-bottom: 25px">
+                        		<span class="input-group-addon"><i class="glyphicon glyphicon-text-background"></i></span>
+                        		<input type="text" class="form-control" name="naziv" placeholder="Naziv">
+                    		</div>
+                    		
+                    		<span id="opisA" class="label label-default">stari opis: </span>
+                    		<div class="input-group" style="margin-bottom: 25px">
+                        		<span class="input-group-addon"><i class="glyphicon glyphicon-text-background"></i></span>
+                        		<input type="text" class="form-control" name="opis" placeholder="Opis">
+                    		</div> 
+                    		
+                    		<span id="slikaA" class="label label-default">stara slika: </span>
+                    		<div class="input-group" style="margin-bottom: 25px">
+                        		<span class="input-group-addon"><i class="glyphicon glyphicon-picture"></i></span>
+                        		<input type="file" class="form-control" name="slika" placeholder="Slika">
+                    		</div>
+                    		
+                    		<span id="cenaA" class="label label-default">stara cena: </span>
+                    		<div class="input-group" style="margin-bottom: 25px">
+                        		<span class="input-group-addon"><i class="glyphicon glyphicon-eur"></i></span>
+                        		<input type="text" class="form-control" name="cena" placeholder="Cena">
+                    		</div>
+
+                    		<span id="filmA" class="label label-default">stari film: </span>
+                    		<div class="input-group" style="margin-bottom: 25px">
+                        		<span class="input-group-addon"><i class="glyphicon glyphicon-film"></i></span>
+                        			<select id="sviFilmovi" name="film" class="form-control">
+                                        
+                                    </select>
+                    		</div>
+                    		              
+                    		<div id="divValidacija"></div>  
+                    		                                                                 
+                    		<div class="form-group">
+                        		<div class="col-lg-offset-3 col-lg-9" style="margin-top: 25px">
+                            		<input id="dugmeAzurirajPodatke" type="button" class="btn btn-info" style="float:right" value="Azuriraj podatke"> 	
+                            		<input id="dugmeOdustaniOdAzuriranja" type="button" class="btn btn-primary" style="float:left" value="Odustani"> 	
+                            	</div>
+                    		</div>
+                		</form>     
+            		</div>                     
+        		</div>  
+    		</div>
+		</div>
+<script type="text/javascript" src="scripts/azurirajRekvizit.js"></script>
 </body>
 </html>
