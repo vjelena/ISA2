@@ -45,6 +45,11 @@ public class RekvizitKontroler {
 	@RequestMapping(value="/getRekviziti", method = RequestMethod.GET)
 	public ResponseEntity<List<Rekvizit>> getRekviziti() {
 		List<Rekvizit> rekviziti = rekvizitServis.findAll();
+		for (int i = 0; i < rekviziti.size(); i++) {
+			int status = rekviziti.get(i).getStatus();
+			if(status == 1)	//ako je rezervisan izbrisi iz liste
+				rekviziti.remove(rekviziti.get(i));
+		}
 		return new ResponseEntity<>(rekviziti, HttpStatus.OK);
 	}
 	
@@ -69,6 +74,14 @@ public class RekvizitKontroler {
 		rekvizit.setSlika(rekvizitDTO.getSlika());
 		Film film = filmService.findOne(rekvizitDTO.getFilmId());
 		rekvizit.setFilm(film);
+		rekvizitServis.save(rekvizit);
+		return new ResponseEntity<>(rekvizit, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/rezervacija/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Rekvizit> rezervacija(@PathVariable Long id) {
+		Rekvizit rekvizit = rekvizitServis.findOne(id);
+		rekvizit.setStatus(1);
 		rekvizitServis.save(rekvizit);
 		return new ResponseEntity<>(rekvizit, HttpStatus.OK);
 	}

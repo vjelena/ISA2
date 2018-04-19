@@ -20,7 +20,7 @@ values(5, 1, 25, '346964', 'fanzona@gmail.com' , 'Nevena', '555', 'Jovic', 0, 'f
 
 insert into adresa(id, broj, grad, ulica) values (16, '68', 'Novi Sad', 'Cirpanova');
 insert into korisnik(id, aktiviran_nalog_preko_mejla, broj_poseta, broj_telefona, email, ime, lozinka, prezime, prvi_put_se_ulogovao, uloga, vrsta_clana, adresa_id)
-values(6, 1, 0, '346964', 'adminbioskopa@gmail.com' , 'Nena', '666', 'Vidovic', 1, 'bioskop', 'zlatni', 16);
+values(6, 1, 16, '346964', 'adminbioskopa@gmail.com' , 'Nena', '666', 'Vidovic', 0, 'bioskop', 'zlatni', 16);
 
 insert into adresa(id, broj, grad, ulica) values (17, '39', 'Novi Pazar', 'Masarikova');
 insert into korisnik(id, aktiviran_nalog_preko_mejla, broj_poseta, broj_telefona, email, ime, lozinka, prezime, prvi_put_se_ulogovao, uloga, vrsta_clana, adresa_id) 
@@ -72,16 +72,20 @@ insert into moji_prijatelji values(9, 8);
 
 insert into fan_zona(naziv) values ('fan zona'); --samo jedna fan zona postoji id = 1
 
+insert into skala(id, zlatni, zlatni_popust, srebrni, srebrni_popust, bronzani, bronzani_popust) values (1, 50, 20, 30, 10, 20, 5);
+insert into skala(id, zlatni, zlatni_popust, srebrni, srebrni_popust, bronzani, bronzani_popust) values (2, 60, 30, 40, 20, 20, 15);
+insert into skala(id, zlatni, zlatni_popust, srebrni, srebrni_popust, bronzani, bronzani_popust) values (3, 30, 15, 20, 10, 10, 5);
+insert into skala(id, zlatni, zlatni_popust, srebrni, srebrni_popust, bronzani, bronzani_popust) values (4, 100, 40, 60, 30, 40, 20);
 
-insert into bioskop values (1, 'Jadran', 'Na repertoaru bioskopa Jadran mozete pogledati brojne popularne klasike.', 3.5, '45.25' , '19.845' , 11, 1);
-insert into bioskop values (2, 'Arena Cineplex', 'Pored redovnog filmskog repertoara, u Areni Cineplex se organizuju svecane premijere domacih filmova, kao i festivali FEST, Cinema City, Cinemania i Kids Fest.', 4.5,'42.10','19.345',12, 1);
-insert into bioskop values (3, 'Cinestar', 'Brend CineStar razvio se iz bioskopa kompanije Kieft Kieft Filmtheater GmbH, koja je, posle vise od cetiri decenije rada kao operater klasicnog bioskopa, još 1993. otvorila svoj prvi multipleks.', 4.0,'42.20','19.25',13, 1);
-insert into bioskop values (4, 'Dom sindikata', 'Dvorana bioskopa Doma sindikata zvanicno je otvorena 13.6.1957. godine, a prvi film ikada projektovan u njoj je domaci jugoslovenski film Samo ljudi, 7.9.1957. godine. ', 4.3,'26.25','32.20', 15, 1);
+insert into bioskop values (1, 'Jadran', 'Na repertoaru bioskopa Jadra mozete pogledati brojne popularne klasike.', 3.5, '45.25' , '19.845' , 11, 1, 1);
+insert into bioskop values (2, 'Arena Cineplex', 'Pored redovnog filmskog repertoara, u Areni Cineplex se organizuju svecane premijere domacih filmova, kao i festivali FEST, Cinema City, Cinemania i Kids Fest.', 4.5,'35.10','56.30',12, 1, 2);
+insert into bioskop values (3, 'Cinestar', 'Brend CineStar razvio se iz bioskopa kompanije Kieft Kieft Filmtheater GmbH, koja je, posle vise od cetiri decenije rada kao operater klasicnog bioskopa, još 1993. otvorila svoj prvi multipleks.', 4.0,'37.20','20.25',13, 1, 3);
+insert into bioskop values (4, 'Bioskop 4', 'Opis bioskopa 4.', 4.3,'26.25','32.20', 15, 1, 4);
 
-insert into pozoriste values (1, 'Srpsko narodno pozoriste', 'Srpsko narodno pozoriste osnovano je 1861. godine u Novom Sadu.', 3.5, '45.25' , '19.845' , 11, 1);
-insert into pozoriste values (2, 'Pozoriste Bosko Buha', 'Pozoriste Bosko Buha osnovano je 1950. godine u Beogradu, cime je deci vraceno pravo na pozoriste.', 4.5,'35.10','56.30',12, 1);
-insert into pozoriste values (3, 'Pozoriste mladih', 'Pozoriste mladih osnovano je 1932. godine kao Lutkarsko pozoriste, pri Sokolskom drustvu u Novom Sadu. Pozoriste je nastalo iz Sokolske sekcije lutkara, koja je formirana 1930. godine.', 4.0,'43.20','20.25',13, 1);
-insert into pozoriste values (4, 'Jugoslovensko dramsko pozoriste', '3.4.1948. godine Jugoslovensko dramsko pozoriste otvara vrata publici premijernom predstavom Kralj Betajnove.', 4.3,'41.25','19.20', 15, 1);
+insert into pozoriste values (1, 'Pozoriste Narodno', 'Na repertoaru bioskopa Jadra mozete pogledati brojne popularne klasike.', 3.5, '45.25' , '19.845' , 11, 1);
+insert into pozoriste values (2, 'Pozoriste decije', 'Pored redovnog filmskog repertoara, u Areni Cineplex se organizuju svecane premijere domacih filmova, kao i festivali FEST, Cinema City, Cinemania i Kids Fest.', 4.5,'35.10','56.30',12, 1);
+insert into pozoriste values (3, 'Pozoriste 3', 'Brend CineStar razvio se iz bioskopa kompanije Kieft Kieft Filmtheater GmbH, koja je, posle vise od cetiri decenije rada kao operater klasicnog bioskopa, još 1993. otvorila svoj prvi multipleks.', 4.0,'37.20','20.25',13, 1);
+insert into pozoriste values (4, 'Pozoriste 4', 'Opis bioskopa 4.', 4.3,'26.25','32.20', 15, 1);
 
 INSERT INTO izvestajoposlovanju values (1 , 60000, 4.2 ,4.5, 1);
 INSERT INTO izvestajoposlovanju values (2 , 90000, 4.0 ,4.1, 2);
@@ -190,5 +194,5 @@ insert into oglas(id, cena, datum, naziv, opis, slika, status, fan_zona_id, kori
 insert into prodavnica(naziv) values ('prodavnica');  --samo jedna prodavnica postoji id = 1
 
 
-insert into rekvizit(id, naziv, opis, slika, cena, prodavnica_id, film_id) values (1, 'Rekvizit 1', 'Opis rekvizita 1', 'slika 1', '33', 1, 1);
-insert into rekvizit(id, naziv, opis, slika, cena, prodavnica_id, film_id) values (2, 'Rekvizit 2', 'Opis rekvizita 2', 'slika 2', '5', 1, 2);
+insert into rekvizit(id, naziv, opis, slika, cena, status, prodavnica_id, film_id) values (1, 'Rekvizit 1', 'Opis rekvizita 1', 'slika 1', '33', 0, 1, 1);
+insert into rekvizit(id, naziv, opis, slika, cena, status, prodavnica_id, film_id) values (2, 'Rekvizit 2', 'Opis rekvizita 2', 'slika 2', '5', 0, 1, 2);

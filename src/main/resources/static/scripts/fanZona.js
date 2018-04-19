@@ -4,19 +4,22 @@ function getID(e){
 		console.log(localStorage.getItem("oglasId"));
 }
 
+var admin = localStorage.getItem("admin");
+console.log("admin je: " + admin)
+var korisnik = localStorage.getItem("registrovan korisnik");
+console.log("korisnik je: " + korisnik)
+
 $(document).ready(function() {
 
-	$.ajax({
-		url : "http://localhost:8080/korisnik/getTrenutnoAktivan"
-	}).then(function(data){
-		console.log(data)
+	if(admin == "fanzona"){
 
-		if(data.uloga == "fanzona"){
+			console.log("a")
 
-			console.log(data + "a")
+			$("#mojaFanzona").hide();
+			$("#dodajOglas").hide();
 
 				$.ajax({
-					url: "http://localhost:8080/oglas/getOglasi"
+					url: "http://localhost:8080/oglas/getOglasiNeodobreni"
 				}).then(function(data) {
 
 					for(i=0; i<data.length; i++) {
@@ -30,21 +33,15 @@ $(document).ready(function() {
 						+ "<td><a class=\"odobri\" id = \"odobri\" href='/oglas/odobri/" + data[i].id + "'>Odobri</a></td>"
 						+ "</tr>"
 						$("#tabelaOglasa").append(newRow)
-
-						if(data[i].status == 0){
-							$("#odobri").show();
-						}else{
-							$("#odobri").hide();
-						}
-					
 					}
 				});
 
-		}else if(data.uloga == "obican"){
+	}else{
+
 			console.log("b")
 
 				$.ajax({
-					url: "http://localhost:8080/oglas/getOglasi"
+					url: "http://localhost:8080/oglas/getOglasiOdobreni/" + korisnik
 				}).then(function(data) {
 
 					for(i=0; i<data.length; i++) {
@@ -56,18 +53,9 @@ $(document).ready(function() {
 						+ "<td class=\"cena\">" + data[i].cena + "</td>"
 						+ "<td class=\"cena\">" + data[i].korisnik.email + "</td>"
 						+ "<td id=\"slanjePonude\"><input type=\"text\" class=\"form-control\" name=\"" + data[i].id +"\" placeholder=\"Ponuda\">"
-						+ "<a class=\"ponuda\" href='/oglas/ponuda/" + data[i].id + "'>Posalji ponudu</a></td>"
-						+ "<td><a class=\"rezervacija\" href='/oglas/rezervacija/" + data[i].id + "'>Rezervisi</a></td>"
+						+ "<a id=\"posaljiPonudu\" class=\"ponuda\" href='/oglas/ponuda/" + data[i].id + "'>Posalji ponudu</a></td>"
 						+ "</tr>"
 						$("#tabelaOglasa").append(newRow)
-
-						if(data[i].status == 0){
-							console.log(data[i].naziv +"statuuus"+ data[i].status)
-							red = $("#naziv").closest("tr")
-							$(red).hide();
-						}else{
-							$("#naziv").show();
-						}
 
 						var d = new Date();
 						var month = d.getMonth()+1;
@@ -87,7 +75,7 @@ $(document).ready(function() {
 					}
 				});
 
-		}
+	}
 
 
 		$(document).on("click", ".ponuda", function(event){
@@ -114,7 +102,7 @@ $(document).ready(function() {
 
 				formData = JSON.stringify({
 				        cena:vrednost,
-				        korisnikId:data.id,
+				        korisnikId:korisnik,
 				});	
 				console.log(formData);
 				$.ajax({
@@ -162,8 +150,6 @@ $(document).ready(function() {
 			});
 
 		});
-
-	});
 	
 });
 

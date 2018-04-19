@@ -17,6 +17,25 @@ $.ajax({
 	}
 });
 
+$.ajax({
+	url: "http://localhost:8080/bioskopi/prikaziBioskope",
+	type: "GET",
+	contentType: "application/json",
+	datatype: 'json',
+	success: function(data){
+		if(data){
+			console.log("GET ZAHTEV");
+			console.log(data);
+			$.each(data, function(index, val){
+				console.log(index, val);
+				$("#sviBioskopiSkala").append('<option value="' + val.id + '">' + val.naziv + '</option>');
+			});
+							
+		}else
+			alert("GRESKA");
+	}
+});
+
 
 
 $("#dugmeRegistrujBioskop").click(function(){
@@ -119,6 +138,35 @@ $("#dugmeDodajSalu").click(function(){
 		datatype: 'json',
 		success: function(data){
 			if(data){
+				console.log("TOP");				
+			}else
+				alert("Registracija NIJE uspela.");
+		}
+	});
+});
+
+$("#dugmeDodajSkalu").click(function(){
+	formData = JSON.stringify({
+		zlatni:$("#formaDodajSkalu [name='bodoviZlatni']").val(),
+		srebrni:$("#formaDodajSkalu [name='bodoviSrebrni']").val(),
+		bronzani:$("#formaDodajSkalu [name='bodoviBronzani']").val(),
+		zlatniPopust:$("#formaDodajSkalu [name='procenatZlatni']").val(),
+		srebrniPopust:$("#formaDodajSkalu [name='procenatSrebrni']").val(),
+		bronzaniPopust:$("#formaDodajSkalu [name='procenatBronzani']").val(), 
+		bioskop:$("#formaDodajSkalu [name='bioskopSkala']").val()
+	});
+
+	
+			
+	$.ajax({
+		url: "http://localhost:8080/admin/dodajSkalu",
+		type: "POST",
+		data: formData,
+		contentType: "application/json",
+		datatype: 'json',
+		success: function(data){
+			if(data){
+				console.log(formData);
 				console.log("TOP");				
 			}else
 				alert("Registracija NIJE uspela.");

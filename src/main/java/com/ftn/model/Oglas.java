@@ -2,7 +2,7 @@ package com.ftn.model;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,9 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -40,11 +38,11 @@ public class Oglas implements Serializable{
 	private String cena;
 	
 	@Column(nullable = false)
-	private int status;
+	private int status;		//0 neodobren 1 odobren
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "oglas")
 	@JsonIgnore
-	private Set<Ponuda> listaPonuda;
+	private List<Ponuda> listaPonuda;
 	
 	@ManyToOne(optional = false)
 	private Korisnik korisnik;
@@ -72,11 +70,11 @@ public class Oglas implements Serializable{
 		this.korisnik = korisnik;
 	}
 	
-	public Set<Ponuda> getListaPonuda() {
+	public List<Ponuda> getListaPonuda() {
 		return listaPonuda;
 	}
 
-	public void setListaPonuda(Set<Ponuda> listaPonuda) {
+	public void setListaPonuda(List<Ponuda> listaPonuda) {
 		this.listaPonuda = listaPonuda;
 	}
 

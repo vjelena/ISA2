@@ -44,6 +44,9 @@ public class Bioskop implements Serializable{
 	@OneToOne(optional = false, cascade = CascadeType.ALL)
 	private Adresa adresa;
 	
+	@OneToOne(optional = false, cascade = CascadeType.ALL)
+	private Skala skala;
+	
 	
 	//@JsonIgnore //u modelu nam ne trebaju anotacije JsonIgnore(to ide u DTO) i JsonManageReference
 //	@JsonManagedReference
@@ -90,12 +93,13 @@ public class Bioskop implements Serializable{
 		
 	}
 	
-	public Bioskop(String naziv, String opis, Adresa adresa, float prosecnaOcena) {
+	public Bioskop(String naziv, String opis, Adresa adresa, float prosecnaOcena, Skala skala) {
 		super();
 		this.naziv = naziv;
 		this.opis = opis;
 		this.adresa = adresa;
 		this.prosecnaOcena = prosecnaOcena;
+		this.skala = skala;
 	}
 
 	public Bioskop(String naziv, String opis) {
@@ -217,6 +221,13 @@ public class Bioskop implements Serializable{
 	public void setyKoordinata(String yKoordinata) {
 		this.yKoordinata = yKoordinata;
 	}
-	
+
+	public Skala getSkala() {
+		return skala;
+	}
+
+	public void setSkala(Skala skala) {
+		this.skala = skala;
+	}
 	
 }

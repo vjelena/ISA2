@@ -24,7 +24,7 @@ public class Ponuda implements Serializable{
 	private String cena;
 	
 	@Column(nullable = false)
-	private int status;			//0 odbijen 1 prihvacen
+	private int status;			//-1 odbijen 1 prihvacen 0 kreirana
 	
 	@ManyToOne(optional = false)
 	@JsonIgnore
