@@ -283,20 +283,42 @@
 						</div>
 						<div style="padding-top: 40px">
 							<div class="form-group col-lg-5">	
-							<div id="seat-map"></div>	<!-- ovde se prikazuje konfiguracija sale -->
-						</div>
-						<div id="selected-seats"></div>
-						<div class="form-group col-lg-6">
-							<div class="row">
-								<div id="lblUspesanOdabirMesta" class="form-group has-feedback">
-									<label>Uspesno ste odabrali mesta koja zelite da rezervisete.</label>
+								<div id="seat-map"></div>	<!-- ovde se prikazuje konfiguracija sale -->
+							</div>
+							<div id="selected-seats"></div>
+							<div class="form-group col-lg-10">
+								<div class="row">
+									<div class="form-group has-feedback">
+										<input id="dugmeDalje3" type="button" class="btn btn-secondary" style="float:right" value="...Dalje 3">
+									</div>
 								</div>
 							</div>
 						</div>
-						<div class="form-group col-lg-10">
-							<div class="row">
-								<div class="form-group has-feedback">
-									<input id="dugmeDalje3" type="button" class="btn btn-secondary" style="float:right" value="...Dalje 3">
+					</div>
+				</div>
+				
+				<div id="deo7">
+					<div class="form-group col-lg-10">
+						<div style="padding-top: 40px">
+							<div class="form-group col-lg-3">
+								<div class="row">
+									<div id="lblDaLiZeliteDaPozovetePrijatelja" class="form-group has-feedback">
+										<label>Pozovi prijatelja?</label>
+									</div>
+								</div>	
+							</div>
+							<div class="form-group col-lg-3">
+								<div class="row">
+									<div class="form-group has-feedback">
+										<input id="dugmeDa" type="button" class="btn btn-danger" style="float:right" value="Da">
+									</div>
+								</div>
+							</div>
+							<div class="form-group col-lg-3">
+								<div class="row">
+									<div class="form-group has-feedback">
+										<input id="dugmeNe" type="button" class="btn btn-danger" style="float:right" value="Ne">
+									</div>
 								</div>
 							</div>
 						</div>
@@ -346,7 +368,7 @@
 						<div class="form-group col-lg-3">
 							<div class="row">
 								<div class="form-group has-feedback">
-									<input id="dugmePozoviPrijatelje" type="button" class="btn btn-danger" style="float:right" value="Pozovi prijatelje">
+									<input id="dugmePozoviPrijatelje" type="button" class="btn btn-danger" style="float:right" value="Pozovi prijatelja">
 								</div>
 							</div>
 						</div>
@@ -360,6 +382,17 @@
 							<div class="row">
 								<div class="form-group has-feedback">
 									<input id="dugmeZavrsiRezervaciju" type="button" class="btn btn-primary" style="float:right" value="Zavrsi rezervaciju">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="deo6" class="form-group col-lg-10">
+					<div style="padding-top: 40px">
+						<div class="form-group col-lg-10">
+							<div class="row">
+								<div class="form-group has-feedback">
+									<input id="dugmeZavrsiRezervacijuBezPrijatelja" type="button" class="btn btn-primary" style="float:right" value="Zavrsi rezervaciju">
 								</div>
 							</div>
 						</div>
@@ -381,8 +414,9 @@
 				$("#deo3").hide();
 				$("#deo4").hide();
 				$("#deo5").hide();
-				$("#dugmeDalje1").hide();
-				
+				$("#deo6").hide();
+				$("#deo7").hide();
+				$("#dugmeDalje1").hide();				
 			});	
 		
 		
@@ -557,7 +591,7 @@
 			$("#dugmeDalje2").click(function(){
 				$("#dugmeDalje2").prop("disabled", true);
 				$("#listaSalaSelect").prop('disabled', 'disabled');
-				nazivSelektovaneSale = $('#listaSalaSelect option:selected').text();
+				nazivSelektovaneSale = $('#listaSalaSelect option:selected').text().split(',')[1].split(':')[1];
 				//alert(nazivSelektovaneSale);
 				idSale = $('#listaSalaSelect option:selected').text().split(',')[0].split('id: ')[1];
 				//alert('konfiguracijaSale:' + idSelektovaneSale);
@@ -683,31 +717,42 @@
 				$("#deo1").show();
 				$("#deo2").show();
 				$("#deo3").show();
-				$("#deo4").show();
+				$("#deo4").hide();
 				$("#deo5").hide();
 				$("#lblOdaberiPrijatelja").hide();
 				$("#dugmePozoviPrijatelje").prop("disabled", true);
 				$("#seat-map").hide();
 				$("#lblUspesanOdabirMesta").hide();
 				
-				var selektovanaMesta = [];
+				selektovanaSedista = [];
+				brojSelektovanihSedista = 0;
 				$('#selected-seats li').each(function(){
-					selektovanaMesta.push($(this).attr('id').split('cart-item-')[1]);
+					selektovanaSedista.push($(this).attr('id').split('cart-item-')[1]);
+					brojSelektovanihSedista++;
 				});
-				alert('selektovana mesta su: ' + selektovanaMesta)
 				
-				if(selektovanaMesta == "") {
+				if(selektovanaSedista == "") {
 					alert('Morate odabrati najmanje jedno sediste koje zelite da rezervisete.');
 					$("#seat-map").show();
 					$("#deo4").hide();
 					$("#deo5").hide();
-					$("#lblUspesanOdabirMesta").hide();
-					$("#dugmePozoviPrijatelje").prop("disabled", true);
-				} else {
-					$("#deo4").show();
-					$("#deo5").hide();
-					$("#lblUspesanOdabirMesta").show();
-					$("#dugmePozoviPrijatelje").prop("disabled", false);
+					$("#deo7").hide();
+				} else { //odabrao je najmanje 1 mesto
+					$("#dugmeDalje3").prop("disabled", true);
+					alert('Sedista koja ste selektovali:\n' + selektovanaSedista)
+					
+					if(brojSelektovanihSedista > 1){ //sa prijateljem
+						$("#lblDaLiZeliteDaPozovetePrijatelja").show();
+						$("#dugmeDa").show();
+						$("#dugmeNe").show();
+						$("#deo5").hide();
+						$("#deo7").show();
+					} else { //bez prijatelja
+						$("#deo4").hide();
+						$("#deo5").hide();
+						$("#deo6").show();
+						$("#deo7").hide();
+					}
 				}
 			});
 			
@@ -777,8 +822,10 @@
 			$("#dugmeZavrsiRezervaciju").click(function(){
 				$("#dugmePozoviPrijatelje").prop("disabled", true);
 				
+				alert('SELEKTOVANA SEDISTA: ' + selektovanaSedista)
+				
 				$.ajax({
-					url: "http://localhost:8080/podaciORezervaciji/podaciORezervacijiZaSlanjeMejla/" + nazivSelektovanogBioskopa + "/" + nazivSelektovaneProjekcije + "/" + nazivSelektovanogTermina + "/" + nazivSelektovaneSale + "/" + nazivSelektovanogPrijatelja,
+					url: "http://localhost:8080/podaciORezervaciji/podaciORezervacijiZaSlanjeMejla/" + nazivSelektovanogBioskopa + "/" + nazivSelektovaneProjekcije + "/" + nazivSelektovanogTermina + "/" + nazivSelektovaneSale + "/" + selektovanaSedista + "/" + nazivSelektovanogPrijatelja,
 					type: "GET",
 					success: function(data){
 						location.href = "http://localhost:8080/homePage.html"
@@ -789,7 +836,7 @@
 				});
 				
 				$.ajax({
-					url: "http://localhost:8080/podaciORezervaciji/rezervacijaPozvanPrijatelj/" + emailPozvanogPrijatelja + "/" + nazivSelektovaneProjekcije + "/" + nazivSelektovanogTermina + "/" + nazivSelektovanogBioskopa,
+					url: "http://localhost:8080/podaciORezervaciji/rezervacijaPozvanPrijatelj/" + emailPozvanogPrijatelja + "/" + nazivSelektovaneProjekcije + "/" + nazivSelektovanogTermina + "/" + nazivSelektovanogBioskopa + "/" + selektovanaSedista,
 					type: "GET",
 					success: function(data){
 						location.href = "http://localhost:8080/homePage.html"
@@ -798,6 +845,34 @@
 						alert('GRESKA PRILIKOM SLANJA POZIVA PRIJATELJA ZA REZERVACIJU MESTA U BIOSKOPU!!!')
 					}
 				});
+			});
+			
+			
+			$("#dugmeZavrsiRezervacijuBezPrijatelja").click(function(){
+				$.ajax({
+					url: "http://localhost:8080/podaciORezervacijiBezPrijatelja/podaciORezervacijiZaSlanjeMejla/" + nazivSelektovanogBioskopa + "/" + nazivSelektovaneProjekcije + "/" + nazivSelektovanogTermina + "/" + nazivSelektovaneSale + "/" + selektovanaSedista,
+					type: "GET",
+					success: function(data){
+						location.href = "http://localhost:8080/homePage.html"
+					},
+					error: function(data){
+						alert('GRESKA PRILIKOM SLANJA MEJLA SA PODACIMA O REZERVACIJI MESTA U BIOSKOPU (BEZ PRIJATELJA)!!!')
+						alert('data: ' + data.email)
+					}
+				});
+			});
+			
+			
+			$("#dugmeDa").click(function(){
+				$("#dugmeDa").prop("disabled", true);
+				$("#dugmeNe").hide();
+				$("#deo4").show();
+			});
+			
+			
+			$("#dugmeNe").click(function(){
+				$("#dugmeNe").prop("disabled", true);
+				$("#deo6").show();
 			});
 		</script>
 	</body>
