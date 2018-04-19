@@ -73,15 +73,15 @@ insert into moji_prijatelji values(9, 8);
 insert into fan_zona(naziv) values ('fan zona'); --samo jedna fan zona postoji id = 1
 
 
-insert into bioskop values (1, 'Jadran', 'Na repertoaru bioskopa Jadra mozete pogledati brojne popularne klasike.', 3.5, '45.25' , '19.845' , 11, 1);
+insert into bioskop values (1, 'Jadran', 'Na repertoaru bioskopa Jadran mozete pogledati brojne popularne klasike.', 3.5, '45.25' , '19.845' , 11, 1);
 insert into bioskop values (2, 'Arena Cineplex', 'Pored redovnog filmskog repertoara, u Areni Cineplex se organizuju svecane premijere domacih filmova, kao i festivali FEST, Cinema City, Cinemania i Kids Fest.', 4.5,'42.10','19.345',12, 1);
 insert into bioskop values (3, 'Cinestar', 'Brend CineStar razvio se iz bioskopa kompanije Kieft Kieft Filmtheater GmbH, koja je, posle vise od cetiri decenije rada kao operater klasicnog bioskopa, još 1993. otvorila svoj prvi multipleks.', 4.0,'42.20','19.25',13, 1);
-insert into bioskop values (4, 'Bioskop 4', 'Opis bioskopa 4.', 4.3,'26.25','32.20', 15, 1);
+insert into bioskop values (4, 'Dom sindikata', 'Dvorana bioskopa Doma sindikata zvanicno je otvorena 13.6.1957. godine, a prvi film ikada projektovan u njoj je domaci jugoslovenski film Samo ljudi, 7.9.1957. godine. ', 4.3,'26.25','32.20', 15, 1);
 
-insert into pozoriste values (1, 'Pozoriste Narodno', 'Na repertoaru pozorista Jadra mozete pogledati brojne popularne predstave.', 3.5, '45.25' , '19.845' , 11, 1);
-insert into pozoriste values (2, 'Pozoriste decije', 'Pored redovnog pozorisnog repertoara, u pozoristu se organizuju svecane premijere domacih predstava, kao i festivali FEST, Cinema City, Cinemania i Kids Fest.', 4.5,'35.10','56.30',12, 1);
-insert into pozoriste values (3, 'Pozoriste 3', 'Pozoriste razvio se iz bioskopa kompanije Kieft Kieft Filmtheater GmbH, koja je, posle vise od cetiri decenije rada kao operater klasicnog bioskopa, još 1993. otvorila svoj prvi multipleks.', 4.0,'43.20','20.25',13, 1);
-insert into pozoriste values (4, 'Pozoriste 4', 'Opis pozoristaaaaa 4.', 4.3,'41.25','19.20', 15, 1);
+insert into pozoriste values (1, 'Srpsko narodno pozoriste', 'Srpsko narodno pozoriste osnovano je 1861. godine u Novom Sadu.', 3.5, '45.25' , '19.845' , 11, 1);
+insert into pozoriste values (2, 'Pozoriste Bosko Buha', 'Pozoriste Bosko Buha osnovano je 1950. godine u Beogradu, cime je deci vraceno pravo na pozoriste.', 4.5,'35.10','56.30',12, 1);
+insert into pozoriste values (3, 'Pozoriste mladih', 'Pozoriste mladih osnovano je 1932. godine kao Lutkarsko pozoriste, pri Sokolskom drustvu u Novom Sadu. Pozoriste je nastalo iz Sokolske sekcije lutkara, koja je formirana 1930. godine.', 4.0,'43.20','20.25',13, 1);
+insert into pozoriste values (4, 'Jugoslovensko dramsko pozoriste', '3.4.1948. godine Jugoslovensko dramsko pozoriste otvara vrata publici premijernom predstavom Kralj Betajnove.', 4.3,'41.25','19.20', 15, 1);
 
 INSERT INTO izvestajoposlovanju values (1 , 60000, 4.2 ,4.5, 1);
 INSERT INTO izvestajoposlovanju values (2 , 90000, 4.0 ,4.1, 2);
@@ -98,14 +98,18 @@ insert into repertoar_pozorista values (2, 2);
 insert into repertoar_pozorista values (3, 3);
 insert into repertoar_pozorista values (4, 4);
 
-INSERT INTO film values (1,'Ready player one', 4.2, 'opis', 'Steven Spielberg', 'slika 1', 120, 'drama');
-INSERT INTO film values (2,'Tomb raider 3D', 4.5, 'Lara Kroft je strastvena, samostalna devojka i cerka ekscentricnog pustolova.', 'Roar Uthaug', 'slika 2', 120, 'triler');
-insert into film values (3, 'Eat, pray, love', 5, 'Romanticna prica o pomalo izgubljenoj devojci.', 'reditelj 3', 'slika 3', 193, 'romanticna komedija');
+
+insert into film values (1,'Ready player one', 4.2, 'Igrac broj 1 prati pricu tinejdzera Vejda koji svoje dane provodi igrajuci OASIS. Vejd ima zelju da iz sumornog sveta pobegne u globalnu mrezu virtuelne utopije gde korisnici vode idilicne alternativne zivote.', 'Steven Spielberg', 'slika 1', 120, 'drama');
+insert into film values (2,'Tomb raider 3D', 4.5, 'Lara Kroft je strastvena, samostalna devojka i cerka ekscentricnog pustolova.', 'Roar Uthaug', 'slika 2', 97, 'triler');
+insert into film values (3, 'Eat, pray, love', 5, 'Film se temelji na istoimenoj knjizi memoara Elizabeth Gilbert u kojoj je ona opisala napustanje muza i egzoticna putovanja po svetu kako bi pronasla sebe.', 'reditelj 3', 'slika 3', 193, 'romanticna komedija');
+insert into film values (4, 'Snowden', 4.8, 'Ovaj politicki nabijen triler otkriva neverovatnu neispricanu licnu pricu Edwarda Snowdena - coveka koji je razotkrio sokantne informacije o nezakonitom nadgledanju od strane Nacionalne Agencije za Sigurnost i postao jedan od najtrazenijih ljudi na svetu.', 'Oliver Stone', 'slika 3', 138, 'politicki triler');
+insert into film values (5,'La la land', 3.6, 'Omiljeni filmski ljubavni par, Emma Stone i Ryan Gosling su ponovno zajedno u prici o dvoje sanjara koji pokusavaju da uspeju u Los Andjelesu.', 'Damien Chazelle', 'slika 1', 128, 'muzicki, komedija');
 
 
-INSERT INTO predstava values (1,'Pokondirena tikva', 4.2, 'opis', 'Steven Spielberg', 'slika 1', 120, 'drama');
-INSERT INTO predstava values (2,'Gospodja Ministarka', 4.5, 'Lara Kroft je strastvena, samostalna devojka i cerka ekscentricnog pustolova.', 'Roar Uthaug', 'slika 2', 120, 'triler');
+insert into predstava values (1,'Pokondirena tikva', 4.2, 'opis', 'Steven Spielberg', 'slika 1', 120, 'drama');
+insert into predstava values (2,'Gospodja Ministarka', 4.5, 'Lara Kroft je strastvena, samostalna devojka i cerka ekscentricnog pustolova.', 'Roar Uthaug', 'slika 2', 120, 'triler');
 insert into predstava values (3, 'Laza i paralaza', 5, 'Romanticna prica o pomalo izgubljenoj devojci.', 'reditelj 3', 'slika 3', 193, 'romanticna komedija');
+
 
 
 insert into sala values(1, 150, 'ffffeeeeffffeeee', 'sala A', 2);
@@ -114,6 +118,8 @@ insert into sala values(3, 100, 'ffeeeefffeeeffeee', 'sala C', 1);
 insert into sala values(4, 100, 'ffeeeeeeefffffeeee', 'sala D', 4);
 insert into sala values(5, 100, 'ffeeefeffffeeee', 'sala E', 1);
 insert into sala values(6, 100, 'ffeefeffffeeee', 'sala F', 2);
+
+
 
 insert into sediste values(1,1,1);
 insert into sediste values(2,2,1);
@@ -128,11 +134,11 @@ insert into termin values (4, '2018-04-21T03:21');
 insert into termin values (5, '2018-04-22T03:45');
 
 
-
 insert into projekcija values (1, 420, 3, 1, 2, 5);
 insert into projekcija values (2, 350, 1, 2, 1, 2);
-insert into projekcija values (3, 420, 3, 3, 2, 3);
-insert into projekcija values (4, 350, 2, 4, 1, 4);
+insert into projekcija values (3, 480, 5, 3, 6, 3);
+insert into projekcija values (4, 530, 2, 4, 4, 4);
+insert into projekcija values (5, 430, 4, 3, 5, 1);
 
 
 insert into karta values (1,1,0,20,1,1);
@@ -140,10 +146,12 @@ insert into karta values (2,1,1,20,1,2);
 insert into karta values (3,1,0,20,2,3);
 insert into karta values (4,1,0,20,1,4);
 
+
 insert into projekcija_pozorista values (1, 420, 3, 1, 2, 5);
 insert into projekcija_pozorista values (2, 350, 1, 2, 1, 2);
-insert into projekcija_pozorista values (3, 420, 3, 3, 2, 3);
-insert into projekcija_pozorista values (4, 350, 2, 4, 1, 4);
+insert into projekcija_pozorista values (3, 420, 3, 3, 3, 3);
+insert into projekcija_pozorista values (4, 350, 2, 4, 6, 4);
+insert into projekcija_pozorista values (5, 290, 1, 3, 5, 1);
 
 
 insert into glumac values (1, 'Alicia', 'Vikander');
@@ -152,6 +160,7 @@ insert into glumac values (3, 'Olivia', 'Cooke');
 insert into glumac values (4, 'Jack', 'Nicholson');
 insert into glumac values (5, 'Al', 'Pacino');
 insert into glumac values (6, 'Tom', 'Hanks');
+
 
 insert into film_glumci values (1, 1);
 insert into film_glumci values (1, 2);
@@ -172,6 +181,7 @@ insert into pozoriste_lista_sala values (1, 1);
 insert into pozoriste_lista_sala values (2, 2);
 insert into pozoriste_lista_sala values (3, 3);
 insert into pozoriste_lista_sala values (4, 4);
+
 
 insert into oglas(id, cena, datum, naziv, opis, slika, status, fan_zona_id, korisnik_id) values (1, '100', '2018-04-10', 'Oglas 1', 'Opis oglasa 1', 'slika 1', 1, 1, 3);
 insert into oglas(id, cena, datum, naziv, opis, slika, status, fan_zona_id, korisnik_id) values (2, '350', '2018-07-08', 'Oglas 2', 'Opis oglasa 2', 'slika 2', 1, 1, 1);

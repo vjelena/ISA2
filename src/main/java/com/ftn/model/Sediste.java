@@ -34,6 +34,12 @@ public class Sediste implements Serializable{
 		
 	}
 
+	public Sediste(int rbr, Sala sala) {
+		super();
+		this.rbr = rbr;
+		this.sala = sala;
+	}
+
 	public Long getId() {
 		return id;
 	}
