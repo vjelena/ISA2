@@ -20,7 +20,10 @@ public class Sediste implements Serializable{
 	private Long id;
 	
 	@Column(nullable = false)
-	private int rbr;
+	private int red;
+
+	@Column(nullable = false)
+	private int kolona;
 	
 	//@OneToOne
 	//@JsonBackReference
@@ -34,6 +37,13 @@ public class Sediste implements Serializable{
 		
 	}
 
+	public Sediste(int red, int kolona, Sala sala) {
+		super();
+		this.red = red;
+		this.kolona = kolona;
+		this.sala = sala;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -42,12 +52,20 @@ public class Sediste implements Serializable{
 		this.id = id;
 	}
 
-	public int getRbr() {
-		return rbr;
+	public int getRed() {
+		return red;
 	}
 
-	public void setRbr(int rbr) {
-		this.rbr = rbr;
+	public void setRed(int red) {
+		this.red = red;
+	}
+
+	public int getKolona() {
+		return kolona;
+	}
+
+	public void setKolona(int kolona) {
+		this.kolona = kolona;
 	}
 
 	public Sala getSala() {

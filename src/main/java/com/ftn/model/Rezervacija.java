@@ -19,10 +19,9 @@ public class Rezervacija implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	/*//@JsonBackReference
+
 	@ManyToOne(optional = false)
-	private Korisnik korisnik;*/
+	private Korisnik korisnikKojiJeIzvrsioRezervaciju;
 	
 	@ManyToOne(optional = false)
 	private Bioskop bioskop;
@@ -38,6 +37,13 @@ public class Rezervacija implements Serializable{
 		
 	}
 
+	public Rezervacija(Korisnik korisnikKojiJeIzvrsioRezervaciju, Bioskop bioskop, Projekcija projekcija) {
+		super();
+		this.korisnikKojiJeIzvrsioRezervaciju = korisnikKojiJeIzvrsioRezervaciju;
+		this.bioskop = bioskop;
+		this.projekcija = projekcija;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -46,13 +52,13 @@ public class Rezervacija implements Serializable{
 		this.id = id;
 	}
 
-	/*public Korisnik getKorisnik() {
-		return korisnik;
+	public Korisnik getKorisnikKojiJeIzvrsioRezervaciju() {
+		return korisnikKojiJeIzvrsioRezervaciju;
 	}
 
-	public void setKorisnik(Korisnik korisnik) {
-		this.korisnik = korisnik;
-	}*/
+	public void setKorisnikKojiJeIzvrsioRezervaciju(Korisnik korisnikKojiJeIzvrsioRezervaciju) {
+		this.korisnikKojiJeIzvrsioRezervaciju = korisnikKojiJeIzvrsioRezervaciju;
+	}
 
 	public Bioskop getBioskop() {
 		return bioskop;

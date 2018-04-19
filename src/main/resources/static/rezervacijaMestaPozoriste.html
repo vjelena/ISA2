@@ -286,6 +286,13 @@
 							<div id="seat-map"></div>	<!-- ovde se prikazuje konfiguracija sale -->
 						</div>
 						<div id="selected-seats"></div>
+						<div class="form-group col-lg-6">
+							<div class="row">
+								<div id="lblUspesanOdabirMesta" class="form-group has-feedback">
+									<label>Uspesno ste odabrali mesta koja zelite da rezervisete.</label>
+								</div>
+							</div>
+						</div>
 						<div class="form-group col-lg-10">
 							<div class="row">
 								<div class="form-group has-feedback">
@@ -364,6 +371,7 @@
 				<!-- KRAJ -->			
 			</div>
 		</div>
+	</div>
 		
 		<script type="text/javascript">
 			$(document).ready(function(){
@@ -560,6 +568,7 @@
 				$("#deo4").hide();
 				$("#deo5").hide();
 				$("#lblRasporedMesta").show();
+				$("#lblUspesanOdabirMesta").hide();
 				
 				konfiguracija = [];
 				dataOk = false;
@@ -637,22 +646,8 @@
 										.data('seatId', this.settings.id)
 										.appendTo($cart);
 									
-									/*
-									 * Lets update the counter and total
-									 *
-									 * .find function will not find the current seat, because it will change its stauts only after return
-									 * 'selected'. This is why we have to add 1 to the length and the current seat price to the total.
-									 */
-									$counter.text(sc.find('selected').length+1);
-									$total.text(recalculateTotal(sc)+this.data().price);
-									
 									return 'selected';
 								} else if (this.status() == 'selected') {
-									//update the counter
-									$counter.text(sc.find('selected').length-1);
-									//and total
-									$total.text(recalculateTotal(sc)-this.data().price);
-								
 									//remove the item from our cart
 									$('#cart-item-'+this.settings.id).remove();
 								
@@ -685,7 +680,6 @@
 			
 			
 			$("#dugmeDalje3").click(function(){
-				$("#dugmeDalje3").prop("disabled", true);
 				$("#deo1").show();
 				$("#deo2").show();
 				$("#deo3").show();
@@ -693,6 +687,28 @@
 				$("#deo5").hide();
 				$("#lblOdaberiPrijatelja").hide();
 				$("#dugmePozoviPrijatelje").prop("disabled", true);
+				$("#seat-map").hide();
+				$("#lblUspesanOdabirMesta").hide();
+				
+				var selektovanaMesta = [];
+				$('#selected-seats li').each(function(){
+					selektovanaMesta.push($(this).attr('id').split('cart-item-')[1]);
+				});
+				alert('selektovana mesta su: ' + selektovanaMesta)
+				
+				if(selektovanaMesta == "") {
+					alert('Morate odabrati najmanje jedno sediste koje zelite da rezervisete.');
+					$("#seat-map").show();
+					$("#deo4").hide();
+					$("#deo5").hide();
+					$("#lblUspesanOdabirMesta").hide();
+					$("#dugmePozoviPrijatelje").prop("disabled", true);
+				} else {
+					$("#deo4").show();
+					$("#deo5").hide();
+					$("#lblUspesanOdabirMesta").show();
+					$("#dugmePozoviPrijatelje").prop("disabled", false);
+				}
 			});
 			
 			
