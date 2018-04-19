@@ -2,6 +2,8 @@ package com.ftn.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -65,5 +67,10 @@ public class KartaController {
 		return new ResponseEntity<>(novaKarta, HttpStatus.OK);
 	}
 	
+
+	@RequestMapping(value = "/izbrisiKartu/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public void izbrisiKartu(@PathVariable Long id, HttpServletRequest request){
+		kartaService.remove(id);
+	}
 	
 }

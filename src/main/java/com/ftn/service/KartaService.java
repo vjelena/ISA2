@@ -16,4 +16,7 @@ public interface KartaService {
 
 
 	public Karta nadjiJednuKartu(String id);
+	
+	public void remove(Long id);
+
 }

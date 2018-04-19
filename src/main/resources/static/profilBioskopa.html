@@ -25,9 +25,7 @@
 				}).then(
 						function(data) {
 							console.log("Bioskop: " + JSON.stringify(data));
-							if(typeof data == 'string'){
-								document.getElementById("rootDiv").innerHTML = data;
-							}else{
+							
 							$("#opisBioskopa").append(data.opis);
 							$("#imeBioskopa").append(data.naziv);
 							
@@ -64,7 +62,7 @@
 									
 									$("#tabelaRepertoar").append(newRow);	
 								}
-							}
+							
 						});
 			});
 	$(document).on("click", ".bioskopi", function(event) {
@@ -120,7 +118,7 @@
 					</div>
 			  </div>
 			
-			<form action="istorijaPoseta.html" class="form-horizontal">
+			<form action="brzeKarte.html" class="form-horizontal">
 				<div class="text-center" style="padding-top: 10px">
 					<input  id ="btnKarteNaPopustu" class="btn btn-info" type="submit" value="Karte na popustu">
 				</div>
@@ -222,12 +220,22 @@ $("#btnAzurirajBioskop").click(function(){
 		var projekcijaId = this.id;
 		
 		$.ajax({
-			url : "http://localhost:8080/projekcija/izbrisiProjekciju/" + projekcijaId
-		}).then(
-				function(data) {
+			url : "http://localhost:8080/korisnik/getTrenutnoAktivan"
+		}).then(function(data){
+			if(data.uloga == "bioskop" ){
+				$.ajax({
+					url : "http://localhost:8080/projekcija/izbrisiProjekciju/" + projekcijaId
+				}).then(function(data){
+					
 					location.href = "http://localhost:8080/profilBioskopa.html?id=" + $.urlParam('id');
-				});
-	});
+				})
+			}
+			else{
+				alert("Pristup dozvoljen administratoru.");
+			}
+			});
+});
+	
 	 
 	
 	

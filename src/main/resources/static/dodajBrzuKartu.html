@@ -96,9 +96,6 @@
 		}).then(
 						function(data) {
 
-							console.log("idOdabranogBioskopa:"+ idOdabranogBioskopa);
-							console.log("idOdabraneProjekcije:"+ idOdabraneProjekcije);
-
 							var listaSjedistaDiv = document.getElementById("listaSjedistaDiv");
 							var listaSjedista = document.getElementById("listaSjedista");
 							var listaSjedistaSelect = document.getElementById("listaSjedistaSelect");
@@ -152,17 +149,16 @@
 									url : "http://localhost:8080/projekcija/"+idOdabraneProjekcije
 								}).then(
 												function(data) {
-													console.log("Projekcija:" + JSON.stringify(data));
+													
 													var sala = data.sala;
 													var konfiguracija = sala.konfiguracija;
-													console.log("KOnfiguracija:" + konfiguracija);
 													brojMjesta = konfiguracija.length;
 													
 													for(var i=1;i<=brojMjesta; i++){
 														mjesta.push(i);
 													}
 													podaciStigli = true;
-													console.log("Mjesta1:" + JSON.stringify(mjesta));
+												
 													
 													for (i = 0; i < mjesta.length; i++) {
 														if(mjesta[i] != null){

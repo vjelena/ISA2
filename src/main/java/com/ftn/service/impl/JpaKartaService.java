@@ -35,5 +35,11 @@ public class JpaKartaService implements KartaService{
 		return kartaRepository.findOne(new Long(id));
 	}
 
+	@Override
+	public void remove(Long id) {
+		kartaRepository.delete(id);
+		
+	}
+
 }
 
