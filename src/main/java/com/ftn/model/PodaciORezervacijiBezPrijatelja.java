@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class PodaciORezervaciji implements Serializable {
+public class PodaciORezervacijiBezPrijatelja implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,19 +32,15 @@ public class PodaciORezervaciji implements Serializable {
 	
 	@Column(nullable = false)
 	private String selektovanaSedista;
+	
 
-	@Column(nullable = false)
-	private String nazivSelektovanogPrijatelja;
-	
-	
-	
-	public PodaciORezervaciji() {
+	public PodaciORezervacijiBezPrijatelja() {
 		
-	}
+	}	
 
-	public PodaciORezervaciji(String nazivSelektovanogBioskopa, String nazivSelektovanogPozorista,
+	public PodaciORezervacijiBezPrijatelja(String nazivSelektovanogBioskopa, String nazivSelektovanogPozorista,
 			String nazivSelektovaneProjekcije, String nazivSelektovanogTermina, String nazivSelektovaneSale,
-			String selektovanaSedista, String nazivSelektovanogPrijatelja) {
+			String selektovanaSedista) {
 		super();
 		this.nazivSelektovanogBioskopa = nazivSelektovanogBioskopa;
 		this.nazivSelektovanogPozorista = nazivSelektovanogPozorista;
@@ -52,7 +48,6 @@ public class PodaciORezervaciji implements Serializable {
 		this.nazivSelektovanogTermina = nazivSelektovanogTermina;
 		this.nazivSelektovaneSale = nazivSelektovaneSale;
 		this.selektovanaSedista = selektovanaSedista;
-		this.nazivSelektovanogPrijatelja = nazivSelektovanogPrijatelja;
 	}
 
 	public Long getId() {
@@ -78,7 +73,7 @@ public class PodaciORezervaciji implements Serializable {
 	public void setNazivSelektovanogPozorista(String nazivSelektovanogPozorista) {
 		this.nazivSelektovanogPozorista = nazivSelektovanogPozorista;
 	}
-	
+
 	public String getNazivSelektovaneProjekcije() {
 		return nazivSelektovaneProjekcije;
 	}
@@ -109,14 +104,6 @@ public class PodaciORezervaciji implements Serializable {
 
 	public void setSelektovanaSedista(String selektovanaSedista) {
 		this.selektovanaSedista = selektovanaSedista;
-	}
-
-	public String getNazivSelektovanogPrijatelja() {
-		return nazivSelektovanogPrijatelja;
-	}
-
-	public void setNazivSelektovanogPrijatelja(String nazivSelektovanogPrijatelja) {
-		this.nazivSelektovanogPrijatelja = nazivSelektovanogPrijatelja;
 	}
 	
 }

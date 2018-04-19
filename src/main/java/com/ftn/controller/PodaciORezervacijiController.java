@@ -30,8 +30,8 @@ public class PodaciORezervacijiController {
 	
 	//BIOSKOP:
 	//slanje mejla o detaljima rezervacije
-	@RequestMapping(value = "/podaciORezervacijiZaSlanjeMejla/{nazivSelektovanogBioskopa}/{nazivSelektovaneProjekcije}/{nazivSelektovanogTermina}/{nazivSelektovaneSale}/{nazivSelektovanogPrijatelja}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Korisnik> podaciORezervacijiZaSlanjeMejla(@PathVariable String nazivSelektovanogBioskopa, @PathVariable String nazivSelektovaneProjekcije, @PathVariable String nazivSelektovanogTermina, @PathVariable String nazivSelektovaneSale, @PathVariable String nazivSelektovanogPrijatelja, HttpServletRequest request) throws MailException, InterruptedException, MessagingException {						
+	@RequestMapping(value = "/podaciORezervacijiZaSlanjeMejla/{nazivSelektovanogBioskopa}/{nazivSelektovaneProjekcije}/{nazivSelektovanogTermina}/{nazivSelektovaneSale}/{selektovanaSedista}/{nazivSelektovanogPrijatelja}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Korisnik> podaciORezervacijiZaSlanjeMejla(@PathVariable String nazivSelektovanogBioskopa, @PathVariable String nazivSelektovaneProjekcije, @PathVariable String nazivSelektovanogTermina, @PathVariable String nazivSelektovaneSale, @PathVariable String selektovanaSedista, @PathVariable String nazivSelektovanogPrijatelja, HttpServletRequest request) throws MailException, InterruptedException, MessagingException {						
 		Korisnik k = (Korisnik) request.getSession().getAttribute("aktivanKorisnik");
 		Korisnik koJeNapravioRezervaciju = korisnikRepository.findById(k.getId());
 		
@@ -40,6 +40,7 @@ public class PodaciORezervacijiController {
 						+ "\tprojekcija: " + nazivSelektovaneProjekcije + "\n"
 						+ "\ttermin: " + nazivSelektovanogTermina + "\n"
 						+ "\tsala: " + nazivSelektovaneSale + "\n"
+						+ "\tsedista: " + selektovanaSedista + "\n"
 						+ "\tpozvan prijatelj: " + nazivSelektovanogPrijatelja;
 		
 		emailService.sendMailReservation(koJeNapravioRezervaciju, poruka);			
@@ -47,12 +48,12 @@ public class PodaciORezervacijiController {
 	}
 	
 	//slanje mejla pozvanom prijatelju
-	@RequestMapping(value = "/rezervacijaPozvanPrijatelj/{email}/{nazivSelektovaneProjekcije}/{nazivSelektovanogTermina}/{nazivSelektovanogBioskopa}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Korisnik> rezervacijaPozvanPrijatelj(@PathVariable String email, @PathVariable String nazivSelektovaneProjekcije, @PathVariable String nazivSelektovanogTermina, @PathVariable String nazivSelektovanogBioskopa, HttpServletRequest request) throws MailException, InterruptedException, MessagingException {						
+	@RequestMapping(value = "/rezervacijaPozvanPrijatelj/{email}/{nazivSelektovaneProjekcije}/{nazivSelektovanogTermina}/{nazivSelektovanogBioskopa}/{selektovanaSedista}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Korisnik> rezervacijaPozvanPrijatelj(@PathVariable String email, @PathVariable String nazivSelektovaneProjekcije, @PathVariable String nazivSelektovanogTermina, @PathVariable String nazivSelektovanogBioskopa, @PathVariable String selektovanaSedista, HttpServletRequest request) throws MailException, InterruptedException, MessagingException {						
 		Korisnik k = (Korisnik) request.getSession().getAttribute("aktivanKorisnik");
 		Korisnik koJeNapravioRezervaciju = korisnikRepository.findById(k.getId());
 		
-		String poruka = "Pozivam te da mi se pridruzis na projekciji filma '" + nazivSelektovaneProjekcije + "', u terminu " + nazivSelektovanogTermina + " , u bioskopu '" + nazivSelektovanogBioskopa + "'" + ".";
+		String poruka = "Pozivam te da mi se pridruzis na projekciji filma '" + nazivSelektovaneProjekcije + "', u terminu " + nazivSelektovanogTermina + " , u bioskopu '" + nazivSelektovanogBioskopa + "'" + ". Rezervisana sedista za nas su: " + selektovanaSedista + ".";
 		
 		emailService.sendMailReservationFriend(koJeNapravioRezervaciju, poruka);		
 		return new ResponseEntity<>(koJeNapravioRezervaciju, HttpStatus.OK);
@@ -60,8 +61,8 @@ public class PodaciORezervacijiController {
 	
 	//POZORISTE:
 	//slanje mejla o detaljima rezervacije
-	@RequestMapping(value = "/podaciORezervacijiZaSlanjeMejlaPozoriste/{nazivSelektovanogPozorista}/{nazivSelektovaneProjekcije}/{nazivSelektovanogTermina}/{nazivSelektovaneSale}/{nazivSelektovanogPrijatelja}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Korisnik> podaciORezervacijiZaSlanjeMejlaPozoriste(@PathVariable String nazivSelektovanogPozorista, @PathVariable String nazivSelektovaneProjekcije, @PathVariable String nazivSelektovanogTermina, @PathVariable String nazivSelektovaneSale, @PathVariable String nazivSelektovanogPrijatelja, HttpServletRequest request) throws MailException, InterruptedException, MessagingException {						
+	@RequestMapping(value = "/podaciORezervacijiZaSlanjeMejlaPozoriste/{nazivSelektovanogPozorista}/{nazivSelektovaneProjekcije}/{nazivSelektovanogTermina}/{nazivSelektovaneSale}/{selektovanaSedista}/{nazivSelektovanogPrijatelja}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Korisnik> podaciORezervacijiZaSlanjeMejlaPozoriste(@PathVariable String nazivSelektovanogPozorista, @PathVariable String nazivSelektovaneProjekcije, @PathVariable String nazivSelektovanogTermina, @PathVariable String nazivSelektovaneSale, @PathVariable String selektovanaSedista, @PathVariable String nazivSelektovanogPrijatelja, HttpServletRequest request) throws MailException, InterruptedException, MessagingException {						
 		Korisnik k = (Korisnik) request.getSession().getAttribute("aktivanKorisnik");
 		Korisnik koJeNapravioRezervaciju = korisnikRepository.findById(k.getId());
 			
@@ -70,6 +71,7 @@ public class PodaciORezervacijiController {
 						+ "\tprojekcija: " + nazivSelektovaneProjekcije + "\n"
 						+ "\ttermin: " + nazivSelektovanogTermina + "\n"
 						+ "\tsala: " + nazivSelektovaneSale + "\n"
+						+ "\tsedista: " + selektovanaSedista + "\n"
 						+ "\tpozvan prijatelj: " + nazivSelektovanogPrijatelja;
 			
 		emailService.sendMailReservationPozoriste(koJeNapravioRezervaciju, poruka);			
@@ -77,12 +79,12 @@ public class PodaciORezervacijiController {
 	}
 		
 	//slanje mejla pozvanom prijatelju
-	@RequestMapping(value = "/rezervacijaPozvanPrijateljPozoriste/{email}/{nazivSelektovaneProjekcije}/{nazivSelektovanogTermina}/{nazivSelektovanogPozorista}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Korisnik> rezervacijaPozvanPrijateljPozoriste(@PathVariable String email, @PathVariable String nazivSelektovaneProjekcije, @PathVariable String nazivSelektovanogTermina, @PathVariable String nazivSelektovanogPozorista, HttpServletRequest request) throws MailException, InterruptedException, MessagingException {						
+	@RequestMapping(value = "/rezervacijaPozvanPrijateljPozoriste/{email}/{nazivSelektovaneProjekcije}/{nazivSelektovanogTermina}/{nazivSelektovanogPozorista}/{selektovanaSedista}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Korisnik> rezervacijaPozvanPrijateljPozoriste(@PathVariable String email, @PathVariable String nazivSelektovaneProjekcije, @PathVariable String nazivSelektovanogTermina, @PathVariable String nazivSelektovanogPozorista, @PathVariable String selektovanaSedista, HttpServletRequest request) throws MailException, InterruptedException, MessagingException {						
 		Korisnik k = (Korisnik) request.getSession().getAttribute("aktivanKorisnik");
 		Korisnik koJeNapravioRezervaciju = korisnikRepository.findById(k.getId());
 			
-		String poruka = "Pozivam te da mi se pridruzis na projekciji predstave '" + nazivSelektovaneProjekcije + "', u terminu " + nazivSelektovanogTermina + ", u pozoristu '" + nazivSelektovanogPozorista + "'" + ".";
+		String poruka = "Pozivam te da mi se pridruzis na projekciji predstave '" + nazivSelektovaneProjekcije + "', u terminu " + nazivSelektovanogTermina + ", u pozoristu '" + nazivSelektovanogPozorista + "'" + ". Rezervisana sedista za nas su: " + selektovanaSedista + ".";
 			
 		emailService.sendMailReservationFriendPozoriste(koJeNapravioRezervaciju, poruka);		
 		return new ResponseEntity<>(koJeNapravioRezervaciju, HttpStatus.OK);

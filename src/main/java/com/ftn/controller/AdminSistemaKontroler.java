@@ -1,9 +1,5 @@
 package com.ftn.controller;
 
-import static org.mockito.Matchers.floatThat;
-
-import java.util.HashSet;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,15 +10,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ftn.DTO.BioskopDTO;
-import com.ftn.DTO.SalaDTO;
+import com.ftn.DTO.SkalaDTO;
 import com.ftn.model.Adresa;
 import com.ftn.model.Bioskop;
-import com.ftn.model.BrzaKarta;
-import com.ftn.model.IzvestajOPoslovanju;
-import com.ftn.model.Karta;
 import com.ftn.model.Korisnik;
-import com.ftn.model.Repertoar;
-import com.ftn.model.Sala;
+import com.ftn.model.Skala;
 import com.ftn.service.FanZonaServis;
 import com.ftn.service.KorisnikService;
 import com.ftn.service.impl.JpaBioskopService;
@@ -57,6 +49,8 @@ public class AdminSistemaKontroler {
 		noviBioskop.setAdresa(adresa);
 		noviBioskop.setxKoordinata(bioskopDTO.getxKoordinata());
 		noviBioskop.setyKoordinata(bioskopDTO.getyKoordianta());
+		Skala skala = new Skala(0,0,0,0,0,0);
+		noviBioskop.setSkala(skala);
 		
 		jpaBioskopService.save(noviBioskop);		
 		return new ResponseEntity<>(noviBioskop, HttpStatus.OK);
@@ -81,6 +75,31 @@ public class AdminSistemaKontroler {
 		jpaBioskopService.save(b);
 		return new ResponseEntity<>(novaSala, HttpStatus.OK);
 	}*/
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/dodajSkalu", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Skala> dodajSkalu(@RequestBody SkalaDTO skalaDTO) {
+		System.out.println(skalaDTO.toString());
+		System.out.println(skalaDTO.getSrebrni());
+		
+		Bioskop b = jpaBioskopService.nadjiJedanBioskop(skalaDTO.getBioskop());
+		
+		Skala novaSkala = b.getSkala();
+		novaSkala.setZlatni(skalaDTO.getZlatni());
+		novaSkala.setSrebrni(skalaDTO.getSrebrni());
+		novaSkala.setBronzani(skalaDTO.getBronzani());
+		novaSkala.setZlatniPopust(skalaDTO.getZlatniPopust());
+		novaSkala.setSrebrniPopust(skalaDTO.getSrebrniPopust());
+		novaSkala.setBronzaniPopust(skalaDTO.getBronzaniPopust());
+		
+		System.out.println("NOVA SKALA SREBRNI: " + novaSkala.getSrebrni());
+		
+		b.setSkala(novaSkala);
+		
+		
+		System.out.println("BROJ DODATIH SALA JE: "  + jpaBioskopService.nadjiJedanBioskop("1").getListaSala().size());
+		jpaBioskopService.save(b);
+		return new ResponseEntity<>(novaSkala, HttpStatus.OK);
+	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/dodajAdmina", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Korisnik> dodajAdmina(@RequestBody Korisnik korisnik) {

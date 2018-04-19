@@ -17,7 +17,7 @@ $(document).ready(function() {
 				+ "<td id=\"opis\" class=\"opis\">" + data[i].opis + "</td>"
 				+ "<td id=\"slika\" class=\"slika\">" + data[i].slika + "</td>"
 				+ "<td id=\"cena\" class=\"cena\">" + data[i].cena + "</td>"
-				+ "<td><a class=\"rezervacija\" href='" + data[i].id + "'>Rezervisi</a></td>"
+				+ "<td><a onclick=\"getID(this)\" data-id=\"" + data[i].id +"\" class=\"rezervacija\" href='/oglas/rezervacija/" + data[i].id + "'>Rezervisi</a></td>"
 				+ "<td><a class=\"izbrisi\" href='/rekvizit/" + data[i].id + "'>Izbrisi</a></td>"
 				+ "<td><a onclick=\"getID(this)\" data-id=\"" + data[i].id + "\" class=\"izmeni\" href='/rekvizit/" + data[i].id + "'>Izmeni</a></td>"
 				+ "</tr>"
@@ -69,3 +69,24 @@ $(document).on("click", ".izmeni", function(event){
 
 	location.href = "http://localhost:8080/azurirajRekvizit.html"
 });
+
+$(document).on("click", ".rezervacija", function(event){
+
+	event.preventDefault();
+
+	var id = localStorage.getItem("rekvizitId");
+	console.log("id " + id)
+
+	$.ajax({
+		url: "http://localhost:8080/rekvizit/rezervacija/" + id,
+		type: "PUT",
+		success: function(data){
+			if(data){
+				location.href = "http://localhost:8080/prodavnica.html"			
+			}else
+				alert("ODOBRAVANJE OGLASA NIJE USPELO.");
+		}
+	});
+
+});
+

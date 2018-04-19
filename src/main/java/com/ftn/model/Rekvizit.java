@@ -22,11 +22,14 @@ public class Rekvizit implements Serializable{
 	@Column(nullable = false)
 	private String opis;
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private String slika;
 	
 	@Column(nullable = false)
 	private String cena; 
+	
+	@Column(nullable = false)
+	private int status;			//0 slobodan 1 rezervisan
 	
 	@ManyToOne(optional = false)
 	private Prodavnica prodavnica;
@@ -93,5 +96,14 @@ public class Rekvizit implements Serializable{
 	public void setFilm(Film film) {
 		this.film = film;
 	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	
 	
 }
