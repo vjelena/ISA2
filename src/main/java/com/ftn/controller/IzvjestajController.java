@@ -38,13 +38,10 @@ public class IzvjestajController {
 		for(int i=0;i<izvjestaji.size();i++) {
 			System.out.println("=======Id trenutnog bioskopa: " + izvjestaji.get(i).getBioskop().getId());
 			if(izvjestaji.get(i).getBioskop().getId().equals(idBioskopa)) {
-				System.out.println("==== NASLI BIOSKOP ZA IZVJESTA ====");
-				IzvestajOPoslovanju iop = izvjestaji.get(i);
-				System.out.println("Bice prikazani: " + iop.getPrihod() + " " + iop.getProsecnaOcenaAmbijenta() + " " + iop.getProsecnaOcenaProjekcije());
+				//IzvestajOPoslovanju iop = izvjestaji.get(i);
 				return new ResponseEntity<>(izvjestaji.get(i), HttpStatus.OK);
 			}
 		}
-		System.out.println("-------Vracam prazan izvjestaj!!!!!");
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 }

@@ -30,7 +30,7 @@ var chart = AmCharts.makeChart("chartdiv", {
   "marginRight": 70,
   "dataProvider": [{
     "country": "PONEDELJAK",
-    "visits": 3025,
+    "visits": 2101,
     "color": "#FF0F00"
   }, {
     "country": "UTORAK",
@@ -38,23 +38,23 @@ var chart = AmCharts.makeChart("chartdiv", {
     "color": "#FF6600"
   }, {
     "country": "SRIJEDA",
-    "visits": 1809,
+    "visits": 1709,
     "color": "#FF9E01"
   }, {
     "country": "CETVRTAK",
-    "visits": 1322,
+    "visits": 1622,
     "color": "#FCD202"
   }, {
     "country": "PETAK",
-    "visits": 1122,
+    "visits": 1800,
     "color": "#F8FF01"
   }, {
     "country": "SUBOTA",
-    "visits": 1114,
+    "visits": 2114,
     "color": "#B0DE09"
   }, {
     "country": "NEDELJA",
-    "visits": 984,
+    "visits": 1784,
     "color": "#04D215"
   }],
   "valueAxes": [{
@@ -124,9 +124,14 @@ $(document).ready(
  <div class="text-center" style="padding-top: 10px">
  
                     <h1 style="color: #CD5C5C">Izvjestaj o poslovanju </h1>
-					<h1  style="color: #CD5C5C" id="prihod"></h1>
-					<h5 id="prosecnaOcenaAmbijenta"></h5>
-					<h5 id="prosecnaOcenaProjekcije"></h5>
+                    <div class="form-group col-lg-12" >
+				<table class="table" id="infoOProjekciji">
+    				<tr><th scope="col" id="prihod">Prihod: </th></tr>
+      				<tr><th scope="col" id="prosecnaOcenaAmbijenta">Prosjecna ocjena ambijenta: </th></tr>
+      				<tr><th scope="col" id="prosecnaOcenaProjekcije">Prosjecna ocjena projekcije: </th></tr>
+      				<tr><th></th></tr>
+				</table>
+			</div>
 					
 					
 			  </div>
