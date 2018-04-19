@@ -113,9 +113,14 @@
 								}
 							}else if(data.uloga=="bioskop"){
 								localStorage.setItem("admin", "bioskop");
+								if(data.brojPoseta==1){
+									location.href = "http://localhost:8080/promenaLozinke.html"
+								}else{
 								location.href = "http://localhost:8080/adminBioskopaProfil.html"
+							}
 							}else
 								alert("Logovanje NIJE uspelo.");
+						
 						},
 						error: function(data){
 							alert('GRESKA PRILIKOM LOGOVANJA!!!')

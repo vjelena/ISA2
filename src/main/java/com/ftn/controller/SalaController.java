@@ -89,12 +89,9 @@ public class SalaController {
 	
 	@RequestMapping(value = "/{id}/{konfiguracija}", method = RequestMethod.GET)
 	public ResponseEntity<Sala> izmjeniKonfiguraciju(@PathVariable String id, @PathVariable String konfiguracija) {
-		System.out.println("=================>>>>>:" + id + "_____" + konfiguracija);
 		
 		Sala sala = jpaSalaService.nadjiJednuSalu(id);
-			
 		sala.setKonfiguracija(konfiguracija);
-
 		sala = jpaSalaService.azurirajKonfiguraciju(sala);
 		if (sala== null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

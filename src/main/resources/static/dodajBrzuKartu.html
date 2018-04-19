@@ -53,8 +53,6 @@
 					<div id="listaProjekcija" style="margin-bottom: 25px"></div>
 				</div>
 				
-				
-
 				<div id="ostaliPodaci" style="display: none;">
 				
 				<div id="listaSjedistaDiv">
@@ -84,7 +82,6 @@
 						<div id="divCena" style="float: right"></div>
 					</div>
 				</div>
-
 			</div>
 		</div>
 	</div>
@@ -92,25 +89,18 @@
 	btnIzborProjekcijeClick = function() {
 		var idOdabranogBioskopa = $('#listaBioskopaSelect').val();
 		var idOdabraneProjekcije = $('#listaProjekcijaSelect').val();
-		
-		
+			
 	$.ajax({
 			url : "http://localhost:8080/karta/getKarte"
-		})
-				.then(
+		}).then(
 						function(data) {
 
-							console.log("idOdabranogBioskopa:"
-									+ idOdabranogBioskopa);
-							console.log("idOdabraneProjekcije:"
-									+ idOdabraneProjekcije);
+							console.log("idOdabranogBioskopa:"+ idOdabranogBioskopa);
+							console.log("idOdabraneProjekcije:"+ idOdabraneProjekcije);
 
-							var listaSjedistaDiv = document
-									.getElementById("listaSjedistaDiv");
-							var listaSjedista = document
-									.getElementById("listaSjedista");
-							var listaSjedistaSelect = document
-									.getElementById("listaSjedistaSelect");
+							var listaSjedistaDiv = document.getElementById("listaSjedistaDiv");
+							var listaSjedista = document.getElementById("listaSjedista");
+							var listaSjedistaSelect = document.getElementById("listaSjedistaSelect");
 
 							if (listaSjedistaSelect != null) {
 								listaSjedista.removeChild(listaSjedistaSelect);
@@ -127,8 +117,7 @@
 								if (karta.projekcija.id == idOdabraneProjekcije
 										&& karta.kartaSPopustom === true
 										&& karta.kupljena === false) {
-									var option = document
-											.createElement("option");
+									var option = document.createElement("option");
 									option.value = karta.sediste.id;
 									option.text = karta.sediste.id;
 									selectList.appendChild(option);
@@ -139,77 +128,51 @@
 		document.getElementById("ostaliPodaci").style.display = "block";
 	};
 
-	$("#btnIzborBioskopa")
-			.click(
+	$("#btnIzborBioskopa").click(
 					function() {
-						var idOdabranogBioskopa = $('#listaBioskopaSelect')
-								.val();
-
-						$
-								.ajax(
+						var idOdabranogBioskopa = $('#listaBioskopaSelect').val();
+								$.ajax(
 										{
-											url : "http://localhost:8080/bioskopi/"
-													+ idOdabranogBioskopa
-										})
-								.then(
+											url : "http://localhost:8080/bioskopi/" + idOdabranogBioskopa
+										}).then(
 										function(data) {
-											var listaProjekcija = document
-													.getElementById("listaProjekcija");
-											var listaProjekcijaDiv = document
-													.getElementById("listaProjekcijaDiv");
+											var listaProjekcija = document.getElementById("listaProjekcija");
+											var listaProjekcijaDiv = document.getElementById("listaProjekcijaDiv");
 
-											listaProjekcijaDiv
-													.removeChild(listaProjekcija);
+											listaProjekcijaDiv.removeChild(listaProjekcija);
 
-											var listaProjekcija = document
-													.createElement('div');
-											listaProjekcija.setAttribute("id",
-													"listaProjekcija");
-											listaProjekcijaDiv
-													.appendChild(listaProjekcija);
+											var listaProjekcija = document.createElement('div');
+											listaProjekcija.setAttribute("id","listaProjekcija");
+											listaProjekcijaDiv.appendChild(listaProjekcija);
 
 											var projekcije = data.repertoar.projekcije;
 
-											var selectList = document
-													.createElement("select");
+											var selectList = document.createElement("select");
 											selectList.id = "listaProjekcijaSelect";
-											listaProjekcija
-													.appendChild(selectList);
+											listaProjekcija.appendChild(selectList);
 											for (var i = 0; i < projekcije.length; i++) {
-												var option = document
-														.createElement("option");
-												var naziv = projekcije[i].film.naziv
-														+ " - "
-														+ projekcije[i].sala.nazivSale
-														+ " - "
-														+ projekcije[i].termin.vreme;
+												var option = document.createElement("option");
+												var naziv = projekcije[i].film.naziv + " - "+ projekcije[i].sala.nazivSale + " - " + projekcije[i].termin.vreme;
 												option.value = projekcije[i].id;
 												option.text = naziv;
 												selectList.appendChild(option);
 											}
 
-											var dugme = document
-													.getElementById('btnIzborProjekcije');
+											var dugme = document.getElementById('btnIzborProjekcije');
 											if (dugme != null) {
-												listaProjekcijaDiv
-														.removeChild(dugme);
+												listaProjekcijaDiv.removeChild(dugme);
 											}
 
-											var btn = document
-													.createElement("button");
+											var btn = document.createElement("button");
 
 											btn.id = 'btnIzborProjekcije';
 											btn.innerHTML = 'Dalje';
-											btn
-													.setAttribute("onClick",
-															"btnIzborProjekcijeClick();");
+											btn.setAttribute("onClick","btnIzborProjekcijeClick();");
 											listaProjekcijaDiv.appendChild(btn);
 											listaProjekcijaDiv.style.display = 'block';
 										});
-
 					});
 
-	//alert("Druga funkcija....");
 </script>
 </body>
 </html>

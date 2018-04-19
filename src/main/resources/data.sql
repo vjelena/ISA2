@@ -20,7 +20,7 @@ values(5, 1, 25, '346964', 'fanzona@gmail.com' , 'Nevena', '555', 'Jovic', 0, 'f
 
 insert into adresa(id, broj, grad, ulica) values (16, '68', 'Novi Sad', 'Cirpanova');
 insert into korisnik(id, aktiviran_nalog_preko_mejla, broj_poseta, broj_telefona, email, ime, lozinka, prezime, prvi_put_se_ulogovao, uloga, vrsta_clana, adresa_id)
-values(6, 1, 16, '346964', 'adminbioskopa@gmail.com' , 'Nena', '666', 'Vidovic', 0, 'bioskop', 'zlatni', 16);
+values(6, 1, 0, '346964', 'adminbioskopa@gmail.com' , 'Nena', '666', 'Vidovic', 0, 'bioskop', 'zlatni', 16);
 
 insert into adresa(id, broj, grad, ulica) values (17, '39', 'Novi Pazar', 'Masarikova');
 insert into korisnik(id, aktiviran_nalog_preko_mejla, broj_poseta, broj_telefona, email, ime, lozinka, prezime, prvi_put_se_ulogovao, uloga, vrsta_clana, adresa_id) 
@@ -78,10 +78,10 @@ insert into bioskop values (2, 'Arena Cineplex', 'Pored redovnog filmskog repert
 insert into bioskop values (3, 'Cinestar', 'Brend CineStar razvio se iz bioskopa kompanije Kieft Kieft Filmtheater GmbH, koja je, posle vise od cetiri decenije rada kao operater klasicnog bioskopa, još 1993. otvorila svoj prvi multipleks.', 4.0,'42.20','19.25',13, 1);
 insert into bioskop values (4, 'Bioskop 4', 'Opis bioskopa 4.', 4.3,'26.25','32.20', 15, 1);
 
-insert into pozoriste values (1, 'Pozoriste Narodno', 'Na repertoaru bioskopa Jadra mozete pogledati brojne popularne klasike.', 3.5, '45.25' , '19.845' , 11, 1);
-insert into pozoriste values (2, 'Pozoriste decije', 'Pored redovnog filmskog repertoara, u Areni Cineplex se organizuju svecane premijere domacih filmova, kao i festivali FEST, Cinema City, Cinemania i Kids Fest.', 4.5,'35.10','56.30',12, 1);
-insert into pozoriste values (3, 'Pozoriste 3', 'Brend CineStar razvio se iz bioskopa kompanije Kieft Kieft Filmtheater GmbH, koja je, posle vise od cetiri decenije rada kao operater klasicnog bioskopa, još 1993. otvorila svoj prvi multipleks.', 4.0,'43.20','20.25',13, 1);
-insert into pozoriste values (4, 'Pozoriste 4', 'Opis bioskopa 4.', 4.3,'41.25','19.20', 15, 1);
+insert into pozoriste values (1, 'Pozoriste Narodno', 'Na repertoaru pozorista Jadra mozete pogledati brojne popularne predstave.', 3.5, '45.25' , '19.845' , 11, 1);
+insert into pozoriste values (2, 'Pozoriste decije', 'Pored redovnog pozorisnog repertoara, u pozoristu se organizuju svecane premijere domacih predstava, kao i festivali FEST, Cinema City, Cinemania i Kids Fest.', 4.5,'35.10','56.30',12, 1);
+insert into pozoriste values (3, 'Pozoriste 3', 'Pozoriste razvio se iz bioskopa kompanije Kieft Kieft Filmtheater GmbH, koja je, posle vise od cetiri decenije rada kao operater klasicnog bioskopa, još 1993. otvorila svoj prvi multipleks.', 4.0,'43.20','20.25',13, 1);
+insert into pozoriste values (4, 'Pozoriste 4', 'Opis pozoristaaaaa 4.', 4.3,'41.25','19.20', 15, 1);
 
 
 insert into repertoar values (1, 1);

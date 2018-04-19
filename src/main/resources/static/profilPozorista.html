@@ -39,14 +39,14 @@
 								var projekcije = repertoar.projekcijePozorista;
 								var sale = data.listaSala;
 								
-								for(var i=0; i<sale.length; i++){
+								/* for(var i=0; i<sale.length; i++){
 									 var button = document.createElement("input");
 									 	button.id = sale[i].id;
 									    button.type = "button";
 									    button.value = sale[i].nazivSale;
 									    button.className  = "btnSala btn-info";
 									    document.getElementById("listaSalaBioskopa").appendChild(button);
-								}
+								} */
 								
 								for(var i=0; i<projekcije.length; i++){	
 									var film = projekcije[i].predstava;
@@ -60,11 +60,8 @@
 									+ "<td><input type=\"button\" value=\"Izmjeni\" class=\"btnIzmjeniProjekciju\" id=\""+projekcije[i].id + "\"></td></tr>"
 									
 									
-									
 									$("#tabelaRepertoar").append(newRow);	
 								}
-								
-								
 							}
 						});
 			});
@@ -156,8 +153,6 @@
 
 			</div>
 			
-			
-			
 			<table id="tabelaRepertoar" class="table table-hover table-bordered">
 				<thead class="thead-dark">
 					<tr>
@@ -226,4 +221,4 @@
 	</script>
 	</div>
 </body>
-</html>>
+</html>
