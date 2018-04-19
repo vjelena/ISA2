@@ -83,6 +83,10 @@ insert into pozoriste values (2, 'Pozoriste decije', 'Pored redovnog pozorisnog 
 insert into pozoriste values (3, 'Pozoriste 3', 'Pozoriste razvio se iz bioskopa kompanije Kieft Kieft Filmtheater GmbH, koja je, posle vise od cetiri decenije rada kao operater klasicnog bioskopa, još 1993. otvorila svoj prvi multipleks.', 4.0,'43.20','20.25',13, 1);
 insert into pozoriste values (4, 'Pozoriste 4', 'Opis pozoristaaaaa 4.', 4.3,'41.25','19.20', 15, 1);
 
+INSERT INTO izvestajoposlovanju values (1 , 60000, 4.2 ,4.5, 1);
+INSERT INTO izvestajoposlovanju values (2 , 90000, 4.0 ,4.1, 2);
+INSERT INTO izvestajoposlovanju values (3 , 85000, 4.2 ,3.9, 3);
+INSERT INTO izvestajoposlovanju values (4 , 73000, 4.1 ,4.3, 4);
 
 insert into repertoar values (1, 1);
 insert into repertoar values (2, 2);
@@ -104,12 +108,12 @@ INSERT INTO predstava values (2,'Gospodja Ministarka', 4.5, 'Lara Kroft je stras
 insert into predstava values (3, 'Laza i paralaza', 5, 'Romanticna prica o pomalo izgubljenoj devojci.', 'reditelj 3', 'slika 3', 193, 'romanticna komedija');
 
 
-insert into sala values(1, 150, 'konfiguracija A', 'sala A', 2);
-insert into sala values(2, 100, 'konfiguracija B', 'sala B', 3);
-insert into sala values(3, 100, 'konfiguracija B', 'sala C', 1);
-insert into sala values(4, 100, 'konfiguracija B', 'sala D', 4);
-insert into sala values(5, 100, 'konfiguracija B', 'sala E', 1);
-insert into sala values(6, 100, 'konfiguracija B', 'sala F', 2);
+insert into sala values(1, 150, 'ffffeeeeffffeeee', 'sala A', 2);
+insert into sala values(2, 100, 'ffeeeeeeeeeee', 'sala B', 3);
+insert into sala values(3, 100, 'ffeeeefffeeeffeee', 'sala C', 1);
+insert into sala values(4, 100, 'ffeeeeeeefffffeeee', 'sala D', 4);
+insert into sala values(5, 100, 'ffeeefeffffeeee', 'sala E', 1);
+insert into sala values(6, 100, 'ffeefeffffeeee', 'sala F', 2);
 
 insert into sediste values(1,1,1);
 insert into sediste values(2,2,1);

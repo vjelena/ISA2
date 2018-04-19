@@ -14,6 +14,7 @@
 				$.ajax({
 					url : "http://localhost:8080/bioskopi/prikaziBioskope"
 				}).then(function(data) {
+					
 					var listaFilmovaDiv = document.getElementById("listaBioskopa");
 					
 					for (i = 0; i < data.length; i++) {
@@ -71,16 +72,16 @@
 					<div class="input-group" style="margin-bottom: 25px">
 						<span class="input-group-addon"><i
 							class="glyphicon glyphicon-eur"></i></span> <input type="text"
-							class="form-control" name="popust" placeholder="Popust">
+							class="form-control" id="popust" name="popust" placeholder="Popust">
 						<div id="divPopust" style="float: right"></div>
 					</div>
 					
-					<div class="input-group" style="margin-bottom: 25px">
-						<span class="input-group-addon"><i
-							class="glyphicon glyphicon-eur"></i></span> <input type="text"
-							class="form-control" name="cena" placeholder="Cena">
-						<div id="divCena" style="float: right"></div>
-					</div>
+					 <div class="form-group">
+                  	 <div class="col-lg-offset-3 col-lg-9" style="margin-top: 25px">
+                         <input id="btnDodaj" type="button" class="btn btn-primary" style="float:right" value="Dodaj"> 	
+                         <input id="btnOdustani" type="button" class="btn btn-primary" style="float:right" value="Odustani"> 	
+                    </div>
+               	</div>
 				</div>
 			</div>
 		</div>
@@ -109,19 +110,69 @@
 							var selectList = document.createElement("select");
 							selectList.id = "listaSjedistaSelect";
 							listaSjedista.appendChild(selectList);
-
-							for (i = 0; i < data.length; i++) {
-
-								var karta = data[i];
-
-								if (karta.projekcija.id == idOdabraneProjekcije
-										&& karta.kartaSPopustom === true
-										&& karta.kupljena === false) {
-									var option = document.createElement("option");
-									option.value = karta.sediste.id;
-									option.text = karta.sediste.id;
-									selectList.appendChild(option);
+							
+							window.mjesta = [];
+							var imaKarataZaProjekciju = false;
+							for(var j=0; j<data.length; j++){
+								var karta = data[j];
+								if(karta.projekcija.id == idOdabraneProjekcije){
+									imaKarataZaProjekciju = true;
+									var sala = karta.projekcija.sala;
+									var konfiguracija = sala.konfiguracija;
+									var brojMjesta = konfiguracija.length;//20
+									
+									for(var i=1;i<=brojMjesta; i++){
+										mjesta.push(i);
+									}
+									break;
 								}
+							}
+							var podaciStigli = false;
+							if(imaKarataZaProjekciju === true){
+								for(var j=0; j<data.length; j++){
+									var karta = data[j];
+									
+									if(karta.projekcija.id == idOdabraneProjekcije){
+										delete mjesta[karta.sediste.id - 1];
+									}
+								}
+								
+								for (i = 0; i < mjesta.length; i++) {
+									if(mjesta[i] != null){
+										var option = document.createElement("option");
+										option.value = mjesta[i];
+										option.text = mjesta[i];
+										selectList.appendChild(option);
+									}
+								}
+								
+							}else{
+								
+								$.ajax({
+									url : "http://localhost:8080/projekcija/"+idOdabraneProjekcije
+								}).then(
+												function(data) {
+													console.log("Projekcija:" + JSON.stringify(data));
+													var sala = data.sala;
+													var konfiguracija = sala.konfiguracija;
+													console.log("KOnfiguracija:" + konfiguracija);
+													brojMjesta = konfiguracija.length;
+													
+													for(var i=1;i<=brojMjesta; i++){
+														mjesta.push(i);
+													}
+													podaciStigli = true;
+													console.log("Mjesta1:" + JSON.stringify(mjesta));
+													
+													for (i = 0; i < mjesta.length; i++) {
+														if(mjesta[i] != null){
+															var option = document.createElement("option");
+															option.value = mjesta[i];
+															option.text = mjesta[i];
+															selectList.appendChild(option);
+														}
+													}
+								});
 							}
 						});
 
@@ -172,6 +223,44 @@
 											listaProjekcijaDiv.style.display = 'block';
 										});
 					});
+	
+	$("#btnOdustani").click(function(){
+		alert("Klik na dugme odustani.");
+		location.href = "http://localhost:8080/adminBioskopaProfil.html"
+	});
+	
+	$("#btnDodaj").click(function(){
+		alert("Klik na dugme dodaj.");
+		var idOdabraneProjekcije = $('#listaProjekcijaSelect').val();
+		var sjediste =  $('#listaSjedistaSelect').val();
+		var popust = $('#popust').val();
+		
+		var formData = JSON.stringify({
+			sjedisteId: sjediste,
+			popust: popust,
+			idProjekcije: idOdabraneProjekcije
+		});
+		
+		$.ajax({
+			url: "http://localhost:8080/karta/dodajBrzuKartu",
+			type: "POST",
+			data: formData,
+			contentType: "application/json",
+			datatype: 'json',
+			success: function(data){
+				if(data){
+					alert("Dodavanje sale uspjesno");
+					location.href = "http://localhost:8080/dodajFilm.html?id="+idBioskopa
+				}else{
+					alert("Dodavanje sale nije uspjelo. Pokusajte ponovo.");
+				}
+			},
+			error: function(data){
+				alert("Dodavanje sale nije uspjelo. Pokusajte ponovo.");
+			}
+		});
+		
+	});
 
 </script>
 </body>

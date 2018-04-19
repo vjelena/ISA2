@@ -93,11 +93,11 @@
 		<div class="col-lg-12 col-lg-9"></div>
 		<div class="col-lg-6 col-lg-3">
 			<div class="form-group">
-				<form action="index.html" class="form-horizontal">
+				
 					<div class="col-lg-4">
-						<input class="btn btn-primary" type="submit" value="Odjavi se">
+						<input class="btnOdjava btn-primary" type="submit" value="Odjavi se">
 					</div>
-				</form>
+				
 			</div>
 		</div>
 	</div>
@@ -123,12 +123,12 @@
 					<input  id ="btnKarteNaPopustu" class="btn btn-info" type="submit" value="Karte na popustu">
 				</div>
 			</form>
-			<form action="izvjestajObioskopu.html" class="form-horizontal">
+			
 				<div class="text-center" style="padding-top: 10px">
-					<input class="btn btn-info" type="submit"
+					<input class="btnIzvjestaj btn-info" type="submit"
 						value="Izvestaj o poslovanju">
 				</div>
-			</form>
+			
 			
 		
 			
@@ -182,15 +182,30 @@
 	     }); */
 		
 	
-	$("#btnDodaj").click(function(){
-	location.href = "http://localhost:8080/dodajProjekciju.html?idBioskopa=" + $.urlParam('id');
-     });
+	     $("#btnDodaj").click(function(){
+	 		$.ajax({
+	 			url : "http://localhost:8080/korisnik/getTrenutnoAktivan"
+	 		}).then(function(data){
+	 			if(data.uloga == "bioskop" ){
+	 					location.href = "http://localhost:8080/dodajProjekciju.html?idBioskopa=" + $.urlParam('id');
+	 	    			}else
+	 		alert("Pristup dozvoljen administratoru.")
+	 			});
+	 	  });  
 	     
 	
-	$("#btnAzurirajBioskop").click(function(){
-		location.href = "http://localhost:8080/izmjenaProfilaBioskopa.html?idBioskopa=" + $.urlParam('id');
-	     });
-	
+	     $("#btnAzurirajBioskop").click(function(){
+	    		$.ajax({
+	    			url : "http://localhost:8080/korisnik/getTrenutnoAktivan"
+	    		}).then(function(data){
+	    			if(data.uloga == "bioskop" ){
+	    				location.href = "http://localhost:8080/izmjenaProfilaBioskopa.html?idBioskopa=" + $.urlParam('id');
+	    			}else
+	    				alert("Pristup dozvoljen administratoru.")
+	    					});
+	    			  });  
+	     
+	     
 	$(document).on("click", ".btnObrisiProjekciju", function(event) {
 		var projekcijaId = this.id;
 		
@@ -203,19 +218,47 @@
 	});
 	
 	
-	$(".btnObrisiProjekciju").click(function(){
-		console.log("Klik na dugme....");
-		location.href = "http://localhost:8080/projekcija/izbrisiProjekciju/" + projekcijaId
-	});
-	
 	$(document).on("click", ".btnIzmjeniProjekciju", function(event) {
 		var projekcijaId=this.id;
+		$.ajax({
+			url : "http://localhost:8080/korisnik/getTrenutnoAktivan"
+		}).then(function(data){
+			if(data.uloga == "bioskop" ){
+		
 		location.href = "http://localhost:8080/izmjeniProjekciju.html?idProjekcije=" +  projekcijaId+"&idBioskopa="+ $.urlParam('id') ;
-	});
+			}else
+				alert("Pristup dozvoljen administratoru.")
+					});
+			  }); 
+	
 	
 	$(document).on("click", ".btnSala", function(event) {
 		var salaId = this.id;
 		location.href = "http://localhost:8080/index_sjedista.html?idSale="+salaId;
+	});
+	
+	$(document).on("click", ".btnIzvjestaj", function(event) {
+		$.ajax({
+			url : "http://localhost:8080/korisnik/getTrenutnoAktivan"
+		}).then(function(data){
+			if(data.uloga == "bioskop" ){
+		
+		location.href = "http://localhost:8080/izvjestajObioskopu.html"
+			}else
+				alert("Pristup dozvoljen administratoru.")
+					});
+			  }); 
+	
+	
+	$(document).on("click", ".btnOdjava", function(event) {
+		var projekcijaId = this.id;
+		
+		$.ajax({
+			url : "http://localhost:8080/korisnik/odjava"
+		}).then(
+				function(data) {
+					location.href = "http://localhost:8080/index.html"
+				});
 	});
 	
 	</script>

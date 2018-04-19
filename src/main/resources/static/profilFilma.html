@@ -53,11 +53,11 @@
 			<div class="col-lg-12 col-lg-9"></div>
   			<div class="col-lg-6 col-lg-3">
 			    <div class="form-group">
-			    	<form action="index.html" class="form-horizontal">
+			    	
 				        <div class="col-lg-4">
-				            <input class="btn btn-primary" type="submit" value="Odjavi se">
+				            <input class="btnOdjava btn-primary" type="submit" value="Odjavi se">
 				        </div>
-			        </form>
+			       
 			    </div>
   			</div>
 		</div>
@@ -89,7 +89,19 @@
 			<div class="form-group col-lg-13" style="padding-top: 350px">
 				<h4 id="opisFilma"></h4>
 			</div>
-			
 		</div>
+		
+<script>
+$(document).on("click", ".btnOdjava", function(event) {
+	var projekcijaId = this.id;
+	
+	$.ajax({
+		url : "http://localhost:8080/korisnik/odjava"
+	}).then(
+			function(data) {
+				location.href = "http://localhost:8080/index.html"
+			});
+});
+</script>		
 	</body>
 </html>

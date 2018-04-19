@@ -22,6 +22,14 @@
 				});
 			});
 		
+
+		$(document).ready(function() {
+			$.ajax({
+				url : "http://localhost:8080/korisnik/getTrenutnoAktivan"
+			}).then(function(data){
+				console.log(data.prezime)
+
+				if(data.ime !== undefined){			
 			
 			$(document).on("click", ".bioskopi", function(event) {
 				event.preventDefault();
@@ -41,6 +49,10 @@
 					form.submit();
 				};
 				redirect('profilPozorista.html', 'GET');
+			});
+				}else
+					alert("Morate biti prijavljeni.")
+			});
 			});
 			
 		</script>

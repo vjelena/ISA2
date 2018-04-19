@@ -297,9 +297,16 @@ if(dataOk == false){
 	</div>
 	
 <script>
-	$("#btnKonfiguracija").click(function(){
+$("#btnKonfiguracija").click(function(){
+	$.ajax({
+		url : "http://localhost:8080/korisnik/getTrenutnoAktivan"
+	}).then(function(data){
+		if(data.uloga == "bioskop" ){
 		location.href = "http://localhost:8080/izmjeniMapu.html?idSale=" +  $.urlParam("idSale");
-	     });
+		}else
+			alert("Pristup dozvoljen administratoru.")
+				});
+		  });  
 </script>	
 </body>
 </html>
