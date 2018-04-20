@@ -134,6 +134,7 @@ public class OglasKontroler {
 	public ResponseEntity<List<Ponuda>> prihvatiPonudu(@PathVariable Long idP, @PathVariable Long idO) {
 		Ponuda prihvacenaPonuda = ponudaServis.findOne(idP);
 		Oglas oglas = oglasServis.findOne(idO);
+		oglas.setStatus(2);
 		List<Ponuda> ponude = oglas.getListaPonuda();
 		for (int i = 0; i < ponude.size(); i++) {
 			if(prihvacenaPonuda.equals(ponude.get(i)))
@@ -142,6 +143,7 @@ public class OglasKontroler {
 				ponude.get(i).setStatus(-1);
 		}		
 		ponudaServis.save(ponude);
+		oglasServis.save(oglas);
 		return new ResponseEntity<>(ponude, HttpStatus.OK);
 	}
 	

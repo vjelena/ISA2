@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -57,6 +58,9 @@ public class Korisnik implements Serializable{
 	
 	@Column(nullable = false)
 	private String vrstaClana;
+
+	@ManyToOne(optional = true)
+	private FanZona fanZonaAdmin;
 
 	//deo za prijatelje
 	@ManyToMany
@@ -249,6 +253,14 @@ public class Korisnik implements Serializable{
 	public void setPosecenaPozorista(List<Pozoriste> posecenaPozorista) {
 		this.posecenaPozorista = posecenaPozorista;
 	}
+
+	public FanZona getFanZonaAdmin() {
+		return fanZonaAdmin;
+	}
+
+	public void setFanZonaAdmin(FanZona fanZonaAdmin) {
+		this.fanZonaAdmin = fanZonaAdmin;
+	}
 	
 	/*public List<ObicnaRezervacija> getListaObicnihRezervacija() {
 		return listaObicnihRezervacija;
@@ -257,6 +269,8 @@ public class Korisnik implements Serializable{
 	public void setListaObicnihRezervacija(List<ObicnaRezervacija> listaObicnihRezervacija) {
 		this.listaObicnihRezervacija = listaObicnihRezervacija;
 	}*/
+	
+	
 	
 }
 

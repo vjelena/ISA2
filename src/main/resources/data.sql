@@ -1,3 +1,5 @@
+insert into fan_zona(naziv) values ('fan zona'); --samo jedna fan zona postoji id = 1
+
 insert into adresa(id, broj, grad, ulica) values (11, '67', 'Novi Sad', 'Dositejeva');
 insert into korisnik(id, aktiviran_nalog_preko_mejla, broj_poseta, broj_telefona, email, ime, lozinka, prezime, prvi_put_se_ulogovao, uloga, vrsta_clana, adresa_id) 
 values(1, 1, 0, '123456', 'petar@gmail.com' , 'Petar', '111', 'Petrovic', 0, 'obican', 'nema pravo na popust', 11);
@@ -15,8 +17,8 @@ insert into korisnik(id, aktiviran_nalog_preko_mejla, broj_poseta, broj_telefona
 values(4, 1, 0, '294850', 'milica@gmail.com' , 'Milica', '444', 'Milic', 0, 'obican', 'nema pravo na popust', 14);
 
 insert into adresa(id, broj, grad, ulica) values (15, '2', 'Kraljevo', 'Podunavskog odreda');
-insert into korisnik(id, aktiviran_nalog_preko_mejla, broj_poseta, broj_telefona, email, ime, lozinka, prezime, prvi_put_se_ulogovao, uloga, vrsta_clana, adresa_id)
-values(5, 1, 25, '346964', 'fanzona@gmail.com' , 'Nevena', '555', 'Jovic', 0, 'fanzona', 'zlatni', 15);
+insert into korisnik(id, aktiviran_nalog_preko_mejla, broj_poseta, broj_telefona, email, ime, lozinka, prezime, prvi_put_se_ulogovao, uloga, vrsta_clana, adresa_id, fan_zona_admin_id)
+values(5, 1, 25, '346964', 'fanzona@gmail.com' , 'Nevena', '555', 'Jovic', 0, 'fanzona', 'zlatni', 15, 1);
 
 insert into adresa(id, broj, grad, ulica) values (16, '68', 'Novi Sad', 'Cirpanova');
 insert into korisnik(id, aktiviran_nalog_preko_mejla, broj_poseta, broj_telefona, email, ime, lozinka, prezime, prvi_put_se_ulogovao, uloga, vrsta_clana, adresa_id)
@@ -83,17 +85,24 @@ insert into moji_prijatelji values(9, 7);
 insert into moji_prijatelji values(9, 8);
 
 
-insert into fan_zona(naziv) values ('fan zona'); --samo jedna fan zona postoji id = 1
-
 insert into skala(id, zlatni, zlatni_popust, srebrni, srebrni_popust, bronzani, bronzani_popust) values (1, 5, 20, 3, 10, 2, 5);
 insert into skala(id, zlatni, zlatni_popust, srebrni, srebrni_popust, bronzani, bronzani_popust) values (2, 60, 30, 40, 20, 20, 15);
 insert into skala(id, zlatni, zlatni_popust, srebrni, srebrni_popust, bronzani, bronzani_popust) values (3, 30, 15, 20, 10, 10, 5);
 insert into skala(id, zlatni, zlatni_popust, srebrni, srebrni_popust, bronzani, bronzani_popust) values (4, 100, 40, 60, 30, 40, 20);
 
-insert into bioskop values (1, 'Jadran', 'Na repertoaru bioskopa Jadra mozete pogledati brojne popularne klasike.', 3.5, '45.25' , '19.845' , 11, 1, 1);
-insert into bioskop values (2, 'Arena Cineplex', 'Pored redovnog filmskog repertoara, u Areni Cineplex se organizuju svecane premijere domacih filmova, kao i festivali FEST, Cinema City, Cinemania i Kids Fest.', 4.5,'35.10','56.30',12, 1, 2);
-insert into bioskop values (3, 'Cinestar', 'Brend CineStar razvio se iz bioskopa kompanije Kieft Kieft Filmtheater GmbH, koja je, posle vise od cetiri decenije rada kao operater klasicnog bioskopa, još 1993. otvorila svoj prvi multipleks.', 4.0,'37.20','20.25',13, 1, 3);
-insert into bioskop values (4, 'Bioskop 4', 'Opis bioskopa 4.', 4.3,'26.25','32.20', 15, 1, 4);
+insert into adresa(id, broj, grad, ulica) values (1, '5', 'Indjia', 'Fruskogorska');
+insert into adresa(id, broj, grad, ulica) values (2, '45', 'Stara pazova', 'Srpskocrkvena');
+insert into adresa(id, broj, grad, ulica) values (3, '88', 'Beograd', 'Jug Bogdana');
+insert into adresa(id, broj, grad, ulica) values (4, '1', 'Novi Sad', 'Dositejeva');
+
+insert into bioskop(id, naziv, opis, prosecna_ocena, x_koordinata, y_koordinata, adresa_id, fan_zona_id, skala_id, admin_id) 
+values (1, 'Jadran', 'Na repertoaru bioskopa Jadra mozete pogledati brojne popularne klasike.', 3.5, '45.25' , '19.845' , 1, 1, 1, 6);
+insert into bioskop(id, naziv, opis, prosecna_ocena, x_koordinata, y_koordinata, adresa_id, fan_zona_id, skala_id, admin_id)
+values (2, 'Arena Cineplex', 'Pored redovnog filmskog repertoara, u Areni Cineplex se organizuju svecane premijere domacih filmova, kao i festivali FEST, Cinema City, Cinemania i Kids Fest.', 4.5,'35.10','56.30',2, 1, 2, 10);
+insert into bioskop(id, naziv, opis, prosecna_ocena, x_koordinata, y_koordinata, adresa_id, fan_zona_id, skala_id, admin_id)
+values (3, 'Cinestar', 'Brend CineStar razvio se iz bioskopa kompanije Kieft Kieft Filmtheater GmbH, koja je, posle vise od cetiri decenije rada kao operater klasicnog bioskopa, još 1993. otvorila svoj prvi multipleks.', 4.0,'37.20','20.25',3, 1, 3, 11);
+insert into bioskop(id, naziv, opis, prosecna_ocena, x_koordinata, y_koordinata, adresa_id, fan_zona_id, skala_id, admin_id)
+values (4, 'Bioskop 4', 'Opis bioskopa 4.', 4.3,'26.25','32.20', 4, 1, 4, 12);
 
 insert into pozoriste values (1, 'Pozoriste Narodno', 'Na repertoaru bioskopa Jadra mozete pogledati brojne popularne klasike.', 3.5, '45.25' , '19.845' , 11, 1);
 insert into pozoriste values (2, 'Pozoriste decije', 'Pored redovnog filmskog repertoara, u Areni Cineplex se organizuju svecane premijere domacih filmova, kao i festivali FEST, Cinema City, Cinemania i Kids Fest.', 4.5,'35.10','56.30',12, 1);

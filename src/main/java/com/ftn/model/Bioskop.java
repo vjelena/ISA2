@@ -47,6 +47,8 @@ public class Bioskop implements Serializable{
 	@OneToOne(optional = false, cascade = CascadeType.ALL)
 	private Skala skala;
 	
+	@OneToOne(optional = true, cascade = CascadeType.ALL)
+	private Korisnik admin;
 	
 	//@JsonIgnore //u modelu nam ne trebaju anotacije JsonIgnore(to ide u DTO) i JsonManageReference
 //	@JsonManagedReference
@@ -229,5 +231,14 @@ public class Bioskop implements Serializable{
 	public void setSkala(Skala skala) {
 		this.skala = skala;
 	}
+
+	public Korisnik getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(Korisnik admin) {
+		this.admin = admin;
+	}
+	
 	
 }

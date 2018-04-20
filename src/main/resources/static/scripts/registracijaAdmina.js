@@ -1,3 +1,22 @@
+$.ajax({
+	url: "http://localhost:8080/bioskopi/prikaziBioskope",
+	type: "GET",
+	contentType: "application/json",
+	datatype: 'json',
+	success: function(data){
+		if(data){
+			console.log("GET ZAHTEV");
+			console.log(data);
+			$.each(data, function(index, val){
+				console.log(index, val);
+				$("#sviBioskopiAdmin").append('<option value="' + val.id + '">' + val.naziv + '</option>');
+			});
+							
+		}else
+			alert("GRESKA");
+	}
+});
+
 $("#dugmeRegistrujAdmina").click(function(){
 	
 				var provera = true;
@@ -92,11 +111,14 @@ $("#dugmeRegistrujAdmina").click(function(){
 						lozinka:$("#formaRegistrujAdmina [name='lozinka1']").val(),
 						ime:$("#formaRegistrujAdmina [name='ime']").val(),
 						prezime:$("#formaRegistrujAdmina [name='prezime']").val(),
-						adresa:adresaJSON,
+						grad:$("#formaRegistrujAdmina [name='grad']").val(),
+						ulica:$("#formaRegistrujAdmina [name='ulica']").val(), 
+						broj:$("#formaRegistrujAdmina [name='broj']").val(),
 						brojTelefona:$("#formaRegistrujAdmina [name='brojTelefona']").val(),
-						uloga:$("#formaRegistrujAdmina [name='tip']").val()
+						uloga:$("#formaRegistrujAdmina [name='tip']").val(),
+						bioskop:$("#formaRegistrujAdmina [name='bioskopAdmin']").val()
 					   });
-					
+					console.log(formData)
 					$.ajax({
 						url: "http://localhost:8080/admin/dodajAdmina",
 						type: "POST",
@@ -105,7 +127,7 @@ $("#dugmeRegistrujAdmina").click(function(){
 						datatype: 'json',
 						success: function(data){
 							if(data){
-								location.href = "http://localhost:8080/index.html"				
+								location.href = "http://localhost:8080/adminHomePage.html"				
 							}else
 								alert("Registracija NIJE uspela.");
 						},

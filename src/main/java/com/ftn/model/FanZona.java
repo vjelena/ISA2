@@ -25,8 +25,11 @@ public class FanZona implements Serializable{
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "fanZona")
 	@JsonIgnore
-	//@JsonManagedReference
 	private Set<Oglas> listaOglasa;
+	
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "fanZonaAdmin")
+	private Set<Korisnik> admini;
 	
 	public FanZona() {
 		
@@ -55,5 +58,14 @@ public class FanZona implements Serializable{
 	public void setListaOglasa(Set<Oglas> listaOglasa) {
 		this.listaOglasa = listaOglasa;
 	}
+
+	public Set<Korisnik> getAdmini() {
+		return admini;
+	}
+
+	public void setAdmini(Set<Korisnik> admini) {
+		this.admini = admini;
+	}
+	
 	
 }

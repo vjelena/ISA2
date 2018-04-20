@@ -24,6 +24,8 @@ $(document).ready(function(){
 				status = "neodobren";
 			}else if(data[i].status == 1){
 				status = "odobren";
+			}else if(data[i].status == 2){
+				status = "zatvoren";
 			}
 
 			newRow = "<tr>"
@@ -35,17 +37,27 @@ $(document).ready(function(){
 				+ "<td class=\"status\">" + status + "</td>"
 				+ "<td class=\"ponude\" onclick=\"getIDO(this)\" data-id=\"" + data[i].id +"\"> <div class=\"form-group col-lg-2\" id=\"podaciOglas\">"
 										+ "<table id=\"tabelaOglasPonude\" class=\"table\">";
-
+			
+			
 			$.ajax({
 				url: "http://localhost:8080/oglas/getPonude/" + data[i].id
 			}).then(function(data) {
 				$.each(data, function(index, val){
 					index = index + 1;
 
-					newRowP = "<tr>"
+					if(val.status==1){
+						newRowP = "<tr>"
+						+ "<td scope=\"col\">" + val.cena + "RSD</td>"
+	
+						+ "</tr>";
+					}else{
+						newRowP = "<tr>"
 						+ "<td scope=\"col\">" + val.cena + "RSD</td>"
 						+ "<td scope=\"col\"><a class=\"prihvati\" onclick=\"getID(this)\" data-id=\"" + index +"\" href='" + index + "'>Prihvati</a></td>"
 						+ "</tr>";
+
+					}
+					
 
 					$("#tabelaOglasPonude").append(newRowP);
 				});
@@ -97,7 +109,6 @@ $(document).ready(function(){
 						alert("PRIHVATANJE PONUDE NIJE USPELO.");
 				}
 			});
-
 	});
 
 });
