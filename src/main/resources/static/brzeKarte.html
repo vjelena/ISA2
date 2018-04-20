@@ -26,7 +26,7 @@ $(document).ready(
 							var sala = karta.projekcija.sala.nazivSale;
 							var cena= karta.projekcija.cena;
 							var popust = karta.popust;
-							var sediste = karta.sediste.id;
+							var sediste = karta.sediste.rbr;
 							
 								newRow = "<tr><td><a class=\"bioskopi\" href=\"\" id=\"" + film.id + "\" naziv=\""+ film.naziv+"\">"+ film.naziv + "</a></td>"
 								+ "<td class=\"datum\">"+ datum + "</td>"
@@ -73,6 +73,7 @@ $(document).on("click", ".btnObrisiKartu", function(event) {
 			}).then(function(data){
 				
 				location.href = "http://localhost:8080/brzeKarte.html"
+				alert("Uspjesno ste rezervisali kartu");
 			});
 });
 

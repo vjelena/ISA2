@@ -64,7 +64,7 @@
 					<div class="input-group" style="margin-bottom: 25px">
 						<span class="input-group-addon"><i
 							class="glyphicon glyphicon-eur"></i></span> <input readonly type="text"
-							class="form-control" name="cena" placeholder="Cena" value="444">
+							class="form-control" name="cena" placeholder="Cena" value="250">
 						<div id="divCena" style="float: right"></div>
 					</div>
 			
@@ -245,14 +245,14 @@
 			datatype: 'json',
 			success: function(data){
 				if(data){
-					alert("Dodavanje sale uspjesno");
-					location.href = "http://localhost:8080/dodajFilm.html?id="+idBioskopa
+					alert("Dodavanje karte uspjesno");
+					location.href = "http://localhost:8080/brzeKarte.html"
 				}else{
-					alert("Dodavanje sale nije uspjelo. Pokusajte ponovo.");
+					alert("Dodavanje karte nije uspjelo. Pokusajte ponovo.");
 				}
 			},
 			error: function(data){
-				alert("Dodavanje sale nije uspjelo. Pokusajte ponovo.");
+				alert("Dodavanje karte nije uspjelo. Pokusajte ponovo.");
 			}
 		});
 		

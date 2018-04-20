@@ -17,8 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ftn.DTO.FilmDTO;
 import com.ftn.DTO.KartaDTO;
 import com.ftn.DTOconverter.KartaDTOtoKarta;
+import com.ftn.model.Bioskop;
 import com.ftn.model.Film;
 import com.ftn.model.Karta;
+import com.ftn.model.Korisnik;
+import com.ftn.repository.KorisnikRepository;
 import com.ftn.service.KartaService;
 import com.ftn.service.impl.JpaKartaService;
 import com.ftn.service.impl.JpaSedisteService;
@@ -35,6 +38,9 @@ public class KartaController {
 	
 	@Autowired
 	private JpaSedisteService jpaSedisteService ;
+	
+	@Autowired
+	private KorisnikRepository korisnikRepository;
 	
 	@Autowired
 	private KartaDTOtoKarta  toKarta;
@@ -70,6 +76,13 @@ public class KartaController {
 
 	@RequestMapping(value = "/izbrisiKartu/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public void izbrisiKartu(@PathVariable Long id, HttpServletRequest request){
+		Karta karta = jpaKartaService.nadjiJednuKartu(Long.toString(id));
+		Korisnik k = (Korisnik) request.getSession().getAttribute("aktivanKorisnik");
+		Korisnik kupac = korisnikRepository.findById(k.getId());
+		Bioskop bioskop = karta.getProjekcija().getRepertoar().getBioskop();
+		kupac.getPoseceniBioskopi().add(bioskop);
+		karta.setKupljena(true);
+		
 		kartaService.remove(id);
 	}
 	

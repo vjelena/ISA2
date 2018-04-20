@@ -34,6 +34,19 @@ insert into adresa(id, broj, grad, ulica) values (19, '48', 'Valjevo', 'Vojvode 
 insert into korisnik(id, aktiviran_nalog_preko_mejla, broj_poseta, broj_telefona, email, ime, lozinka, prezime, prvi_put_se_ulogovao, uloga, vrsta_clana, adresa_id) 
 values(9, 1, 19, '794758', 'stefan@gmail.com' , 'Stefan', '999', 'Stefanovic', 0, 'obican', 'nema pravo na popust', 19);
 
+insert into adresa(id, broj, grad, ulica) values (20, '16', 'Novi Sad', 'Kisacka');
+insert into korisnik(id, aktiviran_nalog_preko_mejla, broj_poseta, broj_telefona, email, ime, lozinka, prezime, prvi_put_se_ulogovao, uloga, vrsta_clana, adresa_id)
+values(10, 1, 16, '566964', 'adminbioskopa2@gmail.com' , 'Marko', '987', 'Simic', 0, 'bioskop', 'zlatni', 20);
+
+insert into adresa(id, broj, grad, ulica) values (21, '89', 'Kragujevac', 'Kralja Petra');
+insert into korisnik(id, aktiviran_nalog_preko_mejla, broj_poseta, broj_telefona, email, ime, lozinka, prezime, prvi_put_se_ulogovao, uloga, vrsta_clana, adresa_id)
+values(11, 1, 16, '534964', 'adminbioskopa3@gmail.com' , 'Milica', '321', 'Simic', 0, 'bioskop', 'zlatni', 21);
+
+
+insert into adresa(id, broj, grad, ulica) values (22, '11', 'Beogard', 'Kralja Aleksandra');
+insert into korisnik(id, aktiviran_nalog_preko_mejla, broj_poseta, broj_telefona, email, ime, lozinka, prezime, prvi_put_se_ulogovao, uloga, vrsta_clana, adresa_id)
+values(12, 1, 16, '234964', 'adminbioskopa4@gmail.com' , 'Sava', '123', 'Mitric', 0, 'bioskop', 'zlatni', 22);
+
 --Petar i Stefan nisu prijatelji -> radi sa njima
 insert into moji_prijatelji values(1, 3);
 insert into moji_prijatelji values(1, 4);
