@@ -1,6 +1,6 @@
 insert into adresa(id, broj, grad, ulica) values (11, '67', 'Novi Sad', 'Dositejeva');
 insert into korisnik(id, aktiviran_nalog_preko_mejla, broj_poseta, broj_telefona, email, ime, lozinka, prezime, prvi_put_se_ulogovao, uloga, vrsta_clana, adresa_id) 
-values(1, 1, 14, '123456', 'petar@gmail.com' , 'Petar', '111', 'Petrovic', 0, 'obican', 'nema pravo na popust', 11);
+values(1, 1, 0, '123456', 'petar@gmail.com' , 'Petar', '111', 'Petrovic', 0, 'obican', 'nema pravo na popust', 11);
 
 insert into adresa(id, broj, grad, ulica) values (12, '35', 'Beograd', 'Puskinova');
 insert into korisnik(id, aktiviran_nalog_preko_mejla, broj_poseta, broj_telefona, email, ime, lozinka, prezime, prvi_put_se_ulogovao, uloga, vrsta_clana, adresa_id) 
@@ -8,11 +8,11 @@ values(2, 1, 3, '095346', 'admin@gmail.com' , 'Marko', '222', 'Markovic', 0, 'si
 
 insert into adresa(id, broj, grad, ulica) values (13, '49', 'Nis', 'Fruskogorska');
 insert into korisnik(id, aktiviran_nalog_preko_mejla, broj_poseta, broj_telefona, email, ime, lozinka, prezime, prvi_put_se_ulogovao, uloga, vrsta_clana, adresa_id)
-values(3, 1, 9, '459245', 'nikola@gmail.com' , 'Nikola', '333', 'Nikolic', 0, 'obican', 'srebrni', 13);
+values(3, 1, 0, '459245', 'nikola@gmail.com' , 'Nikola', '333', 'Nikolic', 0, 'obican', 'nema pravo na popust', 13);
 
 insert into adresa(id, broj, grad, ulica) values (14, '147', 'Subotica', 'Kralja Aleksandra');
 insert into korisnik(id, aktiviran_nalog_preko_mejla, broj_poseta, broj_telefona, email, ime, lozinka, prezime, prvi_put_se_ulogovao, uloga, vrsta_clana, adresa_id)
-values(4, 1, 1, '294850', 'milica@gmail.com' , 'Milica', '444', 'Milic', 0, 'obican', 'bronzani', 14);
+values(4, 1, 0, '294850', 'milica@gmail.com' , 'Milica', '444', 'Milic', 0, 'obican', 'nema pravo na popust', 14);
 
 insert into adresa(id, broj, grad, ulica) values (15, '2', 'Kraljevo', 'Podunavskog odreda');
 insert into korisnik(id, aktiviran_nalog_preko_mejla, broj_poseta, broj_telefona, email, ime, lozinka, prezime, prvi_put_se_ulogovao, uloga, vrsta_clana, adresa_id)
@@ -24,15 +24,15 @@ values(6, 1, 16, '346964', 'adminbioskopa@gmail.com' , 'Nena', '666', 'Vidovic',
 
 insert into adresa(id, broj, grad, ulica) values (17, '39', 'Novi Pazar', 'Masarikova');
 insert into korisnik(id, aktiviran_nalog_preko_mejla, broj_poseta, broj_telefona, email, ime, lozinka, prezime, prvi_put_se_ulogovao, uloga, vrsta_clana, adresa_id) 
-values(7, 1, 5, '436499', 'jovan@gmail.com' , 'Jovan', '777', 'Jovanovic', 0, 'obican', 'bronzani', 17);
+values(7, 1, 0, '436499', 'jovan@gmail.com' , 'Jovan', '777', 'Jovanovic', 0, 'obican', 'nema pravo na popust', 17);
 
 insert into adresa(id, broj, grad, ulica) values (18, '3', 'Sabac', 'Franje Stefanovica');
 insert into korisnik(id, aktiviran_nalog_preko_mejla, broj_poseta, broj_telefona, email, ime, lozinka, prezime, prvi_put_se_ulogovao, uloga, vrsta_clana, adresa_id) 
-values(8, 1, 9, '3046853', 'mira@gmail.com' , 'Mira', '888', 'Mirkovic', 0, 'obican', 'srebrni', 18);
+values(8, 1, 0, '3046853', 'mira@gmail.com' , 'Mira', '888', 'Mirkovic', 0, 'obican', 'nema pravo na popust', 18);
 
 insert into adresa(id, broj, grad, ulica) values (19, '48', 'Valjevo', 'Vojvode Supljikca');
 insert into korisnik(id, aktiviran_nalog_preko_mejla, broj_poseta, broj_telefona, email, ime, lozinka, prezime, prvi_put_se_ulogovao, uloga, vrsta_clana, adresa_id) 
-values(9, 1, 19, '794758', 'stefan@gmail.com' , 'Stefan', '999', 'Stefanovic', 0, 'obican', 'nema pravo na popust', 19);
+values(9, 1, 0, '794758', 'stefan@gmail.com' , 'Stefan', '999', 'Stefanovic', 0, 'obican', 'nema pravo na popust', 19);
 
 insert into adresa(id, broj, grad, ulica) values (20, '16', 'Novi Sad', 'Kisacka');
 insert into korisnik(id, aktiviran_nalog_preko_mejla, broj_poseta, broj_telefona, email, ime, lozinka, prezime, prvi_put_se_ulogovao, uloga, vrsta_clana, adresa_id)
@@ -85,7 +85,7 @@ insert into moji_prijatelji values(9, 8);
 
 insert into fan_zona(naziv) values ('fan zona'); --samo jedna fan zona postoji id = 1
 
-insert into skala(id, zlatni, zlatni_popust, srebrni, srebrni_popust, bronzani, bronzani_popust) values (1, 50, 20, 30, 10, 20, 5);
+insert into skala(id, zlatni, zlatni_popust, srebrni, srebrni_popust, bronzani, bronzani_popust) values (1, 5, 20, 3, 10, 2, 5);
 insert into skala(id, zlatni, zlatni_popust, srebrni, srebrni_popust, bronzani, bronzani_popust) values (2, 60, 30, 40, 20, 20, 15);
 insert into skala(id, zlatni, zlatni_popust, srebrni, srebrni_popust, bronzani, bronzani_popust) values (3, 30, 15, 20, 10, 10, 5);
 insert into skala(id, zlatni, zlatni_popust, srebrni, srebrni_popust, bronzani, bronzani_popust) values (4, 100, 40, 60, 30, 40, 20);

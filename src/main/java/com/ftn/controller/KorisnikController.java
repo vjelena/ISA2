@@ -20,7 +20,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ftn.model.Bioskop;
 import com.ftn.model.Korisnik;
 import com.ftn.model.Pozoriste;
+import com.ftn.model.Skala;
 import com.ftn.repository.KorisnikRepository;
+import com.ftn.repository.SkalaRepository;
 import com.ftn.service.EmailService;
 import com.ftn.service.KorisnikService;
 
@@ -36,6 +38,9 @@ public class KorisnikController {
 	
 	@Autowired
 	private EmailService emailService;
+	
+	@Autowired
+	private SkalaRepository skalaRepository;
 	
 	public int kolikoSePutaUlogovao = 0;
 	
@@ -321,6 +326,36 @@ public class KorisnikController {
 		}
 		
 		return new ResponseEntity<>(posetilac.getPosecenaPozorista(), HttpStatus.OK);
+	}
+	
+	//POSTAVLJANJE SKALE BODOVA
+	@RequestMapping(value = "/getKorisnikSkala", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Korisnik getKorisnikSkala(HttpServletRequest request){
+		Korisnik k = (Korisnik)request.getSession().getAttribute("aktivanKorisnik");
+		Skala skala = skalaRepository.findById(new Long(1)); //trenutno je skala zakucana u bazi
+				
+		if(k.getUloga().equals("obican")) {
+			System.out.println("\n\n\t\t\tobican korisnik...");
+			
+			if(k.getBrojPoseta() > 0 &&  k.getBrojPoseta() <= skala.getBronzani()) {
+				k.setVrstaClana("nema pravo na popust");
+				System.out.println("\n\t\t\tnema pravo na popust");
+			}else if(k.getBrojPoseta() > skala.getBronzani() && k.getBrojPoseta() <= skala.getSrebrni()) {				
+				k.setVrstaClana("bronzani");
+				System.out.println("\n\t\t\tbronzani");
+			}else if(k.getBrojPoseta() > skala.getSrebrni() && k.getBrojPoseta() <= skala.getZlatni()) {
+				k.setVrstaClana("srebrni");
+				System.out.println("\n\t\t\tsrebrni");
+			}else {
+				k.setVrstaClana("zlatni");
+				System.out.println("\n\t\t\tzlatni");
+			}
+				
+			korisnikServis.save(k);
+			return k;
+		}	
+		
+		return null;
 	}
 	
 }

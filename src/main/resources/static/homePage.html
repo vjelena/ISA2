@@ -116,6 +116,18 @@
 		<script type="text/javascript">
 			$(document).ready(function(){
 				$.ajax({
+					url: "korisnik/getKorisnikSkala",
+					type:"PUT",
+					success : function(data){
+						alert('Postavljanje skale za korisnika...')
+					},
+					error: function(){
+						alert('Greska prilikom postavljanja skale za korisnika...')
+					}
+				});
+				
+				
+				$.ajax({
 					url : "http://localhost:8080/korisnik/getTrenutnoAktivan"
 				}).then(function(data){
 					var imeKor = "<tr><th scope=\"col\">" + data.ime + "</th></tr>";

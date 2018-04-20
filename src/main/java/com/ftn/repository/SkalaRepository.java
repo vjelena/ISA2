@@ -8,4 +8,6 @@ import com.ftn.model.Skala;
 @Repository
 public interface SkalaRepository extends JpaRepository<Skala, Long> {
 
+	Skala findById(Long id);
+	
 }
