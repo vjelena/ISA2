@@ -392,7 +392,7 @@
 						<div class="form-group col-lg-10">
 							<div class="row">
 								<div class="form-group has-feedback">
-									<input id="dugmeZavrsiRezervacijuBezPrijatelja" type="button" class="btn btn-primary" style="float:right" value="Zavrsi rezervaciju">
+									<input id="dugmeZavrsiRezervacijuBezPrijatelja" type="button" class="btn btn-primary" style="float:right" value="Zavrsi rezervaciju BP">
 								</div>
 							</div>
 						</div>
@@ -820,41 +820,54 @@
 			
 			
 			$("#dugmeZavrsiRezervaciju").click(function(){
-				$("#dugmePozoviPrijatelje").prop("disabled", true);
+				$("#dugmePozoviPrijatelje").prop("disabled", true);			
+				sacuvao = 0;
 				
 				$.ajax({
-					url: "http://localhost:8080/podaciORezervaciji/podaciORezervacijiZaSlanjeMejlaPozoriste/" + nazivSelektovanogBioskopa + "/" + nazivSelektovaneProjekcije + "/" + nazivSelektovanogTermina + "/" + nazivSelektovaneSale + "/" + selektovanaSedista + "/" + nazivSelektovanogPrijatelja,
+					url: "http://localhost:8080/obicnaRezervacijaPozoriste/sacuvajObicnuRezervacijuSaPrijateljem/" + nazivSelektovanogBioskopa + "/" + nazivSelektovaneProjekcije + "/" + nazivSelektovanogTermina + "/" + nazivSelektovaneSale + "/" + selektovanaSedista + "/" + nazivSelektovanogPrijatelja,
 					type: "GET",
 					success: function(data){
-						location.href = "http://localhost:8080/homePage.html"
+						sacuvao = 1;
+						if(sacuvao == 1){
+							$.ajax({
+								url: "http://localhost:8080/podaciORezervaciji/podaciORezervacijiZaSlanjeMejlaPozoriste/" + nazivSelektovanogBioskopa + "/" + nazivSelektovaneProjekcije + "/" + nazivSelektovanogTermina + "/" + nazivSelektovaneSale + "/" + selektovanaSedista + "/" + nazivSelektovanogPrijatelja,								
+							});
+							
+							$.ajax({
+								url: "http://localhost:8080/podaciORezervaciji/rezervacijaPozvanPrijateljPozoriste/" + emailPozvanogPrijatelja + "/" + nazivSelektovaneProjekcije + "/" + nazivSelektovanogTermina + "/" + nazivSelektovanogBioskopa + "/" + selektovanaSedista,								
+							});
+							
+							location.href = "http://localhost:8080/homePage.html"
+						}
 					},
 					error: function(data){
-						alert('GRESKA PRILIKOM SLANJA MEJLA SA PODACIMA O REZERVACIJI MESTA U POZORISTU!!!')
-					}
-				});
-				
-				$.ajax({
-					url: "http://localhost:8080/podaciORezervaciji/rezervacijaPozvanPrijateljPozoriste/" + emailPozvanogPrijatelja + "/" + nazivSelektovaneProjekcije + "/" + nazivSelektovanogTermina + "/" + nazivSelektovanogBioskopa + "/" + selektovanaSedista,
-					type: "GET",
-					success: function(data){
-						location.href = "http://localhost:8080/homePage.html"
-					},
-					error: function(data){
-						alert('GRESKA PRILIKOM SLANJA POZIVA PRIJATELJA ZA REZERVACIJU MESTA U POZORISTU!!!')
+						sacuvao = 0;
+						alert('GRESKA PRILIKOM CUVANJA REZERVACIJE MESTA U POZORISTU (SA PRIJATELJEM)!!!');
 					}
 				});
 			});
 			
 			
 			$("#dugmeZavrsiRezervacijuBezPrijatelja").click(function(){
+				$("#dugmePozoviPrijatelje").prop("disabled", true);				
+				sacuvaoRezervaciju = 0;
+				
 				$.ajax({
-					url: "http://localhost:8080/podaciORezervacijiBezPrijatelja/podaciORezervacijiZaSlanjeMejlaPozoriste/" + nazivSelektovanogBioskopa + "/" + nazivSelektovaneProjekcije + "/" + nazivSelektovanogTermina + "/" + nazivSelektovaneSale + "/" + selektovanaSedista,
+					url: "http://localhost:8080/obicnaRezervacijaPozoriste/sacuvajObicnuRezervacijuBezPrijatelja/" + nazivSelektovanogBioskopa + "/" + nazivSelektovaneProjekcije + "/" + nazivSelektovanogTermina + "/" + nazivSelektovaneSale + "/" + selektovanaSedista,
 					type: "GET",
 					success: function(data){
-						location.href = "http://localhost:8080/homePage.html"
+						sacuvaoRezervaciju = 1;
+						if(sacuvaoRezervaciju == 1) {
+							$.ajax({
+								url: "http://localhost:8080/podaciORezervacijiBezPrijatelja/podaciORezervacijiZaSlanjeMejlaPozoriste/" + nazivSelektovanogBioskopa + "/" + nazivSelektovaneProjekcije + "/" + nazivSelektovanogTermina + "/" + nazivSelektovaneSale + "/" + selektovanaSedista,								
+							});
+							
+							location.href = "http://localhost:8080/homePage.html"
+						}
 					},
 					error: function(data){
-						alert('GRESKA PRILIKOM SLANJA MEJLA SA PODACIMA O REZERVACIJI MESTA U POZORISTU (BEZ PRIJATELJA)!!!')
+						sacuvaoRezervaciju = 0;
+						alert('GRESKA PRILIKOM CUVANJA REZERVACIJE MESTA U POZORISTU (BEZ PRIJATELJA)!!!');
 					}
 				});
 			});

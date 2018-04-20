@@ -6,12 +6,14 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -81,6 +83,11 @@ public class Korisnik implements Serializable{
 	@JsonIgnore
 	List<Pozoriste> posecenaPozorista;
 	
+	/*//obicne rezervacije mesta u bioskopu
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "korisnik")
+	//@JsonIgnore
+	List<ObicnaRezervacija> listaObicnihRezervacija;*/
+	
 
 	public Korisnik() {
 		
@@ -104,6 +111,7 @@ public class Korisnik implements Serializable{
 		this.zahteviZaPrijateljstvo = new ArrayList<Korisnik>();
 		this.poseceniBioskopi = new ArrayList<Bioskop>();
 		this.posecenaPozorista = new ArrayList<Pozoriste>();
+		//this.listaObicnihRezervacija = new ArrayList<ObicnaRezervacija>();
 	}
 
 	public Long getId() {
@@ -241,6 +249,14 @@ public class Korisnik implements Serializable{
 	public void setPosecenaPozorista(List<Pozoriste> posecenaPozorista) {
 		this.posecenaPozorista = posecenaPozorista;
 	}
+	
+	/*public List<ObicnaRezervacija> getListaObicnihRezervacija() {
+		return listaObicnihRezervacija;
+	}
 
+	public void setListaObicnihRezervacija(List<ObicnaRezervacija> listaObicnihRezervacija) {
+		this.listaObicnihRezervacija = listaObicnihRezervacija;
+	}*/
+	
 }
 
