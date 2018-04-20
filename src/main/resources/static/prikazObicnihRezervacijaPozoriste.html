@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Prikaz obicnih rezervacija: pozoriste</title>
+		<link href="bootstrapB/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+		<script src="bootstrapB/js/bootstrap.js" type="text/javascript"></script>
+		<script src="scripts/jquery-3.2.1.min.js"></script>
+	</head>
+	
+	<body>
+		<div class="row">
+			<div class="col-lg-12 col-lg-9"></div>
+  			<div class="col-lg-6 col-lg-3">
+			    <div class="form-group">
+			    	<form action="homePage.html" class="form-horizontal">
+				        <div class="col-lg-4">
+				            <input class="btn btn-link" type="submit" value="Nazad">
+				        </div>
+			        </form>
+			    </div>
+  			</div>
+		</div>
+		
+		<div class="container">
+			<div style="margin-top: 20px;">
+				<table id="tabelaRezervacija" class="table table-hover table-bordered">
+					<thead class="thead-dark">
+						<tr>
+							<th scope="col" class="text-center">Pozoriste</th>
+							<th scope="col" class="text-center">Projekcija</th>
+							<th scope="col" class="text-center">Termin</th>
+							<th scope="col" class="text-center">Sala</th>
+							<th scope="col" class="text-center">Sedista</th>
+							<th scope="col" class="text-center"></th>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+				<div class="form-group col-lg-6">
+					<h4><span id="prazno" class="row"></span></h4>
+				</div>
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$.ajax({
+					url : "http://localhost:8080/obicnaRezervacijaPozoriste/getObicneRezervacije"
+				}).then(function(data) {
+					if(data.length == 0){
+						$("#prazno").empty();
+						red = "Niste napravili nijednu rezervaciju mesta u pozoristu.";
+						$("#prazno").append(red);
+						$("#tabelaRezervacija").hide();
+					}else{
+						for (i = 0; i < data.length; i++) {
+							newRow = "<tr><td class=\"nazivSelektovanogBioskopa\">" + data[i].nazivSelektovanogBioskopa + "</td>"
+										+ "<td class=\"nazivSelektovaneProjekcije\">" + data[i].nazivSelektovaneProjekcije + "</td>"
+										+ "<td class=\"nazivSelektovanogTermina\">" + data[i].nazivSelektovanogTermina + "</td>"
+										+ "<td class=\"nazivSelektovaneSale\">" + data[i].nazivSelektovaneSale + "</td>"
+										+ "<td class=\"selektovanaSedista\">" + data[i].selektovanaSedista + "</td>"
+										+ "<td><input type=\"button\" class=\"btn btn-link\" style=\"float:right\" value =\"Otkazi rezervaciju\" onclick =\"otkaziRezervaciju(" + data[i].id + ")\"/></td></tr>"
+							$("#tabelaRezervacija").append(newRow);
+						}
+					}
+				});
+			});
+			
+			
+			function otkaziRezervaciju(id){				
+				$.ajax({	
+					url: "http://localhost:8080/obicnaRezervacijaPozoriste/otkaziRezervaciju/" + id,
+					type: "GET",
+					success: function(data){
+						alert("Zahtev za otkazivanje rezervacije je poslat.");
+						alert('TODO: nepotpuna implementacija!!!')
+						alert('otkazujem rezervaciju: ' + data)
+						location.href = "http://localhost:8080/homePage.html"
+					},
+				 	error: function(){
+					 alert("GRESKA PRILIKOM POKUSAJA OTKAZIVANJA REZERVACIJE MESTA U POZORISTU!!!");
+				 	}
+				});			
+			}
+		</script>
+	</body>
+</html>

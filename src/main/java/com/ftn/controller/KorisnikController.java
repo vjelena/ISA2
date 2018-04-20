@@ -299,7 +299,13 @@ public class KorisnikController {
 	@RequestMapping(value = "/getPoseceniBioskopi", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Bioskop>> getPoseceniBioskopi(HttpServletRequest request){						
 		Korisnik k = (Korisnik) request.getSession().getAttribute("aktivanKorisnik");
-		Korisnik posetilac = korisnikRepository.findById(k.getId());		
+		Korisnik posetilac = korisnikRepository.findById(k.getId());
+		
+		System.out.println("\n\t\t\tPoseceni bioskopi ulogovanog korisnika:\n");
+		for(int i = 0; i < posetilac.getPoseceniBioskopi().size(); i++) {
+			System.out.println("\t\t\tnaziv bioskopa: " + posetilac.getPoseceniBioskopi().get(i).getNaziv());
+		}
+		
 		return new ResponseEntity<>(posetilac.getPoseceniBioskopi(), HttpStatus.OK);
 	}
 	
@@ -308,6 +314,12 @@ public class KorisnikController {
 	public ResponseEntity<List<Pozoriste>> getPosecenaPozorista(HttpServletRequest request){						
 		Korisnik k = (Korisnik) request.getSession().getAttribute("aktivanKorisnik");
 		Korisnik posetilac = korisnikRepository.findById(k.getId());		
+		
+		System.out.println("\n\t\t\tPosecena pozorista ulogovanog korisnika:\n");
+		for(int i = 0; i < posetilac.getPosecenaPozorista().size(); i++) {
+			System.out.println("\t\t\tnaziv pozorista: " + posetilac.getPosecenaPozorista().get(i).getNaziv());
+		}
+		
 		return new ResponseEntity<>(posetilac.getPosecenaPozorista(), HttpStatus.OK);
 	}
 	
